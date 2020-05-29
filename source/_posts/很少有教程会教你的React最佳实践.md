@@ -54,6 +54,7 @@ D.contextChild = {
  - `componentWillReceiveProps(nextProps, nextContext)`
  - `shouldComponentUpdate(nextProps, nextState, nextContext)`
  - `componentWillUpdate(nextProps, nextState, nextContext)`
+
 > 在React15之前的本版本中，`componentDidUpdate`会有`prevContext`参数，但是最新的React16版本不再接收此参数。
 - 在无状态的函数式组件（Stateless Functional Components）中也可以使用context，比如
 ```
