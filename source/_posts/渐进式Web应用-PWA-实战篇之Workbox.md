@@ -1,7 +1,8 @@
 ---
 title: 渐进式Web应用(PWA)实战篇之Workbox
 date: 2020-11-30 18:19:36
-tags:
+tags: Workbox, PWA, Service Worker
+cover: home-bg.jpg
 ---
 
 前一篇文章讲了PWA应用的理论基础Service Worker，本篇文章讲解PWA如何应用在实际前端项目中，如果你在阅读本文之前还没有阅读第一篇文章[渐进式Web应用(PWA)理论篇之Service Worker](https://gitlab.aihaisi.com/qiexr/docs/-/issues/809)，强烈建议你先去阅读并理解里面的一些概念，然后再回来阅读本文。
