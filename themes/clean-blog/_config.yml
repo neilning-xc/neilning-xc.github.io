@@ -4,9 +4,9 @@ menu:
   归档: /archives
   标签: /tags
 #  Categories: /categories
- Github:
-   url: https://github.com/neilning-xc/neilning-xc.github.io
-   icon: github
+Github:
+  url: https://github.com/neilning-xc/neilning-xc.github.io
+  icon: github
 
 # Title on top left of menu. Leave empty to use main blog title
 menu_title: 
