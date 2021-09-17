@@ -1,12 +1,12 @@
 # Header
 menu:
-  Home: /
-  Archives: /archives
-  Tags: /tags
-  Categories: /categories
-#  Github:
-#    url: https://github.com/klugjo/hexo-theme-clean-blog
-#    icon: github
+  首页: /
+  归档: /archives
+  标签: /tags
+#  Categories: /categories
+ Github:
+   url: https://github.com/neilning-xc/neilning-xc.github.io
+   icon: github
 
 # Title on top left of menu. Leave empty to use main blog title
 menu_title: 
@@ -15,7 +15,7 @@ menu_title:
 index_cover: '/img/banner.jpg'
 
 # Default post title
-default_post_title: Neil's blog
+default_post_title: Neil的博客
 
 # Comments. Choose one by filling up the information
 comments:

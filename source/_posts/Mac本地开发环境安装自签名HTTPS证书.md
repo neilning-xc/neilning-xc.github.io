@@ -1,7 +1,7 @@
 ---
 title: 本地开发环境生成自签名证书，启用HTTPS
 date: 2017-12-10 23:11:40
-tags: Mac, HTTPS
+tags: ["Mac", "HTTPS"]
 ---
 
 ## 0. 前言

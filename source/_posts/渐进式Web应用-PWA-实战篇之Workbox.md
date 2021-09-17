@@ -1,7 +1,7 @@
 ---
 title: 渐进式Web应用(PWA)实战篇之Workbox
 date: 2020-11-30 18:19:36
-tags: Workbox, PWA, Service Worker
+tags: ["Workbox", "PWA", "Service Worker"]
 cover: home-bg.jpg
 ---
 

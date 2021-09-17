@@ -1,7 +1,7 @@
 ---
 title: PWA理论篇之Service Worker
 date: 2020-10-29 10:43:28
-tags: PWA, Service Worker
+tags: ["PWA", "Service Worker"]
 ---
 
 ## 前言

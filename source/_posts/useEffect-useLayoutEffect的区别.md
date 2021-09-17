@@ -1,7 +1,7 @@
 ---
 title: 'useEffect, useLayoutEffect的区别'
 date: 2021-09-08 22:06:44
-tags: React, useEffect, useLayoutEffect
+tags: ["ReactJS", "useEffect", "useLayoutEffect"]
 cover: banner.jpeg
 ---
 

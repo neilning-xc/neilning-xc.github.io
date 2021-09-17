@@ -1,7 +1,7 @@
 ---
 title: Laravel测试数据库的另一种替代方案-SQLite
 date: 2018-07-13 17:01:41
-tags:
+tags: ["Laravel", "PHP"]
 ---
 
 ### Laravel测试数据库
