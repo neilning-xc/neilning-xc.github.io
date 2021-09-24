@@ -86,14 +86,14 @@ Opsrator指的的操作符，主要是比较操作符，操作符既可以使用
 | 简写 |符号  |描述  |例子  |
 | --- | --- | --- | --- |
 |eq  |==  |相等  |`ip.src==10.0.0.5`  |
-|ne  |!=  |不等  |ip.src!=10.0.0.5  |
-|gt  |>  |大于  |frame.len > 10  |
-|lt  |<  |小于  |frame.len < 128  |
-|ge  |>=  |大于等于|frame.len ge 0x100  |
-|le  |<=  |小于等于|frame.len <= 0x20  |
-|contains|  |包含  |sip.To contains "a1762"|
-|matches|~|字符串类型匹配正则表达式|http.host matches "acme\\\\.(org\|com\|net)" |
-|bitwise_and|&|按位与|tcp.flags & 0x02|
+|ne  |!=  |不等  |`ip.src!=10.0.0.5`  |
+|gt  |>  |大于  |`frame.len > 10`  |
+|lt  |<  |小于  |`frame.len < 128`  |
+|ge  |>=  |大于等于|`frame.len ge 0x100`  |
+|le  |<=  |小于等于|`frame.len <= 0x20`  |
+|contains|  |包含  |`sip.To contains "a1762"`|
+|matches|~|字符串类型匹配正则表达式|`http.host matches "acme\\\\.(org\|com\|net)"` |
+|bitwise_and|&|按位与|`tcp.flags & 0x02`|
 
 ### 字段类型
 显示过滤器字段是有具体类型的，所有的类型如下：
@@ -106,8 +106,10 @@ Opsrator指的的操作符，主要是比较操作符，操作符既可以使用
 | Ethernet address|以太网地址，通过`:`， `.`， `-`分隔的六字节地址  |`eth.dst == ff:ff:ff:ff:ff:ff` `eth.dst == ff-ff-ff-ff-ff-ff` `eth.dst == ffff.ffff.ffff`  |
 | IPv4 address | IPv4地址 |`ip.addr == 192.168.0.1` `ip.addr == 129.111.0.0/16`|
 | IPv6 address | IPv6地址 |`ipv6.addr == ::1`|
-| Text string | 文本字符串 |`http.request.uri == "https://www.wireshark.org/"`，可以使用ASSIC码十六进制（\xhh）或者八进制(\ddd)数字，如`dns.qry.name contains "www.\x77\x69\x72\x65\x73\x68\x61\x72\x6b.org"`，也支持正则表达式:`http.user_agent matches r"\(X11;"`|
+| Text string | 文本字符串 |`http.request.uri == "https://www.wireshark.org/"`，可以使用ASSIC码十六进制（\xhh）或者八进制(\ddd)数字，如`dns.qry.name contains "www.\x77\x69\x72\x65\x73\x68\x61\x72\x6b.org"`，也支持正则表达式:`http.user_agent matches r"\(X11;"` |
+
 ### 逻辑连接符
+
 还可以用逻辑连接符连接多个基本基本表达式
 
 | 简写 |操作符  |描述  |例子  |
