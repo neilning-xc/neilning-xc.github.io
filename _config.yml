@@ -4,9 +4,9 @@
 
 # Site
 title: Neil的博客
-subtitle: 'Tell the world with code'
+subtitle: '个人知识库，备忘录'
 description: 'Tell the world with code'
-keywords: Web,ReactJS,PHP
+keywords: Web,HTTP,PHP
 author: Neil Ning
 language: zh-CN
 timezone: ''
@@ -15,7 +15,7 @@ timezone: ''
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://neilning-xc.github.io/
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:day/:id/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
