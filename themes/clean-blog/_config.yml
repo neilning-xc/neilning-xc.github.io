@@ -4,9 +4,9 @@ menu:
   归档: /archives
   标签: /tags
 #  Categories: /categories
-Github:
-  url: https://github.com/neilning-xc/neilning-xc.github.io
-  icon: github
+  Github:
+    url: https://github.com/neilning-xc/neilning-xc.github.io
+    icon: github
 
 # Title on top left of menu. Leave empty to use main blog title
 menu_title: 
@@ -28,7 +28,7 @@ comments:
     comment_colorscheme: light
 
 # Google Analytics Tracking ID
-google_analytics:
+google_analytics: G-ZPEMLKFYYW
 
 # Addthis ID
 addthis:
@@ -43,4 +43,4 @@ facebook_url:
 github_url: https://github.com/neilning-xc
 gitlab_url:
 linkedin_url:
-mailto:
+mailto: ningcoder@foxmail.com
