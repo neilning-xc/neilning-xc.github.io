@@ -1,5 +1,5 @@
 ---
-title: Hooks使用总结和源码解析
+title: Hooks使用总结和源码解析(一)
 date: 2021-11-21 22:46:30
 tags: [React, Hooks]
 cover: banner.jpeg
@@ -12,7 +12,7 @@ Hooks是React16.8的新特性，用于解决函数式组件没有状态的问题
 ## 内置Hooks函数
 
 ### useState
-useState解决了函数式组件没有状态的问题，该函数的参数不仅可以是一个值，还可以是一个函数，函数必须要返回一个值作为默认state的初始值。
+`useState`解决了函数式组件没有状态的问题，该函数的参数不仅可以是一个值，还可以是一个函数，函数必须要返回一个值作为默认state的初始值。
 ```js
 const [state, setState] = useState(() => {
   const initialState = someExpensiveComputation(props);
@@ -20,7 +20,7 @@ const [state, setState] = useState(() => {
 });
 
 ```
-另外setState函数的参数也可以是函数，函数的第一个参数是上一个状态值：
+另外`setState`函数的参数也可以是函数，函数的第一个参数是上一个状态值：
 ```js
 function Counter({initialCount}) {
   const [count, setCount] = useState(initialCount);
@@ -34,11 +34,11 @@ function Counter({initialCount}) {
   );
 }
 ```
-以上代码中setCount的参数是一个函数，这在更新后的值依赖于前一个值时很有用。
+以上代码中`setCount`的参数是一个函数，这在更新后的值依赖于前一个值时很有用。
 
-useState以及其他Hooks函数不能在条件，循环，以及嵌套函数内调用，只能在函数组件的顶部作用域调用，组件每次重新渲染，整个函数都相当于重新执行了一次，那useState内部是如何记录上一次的值？为什么Hooks的调用顺序必须一致？
+`useState`以及其他Hooks函数不能在条件，循环，以及嵌套函数内调用，只能在函数组件的顶部作用域调用，组件每次重新渲染，整个函数都相当于重新执行了一次，那`useState`内部是如何记录上一次的值？为什么Hooks的调用顺序必须一致？
 
-这需要到源码中一探究竟，React源码中，useState在初次渲染时的调用了mountState，更新时调用了updateState，查看打包生成后的react-dom.development.js(或者查看最原始的代码实现react/packages/react/src/ReactHooks.js):
+这需要到源码中一探究竟，React源码中，`useState`在初次渲染时的调用了`mountState`，更新时调用了`updateState`，查看打包生成后的react-dom.development.js(或者查看最原始的代码实现react/packages/react/src/ReactHooks.js):
 ```js
 function mountState(initialState) {
   var hook = mountWorkInProgressHook();
@@ -65,7 +65,7 @@ function updateState(initialState) {
   return updateReducer(basicStateReducer);
 }
 ```
-以mountState为例，函数最终返回hook.memoizedState, dispatch，对应在组件中调用`const [state, setState] = useState(0)`的返回值，state的值是hook对象的memoizedState属性，dispatch的值是queue.dispatch调用bind后返回的新函数，queue对象也是来自于hook对象上的，看一下hook的生成函数mountWorkInProgressHook：
+以`mountState`为例，函数最终返回hook.memoizedState, dispatch，对应在组件中调用`const [state, setState] = useState(0)`的返回值，state的值是hook对象的memoizedState属性，dispatch的值是queue.dispatch调用bind后返回的新函数，queue对象也是来自于hook对象上的，看一下hook的生成函数`mountWorkInProgressHook`：
 ```js
 function mountWorkInProgressHook() {
   var hook = {
@@ -88,34 +88,34 @@ function mountWorkInProgressHook() {
 }
 ```
 hook对象上三个关键属性：
-- memoizedState记录useState创建的当前state的值
-- queue属性在mountState中被赋值为一个对象
-- next属性说明调用多个useState时会形成一个单向链表
-该函数中的workInProgressHook变量是遍历单向链表当前节点的指针，第一次调用该函数是他的值为null，然后将它指向第一个hook对象，后续调用则指向hook.next。
+- `memoizedState`记录useState创建的当前state的值
+- `queue`属性在mountState中被赋值为一个对象
+- `next`属性说明调用多个useState时会形成一个单向链表
+该函数中的`workInProgressHook`变量是遍历单向链表当前节点的指针，第一次调用该函数是他的值为null，然后将它指向第一个hook对象，后续调用则指向hook.next。
 假设在组件中有如下代码：
 ```js
 const [state, setState] = useState(1);
 const [bool, setBool] = useState(true);
 ```
-打印workInProgressHook的值，第一次打印：
+打印`workInProgressHook`的值，第一次打印：
 
-![26d08b3fa3dec77967fd43f7154918b5.png](evernotecid://9AC2EB46-5B0E-449E-B766-2EC5415163C7/appyinxiangcom/30534056/ENResource/p177)
+![workInProgressHook1.png](workInProgressHook1.png)
 
 第二次打印：
-![22424e5d7d6044ae189e93f9da41f0fe.png](evernotecid://9AC2EB46-5B0E-449E-B766-2EC5415163C7/appyinxiangcom/30534056/ENResource/p178)
+![workInProgressHook2.png](workInProgressHook2.png)
 所以基本上的实现原理是使用单链表加一个外部指针的方式来记录和访问对应state的值，这也是为何react规定hook为了保证他的调用顺序，不能放在循环或分支语句中的原因。
-![f8e000a73ec4ba3ecd060a279d384c21.png](evernotecid://9AC2EB46-5B0E-449E-B766-2EC5415163C7/appyinxiangcom/30534056/ENResource/p183)
+![useState.png](useState.png)
 
 ### useEffect
-useEffect也是我们最常使用的Hooks函数之一，其调用也比较简单，它可以允许开发者在回调函数中调用有副作用的函数，比如发送网络请求，操作dom等等。函数的签名为：
+`useEffect`也是我们最常使用的Hooks函数之一，其调用也比较简单，它可以允许开发者在回调函数中调用有副作用的函数，比如发送网络请求，操作dom等等。函数的签名为：
 ```js
 function useEffect(effect: EffectCallback, deps?: DependencyList): void;
 ```
-该函数是class组件中componentDidMount，componentDidUpdate和componentWillUnMount的组合。可以根据deps参数的不同模拟出不同的生命周期函数：
-- 不传deps，effect函数将在componentDidMount和componentDidUpdate时执行，即函数每次更新时都会执行
-- deps为[], effect函数只在组件componentDidMount时执行一次
-- deps为[propA, stateB]，函数在componentDidMount执行一次，在由propA或stateB引起的更新后执行一次
-- effect函数返回一个函数，该函数将在componentWillUnMount时执行一次。
+该函数是class组件中`componentDidMount`，`componentDidUpdate`和`componentWillUnMount`的组合。可以根据deps参数的不同模拟出不同的生命周期函数：
+- 不传deps，effect函数将在`componentDidMount`和`componentDidUpdate`时执行，即函数每次更新时都会执行
+- deps为[], effect函数只在组件`componentDidMount`时执行一次
+- deps为[propA, stateB]，函数在`componentDidMount`执行一次，在由propA或stateB引起的更新后执行一次
+- effect函数返回一个函数，该函数将在`componentWillUnMount`时执行一次。
 
 和useState类似，useEffect在首次渲染和更新渲染所调用的方法是不同的，并且调用useEffect也会向单向链表中添加一个新的hook对象节点，不过hook对象的memoizedState是一个对象。
 ```js
@@ -222,7 +222,7 @@ var objectIs = typeof Object.is === 'function' ? Object.is : is;
 ```
 该函数最终调用了Object.is比较useEffect函数第二个值的每一项是否相同。
 
-在mountEffectImpl和updateEffectImpl中也分别调用了mountWorkInProgressHook和updateWorkInProgressHook，所以useEffect也会产生两个hook对象添加到链表中，有所不同的是hook对象的memoizedState的值不同，他们都调用了pushEffect函数。
+在`mountEffectImpl`和`updateEffectImpl`中也分别调用了`mountWorkInProgressHook`和`updateWorkInProgressHook`，所以useEffect也会产生两个hook对象添加到链表中，有所不同的是hook对象的memoizedState的值不同，他们都调用了pushEffect函数。
 ```js
 function pushEffect(tag, create, destroy, deps) {
   var effect = {
@@ -277,10 +277,10 @@ useEffect(() => {
 }, [bool]);
 ```
 打印出该组件的hook链表：
-![5933bc027109d28b082b8e17d3fe873e.png](evernotecid://9AC2EB46-5B0E-449E-B766-2EC5415163C7/appyinxiangcom/30534056/ENResource/p180)
+![useEffect.png](useEffect.png)
 查看memoizedState的值，可以看到一个环形链表：
-![ab9803506ae65de4843ee50f4a21f94f.png](evernotecid://9AC2EB46-5B0E-449E-B766-2EC5415163C7/appyinxiangcom/30534056/ENResource/p181)
-![d31ad5e29b6c58104298c82de2e69823.png](evernotecid://9AC2EB46-5B0E-449E-B766-2EC5415163C7/appyinxiangcom/30534056/ENResource/p182)
+![memoizedState1.png](memoizedState1.png)
+![memoizedState2.png](memoizedState2.png)
 
 以上源码回答了调用useEffect产生的数据结构，那具体有副作用的函数在什么时候被调用呢？
 ```js
@@ -387,7 +387,7 @@ function commitLayoutEffectOnFiber(finishedRoot, current, finishedWork, committe
   }
 }
 ```
-该函数较为复杂，删除一些无关代码后，整体脉络是根据组件类型做不同的处理。类似的，commitHookEffectListUnmount是在commitPassiveUnmountOnFiber函数中被调用。useEffect中的副作用操作会在会在函数组件的不同阶段被依次调用。
+该函数较为复杂，删除一些无关代码后，整体脉络是根据组件类型做不同的处理。类似的，`commitHookEffectListUnmount`是在`commitPassiveUnmountOnFiber`函数中被调用。useEffect中的副作用操作会在会在函数组件的不同阶段被依次调用。
 
 ### useContext
 useContext需要结合最新的Context API使用：
@@ -491,3 +491,136 @@ function readContext(context) {
   return value;
 }
 ```
+
+### useReducer
+介绍useReducer之前考虑以下代码：
+```js
+function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState(0);
+
+  return (
+    <div className="App">
+      <form>
+        <input value={name} onChange={(event) => setName(event.target.value)} />
+        <input
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <input value={age} onChange={(event) => setAge(event.target.value)} />
+      </form>
+    </div>
+  );
+}
+```
+假设有填写用户信息基本的表单组件，该表单有多个字段，使用useState需要声明多个字段每个字段，此时可以考虑使用useReducer优化：
+```js
+const initState = {
+  name: "",
+  emial: "",
+  age: 0
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "setName":
+      return {
+        ...state,
+        name: action.payload
+      };
+    case "setEmail":
+      return {
+        ...state,
+        email: action.payload
+      };
+    case "setAge":
+      return {
+        ...state,
+        age: action.payload
+      };
+    default:
+      return state;
+  }
+}
+
+function App() {
+  const [form, dispatch] = useReducer(reducer, initState);
+
+  return (
+    <div className="App">
+      <form>
+        <input
+          value={form.name}
+          onChange={(event) =>
+            dispatch({ type: "setName", payload: event.target.value })
+          }
+        />
+        <input
+          value={form.email}
+          onChange={(event) =>
+            dispatch({ type: "setEmail", payload: event.target.value })
+          }
+        />
+        <input
+          value={form.age}
+          onChange={(event) =>
+            dispatch({ type: "setAge", payload: event.target.value })
+          }
+        />
+      </form>
+    </div>
+  );
+}
+```
+可以看到useReducer借鉴了Redux的思想。useReducer的第一个参数是reducer函数，他也必须是一个纯函数，返回一个新的对象引用。第二个参数是创建的state的默认值。实际上在React内部，useState就是靠useReducer来实现的。
+该函数的第三个可选参数是一个函数，该函数会接收useReducer的第二个参数initState作为参数，返回的值作为创建的statet的默认值，该参数允许对传入的initState做进一步计算处理，返回新的initState。
+```js
+const initState = {
+  name: "Neil",
+  email: "admin@test.com",
+  age: 0
+};
+
+function init(initState) {
+  return {
+    ...initState,
+    name: `name: ${initState.name}`,
+    email: `email: ${initState.email}`
+  };
+}
+// 在组件内，生成的form的默认值为
+// {
+//    age: 0,
+//    name: "name: Neil",
+//    email: "email: admin@test.com"
+// }
+const [form, dispatch] = useReducer(reducer, initState, init);
+```
+
+useReducer的底层实现分别调用mountReducer和updateReducer，这个与useState相似，useState在首次渲染阶段调用了mountState函数，在更新阶段也是调用了updateReducer函数。区别只是useReducer返回值是一个对象，和一个dispatch函数，dispatchh函数可以接收action对象。
+```js
+function mountReducer(reducer, initialArg, init) {
+  var hook = mountWorkInProgressHook();
+  var initialState;
+
+  if (init !== undefined) {
+    initialState = init(initialArg);
+  } else {
+    initialState = initialArg;
+  }
+
+  hook.memoizedState = hook.baseState = initialState;
+  var queue = hook.queue = {
+    pending: null,
+    interleaved: null,
+    lanes: NoLanes,
+    dispatch: null,
+    lastRenderedReducer: reducer,
+    lastRenderedState: initialState
+  };
+  var dispatch = queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue);
+  return [hook.memoizedState, dispatch];
+}
+```
+可以看到mountReducer和mountState函数的实现也极为相似。只是初始值的设置不同。
