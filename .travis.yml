@@ -1,6 +1,8 @@
 language: node_js
+os:
+  - osx
 node_js:
-  - 14 # use nodejs v10 LTS
+  - 14
 cache: npm
 branches:
   only:
