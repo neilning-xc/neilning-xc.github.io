@@ -2,5 +2,6 @@
 title: {{ title }}
 date: {{ date }}
 tags:
-cover:
+cover: 
+author: "Neil Ning"
 ---
