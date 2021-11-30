@@ -1,8 +1,7 @@
+sudo: false
 language: node_js
-os:
-  - osx
 node_js:
-  - 14
+  - 10 # use nodejs v10 LTS
 cache: npm
 branches:
   only:
@@ -11,8 +10,8 @@ script:
   - hexo generate # generate static files
 deploy:
   provider: pages
-  cleanup: true
-  token: $GH_TOKEN
+  skip-cleanup: true
+  github-token: $GH_TOKEN
   keep-history: true
   on:
     branch: master
