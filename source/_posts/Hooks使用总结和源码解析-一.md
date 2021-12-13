@@ -7,7 +7,7 @@ author: "Neil Ning"
 ---
 ## 前言
 Hooks是React16.8的新特性，用于解决函数式组件没有状态的问题，以往的函数式组件是一个纯函数，他的数据只能从父组件中获得，新的特性使得开发者能在函数式组件中编写更加复杂的逻辑，拓展了函数式组件使用场景，使得在函数式组件中复用逻辑变得更加简单。
-不仅如此，通过React内置的Hooks函数useEffect，开发者还可以组合出class组件不同的生命周期，useEffect的调用方式也使得相似的业务逻辑代码更加紧凑，新版本的React，开发者几乎可以将所有的组件都该写成函数式组件。下面对Hooks的相关API做一个整理。
+不仅如此，通过React内置的Hooks函数useEffect，开发者还可以组合出class组件不同的生命周期，useEffect的调用方式也使得相似的业务逻辑代码更加紧凑，新版本的React，开发者几乎可以将所有的组件都写成函数式组件。下面对Hooks的相关API做一个整理。
 
 ## 内置Hooks函数
 
@@ -91,6 +91,7 @@ hook对象上三个关键属性：
 - `memoizedState`记录useState创建的当前state的值
 - `queue`属性在mountState中被赋值为一个对象
 - `next`属性说明调用多个useState时会形成一个单向链表
+
 该函数中的`workInProgressHook`变量是遍历单向链表当前节点的指针，第一次调用该函数是他的值为null，然后将它指向第一个hook对象，后续调用则指向hook.next。
 假设在组件中有如下代码：
 ```js
@@ -103,7 +104,7 @@ const [bool, setBool] = useState(true);
 
 第二次打印：
 ![workInProgressHook2.png](workInProgressHook2.png)
-所以基本上的实现原理是使用单链表加一个外部指针的方式来记录和访问对应state的值，这也是为何react规定hook为了保证他的调用顺序，不能放在循环或分支语句中的原因。
+所以基本上，Hooks的实现原理是使用单链表加一个外部指针的方式来记录和访问对应state的值，这也是为何react规定hooks必须保证调用顺序一致，不能放在循环或分支语句中的原因。
 ![useState.png](useState.png)
 
 ### useEffect
@@ -113,7 +114,7 @@ function useEffect(effect: EffectCallback, deps?: DependencyList): void;
 ```
 该函数是class组件中`componentDidMount`，`componentDidUpdate`和`componentWillUnMount`的组合。可以根据deps参数的不同模拟出不同的生命周期函数：
 - 不传deps，effect函数将在`componentDidMount`和`componentDidUpdate`时执行，即函数每次更新时都会执行
-- deps为[], effect函数只在组件`componentDidMount`时执行一次
+- deps为[], effect函数只会在组件`componentDidMount`时执行一次
 - deps为[propA, stateB]，函数在`componentDidMount`执行一次，在由propA或stateB引起的更新后执行一次
 - effect函数返回一个函数，该函数将在`componentWillUnMount`时执行一次。
 
@@ -220,9 +221,9 @@ function is(x, y) {
 
 var objectIs = typeof Object.is === 'function' ? Object.is : is;
 ```
-该函数最终调用了Object.is比较useEffect函数第二个值的每一项是否相同。
+该函数最终调用了[Object.is](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is)比较useEffect函数第二个值的每一项是否相同。
 
-在`mountEffectImpl`和`updateEffectImpl`中也分别调用了`mountWorkInProgressHook`和`updateWorkInProgressHook`，所以useEffect也会产生两个hook对象添加到链表中，有所不同的是hook对象的memoizedState的值不同，他们都调用了pushEffect函数。
+在`mountEffectImpl`和`updateEffectImpl`中也分别调用了`mountWorkInProgressHook`和`updateWorkInProgressHook`，所以useEffect也会产生两个hook对象添加到链表中，有所不同的是hook对象的memoizedState的值是一个对象，他们都调用了pushEffect函数。
 ```js
 function pushEffect(tag, create, destroy, deps) {
   var effect = {
@@ -258,7 +259,7 @@ function pushEffect(tag, create, destroy, deps) {
 ```
 该函数首先声明一个effect对象，最后会返回该对象。effect的next属性说明了该对象又是一个单向链表的节点。
 
-在自己的React组件里添加useEffect完成一些需要副作用操作的函数：
+我们在自己的React组件里添加useEffect完成一些需要副作用操作的函数，来演示一下该对象的值：
 ```js
 const [state, setState] = useState(1);
 const [bool, setBool] = useState(true);
@@ -514,7 +515,7 @@ function App() {
   );
 }
 ```
-假设有填写用户信息基本的表单组件，该表单有多个字段，使用useState需要声明多个字段每个字段，此时可以考虑使用useReducer优化：
+假设有一个填写用户基本信息的表单组件，该表单有多个字段，如果使用useState则需要声明多个字段，此时可以考虑使用useReducer优化：
 ```js
 const initState = {
   name: "",
@@ -598,7 +599,7 @@ function init(initState) {
 const [form, dispatch] = useReducer(reducer, initState, init);
 ```
 
-useReducer的底层实现分别调用mountReducer和updateReducer，这个与useState相似，useState在首次渲染阶段调用了mountState函数，在更新阶段也是调用了updateReducer函数。区别只是useReducer返回值是一个对象，和一个dispatch函数，dispatchh函数可以接收action对象。
+useReducer的底层实现分别调用mountReducer和updateReducer，这个与useState相似，useState在首次渲染阶段调用了mountState函数，在更新阶段也是调用了updateReducer函数。区别只是useReducer返回值是一个对象，和一个dispatch函数，dispatch函数可以接收action对象。
 ```js
 function mountReducer(reducer, initialArg, init) {
   var hook = mountWorkInProgressHook();

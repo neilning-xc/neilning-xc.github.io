@@ -16,7 +16,7 @@ cover: banner.jpg
 - **sticky**: 该值比较特殊，它时而表现出relative的特性，时而又会类似于fixed定位时的特性。
 
 ## Sticky
-sticky的工作原理比较不容易理解，当我们项实现类似滚动到顶部吸顶时，首先会想到它。但是它并不总是能够实现吸顶效果，因为它可以看作是relative和fixed属性结合体，有时会表现出类似fixed的特性，有时又会表现出relative的特性。那sticky属性值的参照物是什么呢？
+sticky的工作原理比较不容易理解，当我们想实现类似滚动到顶部吸顶的效果时，首先会想到它。但是它并不总是能够实现吸顶效果，因为它可以看作是relative和fixed属性结合体，有时会表现出类似fixed的特性，有时又会表现出relative的特性。那sticky属性值的参照物是什么呢？
 
 sticky的参照物是最近的设置了overflow != hidden的祖先元素，即它会向上逐级查找，直到找到一个overflow属性不是invisible的元素（通常这个元素通常设置为`overflow: auto`或`overflow：scroll`），而并不是某些文章所说的是浏览器窗口。
 
@@ -90,7 +90,7 @@ sticky的参照物是最近的设置了overflow != hidden的祖先元素，即�
 
 
 设置容器.ancestor元素居中，`overflow: auto;`，可视区域的高度为500px，如图中红色边框所示。两个header元素的定位设为sticky。
-开始时，由于.extra元素的存在，header元素的距离大于40px时，它随着元素的滚动而滚动，表现出relative的特性。当header滚动到距离蓝色上边框为40px时，开始表现出类似fixed的特性，之所以说类似是因为他的参照物是边框所示的可视区域。
+开始时，由于.extra元素的存在，header元素的距离大于40px时，它随着元素的滚动而滚动，表现出relative的特性。当header滚动到距离顶部的蓝色上边框为40px时，开始表现出类似fixed的特性，之所以说类似是因为他的参照物是边框所示的可视区域。
 元素继续滚动，当第二个header元素距离底部为40px时，他也开始固定在顶部显示，并且产生了堆叠的效果，第二个header覆盖在第一个header元素之上。
 除了能够产生堆叠的效果，还能产生推开的效果，即第二个header距蓝色边框40px时，它会推开第一个header元素，此时需要修改HTML元素的结构，将header元素和.content元素用一个额外的容器元素包裹起来。
 ```html
@@ -113,10 +113,9 @@ sticky的参照物是最近的设置了overflow != hidden的祖先元素，即�
 ```
 ![position-sticky-push.gif](position-sticky-push.gif)
 
-如果改成将第二个header元素偏移量改为bottom: 40px时会发生什
-么呢？
+如果将第二个header元素偏移量改为bottom: 40px时会发生什么呢？
 
-开始时，该header元素会停留在距离底部黑色边框为40px的位置，随着滚动条向下滚动，当该header元素距离黑色边框大于40px时，他开始表现出relative的特性。如图所示：
+开始时，该header元素会停留在距离底部黑色边框为40px的位置，随着滚动条向下滚动，当该header元素距离底部的黑色边框大于40px时，他开始表现出relative的特性。如图所示：
 ![position-sticky-bottom.gif](position-sticky-bottom.gif)
 
 ## 结论
