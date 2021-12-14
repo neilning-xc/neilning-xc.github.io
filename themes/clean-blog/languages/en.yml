@@ -3,3 +3,5 @@ next: Newer Posts
 comment: Comments
 archive_a: Archives
 archive_b: "Archives: %s"
+prev_post: Last
+next_post: Next

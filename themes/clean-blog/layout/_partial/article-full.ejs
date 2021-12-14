@@ -69,10 +69,10 @@
 
                 <ul class="pager">
                     <% if (item.prev){ %>
-                        <li class="previous"><a href="<%- config.root %><%- page.prev.path %>">&larr;  上一篇</a></li>
+                        <li class="previous"><a href="<%- config.root %><%- page.prev.path %>">&larr;  <%- __('next')%></a></li>
                     <% } %>
                     <% if (item.next){ %>
-                        <li class="next"><a href="<%- config.root %><%- page.next.path %>">下一篇 &rarr;</a></li>
+                        <li class="next"><a href="<%- config.root %><%- page.next.path %>"><%- __('next')%> &rarr;</a></li>
                     <% } %>
                 </ul>
             </div>
