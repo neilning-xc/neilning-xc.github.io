@@ -66,6 +66,15 @@
                     <!-- Go to www.addthis.com/dashboard to customize your tools -->
                     <div class="addthis_sharing_toolbox"></div>
                 <% } %>
+
+                <ul class="pager">
+                    <% if (item.prev){ %>
+                        <li class="previous"><a href="<%- config.root %><%- page.prev.path %>">&larr;  上一篇</a></li>
+                    <% } %>
+                    <% if (item.next){ %>
+                        <li class="next"><a href="<%- config.root %><%- page.next.path %>">下一篇 &rarr;</a></li>
+                    <% } %>
+                </ul>
             </div>
 
             <!-- Comments -->
