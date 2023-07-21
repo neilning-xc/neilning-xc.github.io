@@ -19,3 +19,8 @@ MIT
 1. 创建分支
 2. 创建文章`hexo new [layout] <title>`
 3. 提交PR
+
+## 本地预览
+```
+npm run server
+```
