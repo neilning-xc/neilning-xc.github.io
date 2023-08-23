@@ -3,6 +3,7 @@ title: 使用web push库发送消息【译】
 author: Neil Ning
 date: 2023-07-25 22:45:37
 tags: ['web push', push notification]
+categories: 翻译
 cover: bg.jpg
 ---
 ## 前言
