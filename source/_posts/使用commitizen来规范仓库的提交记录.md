@@ -3,6 +3,7 @@ title: 使用commitizen来规范仓库的提交记录
 author: Neil Ning
 date: 2021-12-12 18:24:04
 tags: ["git", "commitizen", "changelog"]
+categories: 学习
 cover: bg.jpeg
 ---
 ## 前言

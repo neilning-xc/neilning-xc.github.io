@@ -15,7 +15,8 @@ timezone: ''
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://neilning-xc.github.io/
 root: /
-permalink: :year/:month/:day/:id/
+# permalink: :year/:month/:day/:id/
+permalink: :category/:title.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -52,6 +53,9 @@ highlight:
   wrap: true
   hljs: false
 
+marked:
+  prependRoot: true
+  postAsset: true
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -62,7 +66,7 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: post
 category_map:
 tag_map:
 
@@ -99,3 +103,6 @@ theme: clean-blog
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: ''
+
+sitemap:
+  path: sitemap.xml

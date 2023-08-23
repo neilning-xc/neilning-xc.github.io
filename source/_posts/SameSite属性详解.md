@@ -2,6 +2,7 @@
 title: SameSite属性详解
 date: 2021-09-29 20:56:01
 tags: ["SameSite", "Cookie"]
+categories: 总结
 cover: banner.jpg
 ---
 众所周知，主流的现代浏览器为Cookie增加了一个新的属性SameSite，其目的是为了防止跨站请求伪造（Cross-Site Request Forgery，CSRF）和防止用户跟踪，如谷歌和百度的广告。

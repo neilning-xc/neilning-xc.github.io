@@ -1,7 +1,7 @@
 <!-- Page Header -->
 <!-- Set your background image for this header in your post front-matter: cover -->
 <%
-    var cover = item.cover || theme.index_cover;
+    var cover = item.slug + '/' +item.cover || theme.index_cover;
 %>
 <header class="intro-header post-header" style="background-image: url('<%- cover %>')">
     <div class="container">

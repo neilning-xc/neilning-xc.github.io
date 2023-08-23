@@ -3,7 +3,7 @@ menu:
   首页: /
   归档: /archives
   标签: /tags
-#  Categories: /categories
+  分类: /categories
   Github:
     url: https://github.com/neilning-xc/neilning-xc.github.io
     icon: github

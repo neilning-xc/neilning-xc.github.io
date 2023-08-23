@@ -2,6 +2,7 @@
 title: TCP协议基础知识（二）
 date: 2021-10-11 18:22:49
 tags: ["TCP", "HTTP", "网络协议"]
+categories: 学习
 cover: banner.jpeg
 ---
 ## 可选项

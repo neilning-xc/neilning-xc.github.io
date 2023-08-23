@@ -3,6 +3,7 @@ title: Web Push Notification教程（一）
 author: Neil Ning
 date: 2023-08-21 23:34:05
 tags: ['web push', push notification, 'service worker', 'web subscription']
+categories: 学习
 cover: bg.jpeg
 ---
 ## 前言
