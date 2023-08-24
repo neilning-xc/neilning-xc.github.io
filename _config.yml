@@ -106,3 +106,11 @@ deploy:
 
 sitemap:
   path: sitemap.xml
+  tag: false
+  category: false
+
+nofollow:
+  enable: true  #true/false 启用/关闭插件
+  field: site   #site/post  处理全站/仅文章链接
+  exclude:      #排除域名，同的子域名视为不同的域名
+    - 'neilning-xc.github.io'
