@@ -106,8 +106,8 @@ deploy:
 
 sitemap:
   path: sitemap.xml
-  tag: false
-  category: false
+  tag: true
+  category: true
 
 nofollow:
   enable: true  #true/false 启用/关闭插件
