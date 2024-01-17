@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Hooks使用总结和源码解析(二)"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Hooks使用总结和源码解析(二) - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Hooks使用总结和源码解析-二/banner.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Hooks使用总结和源码解析(二)</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2021-11-23
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/React/">#React</a> <a href="/tags/Hooks/">#Hooks</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>useMemo有点类似vue中的计算属性，根据现有的state或者props生成新的计算值，只要该计算值的依赖项不发生变化，则计算值就不发生变化，从而达到性能优化的效果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function">() =&gt;</span> computeExpensiveValue(a, b), [a, b]);</span><br><span class="line"><span class="comment">// computeExpensiveValue为一个耗时的计算函数，只要a和b不发生变化，computeExpensiveValue函数就不会执行，memoizedValue的值也就不会发生变化。</span></span><br></pre></td></tr></table></figure>
+
+<p>useMemo的实现原理和useState也类似，也会创建hook链表，区别仍然是memoizedState的值不同，以更新时的实现为例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateMemo</span>(<span class="params">nextCreate, deps</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hook = updateWorkInProgressHook();</span><br><span class="line">  <span class="keyword">var</span> nextDeps = deps === <span class="literal">undefined</span> ? <span class="literal">null</span> : deps;</span><br><span class="line">  <span class="keyword">var</span> prevState = hook.memoizedState;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (prevState !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// Assume these are defined. If they&#x27;re not, areHookInputsEqual will warn.</span></span><br><span class="line">    <span class="keyword">if</span> (nextDeps !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> prevDeps = prevState[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (areHookInputsEqual(nextDeps, prevDeps)) &#123;</span><br><span class="line">        <span class="keyword">return</span> prevState[<span class="number">0</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> nextValue = nextCreate();</span><br><span class="line">  hook.memoizedState = [nextValue, nextDeps];</span><br><span class="line">  <span class="keyword">return</span> nextValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用areHookInputsEqual函数判断依赖值是否发生变化，没有变化时返回来的值，如果发生变化则会重新计算值。查看areHookInputsEqual函数的判断原理，仍然使用的Object.is函数。</p>
+<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>useCallback的调用方式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedCallback = useCallback(</span><br><span class="line">  <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    doSomething(a, b);</span><br><span class="line">  &#125;,</span><br><span class="line">  [a, b],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>memoizedCallback变量保存了一个新函数引用，该引用只有在依赖的项发生变化时才会改变，否则memoizedCallback指向的永远是同一个函数引用，这在将memoizedCallback作为属性传递给子组件时非常有用，因为父组件每次更新后产生的函数对象引用是同一个，子组件不会因为函数引用的变化而产生不必要的渲染。useCallback可以看作是useMome的特殊形式，即<code>useCallback(fn, deps)</code>等价于<code>useMemo(() =&gt; fn, deps)</code>，此时useMemo返回的是一个函数，而不是一个值。<br>源码实现上useCallback和useMemo几乎没有差别，也不需要过多解释：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateCallback</span>(<span class="params">callback, deps</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hook = updateWorkInProgressHook();</span><br><span class="line">  <span class="keyword">var</span> nextDeps = deps === <span class="literal">undefined</span> ? <span class="literal">null</span> : deps;</span><br><span class="line">  <span class="keyword">var</span> prevState = hook.memoizedState;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (prevState !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nextDeps !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> prevDeps = prevState[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (areHookInputsEqual(nextDeps, prevDeps)) &#123;</span><br><span class="line">        <span class="keyword">return</span> prevState[<span class="number">0</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  hook.memoizedState = [callback, nextDeps];</span><br><span class="line">  <span class="keyword">return</span> callback;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="useLayoutEffect"><a href="#useLayoutEffect" class="headerlink" title="useLayoutEffect"></a>useLayoutEffect</h3><p>useLayoutEffect的调用方式跟useEffect完全相同，但两个函数的运行时间存在差异：</p>
+<ul>
+<li>useEffect运行时机是浏览器将变化绘制到屏幕之后，他是异步的，不会阻塞浏览器的渲染。</li>
+<li>useLayoutEffect运行时机是dom的更新之后，dom的变化被绘制到屏幕之前，他是同步的，会阻塞浏览器的渲染。运行时机和class组件中的componentDidMount和componentDidUpate相同。</li>
+</ul>
+<p>理解以上差异的关键在于明白dom变化和将dom的变化绘制到屏幕上是两个不同的阶段。useLayoutEffect运行在dom的变化绘制到屏幕之前，这时候虽然dom发生变化，但是用户还看不到最新的UI，具体差异和使用场景<a href="https://neilning-xc.github.io/2021/09/08/ckv7n842700061yqk05yn79kp/">参考这里</a>。useLayoutEffectd的实现原理和useEffect类似。</p>
+<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><p>useRef函数返回一个新对象，该对象上的current属性的值，不会随函数式组件的重新渲染而变化，除非你自己改变他的值。本质上useRef函数相当于创建了一个类中的成员变量，他的值在组件的生命周期内都是同一个，也就是说，组件每次渲染返回的ref对象都是同一个。显式的修改该对象的值也不会引起组件的重新渲染，所以useRef可以用来保存dom节点的引用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TextInputWithFocusButton</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> inputEl = useRef(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">const</span> onButtonClick = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// `current` points to the mounted text input element</span></span><br><span class="line">    inputEl.current.focus();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;inputEl&#125;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;onButtonClick&#125;</span>&gt;</span>Focus the input<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>理解其他hooks函数的实现原理之后，再去理解useRef也是及其简单的，在组件mount时，调用如下函数，更新时直接返回之前的值就行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mountRef</span>(<span class="params">initialValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hook = mountWorkInProgressHook();</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">var</span> _ref2 = &#123;</span><br><span class="line">      <span class="attr">current</span>: initialValue</span><br><span class="line">    &#125;;</span><br><span class="line">    hook.memoizedState = _ref2;</span><br><span class="line">    <span class="keyword">return</span> _ref2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateRef</span>(<span class="params">initialValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hook = updateWorkInProgressHook();</span><br><span class="line">  <span class="keyword">return</span> hook.memoizedState;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="useImperativeHandle"><a href="#useImperativeHandle" class="headerlink" title="useImperativeHandle"></a>useImperativeHandle</h3><p>useImperativeHandle需要搭配forwardRef函数使用，我们知道函数式组件不会实例化，所以不能在函数式组件上使用ref属性的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">className</span>=<span class="string">&quot;input&quot;</span> <span class="attr">value</span>=<span class="string">&#123;props.value&#125;/</span>&gt;</span></span> </span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> ref = useRef(<span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Input</span> <span class="attr">ref</span>=<span class="string">&#123;ref&#125;</span> /&gt;</span></span> <span class="comment">//❌报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是如果父组件想调用input元素的focus()该怎么办呢？可以使用React.forwardRef()函数包装一下Input组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input</span>(<span class="params">props, ref</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&#123;props.value&#125;</span> <span class="attr">ref</span>=<span class="string">&#123;ref&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> RefInput = React.forwardRef(Input); <span class="comment">// ⬅️该函数可将父组件的ref属性传入子组件</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ref = useRef(<span class="literal">null</span>);</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ref.current.focus()</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">RefInput</span> <span class="attr">ref</span>=<span class="string">&#123;ref&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用React.forwardRef函数包装后的函数式组件可以使用ref属性，但是其原理是将父组件创建的ref属性传入Input组件内，达到了转发ref属性的作用。<br>但是该方法允许父组件调用子组件input元素的任意属性或函数，比如在父组件内改变input元素的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Parent() &#123;</span><br><span class="line">  const ref = useRef(null);</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    // ref.current.focus();</span><br><span class="line">    ref.current.value = &#x27;test&#x27;;</span><br><span class="line">  &#125;, []);</span><br><span class="line"></span><br><span class="line">  return &lt;RefInput ref=&#123;ref&#125; /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你想限制父组件内可用的属性或方法，就可以使用useImperativeHandle，使用方式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input</span>(<span class="params">props, ref</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> inputRef = useRef(); <span class="comment">// 👈创建ref</span></span><br><span class="line"></span><br><span class="line">  useImperativeHandle(ref, <span class="function">() =&gt;</span> &#123; <span class="comment">// 👈限制父组件中ref属性可用的方法或对象</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">inputRef</span>: inputRef,</span><br><span class="line">      <span class="function"><span class="title">focus</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        inputRef.current.focus();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&#123;props.value&#125;</span> <span class="attr">ref</span>=<span class="string">&#123;inputRef&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> RefInput = React.forwardRef(Input);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ref = useRef(<span class="literal">null</span>);</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 此时ref.current指向的对象 &#123;inputRef: inputRef, focus() &#123; inputRef.current.focus();&#125;&#125;对象</span></span><br><span class="line">    ref.current.inputRef.current.value = <span class="string">&quot;test&quot;</span>;</span><br><span class="line">    ref.current.focus();</span><br><span class="line">  &#125;, []);</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">RefInput</span> <span class="attr">ref</span>=<span class="string">&#123;ref&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即useImperativeHandle将父组件中ref.current的值改为了他的第二个回调函数的返回值。<br>useImperativeHandle函数的实现和useEffect类似，以组件更新时为例，也会调用updateEffectImpl函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateImperativeHandle</span>(<span class="params">ref, create, deps</span>) </span>&#123;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> create !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      error(<span class="string">&#x27;Expected useImperativeHandle() second argument to be a function &#x27;</span> + <span class="string">&#x27;that creates a handle. Instead received: %s.&#x27;</span>, create !== <span class="literal">null</span> ? <span class="keyword">typeof</span> create : <span class="string">&#x27;null&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> effectDeps = deps !== <span class="literal">null</span> &amp;&amp; deps !== <span class="literal">undefined</span> ? deps.concat([ref]) : <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> updateEffectImpl(Update, Layout, imperativeHandleEffect.bind(<span class="literal">null</span>, create, ref), effectDeps);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="React-Router的Hooks"><a href="#React-Router的Hooks" class="headerlink" title="React Router的Hooks"></a>React Router的Hooks</h2><h3 id="useHistory"><a href="#useHistory" class="headerlink" title="useHistory"></a>useHistory</h3><p>v6版本的React Router将useHistory改为useNavigate，该函数返回history实例，包含了当前tab的历史记录信息，允许开发者手动导航到其他页面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HomeButton</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> history = useHistory();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    history.push(<span class="string">&quot;/home&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></span><br><span class="line"><span class="xml">      Go home</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们查看useHistory<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/remix-run/react-router/blob/v5.3.0/packages/react-router/modules/hooks.js#L10">源码</a>可以看到useHistory其实调用了useContext：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> useContext = React.useContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">useHistory</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">    invariant(</span><br><span class="line">      <span class="keyword">typeof</span> useContext === <span class="string">&quot;function&quot;</span>,</span><br><span class="line">      <span class="string">&quot;You must use React &gt;= 16.8 in order to use useHistory()&quot;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> useContext(HistoryContext);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="useLocation"><a href="#useLocation" class="headerlink" title="useLocation"></a>useLocation</h3><p>useLocation函数返回代表当前页面的location对象，可以通过这个对象获取当前url信息。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">usePageViews</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> location = useLocation();</span><br><span class="line">  React.useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ga.send([<span class="string">&quot;pageview&quot;</span>, location.pathname]);</span><br><span class="line">  &#125;, [location]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  usePageViews();</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Switch</span>&gt;</span>...<span class="tag">&lt;/<span class="name">Switch</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>跟useHistory一样，useLocation也是使用useContext实现(<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/remix-run/react-router/blob/v5.3.0/packages/react-router/modules/hooks.js">源码点击这里</a>)：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">useLocation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">    invariant(</span><br><span class="line">      <span class="keyword">typeof</span> useContext === <span class="string">&quot;function&quot;</span>,</span><br><span class="line">      <span class="string">&quot;You must use React &gt;= 16.8 in order to use useLocation()&quot;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> useContext(RouterContext).location;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="useParams"><a href="#useParams" class="headerlink" title="useParams"></a>useParams</h3><p>useParams返回代表当前url的参数对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BlogPost</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> &#123; slug &#125; = useParams();</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Now showing post &#123;slug&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Router</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">Switch</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Route</span> <span class="attr">exact</span> <span class="attr">path</span>=<span class="string">&quot;/&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">HomePage</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/blog/:slug&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">BlogPost</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">Switch</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">Router</span>&gt;</span></span>,</span><br><span class="line">  node</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>底层实现(<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/remix-run/react-router/blob/v5.3.0/packages/react-router/modules/hooks.js">源码点击这里</a>)：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">useParams</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">    invariant(</span><br><span class="line">      <span class="keyword">typeof</span> useContext === <span class="string">&quot;function&quot;</span>,</span><br><span class="line">      <span class="string">&quot;You must use React &gt;= 16.8 in order to use useParams()&quot;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> match = useContext(RouterContext).match;</span><br><span class="line">  <span class="keyword">return</span> match ? match.params : &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="useRouteMatch"><a href="#useRouteMatch" class="headerlink" title="useRouteMatch"></a>useRouteMatch</h3><p>useRouteMatch可以用来实现<Route />组件的功能：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BlogPost</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Route</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">      <span class="attr">path</span>=<span class="string">&quot;/blog/:slug&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">      <span class="attr">render</span>=<span class="string">&#123;(&#123;</span> <span class="attr">match</span> &#125;) =&gt;</span> &#123;</span></span><br><span class="line"><span class="xml">        // Do whatever you want with the match...</span></span><br><span class="line"><span class="xml">        return <span class="tag">&lt;<span class="name">div</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">      &#125;&#125;</span></span><br><span class="line"><span class="xml">    /&gt;</span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在函数式组件中还可以通过Hooks的方式实现组件切换：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BlogPost</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> match = useRouteMatch(<span class="string">&quot;/blog/:slug&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Do whatever you want with the match...</span></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>useRouteMatch函数的参数也可以是一个对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> match = useRouteMatch(&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&quot;/BLOG/:slug/&quot;</span>,</span><br><span class="line">  <span class="attr">strict</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">sensitive</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>查看该函数的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/remix-run/react-router/blob/v5.3.0/packages/react-router/modules/hooks.js#L44">源码实现</a>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">useRouteMatch</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">    invariant(</span><br><span class="line">      <span class="keyword">typeof</span> useContext === <span class="string">&quot;function&quot;</span>,</span><br><span class="line">      <span class="string">&quot;You must use React &gt;= 16.8 in order to use useRouteMatch()&quot;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> location = useLocation();</span><br><span class="line">  <span class="keyword">const</span> match = useContext(RouterContext).match;</span><br><span class="line">  <span class="keyword">return</span> path ? matchPath(location.pathname, path) : match;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过查看以上源码可以看到React Router里的Hooks底层实现都是useContext，主要依赖了HistoryContext和RouterContext，我们来看一下这两者在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/remix-run/react-router/blob/v5.3.0/packages/react-router/modules/Router.js">源码</a>中是怎么初始化的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码经过简化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Router</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.state = &#123;</span><br><span class="line">      <span class="attr">location</span>: props.history.location</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">this</span>._isMounted = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">this</span>._pendingLocation = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!props.staticContext) &#123;</span><br><span class="line">      <span class="built_in">this</span>.unlisten = props.history.listen(<span class="function"><span class="params">location</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>._isMounted) &#123;</span><br><span class="line">          <span class="built_in">this</span>.setState(&#123; location &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="built_in">this</span>._pendingLocation = location;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">RouterContext.Provider</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">        <span class="attr">value</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">          <span class="attr">history:</span> <span class="attr">this.props.history</span>,</span></span></span><br><span class="line"><span class="tag"><span class="xml">          <span class="attr">location:</span> <span class="attr">this.state.location</span>,</span></span></span><br><span class="line"><span class="tag"><span class="xml">          <span class="attr">match:</span> <span class="attr">Router.computeRootMatch</span>(<span class="attr">this.state.location.pathname</span>),</span></span></span><br><span class="line"><span class="tag"><span class="xml">          <span class="attr">staticContext:</span> <span class="attr">this.props.staticContext</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="xml">      &gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">HistoryContext.Provider</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">          <span class="attr">children</span>=<span class="string">&#123;this.props.children</span> || <span class="attr">null</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="xml">          <span class="attr">value</span>=<span class="string">&#123;this.props.history&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">        /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">RouterContext.Provider</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Router组件是BrowserRouter和HashRouter的底层实现，通过代码可以看到history对象通过父组件创建，并传入Router组件，location对象也是来自于history对象，所以可以看一下history对象是什么创建的。以BrowserRouter<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/remix-run/react-router/blob/v5.3.0/packages/react-router-dom/modules/BrowserRouter.js#L10">实现为例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  history = createHistory(<span class="built_in">this</span>.props);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Router</span> <span class="attr">history</span>=<span class="string">&#123;this.history&#125;</span> <span class="attr">children</span>=<span class="string">&#123;this.props.children&#125;</span> /&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>createHistroy函数的源码实现在另外一个<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.npmjs.com/package/history">histroy</a>库里，该库是原原生HTML5的history对象的一个包装，其<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/remix-run/history/blob/8bef6f4d50548f46ab7c97e171b3d8634093e7a7/packages/history/index.ts#L359">简化后的源码</a>为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createBrowserHistory</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  options: BrowserHistoryOptions = &#123;&#125;</span></span></span><br><span class="line"><span class="params"><span class="function"></span>): <span class="title">BrowserHistory</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> history: BrowserHistory = &#123;</span><br><span class="line">    <span class="keyword">get</span> <span class="title">action</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> action;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> <span class="title">location</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> location;</span><br><span class="line">    &#125;,</span><br><span class="line">    createHref,</span><br><span class="line">    push,</span><br><span class="line">    replace,</span><br><span class="line">    go,</span><br><span class="line">    <span class="function"><span class="title">back</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      go(-<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">forward</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      go(<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">listen</span>(<span class="params">listener</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> listeners.push(listener);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">block</span>(<span class="params">blocker</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> unblock = blockers.push(blocker);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (blockers.length === <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">window</span>.addEventListener(BeforeUnloadEventType, promptBeforeUnload);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        unblock();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove the beforeunload listener so the document may</span></span><br><span class="line">        <span class="comment">// still be salvageable in the pagehide event.</span></span><br><span class="line">        <span class="comment">// See https://html.spec.whatwg.org/#unloading-documents</span></span><br><span class="line">        <span class="keyword">if</span> (!blockers.length) &#123;</span><br><span class="line">          <span class="built_in">window</span>.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> history;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Redux中的Hooks"><a href="#Redux中的Hooks" class="headerlink" title="Redux中的Hooks"></a>Redux中的Hooks</h2><h3 id="useSelector"><a href="#useSelector" class="headerlink" title="useSelector"></a>useSelector</h3><p>在class组件中获取Redux中state的方式是调用connect方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReduxDemo</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">          &#123;this.props.todos.map((item) =&gt; (</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>item.name<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">          ))&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">todos</span>: state.todos</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">onTodoClick</span>: <span class="function">(<span class="params">id</span>) =&gt;</span> &#123;</span><br><span class="line">      dispatch(toggleTodo(id));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(ReduxDemo);</span><br></pre></td></tr></table></figure>
+<p>在函数式组件中利用Hooks的方式更为简单：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">ReduxDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> todos = useSelector(<span class="function">(<span class="params">state</span>) =&gt;</span> state.todos);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">        &#123;todos.map((item) =&gt; (</span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">li</span>&gt;</span>item<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">        ))&#125;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>useSelector接收一个函数作为参数，该函数的参数就是state，函数的返回值作为useSelector的返回值。另外useSelector自动订阅了state的更新，即每次state有变化之后，新的数据会导致组件重新渲染。</p>
+<p>需要强调的是useSelector对值的比较实用的”<code>===</code>“。在某些情况下会导致一些不必要的渲染，需要开发者注意，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> selectTodoDescriptions = <span class="function"><span class="params">state</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> state.todos.map(<span class="function"><span class="params">todo</span> =&gt;</span> todo.text)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> todos = useSelector(selectTodoDescriptions)</span><br></pre></td></tr></table></figure>
+<p>以上代码中map函数总是返回一个新的数组的引用，这会导致不必要的重新渲染。</p>
+<h3 id="useDispatch"><a href="#useDispatch" class="headerlink" title="useDispatch"></a>useDispatch</h3><p>useSelector用于从store中读取state，useDispatch则可以拿到store的dispatch函数，修改state。用法也很简单：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CounterComponent = <span class="function">(<span class="params">&#123; value &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> dispatch = useDispatch()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;value&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> dispatch(&#123; type: &#x27;increment-counter&#x27; &#125;)&#125;&gt;</span></span><br><span class="line"><span class="xml">        Increment counter</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="useStore"><a href="#useStore" class="headerlink" title="useStore"></a>useStore</h3><p>useStore返回传递给<Provider>组件的Redux store对象，该函数并不推荐使用，多数情况下应该使用useSelector来读取state，当store中的数据更新时，组件会重新渲染。使用useStore，组件则不会随着state的变化自动更新。使用方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CounterComponent = <span class="function">(<span class="params">&#123; value &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> store = useStore()</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;store.getState()&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/使用commitizen来规范仓库的提交记录.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/Hooks使用总结和源码解析-一.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2024 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
