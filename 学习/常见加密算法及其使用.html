@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="常见加密算法及其使用"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>常见加密算法及其使用 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('常见加密算法及其使用/bg.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>常见加密算法及其使用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2024-12-09
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/MD5/">#MD5</a> <a href="/tags/SHA/">#SHA</a> <a href="/tags/RSA/">#RSA</a> <a href="/tags/AES/">#AES</a> <a href="/tags/DES/">#DES</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="常见哈希、签名和加密算法"><a href="#常见哈希、签名和加密算法" class="headerlink" title="常见哈希、签名和加密算法"></a>常见哈希、签名和加密算法</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在日常的工作中，我们或多或少都见过或者听过一些关于计算哈希，签名和加密的算法。这些算法在计算机领域中有着非常重要的地位，不同的算法也都有不同的英文名称，比如MD5、SHA-1、RSA、AES等等。每次看到这些算法都会有一种似曾相识的感觉，但是具体属于哪一类算法，又有什么特点，却很难说清楚。本文将对这些常见的算法进行一个简单的介绍，希望能够理清这些算法之间的关系。文中也会使用Nodejs的crypto模块来演示如何使用这些算法。</p>
+<h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>首先从最容易理解的哈希算法开始。<strong>哈希算法是一种将任意长度的输入数据转换为固定长度的输出数据的算法。</strong>它的特点是不同的输入会得到不同的输出，相同的输入，会得到相同的输出，并且输出是不可逆的。也就是说，哈希算法是一种单向的算法，只能从输入得到输出，不能从输出得到输入。</p>
+<p>哈希算法最常见的是应用在文件传输中，可以对任意长度的文件数据计算哈希值，以验证文件的完整性。常见的哈希算法有MD5、SHA-1、SHA-256等等。不同的算法得到的哈希值长度不同，比如MD5的哈希值长度是128位，SHA-1的哈希值长度是160位。哈希算法的使用非常简单，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> password = <span class="string">&#x27;qwertyuiop&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> md5 = crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;md5&#x27;</span>);</span><br><span class="line">md5.<span class="title function_">update</span>(password);</span><br><span class="line"><span class="keyword">const</span> encryptedPassword = md5.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(encryptedPassword);  <span class="comment">// 6eea9b7ef19179a06954edd0f6c05ceb</span></span><br></pre></td></tr></table></figure>
+
+<p>update方法用于输入数据，除了字符串，也可以是Buffer、TypedArray、DataView等数据类型。digest方法用于输出哈希值，参数可以是<code>hex</code>、<code>base64</code>、<code>latin1</code>等，表示输出的编码格式。常见的输出格式是hex，即16进制编码。</p>
+<p>还可以使用其他的哈希算法，比如SHA-1、SHA-256等，只需要将<code>createHash</code>方法的参数改为对应的算法名称即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> password = <span class="string">&#x27;qwertyuiop&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> sha = crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;sha256&#x27;</span>);</span><br><span class="line">sha.<span class="title function_">update</span>(password);</span><br><span class="line"><span class="keyword">const</span> encryptedPassword = sha.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(encryptedPassword); <span class="comment">// 9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd</span></span><br></pre></td></tr></table></figure>
+<p>那如何对文件进行哈希计算呢？可以使用Nodejs的fs模块来读取文件数据，然后计算哈希值。由于文件数据可能比较大，不适合一次性读取，可以使用流的方式来读取文件数据。代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hash = crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;md5&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> stream = fs.<span class="title function_">createReadStream</span>(<span class="string">&#x27;test.png&#x27;</span>);</span><br><span class="line"></span><br><span class="line">stream.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  hash.<span class="title function_">update</span>(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">stream.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hash.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>)); <span class="comment">// a1fe07317fe10f97cfb2e2a9e65cb46f</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>或者通过下面的方式来简化代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hash = crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;md5&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> stream = fs.<span class="title function_">createReadStream</span>(<span class="string">&#x27;test.png&#x27;</span>);</span><br><span class="line"></span><br><span class="line">stream.<span class="title function_">on</span>(<span class="string">&#x27;readable&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> data = stream.<span class="title function_">read</span>();</span><br><span class="line">  <span class="keyword">if</span> (data) &#123;</span><br><span class="line">    hash.<span class="title function_">update</span>(data);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(hash.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>)); <span class="comment">// a1fe07317fe10f97cfb2e2a9e65cb46f</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>或者还可以使用<code>pipe</code>方法来实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">Writable</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;stream&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hash = crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;md5&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> stream = fs.<span class="title function_">createReadStream</span>(<span class="string">&#x27;test.png&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> writable = <span class="keyword">new</span> <span class="title class_">Writable</span>(&#123;</span><br><span class="line">  <span class="title function_">write</span>(<span class="params">chunk, encoding, callback</span>) &#123;</span><br><span class="line">    hash.<span class="title function_">update</span>(chunk);</span><br><span class="line">    <span class="title function_">callback</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">final</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(hash.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>)); <span class="comment">// a1fe07317fe10f97cfb2e2a9e65cb46f</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">stream.<span class="title function_">pipe</span>(hash).<span class="title function_">pipe</span>(writable);</span><br></pre></td></tr></table></figure>
+
+<h2 id="hmac算法"><a href="#hmac算法" class="headerlink" title="hmac算法"></a>hmac算法</h2><p>上面的hash算法是单向的，只能用于验证数据的完整性，不能用于验证数据的来源。如果使用hash算法来存储密码，会有hash碰撞的问题。黑客可以使用彩虹表来破解密码。彩虹表是一种预先计算好的hash值和明文的对应关系表。黑客可以通过hash值查找对应的明文，从而破解密码。</p>
+<p>为了解决这个问题，可以使用hmac算法。<strong>hmac算法是一种带有密钥的哈希算法，可以用于验证数据的完整性和来源。</strong>可以看作是上面的md5算法的增强版，hmac算法的全称是Hash-based Message Authentication Code，它的计算方式是将密钥和数据进行混合，然后再计算哈希值。这样，即使数据泄露，黑客也无法伪造数据，因为黑客不知道密钥。他的使用方式和hash算法类似，只是需要传入密钥。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> secret = <span class="string">&#x27;abcdefg&#x27;</span>; <span class="comment">// 密钥</span></span><br><span class="line"><span class="keyword">const</span> password = <span class="string">&#x27;qwertyuiop&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> hash = crypto.<span class="title function_">createHmac</span>(<span class="string">&#x27;sha256&#x27;</span>, secret);</span><br><span class="line">hash.<span class="title function_">update</span>(password);</span><br><span class="line"><span class="keyword">const</span> encryptedPassword = hash.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(encryptedPassword); <span class="comment">// 566f3cdadb9e1f4543e0ad030c1996fccb68e530356e4563c75c20a470fb23d1</span></span><br></pre></td></tr></table></figure>
+
+<p>只要密钥不同，即使相同的数据，也会得到不同的哈希值。这样就可以避免hash碰撞的问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">const</span> secret = crypto.<span class="title function_">randomBytes</span>(<span class="number">16</span>).<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>); <span class="comment">// 密钥</span></span><br><span class="line">  <span class="keyword">const</span> password = <span class="string">&#x27;qwertyuiop&#x27;</span>;</span><br><span class="line">  <span class="keyword">const</span> hash = crypto.<span class="title function_">createHmac</span>(<span class="string">&#x27;sha1&#x27;</span>, secret);</span><br><span class="line">  hash.<span class="title function_">update</span>(password);</span><br><span class="line">  <span class="keyword">const</span> encryptedPassword = hash.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(encryptedPassword);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大文件流的使用方式和hash算法类似，只是需要传入密钥，这里不再赘述。</p>
+<h2 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h2><p>加密算法和上面的哈希算法和hmac算法不同，它是一种双向的算法，可以对数据进行加密和解密。<strong>对称加密指的是加密和解密使用相同密钥的算法。</strong>常见的对称加密算法有DES、3DES、AES等。</p>
+<p>crypto模块使用<code>createCipheriv</code>方法来创建加密对象，使用<code>createDecipheriv</code>方法来创建解密对象。这两个方法都需要传入三个参数，分别是</p>
+<ol>
+<li>算法名称，如<code>aes-128-cbc</code>、<code>aes-192-cbc</code>、<code>aes-256-cbc</code>等，中间的数字表示密钥长度，cbc表示加密模式。</li>
+<li>密钥，长度和算法有关，比如AES的密钥长度可以是128位、192位、256位。</li>
+<li>初始化向量iv。可以是一个随机数，用于增加加密强度。iv的长度和算法有关，比如AES的iv长度是16字节（128位），DES的iv长度是8字节。（64位）</li>
+</ol>
+<p>加密和解密还需要调用<code>update</code>方法和<code>final</code>方法，<code>update</code>方法用于输入数据，<code>final</code>方法用于输出数据。<code>update</code>方法也需要传入三个参数，分别是</p>
+<ol>
+<li>输入数据</li>
+<li>输入数据的编码格式，可以是<code>utf8</code>、<code>hex</code>、<code>base64</code>等</li>
+<li>输出数据的编码格式，可以是<code>hex</code>、<code>base64</code>等</li>
+</ol>
+<p><code>final</code>方法只需要传入输出数据的编码格式即可。</p>
+<p>对称加密的使用方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">encrypt</span>(<span class="params">text, key, iv</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> cipher = crypto.<span class="title function_">createCipheriv</span>(<span class="string">&#x27;aes-128-cbc&#x27;</span>, key, iv);</span><br><span class="line">  <span class="keyword">let</span> encrypted = cipher.<span class="title function_">update</span>(text, <span class="string">&#x27;utf8&#x27;</span>, <span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">  encrypted += cipher.<span class="title function_">final</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> encrypted;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">decrypt</span>(<span class="params">encrypted, key, iv</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> decipher = crypto.<span class="title function_">createDecipheriv</span>(<span class="string">&#x27;aes-128-cbc&#x27;</span>, key, iv);</span><br><span class="line">  <span class="keyword">let</span> decrypted = decipher.<span class="title function_">update</span>(encrypted, <span class="string">&#x27;hex&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  decrypted += decipher.<span class="title function_">final</span>(<span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> decrypted;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> password = <span class="string">&#x27;qwertyuiop&#x27;</span>; <span class="comment">// 明文密码</span></span><br><span class="line"><span class="keyword">const</span> key = <span class="string">&#x27;1234567890123456&#x27;</span>; <span class="comment">// 密钥 128位</span></span><br><span class="line"><span class="keyword">const</span> iv = <span class="string">&#x27;1234567890123456&#x27;</span>; <span class="comment">// 向量 128位</span></span><br><span class="line"><span class="keyword">const</span> encrypted = <span class="title function_">encrypt</span>(password, key, iv); <span class="comment">// 加密</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(encrypted); <span class="comment">// 949cb01e787c29f7fa519ab2c9b98791</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> decrypted = <span class="title function_">decrypt</span>(encrypted, key, iv); <span class="comment">// 解密</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(decrypted === password); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>以上代码中，<code>encrypt</code>方法用于加密数据，<code>decrypt</code>方法用于解密数据。加密和解密都需要使用相同的密钥和向量。这里的密钥和向量都是固定的，实际使用中，密钥和向量应该是随机的，可以使用<code>crypto.randomBytes</code>方法生成。</p>
+<h2 id="非对称加密算法"><a href="#非对称加密算法" class="headerlink" title="非对称加密算法"></a>非对称加密算法</h2><p>上面的对称加密算法加密和解密使用相同的密钥，这样就会有一个问题，如何安全地传输密钥呢？如果密钥泄露，那么加密就没有意义了。为了解决这个问题，可以使用非对称加密算法。<strong>非对称加密算法使用一对密钥，分别是公钥和私钥，可以用公钥加密数据，私钥解密数据。或者私钥加密数据，公钥解密数据</strong>。公钥可以公开，私钥必须保密。常见的非对称加密算法有RSA、DSA、ECC等。</p>
+<p>使用非对称加密算法时，需要先生成一对密钥，可以openssl命令生成一对密钥文件，也可以使用crypto模块的<code>generateKeyPair</code>方法生成一对密钥。下面分别介绍这两种方式。</p>
+<p>首先是使用openssl命令生成一对密钥文件，可以使用下面的命令生成一对RSA密钥文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out private.pem 1024 // 生成私钥文件</span><br><span class="line">openssl rsa -in private.pem -pubout -out public.pem // 生成公钥文件</span><br></pre></td></tr></table></figure>
+<p>以上命令生成了PEM格式的私钥和公钥文件，内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> private.pem</span></span><br><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIICXgIBAAKBgQDBO4jlIDpmIniRxMByRpVoEaQXsNjE3CF4wvoa8rbj6yVhESZA</span><br><span class="line">kJMDv/Pgr5Ew9GUbASuT+9UEaSwnqUyatg24u5WnXNqMCsAGl657/sFw2yMvpXs5</span><br><span class="line">gE+P0X8aPLghdy76x/PM0RmhMdVKLjsFmWbTUGUvfBZbJur8bs8E+IEYlwIDAQAB</span><br><span class="line">AoGBAIDtRx6RjUV+NHIWE81reN5x/slrzoYy1gZsGVIHpa2WxF7qgVpM3DqBRagh</span><br><span class="line">nD9MoXUOJ9RaD7wcrEBePmVvmOEAvSv2ucu1UpgFGwIy6i4a6oDmugvDvom4yjLT</span><br><span class="line">l8C5+PEKZp4anXWnAyalqfgQIjJdNiPIbttbPD3dt4P2mRcxAkEA/WN4FtyVATQw</span><br><span class="line">Cq3lKv41OsebzuMaW8szykWbmXoQtSn/t4FJIlRf0orwngA3jTlMA4fIoFTr1SjD</span><br><span class="line">WSjYWlQkbwJBAMM5WjGCL7zMOVRsl2DCpbigf3CXao5G4+pNxWV917OUDZX9mNDs</span><br><span class="line">I7FmqgvfjuH4n9EIgjCT6tNTvfPsyBDpclkCQQCld8hbPY68a4UX5DksGzdNfD4+</span><br><span class="line">G0YCPa9DXrNexTyV4ahRAEdu+KRejEbXFxMv0QPXplsYgHxFBcqTtb2bNylXAkEA</span><br><span class="line">haqXHp7MoLAT8MIJQ68CWM9LcoO56YCQPLTTGxJ2xfXw92mTYDjOl4B7nXWMFxxs</span><br><span class="line">EGuK+EfO2LLVtFXDBhFQwQJAP/Y0GPDlYF5YfrkKjXaI7uWZ/KVnQcYaoaj/Pqrb</span><br><span class="line">4pZ3wTB0RBcdDZz8oJ5xksf4/tpetigQgJlmaS/+vRBQLg==</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> public.pem</span></span><br><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBO4jlIDpmIniRxMByRpVoEaQX</span><br><span class="line">sNjE3CF4wvoa8rbj6yVhESZAkJMDv/Pgr5Ew9GUbASuT+9UEaSwnqUyatg24u5Wn</span><br><span class="line">XNqMCsAGl657/sFw2yMvpXs5gE+P0X8aPLghdy76x/PM0RmhMdVKLjsFmWbTUGUv</span><br><span class="line">fBZbJur8bs8E+IEYlwIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+<p>公钥文件和私钥文件都是文本文件，可以直接读取。其格式必须满足一定的规范，一般都有<code>BEGIN XXX</code>和<code>END XXX</code>开头和结尾，中间是密钥的内容。内容部分每行是64个字符，使用<code>\n</code>换行。编码格式一般是base64编码。</p>
+<p>crypto模块的非对称加密使用方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PUBLIC_KEY</span> = fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;public.pem&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PRIVATE_KEY</span> = fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;private.pem&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> password = <span class="string">&#x27;qwertyuiop&#x27;</span>; <span class="comment">// 明文密码</span></span><br><span class="line"><span class="comment">// 使用公钥加密、私钥解密</span></span><br><span class="line"><span class="keyword">const</span> encrypted = crypto.<span class="title function_">publicEncrypt</span>(<span class="variable constant_">PUBLIC_KEY</span>, <span class="title class_">Buffer</span>.<span class="title function_">from</span>(password));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(encrypted.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="keyword">const</span> decrypted = crypto.<span class="title function_">privateDecrypt</span>(<span class="variable constant_">PRIVATE_KEY</span>, encrypted);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(decrypted.<span class="title function_">toString</span>(<span class="string">&#x27;utf8&#x27;</span>) === password); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用私钥加密、公钥解密</span></span><br><span class="line"><span class="keyword">const</span> encrypted2 = crypto.<span class="title function_">privateEncrypt</span>(<span class="variable constant_">PRIVATE_KEY</span>, <span class="title class_">Buffer</span>.<span class="title function_">from</span>(password));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(encrypted2.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="keyword">const</span> decrypted2 = crypto.<span class="title function_">publicDecrypt</span>(<span class="variable constant_">PUBLIC_KEY</span>, encrypted2);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(decrypted2.<span class="title function_">toString</span>(<span class="string">&#x27;utf8&#x27;</span>) === password); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以使用crypto模块的<code>generateKeyPair</code>方法创建公钥和私钥，该方法需要传入三个参数，分别是:</p>
+<ol>
+<li>算法名称，如<code>rsa</code>、<code>dsa</code>、<code>ecc</code>等</li>
+<li>配置对象，包括<code>modulusLength</code>、<code>publicExponent</code>、<code>namedCurve</code>等</li>
+<li>回调函数，用于接收生成的密钥对</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line">crypto.<span class="title function_">generateKeyPair</span>(<span class="string">&#x27;rsa&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">modulusLength</span>: <span class="number">2048</span>,</span><br><span class="line">  <span class="attr">publicKeyEncoding</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;spki&#x27;</span>,</span><br><span class="line">    <span class="attr">format</span>: <span class="string">&#x27;pem&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">privateKeyEncoding</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;pkcs8&#x27;</span>,</span><br><span class="line">    <span class="attr">format</span>: <span class="string">&#x27;pem&#x27;</span>,</span><br><span class="line">    <span class="attr">cipher</span>: <span class="string">&#x27;aes-256-cbc&#x27;</span>,</span><br><span class="line">    <span class="attr">passphrase</span>: <span class="string">&#x27;top secret&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="function">(<span class="params">err, publicKey, privateKey</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Error generating key pair:&#x27;</span>, err);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Public Key:&#x27;</span>, publicKey);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Private Key:&#x27;</span>, privateKey);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>生成的公钥和私钥可以直接保存到文件中，也可以直接使用。加密和解密的方式和上面的方式一样。</p>
+<h2 id="签名算法"><a href="#签名算法" class="headerlink" title="签名算法"></a>签名算法</h2><p>还用一种常见的算法是签名算法。<strong>签名算法是一种用于验证数据完整性和来源的算法，可以对数据生成数字签名，以防止在传输过程中被篡改。</strong>签名算法和哈希算法类似，都是单向不可逆的。不同的是，签名算法需要使用私钥对数据进行签名，然后使用公钥对签名进行验证。且<strong>只能通过私钥签名，公钥验证签名</strong>。常见的签名算法有<strong>RSA</strong>、<strong>DSA</strong>、<strong>ECDSA</strong>等。签名算法最常见的应用场景是数字证书和JWT（JWT规范可参考👉<a target="_blank" rel="noopener external nofollow noreferrer" href="https://jwt.io/">这里</a>）。JWT的第三部分就是签名，用于验证数据的完整性和来源。</p>
+<p>Nodejs的crypto模块的签名算法使用方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">PUBLIC_KEY</span> = fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;public.pem&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PRIVATE_KEY</span> = fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;private.pem&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> password = <span class="string">&#x27;qwertyuiop&#x27;</span>; <span class="comment">// 明文密码</span></span><br><span class="line"><span class="keyword">const</span> sign = crypto.<span class="title function_">createSign</span>(<span class="string">&#x27;RSA-SHA256&#x27;</span>) <span class="comment">// 创建签名对象, 指定签名算法，常见的签名算法有RSA-SHA256、RSA-SHA512、DSA-SHA1等</span></span><br><span class="line">sign.<span class="title function_">update</span>(password); <span class="comment">// 指定签名内容</span></span><br><span class="line"><span class="keyword">const</span> signature = sign.<span class="title function_">sign</span>(<span class="variable constant_">PRIVATE_KEY</span>, <span class="string">&#x27;hex&#x27;</span>); <span class="comment">// 生成签名，也可以指定输出格式为&#x27;base64&#x27;、&#x27;base64url&#x27;等</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(signature);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> verify = crypto.<span class="title function_">createVerify</span>(<span class="string">&#x27;RSA-SHA256&#x27;</span>); <span class="comment">// 创建验证对象, 指定算法，必须和签名算法一致</span></span><br><span class="line">verify.<span class="title function_">update</span>(password); <span class="comment">// 指定验证内容</span></span><br><span class="line"><span class="keyword">const</span> result = verify.<span class="title function_">verify</span>(<span class="variable constant_">PUBLIC_KEY</span>, signature, <span class="string">&#x27;hex&#x27;</span>); <span class="comment">// 验证签名，也可以指定输入格式为&#x27;base64&#x27;、&#x27;base64url&#x27;等</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="DH算法"><a href="#DH算法" class="headerlink" title="DH算法"></a>DH算法</h2><p>DH算法是一种密钥交换算法，该算法不是用来加密数据的，而是在不安全的网络中安全地交换密钥。DH算法的全称是Diffie-Hellman算法，它的原理是通过数学运算构造一个复杂的数学难题，对该数学问题无法在短时间内有效的求解。DH算法的过程是，双方各自生成一对公钥和私钥，然后通过公钥交换，最后通过私钥计算出一个相同的密钥。这个密钥只有双方知道，黑客无法窃取。DH算法的使用方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dh1 = crypto.<span class="title function_">createDiffieHellman</span>(<span class="number">512</span>);</span><br><span class="line"><span class="keyword">const</span> prime = dh1.<span class="title function_">getPrime</span>(); <span class="comment">// 获取素数</span></span><br><span class="line"><span class="keyword">const</span> generator = dh1.<span class="title function_">getGenerator</span>(); <span class="comment">// 获取生成器</span></span><br><span class="line"><span class="keyword">const</span> publicKey1 = dh1.<span class="title function_">generateKeys</span>(); <span class="comment">// 生成公钥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Prime:&#x27;</span>, prime.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Generator:&#x27;</span>, generator.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Public Key1:&#x27;</span>, publicKey1.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dh2 = crypto.<span class="title function_">createDiffieHellman</span>(prime, generator);</span><br><span class="line"><span class="keyword">const</span> publicKey2 = dh2.<span class="title function_">generateKeys</span>(); <span class="comment">// 生成公钥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Public Key2:&#x27;</span>, publicKey2.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> secret1 = dh1.<span class="title function_">computeSecret</span>(publicKey2); <span class="comment">// 生成密钥</span></span><br><span class="line"><span class="keyword">const</span> secret2 = dh2.<span class="title function_">computeSecret</span>(publicKey1); <span class="comment">// 生成密钥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Secret1:&#x27;</span>, secret1.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Secret2:&#x27;</span>, secret2.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(secret1.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>) === secret2.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>双方生成相同的密钥之后，就可以使用该密钥通过对称加密算法进行加密通信了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.xiabingbao.com/post/node/node-crypto.html">深入理解 node 中的 crypto 加密模块</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://liaoxuefeng.com/books/javascript/nodejs/basic-modules/crypto/">Node.js crypto 模块</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next"><a href="/学习/React原理之从零实现简易版React.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2024 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
