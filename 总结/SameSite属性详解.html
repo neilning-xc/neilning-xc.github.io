@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="SameSite属性详解"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>SameSite属性详解 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('SameSite属性详解/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>SameSite属性详解</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-09-29
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/SameSite/">#SameSite</a> <a href="/tags/Cookie/">#Cookie</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/总结/">总结</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>众所周知，主流的现代浏览器为Cookie增加了一个新的属性SameSite，其目的是为了防止跨站请求伪造（Cross-Site Request Forgery，CSRF）和防止用户跟踪，如谷歌和百度的广告。</p>
+<h2 id="跨站请求伪造"><a href="#跨站请求伪造" class="headerlink" title="跨站请求伪造"></a>跨站请求伪造</h2><p>跨站请求伪造指的是在一个恶意的网站上，向第三方正常网站发送的恶意网络请求。比如用户打算转账，在浏览器上登陆了银行的网站<code>www.bank.com</code>，银行的网站利用Cookie来维持登录状态。转账成功后，用户不小心通过邮件或者论坛打开了一个恶意网站<code>www.malicious.com</code>，这个恶意的网站诱导用户发送一个转账请求：<code>www.bank.com/transfer?to=hacker&amp;mount=1000</code>，由于该用户之前已经成功登录过银行的网站，并假设登录凭证还没有过期，这样这个恶意的请求就成功骗过了系统。之所以存在这样的安全隐患是因为<strong>浏览器向某个站点发送网络请求的时候会自动带上该站点下的Cookie，而不管这个请求是从哪个站点发出的</strong>。<br>解决方案是服务端只处理那些来自于银行网站的敏感请求，阻止恶意网站的请求，服务端可以通过请求头的<code>referer</code>字段知道请求是从哪个者按点发出的。对于表单类型的网络请求，另一个服务端解决方案是，在渲染表单时向表单加入一个隐藏的token字段，表单提交后服务端要对比提交的表单token字段和之前渲染表单时发送的token是否一致。<br>除了服务端的解决方案，浏览器引入了客户端解决方案——SameSite。</p>
+<h2 id="用户追踪和广告"><a href="#用户追踪和广告" class="headerlink" title="用户追踪和广告"></a>用户追踪和广告</h2><p>用户追踪主要被一些大的软件厂商所利用，例如用户在搜索引擎搜索了某个商品，然后在打开其他网站，这些网站上有搜索引擎的广告位，这些广告位可能会向你推荐你刚刚搜索过的相关商品。<br>原理也是类似的，在搜索引擎输入的关键词会被记录并绑定到浏览器的Cookie下，再用同一个浏览器访问其他网站时，这些网站的广告位会向搜索引擎发送请求，同样的，浏览器会自动带上Cookie，这样搜索引擎就知道你之前搜过什么，并向你推荐相关广告。而且搜索引擎不仅向你推荐广告，并且还能记录你浏览过什么网站。</p>
+<h2 id="Cookie的SameSite"><a href="#Cookie的SameSite" class="headerlink" title="Cookie的SameSite"></a>Cookie的SameSite</h2><p>这种不属于你当前正在浏览的网站的Cookie都称之为第三方Cookie，为了安全和用户隐私，浏览器推出了SameSite属性，这个属性主要限制浏览器自动带上第三方Cookie。其值分别为<code>Strict</code>，<code>Lax</code>，<code>None</code></p>
+<ul>
+<li><strong>Strict</strong>完全禁止第三方Cookie，浏览器不会带上任何跟当前站点不同的Cookie，例如上面的例子，银行在用户登录成功后在响应头中设置：<code>Set-Cookie: id=xxxx; SameSite=Strict;</code> 恶意网站向银行系统发送的任何网络请求就不会带上这个第三方的Cookie。不过这种方式太过于严格，会导致指向第三方网站的超链接失效，比如你已经登录过某个视频网站，当你从其他网站的超链接跳转到视频网站时不会带上视频网站的Cookie，从而导致不好的用户体验。</li>
+<li><strong>Lax</strong>能够解决上面的问题，超链接的Get请求：<code>&lt;a href=&quot;https://www.bank.com&quot;&gt;&lt;/a&gt;</code>，form表单的Get请求：<code>&lt;form method=&quot;GET&quot; action=&quot;...&quot;&gt;</code>，预加载请求：<code>&lt;link rel=&quot;prerender&quot; href=&quot;...&quot;/&gt;</code>，都会带上第三方Cookie。其余情况则会禁止Cookie。这个值是浏览器的默认值。</li>
+<li><strong>None</strong>是完全允许第三方Cookie，服务性的网站为了用户体验可以使用这个值，不过要使这个值生效，浏览器要求Cookie必须设置Secure属性，即必须启用HTTPS传输Cookie。</li>
+</ul>
+<h2 id="什么是SameSite？"><a href="#什么是SameSite？" class="headerlink" title="什么是SameSite？"></a>什么是SameSite？</h2><p>弄懂了SameSite之后问题来了，什么样的URL才是SameSite？什么是CorseSite跨站，他们跟CorseOrigin跨域有什么区别，本以为这个问题比较简单，但经过查询之后发现SameSite的定义并没有想象的那么简单。<br>CroseOrigin的定义都比较熟悉了，一个域由三元组决定：协议，域名，端口号。只有三个字段都相等的URL才是同域的。<br><img src="/%E6%80%BB%E7%BB%93/SameSite%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/crose-origin.png" alt="crose-origin.png"></p>
+<p>SameSite（同站）的定义跟同域有一些区别，Site(站点)的定义是顶级域名（Top-Level Domain, TLD）如<code>.com</code>，<code>.cn</code>，<code>.io</code>，加上顶级域名之前的部分。例如：<code>https://www.example.com:443/foo</code>，顶级域名为<code>.com</code>，它前边的部分为<code>example</code>，所以这个URL的站点是<code>example.com</code>，所以<code>https://login.example.com/bar</code>跟上面的URL是同一个站点，即他们是SameSite的。</p>
+<p>按照以上定义，<code>https://my-project.github.io</code>和<code>https://your-project.github.io</code>是同一个站点吗？答案是否定的。你可能以为这两个URL的站点是<code>github.io</code>，但其实不是，这两个URL的顶级域名是<code>.github.io</code>，而它前边的两个部分是不同的，即两个URL的站点分别是<code>my-project.github.io</code>和<code>your-project.github.io</code>，所以他们不是同一个站点。</p>
+<p>为了解决以上困惑，有人又提出了有效顶级域名（effective TLD, eTLD）的概念，<code>.io</code>虽然也是顶级域名，但是以上URL的有效顶级域名是<code>.github.io</code>。类似例子还有<code>.co.jp</code>，<code>.jp</code>也是顶级域名，但<code>.co.jp</code>才是有效顶级域。所以站点更加严谨的定义是eTLD + 1，如下图：<br><img src="/%E6%80%BB%E7%BB%93/SameSite%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/eTLD.png" alt="eTLD.png"><br>那么问题又来了，开发者怎么知道哪些是eTLD？答案是没有什么好的办法。所以又提出了<a target="_blank" rel="noopener external nofollow noreferrer" href="https://wiki.mozilla.org/Public_Suffix_List">公共后缀列表（Public Suffix List）</a>的概念，所有的eTLD可以通过<a target="_blank" rel="noopener external nofollow noreferrer" href="https://publicsuffix.org/list/">公共后缀列表官网</a>查询的到。公共后缀列表所包含的数据在不断的更新。查询这个<a target="_blank" rel="noopener external nofollow noreferrer" href="https://publicsuffix.org/list/public_suffix_list.dat">数据库文件</a>可知<code>.io</code>和<code>.gihub.io</code>都属于有效顶级域名。</p>
+<p>问题到这里还没有结束，根据旧的规范，站点的定义跟协议和端口号是无关的，所以<code>http://login.example.com/bar</code>和<code>https://www.example.com/foo</code>是同一个站点，但是随着HTTPS的推广和普及，有人提出以上两个URL不应该是同站的，这就是新提出的Schemeful Samesite的概念，即站点定义应该加上Scheme，即协议Protocol，所以同站的定义应该是scheme + eTLD + 1，如下图：<br><img src="/%E6%80%BB%E7%BB%93/SameSite%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/scheme-eTLD.png" alt="scheme-eTLD.png"><br>除了以上方法来确定是否是同站点之外，谷歌浏览器在2020年4月之后的版本中加入了新的请求头<code>Sec-Fetch-Site</code>也可以用于指名该请求是否是同一个站点，他的值如下：</p>
+<ul>
+<li><code>cross-site</code></li>
+<li><code>same-site</code></li>
+<li><code>same-origin</code></li>
+<li><code>none</code></li>
+</ul>
+<p>并且浏览器sames-site的判断方法是与协议无关的。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/same-site-same-origin/">https://web.dev/same-site-same-origin/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://jub0bs.com/posts/2021-01-29-great-samesite-confusion/">https://jub0bs.com/posts/2021-01-29-great-samesite-confusion/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://publicsuffix.org/list/">https://publicsuffix.org/list/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html">https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/TCP协议基础知识（一）.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/Wireshark使用不完全指南.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

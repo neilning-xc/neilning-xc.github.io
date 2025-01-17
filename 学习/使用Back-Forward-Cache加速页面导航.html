@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用Back/Forward Cache加速页面导航"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>使用Back/Forward Cache加速页面导航 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('使用Back-Forward-Cache加速页面导航/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用Back/Forward Cache加速页面导航</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-10-16
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/bfcache/">#bfcache</a> <a href="/tags/Back-Forward-Cache/">#Back/Forward Cache</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Back/Forward Cache简称bfcache，是一种新的浏览器缓存。当用户点击浏览器的前进（forward）或者后退（backward）按钮时触发，故称为bfcache。<strong>如果某个页面满足bfcache的条件，浏览器会以快照的形式将页面缓存在内存中</strong>，当用户点击前进或者后退按钮回到该页面时，直接从内存中获取该页面并展示给用户。bfcache本质上是存储在内存中的页面快照，所以打开页面时浏览器无须再次下载页面、执行JS代码、阻塞以及渲染DOM等流程，因此它比其他形式的缓存快的多。</p>
+<p>目前大多数主流浏览器的桌面端和移动端版本都已经支持bfcache。</p>
+<h2 id="bfcache的特点"><a href="#bfcache的特点" class="headerlink" title="bfcache的特点"></a>bfcache的特点</h2><p>我们比较熟悉的缓存是HTTP缓存，它本质上是一种硬盘缓存，当用户首次请求资源时，浏览器读取资源的响应头，如果满足条件，将资源的存储在硬盘上，当再次请求命中缓存时从硬盘中读取。读取到资源后，浏览器还需要解析HTML和CSS，并执行JS将页面渲染出来。</p>
+<p>不同于HTTP缓存，bfcache本质上是一种内存级缓存，他将整个页面的以快照的形式存储在内存中，包括JS的执行状态。因此当页面命中bfcache时，不需要再次下载、解析或执行代码。</p>
+<p>为了保存JS的运行状态，浏览器会暂停任务队列中未完成的任务，包括宏任务setTimeout、setInterval和微任务promise等。当页面从缓存中恢复之后，任务队列中的暂停的任务会恢复执行。</p>
+<p>当有同域下多个tab共享的状态，如IndexedDB事务在执行时，浏览器则不会将页面放入bfcache中，以防止多个tab数据或状态不一致的情况。</p>
+<h2 id="bfcache回调"><a href="#bfcache回调" class="headerlink" title="bfcache回调"></a>bfcache回调</h2><p>当页面从bfcache中恢复时，页面会触发<code>pageshow</code>事件，页面进入bfcache时会触发<code>pagehide</code>事件。<br><code>pageshow</code>事件会在以下两种情况下触发：</p>
+<ol>
+<li>页面首次加载完毕触发<code>load</code>事件之后</li>
+<li>页面从<code>bfcache</code>恢复之后</li>
+</ol>
+<p>当页面从bfcache恢复之后，<code>event</code>对象的<code>persisted</code>属性为<code>true</code>，否则为<code>false</code>。因此我们可以利用该属性判断页面是否命中bfcache缓存。</p>
+<p>除此之外，以基于Chromium的浏览器（目前主要是Chrome和Edge浏览器）在触发<code>pageshow</code>事件之前，还会触发<code>resume</code>事件，该事件在以下两种情况下触发：</p>
+<ol>
+<li>页面从bfcache恢复之后，触发<code>pageshow</code>事件之前</li>
+<li>用户重新打开已经处于休眠状态下的tab</li>
+</ol>
+<p>与之相对应的<code>pagehide</code>事件会在以下两种情况下触发：</p>
+<ol>
+<li>页面即将卸载触发<code>unload</code>事件之前</li>
+<li>页面尝试进入<code>bfcache</code>状态时</li>
+</ol>
+<p><code>pagehide</code>的event对象也存在<code>persisted</code>属性，当它的值为false时，页面没有进入bfcache状态，不过当他的值为true时，不能保证页面一定已经进入bfcache状态，因为可能会由于某些原因，浏览器不会将其放入bfcache中。</p>
+<p>以上四个函数的调用顺序如下图：<br><img src="/%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8Back-Forward-Cache%E5%8A%A0%E9%80%9F%E9%A1%B5%E9%9D%A2%E5%AF%BC%E8%88%AA/lifecycle.png" alt="lifecycle.png"></p>
+<h2 id="bfcache优化"><a href="#bfcache优化" class="headerlink" title="bfcache优化"></a>bfcache优化</h2><p>上面提到只有页面满足一定的条件，用户导航到其他页面后，浏览器才会自动将上一个页面放入bfcache中。那具体需要满足哪些条件呢？主要包括下面的条件。</p>
+<h3 id="1-禁用unload事件"><a href="#1-禁用unload事件" class="headerlink" title="1. 禁用unload事件"></a>1. 禁用unload事件</h3><p>unload事件会浏览器导航到其他页面或关闭页面时触发，在桌面端Chrome和Firefox中如果页面监听了该事件，页面将不会进入bfcache状态。监听该事件不仅会导致浏览器无法将页面缓存到bfcache中，并且在现在浏览器中，当用户离开页面时，该函数不再保证一定会执行，即该函数时不可靠，具体原因可<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.chrome.com/articles/page-lifecycle-api/?hl=zh-cn#the-unload-event">参考这里</a>。</p>
+<p>不过在移动端的Chrome和Safari中，则没有该限制，如果页面监听了该事件，页面可能会进入bfcache状态。不过在移动端该函数也是不可靠的。</p>
+<p>基于上面的两点原因，我们不应该再使用<code>unload</code>事件，而使用<code>pagehide</code>事件作为替代。当用户离开页面时，该函数能够保证一定执行。</p>
+<h3 id="2-避免使用beforeunload事件"><a href="#2-避免使用beforeunload事件" class="headerlink" title="2. 避免使用beforeunload事件"></a>2. 避免使用beforeunload事件</h3><p>如果页面监听了<code>beforeunload</code>事件，Chrome和Safari会将页面放入bfcache缓存，Firefox不会，所以也要避免使用该函数。</p>
+<p>不过该函数在某些是很有用的，例如当用户将要离开该页面，需要提示用户还有尚未保存的表单，此时我们又需要利用敢函数来提示用户。但是该函数又可能会影响bfcache，那如何处理呢？</p>
+<p>在这种情况下，可以在用户没有保存表单时才监听该事件，用户保存之后将该事件移除。示例代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function beforeUnloadListener(event) &#123;</span><br><span class="line">  event.preventDefault();</span><br><span class="line">  return event.returnValue = &#x27;Are you sure you want to exit?&#x27;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 没有保存表单时再添加事件监听</span><br><span class="line">onPageHasUnsavedChanges(() =&gt; &#123;</span><br><span class="line">  window.addEventListener(&#x27;beforeunload&#x27;, beforeUnloadListener);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 表单保存之后移除该事件监听器</span><br><span class="line">onAllChangesSaved(() =&gt; &#123;</span><br><span class="line">  window.removeEventListener(&#x27;beforeunload&#x27;, beforeUnloadListener);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上代码只在必要的时候添加事件监听器，不需要时将其移除，这样就不会影响页面导航时的bfcache功能。</p>
+<h3 id="3-避免Cache-Control-no-store"><a href="#3-避免Cache-Control-no-store" class="headerlink" title="3. 避免Cache-Control: no-store"></a>3. 避免Cache-Control: no-store</h3><p><code>Cache-Control: no-store</code>可以用在HTTP请求头中，用以告知浏览器禁止缓存该请求的响应数据。该字段通常用在页面主请求中（与之相对应的，页面的JS、CSS、图片以及字体文件等静态资源的请求称为子资源请求）。目前为止，在所有的浏览器中如果页面请求的响应体中返回了该字段，浏览器不会将页面放入bfcache中。</p>
+<p>因此应该避免在页面主请求中使用该字段。</p>
+<p>替代方案是如果页面没有敏感数据，可以将<code>Cache-Control: no-store</code>改为<code>Cache-Control: no-cache</code>或<code>Cache-Control: max-age=0</code>。当使用后者时，浏览器虽然会将页面放入HTTP缓存中，但是在后续使用缓存之前会向服务端重新发起网络请求来验证缓存缓存是否已经过期，即我们所熟知的协商缓存。这样既可以避免页面数据过期，也不会影响浏览器的b fcache功能。</p>
+<p>需要注意的是，当页面从bfcache中恢复时，页面是从内存中恢复的，而不是HTTP缓存。所以向服务器发起网络请求来验证缓存是否过期的行为不会发生。这使得bfcache并不适用于那些更新频率以秒或者分钟为单位的页面。</p>
+<p>如果页面更新的没有那么频繁，但是仍然有需要更新的状态（如用户的登录状态，购物车数据等）则可以监听上文提到的<code>pageshow</code>事件。具体做法，下文会详细介绍。</p>
+<h3 id="4-避免window-opener"><a href="#4-避免window-opener" class="headerlink" title="4. 避免window.opener"></a>4. 避免window.opener</h3><p>在一些浏览器中，当使用<code>window.open()</code>或者带<code>target=_blank</code>属性的链接时，如果没有指定<code>rel=&quot;noopennr&quot;</code>，则可以在新打开的页面中通过<code>window.opener</code>属性获取上一个页面的引用对象。如在页面A中点击a标签<code>&lt;a href=&quot;/b&quot;&gt;</code>跳转到页面B，在页面B上可以通过<code>window.opener</code>获取页面A。</p>
+<p>上面这种情况，浏览器不会将页面A放入bfcache中。所以在页面上应该尽可能使用<code>rel=&quot;noopener&quot;</code>属性来避免<code>window.opener</code>。</p>
+<h3 id="5-关闭共享状态的操作"><a href="#5-关闭共享状态的操作" class="headerlink" title="5. 关闭共享状态的操作"></a>5. 关闭共享状态的操作</h3><p>开头提到，当页面进入bfcache中，浏览器为了保存当前页面的状态，会将任务队列中所有任务暂停。当页面从bfcache中恢复后，这些任务会再次恢复执行。但是页面的任务类型是多种多样的，所以需要分情况来讨论。</p>
+<p>如果这些任务只是操作当前页面的DOM或者API，而不会影响其他页面。那么当页面进入bfcache中，这些任务被暂停时，并不会引起什么问题。但是如果某些任务访问了一些API，并且这些API会影响同域下其他页面时，暂停这些任务可能引起一些问题，如IndexedDB、WebSocket。为了避免这个问题，在以下几种情况下，浏览不会将页面放入bfcache中：</p>
+<ol>
+<li>页面中打开了indexedDB连接。</li>
+<li>页面有未完成的fetch()或者XMLHttpRequest请求。</li>
+<li>页面有未关闭的WebSocket或者WebRTC连接。</li>
+</ol>
+<p>如果页面中使用了以上这些API，可以在<code>pagehide</code>或者<code>freeze</code>事件中关闭连接。当页面从bfcache中恢复后，可以在<code>pageshow</code>或<code>resume</code>事件中重新打开或建立连接。<br>以下是IndexedDB的代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">let dbPromise;</span><br><span class="line">function openDB() &#123;</span><br><span class="line">  if (!dbPromise) &#123;</span><br><span class="line">    dbPromise = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      const req = indexedDB.open(&#x27;my-db&#x27;, 1);</span><br><span class="line">      req.onupgradeneeded = () =&gt; req.result.createObjectStore(&#x27;keyval&#x27;);</span><br><span class="line">      req.onerror = () =&gt; reject(req.error);</span><br><span class="line">      req.onsuccess = () =&gt; resolve(req.result);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  return dbPromise;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 关闭连接</span><br><span class="line">window.addEventListener(&#x27;pagehide&#x27;, () =&gt; &#123;</span><br><span class="line">  if (dbPromise) &#123;</span><br><span class="line">    dbPromise.then(db =&gt; db.close());</span><br><span class="line">    dbPromise = null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 重新打开链接</span><br><span class="line">window.addEventListener(&#x27;pageshow&#x27;, () =&gt; openDB());</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新页面"><a href="#更新页面" class="headerlink" title="更新页面"></a>更新页面</h2><p>如果页面从bfcache中恢复之后，需要实时更新某些数据。如用跳转到结算页面，购物车数据被清空，当用户点击返回之后，购物中的数据需要保持实时更新。或者用户跳转到其他页面后，通过异步的请求退出登录，再返回之前的页面时需要重新获取用户的登录状态。</p>
+<p>以上这些情况需要监听上文提到的<code>pageshow</code>事件，事件对象的<code>event.persisted</code>等于<code>true</code>时，即说明页面从bfcache中恢复，此时可以局部刷新页面状态。示例代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(&#x27;pageshow&#x27;, (event) =&gt; &#123;</span><br><span class="line">  if (event.persisted) &#123;</span><br><span class="line">    // 如果用户已经登出，重新获取页面的登录状态。</span><br><span class="line">    fetchUserStatus();</span><br><span class="line">    refreshShoppingCart();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="检测页面bfcache可用性"><a href="#检测页面bfcache可用性" class="headerlink" title="检测页面bfcache可用性"></a>检测页面bfcache可用性</h2><p>Chrome浏览器的<strong>DevTools</strong>工具可以帮开发者检测页面的bfcache可用性。</p>
+<p>如下图所示，点击<strong>Test back/forward cache</strong>可以检测页面的bfcache可用性。<br><img src="/%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8Back-Forward-Cache%E5%8A%A0%E9%80%9F%E9%A1%B5%E9%9D%A2%E5%AF%BC%E8%88%AA/bfcache1.png" alt="bfcache1.png"></p>
+<p>点击之后DevTools通过导航到其他页面并再次返回该页面来测试页面的bfcache的可用性。如果测试成功，其结果如下：<br><img src="/%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8Back-Forward-Cache%E5%8A%A0%E9%80%9F%E9%A1%B5%E9%9D%A2%E5%AF%BC%E8%88%AA/bfcache2.png" alt="bfcache2.png"><br>如果测试失败，则会列出失败的原因：<br><img src="/%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8Back-Forward-Cache%E5%8A%A0%E9%80%9F%E9%A1%B5%E9%9D%A2%E5%AF%BC%E8%88%AA/bfcache3.png" alt="bfcache3.png"><br>上面的图片中，页面监听了unload事件，导致页面bfcache失败。</p>
+<h2 id="bfcache对页面指标的影响"><a href="#bfcache对页面指标的影响" class="headerlink" title="bfcache对页面指标的影响"></a>bfcache对页面指标的影响</h2><p>由于bfcache是从内存中的页面快照，命中缓存时没有发起网络请求，也没有执行页面渲染流程，所以bfcache会影响页面的PV、核心性能指标等数据。</p>
+<h3 id="PV数据"><a href="#PV数据" class="headerlink" title="PV数据"></a>PV数据</h3><p>当页面从bfcache中恢复时，大多数PV埋点类库不会上报PV数据，所以bfcache可能会导致PV数据的下降。如果需要在bfcache场景下上报PV数据，我们可以自行处理，可以在<code>pageshow</code>事件中上报，以Google的GA为例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 页面首次渲染时上报PV数据</span><br><span class="line">gtag(&#x27;event&#x27;, &#x27;page_view&#x27;);</span><br><span class="line"></span><br><span class="line">window.addEventListener(&#x27;pageshow&#x27;, (event) =&gt; &#123;</span><br><span class="line">  // 页面从bfcache中恢复时，上报PV数据</span><br><span class="line">  if (event.persisted) &#123;</span><br><span class="line">    gtag(&#x27;event&#x27;, &#x27;page_view&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Core-Web-Vitals"><a href="#Core-Web-Vitals" class="headerlink" title="Core Web Vitals"></a>Core Web Vitals</h3><p>网页的核心性能指标是以用户体验为核心的网页性能指标，从用户体验的角度看，bfcache提升了网页的性能，然而bfcache是浏览器层面的优化导致的用户体验的提升。虽然用户不会关心这些，但作为开发者，我们还是有必要了解真实的页面性能数据。以便优化页面首次加载时的性能。</p>
+<p>bfcache场景下，LCP、FID、CLS这个三个指标的计算方式有些许不同，不过目前还没有专门的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming">Performance API</a>来处理bfcache的场景。</p>
+<p>幸运的是，官方提供的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/GoogleChrome/web-vitals">web-vital</a>库v1以上的版本已经支持bfcache，如果你使用的是v1以上的版本，则不需要做任何更改。</p>
+<h2 id="统计bfcache"><a href="#统计bfcache" class="headerlink" title="统计bfcache"></a>统计bfcache</h2><p>如果页面启用了bfcache，统计bfcache的命中率是很有必要的，可以通过统计bfcache命中次数和前进后退事件的总次数获得bfcache的命中率。示例代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(&#x27;pageshow&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const navigationType = performance.getEntriesByType(&#x27;navigation&#x27;)[0].type;</span><br><span class="line">  if (event.persisted || navigationType == &#x27;back_forward&#x27; ) &#123;</span><br><span class="line">    gtag(&#x27;event&#x27;, &#x27;back_forward_navigation&#x27;, &#123;</span><br><span class="line">      &#x27;isBFCache&#x27;: event.persisted,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，不是所有的前进后退导航都会触发bfcache。浏览器为了节省内存，会在一定的时间之后丢弃bfcache缓存，这些开发者不可控的原因导致100%的bfcache命中率是不可能的。</p>
+<p>然而通过bfcache命中率的波动来了解页面是否出现了不满足bfcache的因素是很有必要的。Chrome浏览器计划提供<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/WICG/bfcache-not-restored-reason/blob/main/NotRestoredReason.md">NotRestoredReasons API</a>来帮助开发者了解bfcache没有命中的原因。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/articles/bfcache">https://web.dev/articles/bfcache</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.chrome.com/articles/page-lifecycle-api/">https://developer.chrome.com/articles/page-lifecycle-api/</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/翻译/深入理解服务端组件React-Server-Components【译文】.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/使用预渲染-Prerender-技术加速页面导航.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

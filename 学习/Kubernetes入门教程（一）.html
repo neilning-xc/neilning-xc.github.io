@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Kubernetes入门教程（一）"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Kubernetes入门教程（一） - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Kubernetes入门教程（一）/bg.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Kubernetes入门教程（一）</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-09-10
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/kubernetes/">#kubernetes</a> <a href="/tags/minikube/">#minikube</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="kubernetes简介"><a href="#kubernetes简介" class="headerlink" title="kubernetes简介"></a>kubernetes简介</h2><p>Kubernetes是一个开源的容器编排引擎，已经是主流的应用部署工具，作为开发人员有必要对这个工具有一定的了解，下面对Kubernetes做一个简单的介绍。</p>
+<p>Kubernetes集群由若干工作节点(work machine)组成，他们被称为nodes。管理这些工作节点组件被被称为控制面（Control Plane）或者主节点，Control Plane由多个组件构成，每个组件负责不同的功能。下面是Kubernetes集群的组件架构图。<br><img src="/%E5%AD%A6%E4%B9%A0/Kubernetes%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/post1.png" alt="post1.png"><br>控制面相当于集群中的指挥官，控制整个集群的资源和状态，主要由以下组件构成：</p>
+<ul>
+<li>kube-apiserver，控制面向其他各个组件的发指令的枢纽，也是集群中各个组件相互沟通的枢纽。他也暴露一些API，后面通过kubectl运行命令就是向apiserver发送请求。</li>
+<li>etcd，一致且高可用的键值存储，用作Kubernetes集群数据的数据库。</li>
+<li>kube-scheduler，负责监视、创建Node或者Pod。</li>
+<li>kube-controller-manager，控制节点、任务等。</li>
+</ul>
+<p><img src="/%E5%AD%A6%E4%B9%A0/Kubernetes%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/post2.png" alt="post2.png"></p>
+<p>上图是工作节点的架构图，工作节点是执行具体任务的单元，可以是一个物理机或者虚拟机，工作及诶点主要由以下组件构成：</p>
+<ul>
+<li>kubelet，管理节点上的pod，确保pod或容器的运行状态，向apiserver报告某个节点的状态，也接收来自apiserver指令。</li>
+<li>kube-proxy，节点的网络代理，维护一些网络规则，允许节点内pod和外界的通信。</li>
+<li>container runtime，容器运行时,Kubernetes支持多种容器运行时，最常见的是docker。</li>
+<li>pod，该组件是kubernetes集群中的最小单元，运行着应用容器。</li>
+</ul>
+<p>前期学习对以上各个组件的职能有一个大概的了解即可。</p>
+<h2 id="安装minikube"><a href="#安装minikube" class="headerlink" title="安装minikube"></a>安装minikube</h2><p>创建一个较为完整可用的Kubernetes集群，需要三台物理机或虚拟机，一台作为master节点，另外两台为工作节点。这使得在本地调试很不方便，因此官方提供了minikube工具，可以在本地创建一个Kubernetes集群，minikube的安装过程<a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/start/">参考这里</a>。安装完之后执行<code>minikube start</code>可以启动一个Kubernetes集群。通过<code>minikube pause</code>或<code>minikube stop</code>命令可以停止该集群，minikube其他的可用命令可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/handbook/controls/">参考这里</a>或执行<code>minikube help</code>查看帮助手册。</p>
+<p>在本地安装Kubernetes集群除了minikube之外还有其他的工具，如kind、kubeadm。可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/tasks/tools/">参考这里</a>学习其他工作的安装方式。</p>
+<h2 id="创建deployment"><a href="#创建deployment" class="headerlink" title="创建deployment"></a>创建deployment</h2><p>使用minikube创建好集群之后，我们本地创建一个nodejs应用，并将其构建成docker镜像。创建app.js:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">const app = express();</span><br><span class="line">const port = 4000;</span><br><span class="line"></span><br><span class="line">const podname= process.env.HOSTNAME;</span><br><span class="line">let requests = 0;</span><br><span class="line">let startTime;</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;,  (req, res) =&gt; &#123;</span><br><span class="line">  res.send(`Hello world, it&#x27;s $&#123;podname&#125;(v1)\n`);</span><br><span class="line">  console.log(`Running On: $&#123;podname&#125; | Total Requests: $&#123;++requests&#125; | App Uptime: $&#123;(new Date() - startTime)/1000&#125; seconds | Log Time: $&#123;new Date()&#125;`);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(port, () =&gt; &#123;</span><br><span class="line">  startTime = new Date();</span><br><span class="line">  console.log(`Example app listening on port $&#123;port&#125; at $&#123;startTime&#125; | Running On: $&#123;podname&#125;\n`)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>应该绑定的端口号为4000，所以在Dockerfile中我们将容器的4000端口暴露出来：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FROM node:16</span><br><span class="line"></span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line"></span><br><span class="line">COPY . .</span><br><span class="line"></span><br><span class="line">RUN npm install</span><br><span class="line"></span><br><span class="line">EXPOSE 4000</span><br><span class="line"></span><br><span class="line">CMD [ &quot;npm&quot;, &quot;run&quot;, &quot;start&quot; ]</span><br></pre></td></tr></table></figure>
+<p>需要注意的是如果直接使用docker build命令构建镜像，构建好的镜像是在本机的docker仓库中的，而下面要实验的Kubernetes集群默认是不会从本地的docker中拉取镜像的。</p>
+<p>我们目前使用的是本地的minikube集群，所以我们需要将构建的镜像导入到minikube集群中，这样在k8s集群中部署应用时，才能使用我们构建好的本地镜像。详细过程<a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/handbook/pushing/">参考这里</a>，该过程如下。先在当前终端执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval $(minikube docker-env)</span><br></pre></td></tr></table></figure>
+<p>执行完之后，在当前终端执行的任何docker命令都相当于运行在minikube集群当中。然后我们运行docker build构建上面的应用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t backend-express-demo:v1 .</span><br></pre></td></tr></table></figure>
+<p>构建成功之后我们就可以将当前镜像发布到k8s集群当中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment backend-express-demo --image=backend-express-demo:v1 --replicas=2</span><br></pre></td></tr></table></figure>
+<p>以上命令创建了一个新的deployment，名称为backend-express-demo，使用的镜像是我们刚刚构建好的backend-express-demo:v1镜像，另外指定当前应用的pod数量为2。执行<code>kubectl get pods</code>可以看到我们刚刚创建的两个pod。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME                                    READY   STATUS    RESTARTS   AGE</span><br><span class="line">backend-express-demo-7bb844bff9-gj7j6   1/1     Running   0          16h</span><br><span class="line">backend-express-demo-7bb844bff9-qlvjr   1/1     Running   0          16h</span><br></pre></td></tr></table></figure>
+<p>当前部署的两个pods在集群内部，外部还不能访问。我们先验证下部署的pod是否运行正常，调试的过程需要使用pod的名称，为了方便起见我们将pod的名称设置为环境变量，运行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export POD_NAME=&quot;$(kubectl get pods -o go-template --template &#x27;&#123;&#123;(index .items 0).metadata.name&#125;&#125;&#123;&#123;&quot;\n&quot;&#125;&#125;&#x27;)&quot;</span><br></pre></td></tr></table></figure>
+<p>以上命令使用go-template将kubectl get pods的输出结果格式化，然后过滤并获取到第一个pod的名称，go-template的用法<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pkg.go.dev/text/template">参考这里</a>。我们刚刚创建的pod处在k8s集群中私有的隔离网络环境中，当前外部的请求需要通过代理才能正常到达应用。新开一个终端执行<code>kubectl proxy</code>来开启代理，然后使用curl发送如下请求来查看应用是否正常响应：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME:8080/proxy/</span><br></pre></td></tr></table></figure>
+<p>还可以查看pod内的日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs $POD_NAME</span><br></pre></td></tr></table></figure>
+<p>或者进入镜像内部查看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -ti $POD_NAME -- bash</span><br></pre></td></tr></table></figure>
+<p>进入镜像内后运行curl命令，可以看到nodejs应用的响应：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:4000</span><br></pre></td></tr></table></figure>
+<h2 id="创建service"><a href="#创建service" class="headerlink" title="创建service"></a>创建service</h2><p>上面只是创建了deployment，想要外部请求能够访问刚刚部署的应用，还需要创建service。k8s中有两种类型的service:</p>
+<ul>
+<li>NodePort</li>
+<li>LoadBalancer</li>
+</ul>
+<h3 id="NodePort"><a href="#NodePort" class="headerlink" title="NodePort"></a>NodePort</h3><p>我们先创建NodePort类型的service。创建service之前先来查看当前service：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services</span><br><span class="line"># 或</span><br><span class="line">kubectl get svc</span><br></pre></td></tr></table></figure>
+<p>输入如下，只有一个默认的service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">❯ kubectl get services</span><br><span class="line">NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE</span><br><span class="line">backend-express-demo   NodePort    10.103.220.33   &lt;none&gt;        4000:32690/TCP   19h</span><br></pre></td></tr></table></figure>
+<p>然后我们通过kubectl expose命令为上面创建的deployment创建service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment/backend-express-demo --type=&quot;NodePort&quot; --port 4000</span><br></pre></td></tr></table></figure>
+<p>上面创建的service的type为NodePort，端口号为4000，查看创建的service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE</span><br><span class="line">backend-express-demo   NodePort    10.103.220.33   &lt;none&gt;        4000:32690/TCP   19h</span><br><span class="line">kubernetes             ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP          42h</span><br></pre></td></tr></table></figure>
+<p>这里需要指出的是，由于docker在非Linux系统的网络限制，我们不能直接访问minikube中的节点IP，需要使用以下命令创建一个通道(tunnel)来访问backend-express-demo。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube service backend-express-demo --url</span><br></pre></td></tr></table></figure>
+<p>输出的结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-----------|----------------------|-------------|---------------------------|</span><br><span class="line">| NAMESPACE |         NAME         | TARGET PORT |            URL            |</span><br><span class="line">|-----------|----------------------|-------------|---------------------------|</span><br><span class="line">| default   | backend-express-demo |        4000 | http://192.168.49.2:32690 |</span><br><span class="line">|-----------|----------------------|-------------|---------------------------|</span><br><span class="line">🏃  Starting tunnel for service backend-express-demo.</span><br><span class="line">|-----------|----------------------|-------------|------------------------|</span><br><span class="line">| NAMESPACE |         NAME         | TARGET PORT |          URL           |</span><br><span class="line">|-----------|----------------------|-------------|------------------------|</span><br><span class="line">| default   | backend-express-demo |             | http://127.0.0.1:61512 |</span><br><span class="line">|-----------|----------------------|-------------|------------------------|</span><br><span class="line">🎉  正通过默认浏览器打开服务 default/backend-express-demo...</span><br><span class="line">❗  因为你正在使用 darwin 上的 Docker 驱动程序，所以需要打开终端才能运行它。</span><br></pre></td></tr></table></figure>
+<p>通过在本机浏览器访问<code>http://127.0.0.1:61512</code>或者执行<code>curl http://127.0.0.1:61512</code>就可以访问我们刚刚部署的nodejs应用。</p>
+<h3 id="LoadBalancer"><a href="#LoadBalancer" class="headerlink" title="LoadBalancer"></a>LoadBalancer</h3><p>将service暴露到集群外部网络的标准方式是创建一个LoadBalancer类型的service，创建的方式和上面类似，不过创建service之前要先删除之前的创建的NodePort类型的service：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete service backend-express-demo</span><br></pre></td></tr></table></figure>
+<p>由于本地使用的是minikube集群，<strong>所以创建service之前需要在新的终端中运行<code>minikube tunnel</code>创建一个通道（tunnel）</strong>，然后执行以下命令创建LoadBalancer类型的service：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment/backend-express-demo --type=LoadBalancer --port 4000</span><br></pre></td></tr></table></figure>
+<p>执行完之后运行<code>kubectl get svc</code>查看新的service，由于我们是在minikube集群中，且上面运行了<code>minikube tunnel</code>创建了一个通道，所以在EXTERNAL-IP列可以看到创建的service被分配了<code>127.0.0.1</code>，如果没有运行<code>minikube tunnel</code>，EXTERNAL-IP列将会一直显示”pending”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE</span><br><span class="line">backend-express-demo   LoadBalancer   10.103.171.149   127.0.0.1     4000:30504/TCP   2s</span><br><span class="line">kubernetes             ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP          90m</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就可以使用EXTERNAL-IP来访问应用，如可以在浏览器中打开<code>http://127.0.0.1:4000/</code>。</p>
+<blockquote>
+<p>有关minikube通道的相关知识，可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/handbook/accessing/">参考这里</a>。</p>
+</blockquote>
+<h2 id="扩缩容"><a href="#扩缩容" class="headerlink" title="扩缩容"></a>扩缩容</h2><p>上面创建deployment时，指定的pods数量是2。k8s可以根据请求量的大小动态的扩容或者缩容。演示扩缩容之前我们现在新的终端中执行如下命令，动态的观察pod数量以及pod的创建和销毁的过程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -w</span><br></pre></td></tr></table></figure>
+<p>回到之前的终端执行以下命令可以扩容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl scale deployments/backend-express-demo --replicas=4</span><br></pre></td></tr></table></figure>
+<p>执行完之后查看pod数量的变化，可以看到类似如下的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NAME                                    READY   STATUS              RESTARTS   AGE</span><br><span class="line">backend-express-demo-7bb844bff9-9rmd9   1/1     Running             0          20m</span><br><span class="line">backend-express-demo-7bb844bff9-njjgq   1/1     Running             0          20m</span><br><span class="line">backend-express-demo-7bb844bff9-675rw   0/1     Pending             0          0s</span><br><span class="line">backend-express-demo-7bb844bff9-675rw   0/1     Pending             0          0s</span><br><span class="line">backend-express-demo-7bb844bff9-njscq   0/1     Pending             0          0s</span><br><span class="line">backend-express-demo-7bb844bff9-675rw   0/1     ContainerCreating   0          0s</span><br><span class="line">backend-express-demo-7bb844bff9-njscq   0/1     Pending             0          0s</span><br><span class="line">backend-express-demo-7bb844bff9-njscq   0/1     ContainerCreating   0          0s</span><br><span class="line">backend-express-demo-7bb844bff9-675rw   1/1     Running             0          1s</span><br><span class="line">backend-express-demo-7bb844bff9-njscq   1/1     Running             0          1s</span><br></pre></td></tr></table></figure>
+<p>k8s新创建了两个新的pod，如果想缩容，我们直接将pod数量改小即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl scale deployments/backend-express-demo --replicas=2</span><br></pre></td></tr></table></figure>
+<p>可以看到一段时间后pod被销毁。</p>
+<h2 id="更新和回滚应用"><a href="#更新和回滚应用" class="headerlink" title="更新和回滚应用"></a>更新和回滚应用</h2><p>如果我们的应用修改了之后要重新发布，k8s会滚动式的更新应用，即逐步替换老的pod。如果我们有至少两个pod，就能做到发布时服务不中断。在演示应用更新之前，先来修改应用代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.get(&#x27;/&#x27;,  (req, res) =&gt; &#123;</span><br><span class="line">  res.send(`Hello world, it&#x27;s $&#123;podname&#125;(v2)\n`);</span><br><span class="line">  console.log(`Running On: $&#123;podname&#125; | Total Requests: $&#123;++requests&#125; | App Uptime: $&#123;(new Date() - startTime)/1000&#125; seconds | Log Time: $&#123;new Date()&#125;`);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>然后将修改后的代码打包成v2版本的镜像：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t backend-express-demo:v2 .</span><br></pre></td></tr></table></figure>
+<p>镜像构建成功之后，我们将上面创建的deployment更新为新的镜像：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl set image deployments/backend-express-demo backend-express-demo=backend-express-demo:v2</span><br></pre></td></tr></table></figure>
+<p>可以观察到更新应用时先创建了新的v2版本镜像的pod，然后逐步删除老的pod，且由于我们有两个pods，所以服务不会中断。<br>如果已经发到线上的应用要回滚到上一个版本，命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl rollout undo deployments/backend-express-demo</span><br></pre></td></tr></table></figure>
+<p>所有演示完毕后可以清理刚刚创建的deployment和service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete deployments/backend-express-demo services/backend-express-demo</span><br></pre></td></tr></table></figure>
+<h2 id="Kubernetes-Dashboard"><a href="#Kubernetes-Dashboard" class="headerlink" title="Kubernetes Dashboard"></a>Kubernetes Dashboard</h2><p>k8s提供了dashboard来方便的管理k8s中的各种资源，由于我们本地使用了minikube，可以使用minikube的插件来开启此dashboard。先安装dashboard所必须的插件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons enable metrics-server</span><br></pre></td></tr></table></figure>
+<p>插件安装成功后，开启dashboard。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure>
+<p>几分钟之后，浏览器会自动打开dashboard，在dashboard中可以更直观的看到上面创建deplyment、service资源、扩缩容、更新和回滚的过程。<br><img src="/%E5%AD%A6%E4%B9%A0/Kubernetes%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/post3.png" alt="post3.png"></p>
+<h2 id="使用yaml配置文件"><a href="#使用yaml配置文件" class="headerlink" title="使用yaml配置文件"></a>使用yaml配置文件</h2><p>上面演示k8s的功能使用的是命令行的方式，k8s当然也只是使用配置文件的方式来管理应用。我们来演示如何使用配置文件。创建deployment.yaml：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: backend-express-demo</span><br><span class="line">  labels: </span><br><span class="line">    app: backend-express-demo</span><br><span class="line">    role: backend</span><br><span class="line">    env: test</span><br><span class="line">spec:</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: backend-express-demo</span><br><span class="line">  replicas: 2    </span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: backend-express-demo</span><br><span class="line">        role: backend</span><br><span class="line">        env: test</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: backend-express-demo</span><br><span class="line">        image: backend-express-demo:v2</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 4000</span><br><span class="line">        resources:</span><br><span class="line">          limits:</span><br><span class="line">            cpu: 500m</span><br><span class="line">          requests:</span><br><span class="line">            cpu: 200m</span><br></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f deployment.yaml</span><br></pre></td></tr></table></figure>
+<p>创建deployment之后，为了正常的访问新创建的LoadBlancer类型的service，我们需要保持上面的<code>minikube tunnel</code>运行。创建service.yaml：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Service</span><br><span class="line">metadata:</span><br><span class="line">  name: backend-express-demo</span><br><span class="line">  labels:</span><br><span class="line">    app: backend-express-demo</span><br><span class="line">    role: backend</span><br><span class="line">    env: test</span><br><span class="line">spec:</span><br><span class="line">  type: LoadBalancer</span><br><span class="line">  ports:</span><br><span class="line">  - port: 4000</span><br><span class="line">  selector:</span><br><span class="line">    app: backend-express-demo</span><br><span class="line">    role: backend</span><br><span class="line">    env: test</span><br></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f service.yaml</span><br></pre></td></tr></table></figure>
+<p>创建成功之后，可以在浏览器中访问<code>http://127.0.0.1:4000/</code>来查看应用的输出。<br>我们还可以将上面两个文件写在同一个配置文件中，仅靠一条命令就可以同时创建deployment和service，两部分配置通过<code>---</code>分隔。例如如下deployment-service.yaml文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">      containers:</span><br><span class="line">      - name: backend-express-demo</span><br><span class="line">        image: backend-express-demo:v2</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 4000</span><br><span class="line">        resources:</span><br><span class="line">          limits:</span><br><span class="line">            cpu: 500m</span><br><span class="line">          requests:</span><br><span class="line">            cpu: 200m</span><br><span class="line">---</span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Service</span><br><span class="line">metadata:</span><br><span class="line">  name: backend-express-demo</span><br><span class="line">  labels:</span><br><span class="line">    app: backend-express-demo</span><br><span class="line">    role: backend</span><br><span class="line">    env: test</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>然后执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f depoyment-service.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="自动扩缩容（HPA）"><a href="#自动扩缩容（HPA）" class="headerlink" title="自动扩缩容（HPA）"></a>自动扩缩容（HPA）</h2><p>上面演示手动扩缩容，k8s当然也支持自动扩缩容（HorizontalPodAutoscaler），实现自动扩缩容的方式也很简单。</p>
+<p>在演示HPA功能之前，需要先在集群中安装并配置<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/kubernetes-sigs/metrics-server#readme">Metrics Server</a>，Metrics Server通过kubelets收集集群中各个节点的资源使用情况，然后调用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">Kubernetes API</a>将数据上报给master节点，并通过<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/">APIService</a>创建新的资源满足h pa的设置要求。由于我们演示的环境是minikube，可以启用minikube的metrics-server插件简单的一键安装和配置Metrics Server，上文演示minikube中的k8s dashboard时已经启用过该插件，所以我们可以直接执行自动扩缩容。</p>
+<p>先执行<code>kubectl get hpa</code>来查看当前没有创建自动扩缩容，然后执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl autoscale deployment backend-express-demo --cpu-percent=5 --min=2 --max=10</span><br></pre></td></tr></table></figure>
+<p>该指令设置最小的pod数量为2，最大数量为10，为了演示将CPU的使用率阈值设置为5%，即当CPU使用率超过5%时会执行自动扩容，最终保证所有pod平均的CPU使用率为5%左右。再次执行<code>kubectl get hpa</code>查看hpa，输出的结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME                   REFERENCE                         TARGETS   MINPODS   MAXPODS   REPLICAS   AGE</span><br><span class="line">backend-express-demo   Deployment/backend-express-demo   0%/5%    2         10        2          80s</span><br></pre></td></tr></table></figure>
+<p>由于当前应用没有任何的请求，所以TARGETS列的CPU使用率还是0%，为了演示自动扩缩容的过程，我们模拟一些请求来增加CPU使用率。首先我们在新的窗口中执行如下命令，动态的观察hpa：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get hpa backend-express-demo --watch</span><br></pre></td></tr></table></figure>
+<p>然后我们使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://busybox.net/">busybox</a>镜像来模拟请求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c &quot;while sleep 0.01; do wget -q -O- http://backend-express-demo:4000; done&quot;</span><br></pre></td></tr></table></figure>
+<p>请求一段时间后，查看hpa资源的变化，可以看到CPU的使用率达到5%后pod数量（REPLICAS列）逐步增加。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NAME                   REFERENCE                         TARGETS   MINPODS   MAXPODS   REPLICAS   AGE</span><br><span class="line">backend-express-demo   Deployment/backend-express-demo   0%/5%     2         10        2          15s</span><br><span class="line">backend-express-demo   Deployment/backend-express-demo   4%/5%     2         10        2          30s</span><br><span class="line">backend-express-demo   Deployment/backend-express-demo   11%/5%    2         10        2          90s</span><br><span class="line">backend-express-demo   Deployment/backend-express-demo   11%/5%    2         10        4          105s</span><br><span class="line">backend-express-demo   Deployment/backend-express-demo   11%/5%    2         10        5          2m</span><br><span class="line">backend-express-demo   Deployment/backend-express-demo   5%/5%     2         10        5          2m30s</span><br></pre></td></tr></table></figure>
+<p>除了通过命令行的方式创建HPA，还可以使用yaml文件的方式创建，上面的HPA改成yaml文件后如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: autoscaling/v1</span><br><span class="line">kind: HorizontalPodAutoscaler</span><br><span class="line">metadata:</span><br><span class="line">  name: backend-express-demo</span><br><span class="line">spec:</span><br><span class="line">  scaleTargetRef:</span><br><span class="line">    apiVersion: apps/v1</span><br><span class="line">    kind: Deployment</span><br><span class="line">    name: backend-express-demo</span><br><span class="line">  minReplicas: 2</span><br><span class="line">  maxReplicas: 10</span><br><span class="line">  targetCPUUtilizationPercentage: 5</span><br></pre></td></tr></table></figure>
+<p>通过执行以下命令可以创建HPA：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f ./hpa.yaml</span><br></pre></td></tr></table></figure>
+<p>上面的例子中我们使用的指标称为资源指标（resource metrics）并且CPU的使用率为5%，还有可以使用绝对值和其他类型的资源指标。具体可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/">参考这里</a>。</p>
+<h2 id="探针（Probes）"><a href="#探针（Probes）" class="headerlink" title="探针（Probes）"></a>探针（Probes）</h2><p>k8s使用探针机制来检查pod内应用健康状态，比如nodejs应用进程已经由于异常已经停止运行，此时需要一种机制来检查应用是否可用，当探针检查失败时，可以销毁该pod并创新创建一个新的pod来保持应用始终健康可用。k8s的探针主要分为liveness探针、startup探针和readiness探针。刚刚介绍的是liveness探针。</p>
+<h3 id="liveness"><a href="#liveness" class="headerlink" title="liveness"></a>liveness</h3><p>先来演示如何使用liveness探针。首先在应用内创建一个新的路由，修改app.js：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 添加http liveness探针</span><br><span class="line">app.get(&#x27;/healthz&#x27;,  (req, res) =&gt; &#123;</span><br><span class="line">  res.status(200);</span><br><span class="line">  console.log(`health check, $&#123;podname&#125; is ok`);</span><br><span class="line">  res.send(`$&#123;podname&#125; is ok`);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(port, () =&gt; &#123;</span><br><span class="line">  startTime = new Date();</span><br><span class="line">  console.log(`Example app listening on port $&#123;port&#125; at $&#123;startTime&#125; | Running On: $&#123;podname&#125;\n`);</span><br><span class="line">  // 10s后结束进程，模拟应用失败关闭</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    process.exit(1);</span><br><span class="line">  &#125;, 10000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>打包镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t backend-express-demo:v3 .</span><br></pre></td></tr></table></figure>
+<p>更新应用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl set image deployments/backend-express-demo backend-express-demo=backend-express-demo:v3</span><br></pre></td></tr></table></figure>
+<p>然后修改depoyment-service.yaml文件如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: backend-express-demo</span><br><span class="line">  labels: </span><br><span class="line">    app: backend-express-demo</span><br><span class="line">    role: backend</span><br><span class="line">    env: test</span><br><span class="line">spec:</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: backend-express-demo</span><br><span class="line">  replicas: 2    </span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: backend-express-demo</span><br><span class="line">        role: backend</span><br><span class="line">        env: test</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: backend-express-demo</span><br><span class="line">        image: backend-express-demo:v2</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 4000</span><br><span class="line">        resources:</span><br><span class="line">          limits:</span><br><span class="line">            cpu: 500m</span><br><span class="line">          requests:</span><br><span class="line">            cpu: 200m</span><br><span class="line">        livenessProbe:</span><br><span class="line">          httpGet:</span><br><span class="line">            path: /healthz</span><br><span class="line">            port: 4000</span><br><span class="line">            httpHeaders:</span><br><span class="line">            - name: Custom-Header</span><br><span class="line">              value: k8s-liveness-probes</span><br><span class="line">          initialDelaySeconds: 3</span><br><span class="line">          periodSeconds: 3</span><br></pre></td></tr></table></figure>
+<p>增加<code>livenessProbe</code>配置项。修改yaml文件之后可以重新应用该变更：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f depoyment-service.yaml</span><br></pre></td></tr></table></figure>
+<p>然后可以进入k8s dashboard中查看events事件。k8s的liveness探针检测失败之后，pod被杀死，然后创建新的pod来启动应用。<br><img src="/%E5%AD%A6%E4%B9%A0/Kubernetes%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/post4.png" alt="post4.png"></p>
+<p>上面的例子使用的http类型的探针，本质上就是向容器发送也定的http get请求，当请求的返回状态码&gt;=200并&lt;400时，检测结果成功，否则检测失败。k8s还有其他类型的探针如command、tcp、gRPC，具体使用方法<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">参考这里</a>。</p>
+<h3 id="startup探针"><a href="#startup探针" class="headerlink" title="startup探针"></a>startup探针</h3><p>有些应用启动和初始化过程较长，此时liveness探针检测可能会处于失败状态，如果k8s删除了pod并创建新的pod，应用又会重新启动。为了避免这种死锁的状态，k8s提供了startup探针。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">livenessProbe:</span><br><span class="line">  httpGet:</span><br><span class="line">    path: /healthz</span><br><span class="line">    port: 4000</span><br><span class="line">    httpHeaders:</span><br><span class="line">    - name: Custom-Header</span><br><span class="line">      value: k8s-liveness-probes</span><br><span class="line">    initialDelaySeconds: 3</span><br><span class="line">    periodSeconds: 3        </span><br><span class="line">startupProbe:</span><br><span class="line">  httpGet:</span><br><span class="line">    path: /healthz</span><br><span class="line">    port: 4000</span><br><span class="line">  failureThreshold: 30</span><br><span class="line">  periodSeconds: 10  </span><br><span class="line">  </span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>以上配置指示应用会有10 * 30=300s的时间来完成启动，只有当startup探针的检测结果成功，liveness探针才会开始工作。如果检测失败，300秒之后容器会被杀死，并启动新的pod。</p>
+<h3 id="readiness"><a href="#readiness" class="headerlink" title="readiness"></a>readiness</h3><p>有时候应用在运行过程中由于某种原因可能会临时处于不可用状态，如应用加载大的数据或者配置文件或者依赖其他外部的服务。这种情况下，可以使用readiness探针使应用保持运行状态，且不接受外部流量请求。readiness探针的使用方式和liveness完全相同。需要注意的是readiness运行在应用的整个生命周期，而不是启动时，这区别于startup探针。另外liveness探针不会等待readiness探针的执行结果，它只会等待startup探针的执行结果。有关探针的其他详细用法<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">参考这里</a>。</p>
+<p>以上代码演示地址<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/kubernetes-demo">点击这里</a>。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/home/">https://kubernetes.io/docs/home/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://okigiveup.net/tutorials/a-tutorial-introduction-to-kubernetes/">https://okigiveup.net/tutorials/a-tutorial-introduction-to-kubernetes/</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/使用预渲染-Prerender-技术加速页面导航.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/Web-Push-Notification教程（二）.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

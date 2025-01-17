@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="TCP协议基础知识（一）"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>TCP协议基础知识（一） - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('TCP协议基础知识（一）/banner.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>TCP协议基础知识（一）</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-10-11
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/TCP/">#TCP</a> <a href="/tags/HTTP/">#HTTP</a> <a href="/tags/网络协议/">#网络协议</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前学习TCP协议时，完全没有理解TCP协议的设计理念，致使学习过程艰难曲折，中途放弃，后面又陆陆续续学了HTTP协议，了解了OSI网络模型的本质，知识体系有了一定的拓展。最近再开始学习TCP协议时，对协议的理解也比之前透彻，但是TCP方面的书籍和资料，语言大多晦涩难懂，并且TCP相关的知识浩如烟海，涉及到很多细节。所以这里将TCP协议涉及到的基本概念做一个总结和记录，看完本文之后再去看书，会有助于对书中细节的理解。</p>
+<p>学习TCP协议对开发几乎不能提供什么实际的帮助，但是学习TCP协议可以帮助深入理解网络协议、或者快速的定位Web问题。此外TCP协议的设计思想有助于拓宽知识边界，从整体上提升开发人员对项目的理解能力。</p>
+<h2 id="OSI网络模型"><a href="#OSI网络模型" class="headerlink" title="OSI网络模型"></a>OSI网络模型</h2><p>在讲解TCP协议之前，我们首先来回顾一下OSI网络模型的具体分层、分层的本质以及为什么要分层。</p>
+<p>OSI网络模型从上到下依次是：</p>
+<ul>
+<li>应用层，常见协议有HTTP，SSH，FTP，SFMTP</li>
+<li>传输层，常见协议有TCP，UDP</li>
+<li>网络层，常见协议有IP协议，ARP协议</li>
+<li>数据链路层</li>
+<li>物理层</li>
+</ul>
+<p>当客户端向服务端发送请求（数据）时，主动发起请求的一方网络数据包的封装是从上到下的，每层都会将上层传递过来的数据作为载荷，并在数据载荷的开头添加自己的头信息。当数据到达服务端时，数据包的拆封是从下往上的，每层协议都会剥离掉自己需要的头信息，然后再将数据传递到上层，最终到达应用层。简单概括网络分层的本质就是在网络数据传递之前每一层协议都会向数据包中添加必要的头信息，传递给目标主机之后层一从又会从数据包中层层剥离头信息。</p>
+<p>网络分层优点显而易见，各层协议完全解偶，易于复用，并且各司其职，负责不同的功能，比如应用层软件主要将数据呈现给用户，传输层主要通过端口号将数据交给不同的应用层软件，网络层利用IP地址使数据在不同的网络路由器之间传输，数据链路层利用MAC地址表将不同的数据转发给特定的交换机端口，物理层负责将数据转换成光信号在光纤传输，或者转换成电磁波以WI-FI形式传输等等。</p>
+<p>但是需要强调的是各层数据头在传输过程中也不是一成不变的，例如数据链路层数据包头经过不同的交换机会剥离并封装成新的包含下一个交换机的目标MAC地址，对这部分内容感兴趣的参考之前的<a href="https://neilning-xc.github.io/2021/09/02/ckuhzu9a8000y2wy4f04v6tpv/">文章</a>。</p>
+<h3 id="TCP头部字段"><a href="#TCP头部字段" class="headerlink" title="TCP头部字段"></a>TCP头部字段</h3><p><strong>TCP协议是可靠的，面向连接的，基于字节流的全双工协议</strong></p>
+<p>之所以说TCP协议是可靠的，面向连接的，主要是因为TCP建立连接需要经历三次握手。三次握手主要作用是创建一个逻辑连接，双方确定后续通信的序列号，和窗口缩放等信息。由于网络层的IP地址协议是不可靠，无连接的协议，并且不能保证传输的数据包的顺序和可靠性，所以TCP协议发展出了一系列复杂的机制来保证传输可靠性。</p>
+<p>基于字节流的含义是TCP没有固定的报文边界，假设TCP要发送1480字节的数据，可以分两次1000，480将数据写入socket，也可以一次写入。接收端收到数据后，可以分多次读取，每次读取一部分数据，也可以一次性全部读取。这里可以对比应用层HTTP协议，HTTP协议是基于文本的协议，例如它的请求行，请求头和请求体，以及每个部分中不同的字段主要是依靠换行符、回车符或空行分隔，应用层软件可以依靠这些特殊字符解析协议的内容。</p>
+<p>全双工的含义是通信的双方可以同时接收和发送数据。</p>
+<p>前文说过，每层网络协议主要为数据添加了不同的数据头，那我们先来看一下传输层的TCP协议头：<br><img src="/%E5%AD%A6%E4%B9%A0/TCP%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/TCP-header-Page-1.png" alt="TCP-header-Page-1.png"><br>TCP头部包含基本头部信息和可选项，基本头部信息固定20字节长度，可选项在不同类型的传输层数据包中字段和长度是不同的，后面会讨论这部分内容。首先先来了解一下常见的头部的字段。</p>
+<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><p>如果把服务器比作一个房子，房子里面提供各种个样的服务，那么端口号作用就是访问这些服务的大门，TCP协议头的前四个字节是源端口号和目标端口号，他们分别占两个字节，由此可知端口号最大值为2^16 - 1，即0～66635。</p>
+<p>但是这么多的端口号其分配并不是随意的，0～1023范围内的端口号称之为系统端口（System Ports），系统端口号由专门的机构IANA(互联网号码分配局，Internet Assigned Numbers Authority)制定协议来分配，常见的系统端口号有HTTP的80端口，SSH的22端口，HTTPS的443端口。1024～49151范围内的端口称之为用户端口号（User Ports），比如常见的用户端口号有MySQL的3306。这两类的端口号都可以在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">IANA</a>查询。其余的端口号称之为动态端口号或私有端口号（Dynamic Ports/Private Ports），这些端口号是供本机应用程序临时分配使用的，现实中不同的操作系统选择的临时端口号范围会略有不同，并且可以允许通过修改操作系用文件进行设置。需要注意的是主动发起连接的一方也会被分配一个临时端口号，每次通信分配的端口是不同的。接下来我们用Wireshark（Wireshark教程参考<a href="https://neilning-xc.github.io/2021/09/17/ckuhzu99d000n2wy44zmge7p7/">这篇文章</a>）抓包查看一下这两个端口号，启动Wireshark后，输入显示过滤器http.host == “wttr.in”，然后在命令行中发送两次HTTP请求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://wttr.in/Shanghai?0</span><br></pre></td></tr></table></figure>
+<p>可以看到两次分配的源端口是不同的，目标端口号都是80<br><img src="/%E5%AD%A6%E4%B9%A0/TCP%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/tcp-port.png" alt="tcp-port.png"></p>
+<h3 id="序列号-amp-确认号-amp-Flags位"><a href="#序列号-amp-确认号-amp-Flags位" class="headerlink" title="序列号 &amp; 确认号 &amp; Flags位"></a>序列号 &amp; 确认号 &amp; Flags位</h3><p>序列号（Sequence Number）数值指的是TCP发送到接收端的一个<strong>字节序号</strong>，TCP数据是分块传输的，该字节代表了某个报文段数据（数据块）的第一个字节。序列号占用4个字节的长度，其范围为0～2^32-1，达到2^32-1后再从0开始循环。</p>
+<p>确认号（Acknowledgment Number）指的是期待发送方发送的下一个序列号，即最后被成功接收的字节序号加1，表示小于这个数值的字节已经都收到。这个字段一般存在于接收方收到数据后回复给发送方的ACK数据包里，需要指出的是不是所有的数据包需要确认包，比如确认包本身，也不是收到数据包后立刻就会确认，可以延迟确认。这个字段要生效，要求Flags标志位的ACK置为1。</p>
+<p>flags标识位指的是第14字节的8个符号位：CWR，ECU，ACK，SYN，RST，FIN等字段，他们各自占用一个比特，其值只能为0或者1。主要用来标识该数据包的类型或作用。常用的标识位有以下几个：</p>
+<ul>
+<li>SYN：主要是发起连接时，同步双方的初始序列号</li>
+<li>ACK：数据确认包，接收方收到数据后，回复给发送方的数据包。</li>
+<li>RST：强制断开链接的数据包，比如服务端链接已经丢失，客户端在不知道的情况下依然向服务端发送数据，服务端表示自己无法处理。</li>
+<li>FIN：数据发送完毕，准备断开链接，后面不会再有数据包发送。</li>
+<li>PSH：告知接收方收到数据以后立马交给应用层，不能缓存起来。</li>
+</ul>
+<p>之所以把这三个头部字段放在一起，是因为要使用这个三个字段来讨论一下经典的三次握手和四次挥手的过程。三次握手和四次挥手主要用到以下几个头部字段：序列号Seq，主动发起请求的一方（通常称为客户端）第一次握手时会生成初始序列号。符号位SYN通常代表客户端想要创建连接。确认号ack和符号位ACK置为1通常是服务端向客户端确认某个序号之前的报已经收到。<br><img src="/%E5%AD%A6%E4%B9%A0/TCP%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/TCP-header-shakehands.png" alt="TCP-header-shakehands.png"></p>
+<h4 id="三次握手和四次挥手"><a href="#三次握手和四次挥手" class="headerlink" title="三次握手和四次挥手"></a>三次握手和四次挥手</h4><p>TCP三次握手和四次挥手的过程如下：<br><img src="/%E5%AD%A6%E4%B9%A0/TCP%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/TCP-header-shakehands1.png" alt="TCP-header-shakehands1.png"></p>
+<p>现实中最常见的情况是客户端主动发起请求，服务端响应请求。</p>
+<ol>
+<li>第一次挥手之前客户端和服务端都处于Closed状态，客户端主动发起第一次握手请求，其flgs位的SYN值会被设置为1，同时客户端会生成初始序列号x，seq=x。之后客户端处于SYN-SENT状态。</li>
+<li>服务端最初的状态也是CLOSED状态，在启动监听某个端口之后处于LISTEN状态。收到上一步的数据包后，知道客户端想要建立连接，然后将SYN位和ACK为都置为1，并生成自己的初始序列号y，seq=y，同时将上一步收到的客户端的初始序列号加一设为确认号，ack=x+1。然后将这个TCP数据包发送给客户端。自己的状态变为SYN-RCVD状态。</li>
+<li>客户端收到上一步的数据包后，会检查确认号ack的值是否是自己第一次发起握手时生成初始序列号x+1。确认之后，会生成一个新的数据包，其ACK位设为1，序列号seq=x+1，确认号ack的值设置为上一步收序列号+1，即ack=y+1。同时自己处于ESTABLISHED状态。</li>
+<li>服务端收到上一步的数据包之后，确认序列号seq和确认号ack之后状态变为ESTABLISHED，连接建立。</li>
+</ol>
+<p>四次挥手的过程如下：</p>
+<ol>
+<li>客户端主动关闭连接，将标识位FIN置为1，即发送FIN报文给服务端，此时客户端不能在发送数据给服务端，但还是可以接受服务端发来的数据。此时客户端进入FIN-WAIT-1状态。FIN报文既可以携带数据，也可以不携带数据，但不管携带与否都会消耗一个序列号。</li>
+<li>服务端收到FIN报文后，回复ACK报文给客户端，此时服务端处于CLOSE-WAIT状态，客户端收到这个ACK报文后处于FIN-WAIT-2状态。</li>
+<li>服务端没有数据要发给客户端之后，发送FIN报文给客户端请求关闭连接。跟第一步类似该报文不管是否携带数据都需要消耗一个序列号seq。发送之后自己处于LAST- ACK状态。</li>
+<li>客户端收到服务端的FIN报文之后，回复ACK确认上一步的FIN报文并进入TIME-WAIT状态，客户端在等待两个MSL之后会进入CLOSED状态，服务端收到客户端的ACK后进入CLOSED状态。后面介绍为什么客户端要等待两个MSL。</li>
+</ol>
+<h4 id="三次握手可以变为四次吗？四次挥手可以变为四次吗？"><a href="#三次握手可以变为四次吗？四次挥手可以变为四次吗？" class="headerlink" title="三次握手可以变为四次吗？四次挥手可以变为四次吗？"></a>三次握手可以变为四次吗？四次挥手可以变为四次吗？</h4><p>需要注意的是，三次握手是可以变为四次的，第二次握手时，服务端发送的SYN+ACK报文可以分两次发送，即可以先发送ACK报文，确认收到客户端的握手请求。再发送SYN报文表示自己也要建立服务端到客户端方向的连接。</p>
+<p>类似的，四次挥手也可以变成三次挥手，第二步和第三部服务端向客户端发送的ACK报文和FIN报文可以同时发送，即同时发送ACK+FIN报文。</p>
+<p>三次握手和四次挥手的Wireshark抓包步骤同上一章节，不过为了查看对应http请求的TCP握手过程，我们可以右键点击上个截图中http记录，在弹出的菜单中选择<u><strong>Follow</strong></u> &gt; <u><strong>TCP Stream</strong></u>即可查看所有的TCP请求。<br><img src="/%E5%AD%A6%E4%B9%A0/TCP%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/tcp-header-shakehands2.png" alt="tcp-header-shakehands2.png"><br>可以看到图中经过三次握手建立连接，HTTP传输数据，之后的挥手关闭连接是三次挥手，查看序号为20的TCP数据包的Flags位的ACK和FIN都置为1说明他的ACK报文和FIN报文是同时发送的。</p>
+<h3 id="头部长度"><a href="#头部长度" class="headerlink" title="头部长度"></a>头部长度</h3><p>头部长度是一个4位的字段，表示TCP头部的总大小，其单位为32位比特，即4个字节。一个4位的二进制数能表示的最大十进制数是15，所以TCP头部的总长度最大值为15*4字节=60字节，固定的头部字段占20字节，可选项占用0～40字节。TCP头部字段的长度必须是32位的倍数。</p>
+<h3 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h3><p>通过TCP连接的双方，在接收到数据后，数据并不会立马就被上层协议取走，而是会先放入缓存中，缓存并不是无限大的，所以通信的双方需要事先沟通好自己可以接受的数据大小，这就是窗口大小字段的目的。</p>
+<p>窗口大小字段窗口大小字段的单位是字节，其作用是向对方声明自己的<strong>接收窗口</strong>大小，下次发送数据时，调整发送包的大小。比如服务端接收到客户端的数据后，在回复的ACK数据包里声明自己的<strong>接收窗口</strong>是100，客户端收到这个包后，会调整自己的发送窗口，下次发送数据包时，将会根据这个值来调整发送的数据包的大小不能超过100字节。这个字段主要实现下面将要提到的滑动窗口和流量控制的概念。发送方和接收方会在三次握手时告知对方自己的初始窗口大小。</p>
+<h3 id="校验和，紧急指针"><a href="#校验和，紧急指针" class="headerlink" title="校验和，紧急指针"></a>校验和，紧急指针</h3><p>校验和指的是发送方会对发送的TCP数据和头部进行计算并保存，然后接收方验证。紧急指针不常使用，该字段只有在URG位字段被置位时才生效。</p>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/TCP协议基础知识（二）.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/总结/SameSite属性详解.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

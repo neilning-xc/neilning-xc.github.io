@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="PWA理论篇之Service Worker"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>PWA理论篇之Service Worker - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('PWA理论篇之Service-Worker/undefined')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>PWA理论篇之Service Worker</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-10-29
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/PWA/">#PWA</a> <a href="/tags/Service-Worker/">#Service Worker</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PWA（Progressive Web Apps)即渐进式网络应用程序，由于其出色的用户体验，正在变得越来越流行。如果你有留意，一些大厂项目如百度云盘，阿里云官网等已经采用了PWA方案。这篇文章我们先介绍PWA应用的基础理论——Service Worker。</p>
+<h2 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h2><p>Service Worker本质上也是浏览器内一个重要的缓存技术，所以在讲解Service Worker之前，我们还是有必要了解一下浏览器所提供的所有缓存技术，对他们的优先级规则和原理有一个大致的了解。不过一提到浏览器缓存，大家比较熟知的是通过HTTP的响应头来实现的HTTP缓存也称Disk缓存，但浏览器的缓存机制并不仅限于此，按照他们的种类和优先级从高到低可分为四种：<code>Memory Cache</code>，<code>Service Worker</code>，<code>HTTP Cache</code>，<code>Push Cache</code>。下面对他们做一个简单的总结：</p>
+<ul>
+<li><code>Memory Cache</code>顾名思义，就是从内存中读取缓存，从内存中读取虽然快，但只是一种短期缓存策略，比如短时间内刷新一个页面，浏览器会直接从内存中读取缓存。不过由于该缓存策略没有具体的文档规范，所以各家浏览器的实现策略不尽相同，并且它不能由开发人员进行干预，只能由浏览器内置的策略来维护缓存，所以在实际项目中我们不需要关注它。</li>
+<li><code>HTTP Cache</code>是我们比较熟知的，通过特定的<code>HTTP</code>协议响应头控制，如<code>Expire</code>, <code>Since-Last-Modify</code>, <code>Cache-Control</code>, <code>ETag</code>等，以实现强缓存或协商缓存。这种方式是目前比较流行的缓存方式，通过Webpack，Gulp等打包工具可以很容易实现，以提高应用的性能。</li>
+<li><code>Push Cache</code>依赖于<code>HTTP2</code>新特性：服务端推送。</li>
+<li><code>Service Worker</code>是我们今天要讲的主角，它比<code>HTTP</code>缓存有更强大特性，正在被越来越多的应用于实际项目中，它允许开发人员通过代码精确控制缓存文件，并且优先级高于<code>HTTP</code>缓存，他像拦截器一样工作在浏览器和服务器之间，浏览器发出的任何请求都能被他感知到，<code>Service Worker</code>不仅能拦截<code>HTTP</code>请求，更准确的说它提供了强大的离线应用功能，他的设计理念是<strong>离线优先</strong>，也提供如推送通知，后台定时同步等其他强大的特性，但本文只介绍网络请求拦截功能，这是<code>Service Worker</code>做数据缓存的基础。</li>
+</ul>
+<p>由于<code>Service Worker</code>是一个工作在浏览器主线程之外的<code>Worker</code>线程中的脚本文件，所以它不能直接操作<code>DOM</code>元素。</p>
+<h2 id="Service-Worker生命周期"><a href="#Service-Worker生命周期" class="headerlink" title="Service Worker生命周期"></a>Service Worker生命周期</h2><p>理解Service Worker最重要的就是理解它的生命周期、生命周期各个阶段所触发的事件以及在各个阶段我们要做什么样的事情。其生命周期主要分为以下几个阶段。</p>
+<h3 id="1-注册Service-Worker"><a href="#1-注册Service-Worker" class="headerlink" title="1. 注册Service Worker"></a>1. 注册Service Worker</h3><p>注册Service Worker的工作需要在页面<strong>主线程</strong>中完成，比如<code>body</code>标签结束之前。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (&#x27;serviceWorker&#x27; in navigator) &#123;</span><br><span class="line">        window.addEventListener(&#x27;load&#x27;, function () &#123;</span><br><span class="line">            navigator.serviceWorker.register(&#x27;/service-worker.js&#x27;).then(function (registration) &#123;</span><br><span class="line">                // 注册成功</span><br><span class="line">                console.log(&#x27;ServiceWorker registration successful with scope: &#x27;, registration.scope);</span><br><span class="line">            &#125;, function (err) &#123;</span><br><span class="line">                // 注册失败</span><br><span class="line">                console.log(&#x27;ServiceWorker registration failed: &#x27;, err);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码很简单，首先检查<code>serviceWorker</code>属性是否可用，如果可用，则在<code>window.onlond</code>事件里注册一个<code>service-worker.js</code>脚本。每次在页面加载完之后这段代码都会执行，但是你不必担心重复注册，浏览器会知道你的站点是否已经注册过Serice Worker。第一次注册成功之后，Service Worker会存储在用户的浏览器中，关闭页面之后它会处于休眠状态，直到用户再次打开该站点，才会被重新唤起。</p>
+<p>这里还有一点需要说明，我们的<code>service-worker.js</code>是注册在域名的根目录下即<code>/</code>，这意味着你可以在<code>service-worker.js</code>的<code>fetch</code>事件里，捕获到域名下所有的网络请求。换句话说，如果你的文件路径是<code>/module/service-worker.js</code>，那么你只能在你的脚本里处理以<code>/module</code>为开头的网络请求，比如<code>/module/app.js</code>。</p>
+<p>另外，上面讲过Service Worker不能操作<code>DOM</code>元素，所以其本身并强制要求注册在<code>window.onload</code>事件里，但这么做是符合最佳实践的，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developers.google.com/web/fundamentals/primers/service-workers/registration">这篇文章</a>详细解释了这么做的原因。</p>
+<h3 id="2-安装Service-Worker"><a href="#2-安装Service-Worker" class="headerlink" title="2. 安装Service Worker"></a>2. 安装Service Worker</h3><p>Service Worker注册成功之后，接下来会自动触发安装事件（<code>install</code>），并且包括安装在内的所有后续事件都发生在<strong>worker线程</strong>中，即刚刚注册的<code>service-worker.js</code>文件中，下面是<code>install</code>示例代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const CACHE_NAME = &#x27;v1&#x27;;</span><br><span class="line">const CACHE_FILES = [</span><br><span class="line">    &#x27;/cat.jpg&#x27;,</span><br><span class="line">    &#x27;/app.css&#x27;,</span><br><span class="line">    &#x27;/app.js&#x27;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;install&#x27;, function(event) &#123;</span><br><span class="line">    console.log(&#x27;install&#x27;);</span><br><span class="line">    event.waitUntil(</span><br><span class="line">        caches.open(CACHE_NAME).then(function (cache) &#123;</span><br><span class="line">            return cache.addAll(CACHE_FILES);</span><br><span class="line">        &#125;).then(() =&gt; &#123;</span><br><span class="line">            console.log(&#x27;cache added&#x27;);</span><br><span class="line">        &#125;)</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>install</code>事件是Service Worker执行的第一个事件，同一个Service Worker只会调用一次，即使你的Service Worker脚本文件只有一个字节不同，浏览器也将视为一个新的Service Worker。如例所示，在<code>install</code>阶段，我们一般处理与缓存的相关工作，例如开辟缓存空间、添加缓存等。</p>
+<p>在这段代码中，我们看到了很多新的面孔，我们来一一解释他们：</p>
+<ul>
+<li><code>self</code>: 这是Service Worker中特有的全局对象，类似与主线程中的<code>window</code>对象。</li>
+<li><code>event.waitUntil</code>: 该函数接受一个<code>Promise</code>对象，它告诉Service Worker，内部的<code>Promise</code>对象没有<code>resolve</code>之前，缓存工作就还没有完成，安装阶段也就没有完成，并且不应该转移到下一个阶段。</li>
+<li><code>caches</code>: <code>CacheStroge</code>对象，它用来控制缓存相关的工作，<code>caches</code>对象的很多方法都是异步的，会返回一个<code>Promise</code>对象，更多详细的<code>API</code>可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CacheStorage">参考这里</a>。</li>
+</ul>
+<h3 id="3-激活Service-Worker"><a href="#3-激活Service-Worker" class="headerlink" title="3. 激活Service Worker"></a>3. 激活Service Worker</h3><p>Service Worker安装成功之后，会触发<code>activate</code>事件，在这个阶段我们一般做一些清理旧缓存相关的工作，稍后你会理解我们为什么会在这个阶段清理缓存，以下是一段简单的示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;activate&#x27;, event =&gt; &#123;</span><br><span class="line">    console.log(&#x27;activate&#x27;);</span><br><span class="line">    event.waitUntil(</span><br><span class="line">        caches.keys().then(keys =&gt; &#123;</span><br><span class="line">            return Promise.all(</span><br><span class="line">                keys.map(key =&gt; &#123;</span><br><span class="line">                    // 清理缓存</span><br><span class="line">                    if (CACHE_NAME !== key) &#123;</span><br><span class="line">                        return caches.delete(key);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            )</span><br><span class="line">        &#125;).then(() =&gt; &#123;</span><br><span class="line">            console.log(&#x27;cache deleted&#x27;);</span><br><span class="line">        &#125;)</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Service-Worker接管页面"><a href="#4-Service-Worker接管页面" class="headerlink" title="4. Service Worker接管页面"></a>4. Service Worker接管页面</h3><p>在<code>activate</code>事件之后，Service Worker开始接管页面，被接管页面的任何网络请求，都会触发<code>fetch</code>事件，在<code>fetch</code>事件里，我们一般去检查缓存是否命中，如果命中则直接返回缓存，否则调用<code>fetch</code>方法发起网络请求，而按照上面提到的缓存优先级顺序，此时浏览器会去检查<code>HTTP Cache</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;fetch&#x27;, event =&gt; &#123;</span><br><span class="line">    event.respondWith(</span><br><span class="line">        caches.match(event.request).then(function (response) &#123;</span><br><span class="line">            if (response) &#123; // 命中缓存</span><br><span class="line">                console.log(&#x27;命中缓存：&#x27;, event.request.url);</span><br><span class="line">                return response;</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(&#x27;未命中缓存：&#x27;, event.request.url);</span><br><span class="line">            return fetch(event.request);</span><br><span class="line">        &#125;)</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>需要说明的是，<code>fetch</code>事件只会在用户第二次打开页面或者刷新页面时触发，具体的原因，你可能认为这是由于我们是在<code>window.onload</code>事件注册的<code>Service Worker</code>，即注册事件发生在所有网络请求完成之后，所以才不会触发<code>fetch</code>事件，然而实际的原因并不是这样，这其实是由<code>Service Worker</code>本身的特性所决定的，因为它的理念是离线优先，这里有个<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle#activate">例子</a>能够很好的证明和解释Service Worker为什么故意这样设计。</p>
+<p>Service Worker的这种特性导致了<strong>接管页面后触发的事件并不是发生在用户第一次打开该页面的时候，而是在用户第二次打开页面或者第一次打开页面再次刷新的时候，此时页面才真正处于被接管的状态</strong>，但这种默认的行为可以通过在<code>activate</code>事件的回调函数里调用<code>clients.claim()</code>方法来改变，使页面在第一次打开的时候就被接管，无需等到第二次打开或者刷新之后。</p>
+<h3 id="5-更新Service-Worker"><a href="#5-更新Service-Worker" class="headerlink" title="5. 更新Service Worker"></a>5. 更新Service Worker</h3><p>任何缓存系统，缓存数据的过期和更新都是需要重点关注和解决的，Service Worker也不例外。随着业务逻辑的发展，我们必然会更新资源文件，比如上面例子中的<code>app.js</code>，相应地，我们也必须要更新缓存，而为了更新缓存，我们就必须要更新<code>service-worker.js</code>，前面说过，只要<code>service-worker.js</code>的内容发生了变化，浏览器都会认为这是一个全新的Service Worker，所以我们可以简单的修改service-worker.js文件的内容：<code>const CACHE_NAME = &#39;v2&#39;</code>。更新过的Service Worker则会经历以下阶段：</p>
+<ol>
+<li>再次触发的<code>install</code>事件，安装新的缓存内容。此时，当前的页面仍然被v1版本的Service Worker托管，v2版本的Service Worker此时处于待激活状态（<code>waiting to activate</code>）。即页面加载的仍然是旧的缓存内容。</li>
+<li><strong>当用户完全关闭页面后（浏览器所有的tab都没有打开该站点），并再次打开页面或者点击当前页面上的链接导航到其他站点再返回该站点后才会触发activate事件</strong>，此时，v1版本的Service Worker才会停止（<code>stop</code>），v2版本的Service Worder会正式接管（<code>activate</code>）页面，新的缓存文件才开始生效。这也是为什么我们把删除旧缓存的代码放在<code>activate</code>事件里，因为此时删除的缓存时v1版本的缓存。但这种行为也是可以改变的，可以通过在<code>install</code>事件里调用<code>self.skipWaiting()</code>来跳过这种等待激活的默认行为。</li>
+</ol>
+<blockquote>
+<p>Service Worker只所以这样设计，是为了保证即使在多个tab都同时打开同一个站点或页面的时候，同一个时间也只有一个版本的Service Worker生效。这样就避免了多个tab打开同一个站点，但是不同tab会有不同版本缓存的现象。<br>这种特性导致即使只有一个tab打开了页面，也不能像第一次打开页面的时候，靠刷新来触发<code>activate</code>事件，这是由刷新的工作方式导致的。因为在刷新的时候，新的响应数据到达浏览器之前，旧的页面没有关闭，所以自始至终页面都处于打开状态，新版本的Service Worker也就不会激活。</p>
+</blockquote>
+<h2 id="演示代码"><a href="#演示代码" class="headerlink" title="演示代码"></a>演示代码</h2><p>看到这里，你也许会认为Service Worker的整个过程有点难以理解，接下来我们用一个足够简单的例子来演示整个过程。</p>
+<p>首先创建一个index.html，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;/app.css&quot;/&gt;</span><br><span class="line">	&lt;title&gt;Service Worker Demo&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">	&lt;img class=&quot;image&quot; src=&quot;/cat.jpg&quot; alt=&quot;service worker&quot;&gt;</span><br><span class="line">	&lt;a href=&quot;https://baidu.com&quot;&gt;&lt;h1&gt;其他页面&lt;/h1&gt;&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	if (&#x27;serviceWorker&#x27; in navigator) &#123;</span><br><span class="line">		window.addEventListener(&#x27;load&#x27;, function () &#123;</span><br><span class="line">			navigator.serviceWorker.register(&#x27;/service-worker.js&#x27;).then(function (registration) &#123;</span><br><span class="line">				// 注册成功</span><br><span class="line">				console.log(&#x27;register scope: &#x27;, registration.scope);</span><br><span class="line">			&#125;, function (err) &#123;</span><br><span class="line">				// 注册失败</span><br><span class="line">				console.log(&#x27;register fail: &#x27;, err);</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>index.html文件加载另外三个文件，分别是app.css，cat.jpg，service-worker.js以及app.js文件，<br>为了保持例子足够简单并能够说明问题，app.css和app.js的内容分别如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color: beige;</span><br><span class="line">&#125;</span><br><span class="line">.image &#123;</span><br><span class="line">	display: block;</span><br><span class="line">	width: 300px;</span><br><span class="line">	margin: 10px auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.body.append(&#x27;app version: v1&#x27;);</span><br></pre></td></tr></table></figure>
+<p>service-worker.js文件的内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">const CACHE_NAME = &#x27;v1&#x27;;</span><br><span class="line">const CACHE_FILES = [</span><br><span class="line">    &#x27;/cat.jpg&#x27;,</span><br><span class="line">    &#x27;/app.css&#x27;,</span><br><span class="line">    &#x27;/app.js&#x27;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;install&#x27;, function(event) &#123;</span><br><span class="line">    event.waitUntil(</span><br><span class="line">        caches.open(CACHE_NAME).then(function (cache) &#123;</span><br><span class="line">            return cache.addAll(CACHE_FILES);</span><br><span class="line">        &#125;).then(() =&gt; &#123;</span><br><span class="line">            console.log(&#x27;install&#x27;);</span><br><span class="line">        &#125;)</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;activate&#x27;, event =&gt; &#123;</span><br><span class="line">    event.waitUntil(</span><br><span class="line">        caches.keys().then(keys =&gt; &#123;</span><br><span class="line">            return Promise.all(</span><br><span class="line">                keys.map(key =&gt; &#123;</span><br><span class="line">                    if (CACHE_NAME !== key) &#123;</span><br><span class="line">                        return caches.delete(key);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            )</span><br><span class="line">        &#125;).then(() =&gt; &#123;</span><br><span class="line">            console.log(&#x27;activate&#x27;);</span><br><span class="line">        &#125;)</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;fetch&#x27;, event =&gt; &#123;</span><br><span class="line">    event.respondWith(</span><br><span class="line">        caches.match(event.request).then(function (response) &#123;</span><br><span class="line">            if (response) &#123; // 命中缓存</span><br><span class="line">                console.log(&#x27;命中缓存：&#x27;, event.request.url);</span><br><span class="line">                return response;</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(&#x27;未命中缓存：&#x27;, event.request.url);</span><br><span class="line">            return fetch(event.request);</span><br><span class="line">        &#125;)</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>利用<code>node</code>的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.npmjs.com/package/serve">serve</a>包我们可以很容易的在本地启动一个简单的静态服务器，在项目的根目录下执行<code>serve ./</code></p>
+<ol>
+<li>假设用户第一次访问我们的站点，打开页面：<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image1.png" alt="image"></li>
+</ol>
+<p>查看控制台，可以看到register,install,activate事件均被触发，而fetch事件并没有触发：<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image2.png" alt="image"></p>
+<ol start="2">
+<li><p>当用户刷新页面或者第二次访问我们的站点，可以看到fetch事件被触发，查看控制台：<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image3.png" alt="image"><br>查看网络面板，也可以看到资源是从Service Worker加载，即缓存已生效。<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image4.png" alt="image"></p>
+</li>
+<li><p>假设此时我们的站点发生了更新，更新app.js：<code>document.body.append(&#39;app version: v2&#39;);</code>   以及app.css：<code>background-color: #7c8ae9;</code>，由于资源文件更新，所以service-worker.js也要更新：<code>const CACHE_NAME = &#39;v2&#39;;</code>。此时我们的站点发生了更新，但假如用户再次打开页面或者刷新当前页面，他将仍然看到的老的页面：<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image5.png" alt="image"><br>查看开发者工具也可以看到新的Service Worker处于<code>waiting to activate</code>状态：<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image6.png" alt="image"></p>
+</li>
+<li><p>只有当用户完全关闭或离开站点，并再次访问我们的站点，新的Service Worker才会接管页面，页面也会展示更新过后的内容：<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image7.png" alt="image"></p>
+</li>
+</ol>
+<p>这种模式有点类似于浏览器的更新策略，比如你的Chrome浏览器提示你新的软件版本已经下载安装就绪了，但它提示你必须重新启动浏览器，才能使用新的版本。而在完全关闭浏览器之前，无论你再打开多少个浏览器窗口，你正在使用的都是老的版本。我们用一幅图来展示Service Worker生命周期的整个过程。<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image8.png" alt="image"></p>
+<h2 id="Service-Worker的调试技巧级注意事项"><a href="#Service-Worker的调试技巧级注意事项" class="headerlink" title="Service Worker的调试技巧级注意事项"></a>Service Worker的调试技巧级注意事项</h2><p>上面调试Service Worker的时候，我们必须不断的打开，关闭浏览器，这给调试带来了诸多不便，但幸亏Chrome浏览器的开发者工具，为我们提供了设置项，是我们能很容易的调试Service Worker。<br><img src="/%E5%AD%A6%E4%B9%A0/PWA%E7%90%86%E8%AE%BA%E7%AF%87%E4%B9%8BService-Worker/image9.png" alt="image"></p>
+<p><code>Update on reload</code>可以使更改过的Service Worker脚本立刻接管页面，而不需要关闭当前Tab。<code>skipWaiting</code>也可以使当前处于待激活状态的Service Worker立即接管页面。<code>Unregister</code>选项则可以删除浏览器上已注册过的Service Worker</p>
+<p>Service Worker在部署到生产环境之后必须使用<code>HTTPS</code>协议，<code>HTTP</code>只允许在本地开发时使用<code>localhost</code>。浏览器支持方面，Chrome, Firefox和Opera都已经支持，详细的支持列表<a target="_blank" rel="noopener external nofollow noreferrer" href="https://jakearchibald.github.io/isserviceworkerready/">点这里</a>。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developers.google.com/web/fundamentals/primers/service-workers">https://developers.google.com/web/fundamentals/primers/service-workers</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle">https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/service-worker-caching-and-http-caching/">https://web.dev/service-worker-caching-and-http-caching/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://calendar.perfplanet.com/2016/a-tale-of-four-caches/">https://calendar.perfplanet.com/2016/a-tale-of-four-caches/</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/渐进式Web应用-PWA-实战篇之Workbox.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/总结/Laravel测试数据库的另一种替代方案-SQLite.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

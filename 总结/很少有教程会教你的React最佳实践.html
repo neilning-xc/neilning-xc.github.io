@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="很少有教程会教你的React最佳实践"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>很少有教程会教你的React最佳实践 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('很少有教程会教你的React最佳实践/undefined')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>很少有教程会教你的React最佳实践</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-11-07
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/ReactJS/">#ReactJS</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/总结/">总结</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>使用React有一定时间了，通过自己啃官方文档，结合工作中遇到的问题，大概总结出这么几条React最佳实践，记录一下也算是给自己做一个笔记。</p>
+<h2 id="2-奇淫技巧"><a href="#2-奇淫技巧" class="headerlink" title="2 奇淫技巧"></a>2 奇淫技巧</h2><h3 id="2-1-context的妙用"><a href="#2-1-context的妙用" class="headerlink" title="2.1 context的妙用"></a>2.1 context的妙用</h3><h4 id="2-1-1-使用场景"><a href="#2-1-1-使用场景" class="headerlink" title="2.1.1 使用场景"></a>2.1.1 使用场景</h4><p>话不多说，看图：<br><img src="/%E6%80%BB%E7%BB%93/%E5%BE%88%E5%B0%91%E6%9C%89%E6%95%99%E7%A8%8B%E4%BC%9A%E6%95%99%E4%BD%A0%E7%9A%84React%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/image1.png" alt="图片描述"></p>
+<blockquote>
+<p>图片来源：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://segmentfault.com/a/1190000004636213">https://segmentfault.com/a/1190000004636213</a></p>
+</blockquote>
+<p>有时候会有这样一种情况，组件嵌套层次很深，而最又内层组件又需要最外层组件的一个属性，比如图中D组件需要A组件中的一个属性username，这时候最容易想到的就是:A组件内把这个username作为props传给B组件，B组件再原封不动的传给C组件，C再传给D，而B,C组件有可能都没有用到这个username，但是你依然不得不书写这个props，针对这种情况就可以用到ReactJS中的context。</p>
+<h4 id="2-1-2-使用方法"><a href="#2-1-2-使用方法" class="headerlink" title="2.1.2 使用方法"></a>2.1.2 使用方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 组件A</span><br><span class="line">class A extends Component &#123;</span><br><span class="line">    // 其他代码省略，只上关键代码</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123;</span><br><span class="line">            username: &#x27;Neil&#x27;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    getChildContext() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            username: this.state.username</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A.childContextTypes = &#123;</span><br><span class="line">    username: PropTypes.string</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 组件D</span><br><span class="line">class D extends Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return &lt;div&gt;&#123;this.context.username&#125;&lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">D.contextChild = &#123;</span><br><span class="line">    username: PropTypes.string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到context的使用还是比较简单的，根组件A作为context provider,需要在其中添加一个成员方法getChildContext（该方法必须返回一个对象），和一个静态属性childContextTypes。然后为任何一个你想使用该context的子组件添加一个静态属性contextTypes来告诉React你要用哪个context。</p>
+<h4 id="2-1-3-注意事项"><a href="#2-1-3-注意事项" class="headerlink" title="2.1.3 注意事项"></a>2.1.3 注意事项</h4><p>虽然使用比较简单，但是其实官方文档中也明确表示，并不推荐使用context，因为这会使得原本简单并可控的React单向数据变得复杂，不可预期。所以使用中还是有以下几点需要注意：</p>
+<ul>
+<li>推荐把不经常变动的值作为context传递，比如在组件树中，username就像一个全局常量一样，不经常变动。</li>
+<li>在上面的例子中，组件使用context以后，在D组件的生命周期的这几个函数中会有额外多余的参数：</li>
+<li><code>constructor(props, context)</code></li>
+<li><code>componentWillReceiveProps(nextProps, nextContext)</code></li>
+<li><code>shouldComponentUpdate(nextProps, nextState, nextContext)</code></li>
+<li><code>componentWillUpdate(nextProps, nextState, nextContext)</code></li>
+</ul>
+<blockquote>
+<p>在React15之前的本版本中，<code>componentDidUpdate</code>会有<code>prevContext</code>参数，但是最新的React16版本不再接收此参数。</p>
+</blockquote>
+<ul>
+<li>在无状态的函数式组件（Stateless Functional Components）中也可以使用context，比如<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const D = (props, context) =&gt; &#123;</span><br><span class="line">    return &lt;div&gt;&#123;context.username&#125;&lt;/div&gt;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">D.contextChild = &#123;username: PropTypes.string&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>context更新。context只适用于传递那些不经常变动的变量，但是如果你不得不更改context，例如上面的例子中A组件中的username实际上来自于A的state，假如我们在A中调用<code>this.setState(&#123;username: &#39;Michel&#39;&#125;)</code>， 那么在D组件中context也会更新。因为A组件中声明的<code>getChildContext</code>方法在A组件的初始化，更新阶段都会被调用。<strong>但要注意的是，假如B组件或者C组件实现了<code>shouldComponentUpdate</code>，并在某些条件下返回了false，D组件中的context将不会再更新。</strong>因为此时，B组件或者C组件的render并不会重新被调用。D组件也就不会更新（换句话说，在D组件生命周期的更新阶段，任何的hook函数都不会被调用）。<strong>所以我们应极力避免更新context</strong>，因为这会使应用的数据流变得非常混乱，这背离了React的设计思想。</li>
+</ul>
+<h3 id="2-2-自定义组件ref属性的使用"><a href="#2-2-自定义组件ref属性的使用" class="headerlink" title="2.2 自定义组件ref属性的使用"></a>2.2 自定义组件ref属性的使用</h3><p>React组件基本分为两类，一类是原生的组件比如<code>div</code>,<code>span</code>,<code>ul</code>等等这类的HTML标签（其实你也可以直接叫他HTML DOM元素，只是我自己认为他也是一类组件），一类是自定义组件，包括用class定义的组件和用函数定义的组件，ref属性在这两种组件中代表的含义是不一样的。</p>
+<h4 id="2-2-1-ref在HTML标签上使用"><a href="#2-2-1-ref在HTML标签上使用" class="headerlink" title="2.2.1 ref在HTML标签上使用"></a>2.2.1 ref在HTML标签上使用</h4><p>看代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class CustomComponent extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          ref=&#123;(input) =&gt; &#123; this.textInput = input; &#125;&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时在<code>CustomComponent</code>组件内部，this.textInput属性就是input标签的<strong>DOM对象的引用</strong></p>
+<h4 id="2-2-2-ref在自定义组件上的应用"><a href="#2-2-2-ref在自定义组件上的应用" class="headerlink" title="2.2.2 ref在自定义组件上的应用"></a>2.2.2 ref在自定义组件上的应用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Parent extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (&lt;Child ref=&#123;component =&gt; &#123;this.child = component&#125;&#125;/&gt;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Child extends React.Component &#123;</span><br><span class="line">  render() &#123;return (&lt;div&gt; I am a child.&lt;/div&gt;);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>父组件Parent中调用的Child组件上有一个特殊的属性ref是一个函数，函数调用之后this.child指代child组件的引用。控制台中打印出this.child：<br><img src="/%E6%80%BB%E7%BB%93/%E5%BE%88%E5%B0%91%E6%9C%89%E6%95%99%E7%A8%8B%E4%BC%9A%E6%95%99%E4%BD%A0%E7%9A%84React%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/image2.png" alt="图片描述"><br>可以看到该对象就是<strong>组件实例化之后的对象</strong>，包含props,context和state等属性。这种特性可以允许我们访问某个子组件的内部状态。</p>
+<h4 id="2-2-3-ref在函数式组件上的使用"><a href="#2-2-3-ref在函数式组件上的使用" class="headerlink" title="2.2.3 ref在函数式组件上的使用"></a>2.2.3 ref在函数式组件上的使用</h4><p>ref属性不可以在函数式组件上使用，上例代码Child组件假如改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const Child = (props) =&gt; &#123;</span><br><span class="line">    return (&lt;div&gt; I am a child.&lt;/div&gt;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Parent组件中便不能为Child组件添加ref，因为函数式组件没有实例，但是可以在函数式组件内部使用ref属性，比如我们在Child组件中使用ref。</p>
+<h3 id="2-3-将某个props复制给state"><a href="#2-3-将某个props复制给state" class="headerlink" title="2.3 将某个props复制给state"></a>2.3 将某个props复制给state</h3><p>之所以想把这个拿出来说一说是因为，在我刚开始学React的时候，团队有个人review我的代码看到我写了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class CustomComponent extends React.Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123;</span><br><span class="line">            username: props.username</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后，要求我不要这么写，说这么写是不规范的。其实后来看官方文档，这么写也是可以的。只不过在组件的props.username更新之后，this.state.username并不再更新。如果想保证两者值同步，可以在组件的生命周期函数componentWillReceiveProps中更新state,<strong>因为在组件的更新阶段，componentWillReceiveProps函数是唯一一个可以在更新组件之前再次调用setState函数来更新状态的地方</strong>，需要注意的是如果的组件的更新是因为某个地方调用setState，在组件的更新阶段这个函数并不会被调用，以避免陷入死循环。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">    this.setState(&#123;username: nextProps.username&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-最佳实践"><a href="#3-最佳实践" class="headerlink" title="3 最佳实践"></a>3 最佳实践</h2><h3 id="3-1-避免直接在组件上写用bind函数"><a href="#3-1-避免直接在组件上写用bind函数" class="headerlink" title="3.1 避免直接在组件上写用bind函数"></a>3.1 避免直接在组件上写用bind函数</h3><p>很多React教程在讲到React事件处理的时候，都会有类似的写法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class ButtonList extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123;</span><br><span class="line">            state: props.username</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    handleClick() &#123;</span><br><span class="line">        const &#123;count&#125; = this.state;</span><br><span class="line">        this.setState(&#123;count: count + 1&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">          // 假设Button是我们自定义的一个组件</span><br><span class="line">          &lt;Button onClick=&#123;this.handleClick.bind(this)&#125; /&gt;</span><br><span class="line">        )    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的写法并没有错，但是可有可能会引起一些性能问题，因为<code>ButtonList</code>的<code>render</code>函数每一次被调用的时候，都会创建一个新的函数，然后赋值给<code>onClick</code>属性，在<code>Button</code>组件内部属性的比较又是用<code>===</code>，在某些情况下，这样会引起Button组件不必要的重新渲染。深究其原因是因为每次调用<code>bind</code>函数都会返回一个新的函数。比如，下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function print() &#123;</span><br><span class="line">    console.log(this.a);</span><br><span class="line">&#125;</span><br><span class="line">let obj = &#123;a: &#x27;A&#x27;&#125;</span><br><span class="line">print.bind(obj) === print.bind(obj);</span><br></pre></td></tr></table></figure>
+<p>最后一行代码比较的结果始终是false，因为每次调用bind函数都会返回一个新的函数对象的引用。这就是为什么要尽量避免在行内写bind函数，<code>&lt;Button type=&#39;button&#39; onClick=&#123;(event) =&gt; &#123;&#125;&#125; /&gt;</code>这样的写法也有相同的问题，因为这样相当于每次都申明一个新的匿名函数。最佳的写法是在<code>constructor</code>内写<code>this.handleClick = this.handleClick.bind(this)</code>，并在组件上这样写<code>&lt;Button onClick=&#123;this.handleClick&#125; /&gt;</code></p>
+<h3 id="3-2-多用函数式组件（Stateless-Functional-Component-SFC）"><a href="#3-2-多用函数式组件（Stateless-Functional-Component-SFC）" class="headerlink" title="3.2 多用函数式组件（Stateless Functional Component, SFC）"></a>3.2 多用函数式组件（Stateless Functional Component, SFC）</h3><p>React中自定义组件，最简单的写法可以是这样:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Custom(props) &#123;</span><br><span class="line">    // props以函数参数的形式传递</span><br><span class="line">    return(&lt;div&gt;This is a functional component, &#123;props.name&#125;&lt;/div&gt;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以用ES6语法这样写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Custom extend Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return(&lt;div&gt;This is a functional component&lt;/div&gt;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两种写法属于不同类型的组件，前一种称为函数式组件，后一种称为class类组件。这两种组件在使用上有一些区别，比如2.2.2小结讲到的ref属性的使用。这里推荐使用第一种写法。因为第一种写法的代码量更少，而且函数式组件也有更加优秀的性能表现（关于两种组件的性能比较，我还没找更多的证据，据说能够减少很多无意义的检测和内存分配）总之这样写，更加优雅（装逼）啦。如果你在用ES6语法，前一种写法还可以是这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const Custom = (&#123;name&#125;) =&gt; &#123;</span><br><span class="line">    return(&lt;div&gt;This is a functional component, &#123;name&#125;&lt;/div&gt;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这中写法最迷人的地方在于代码量很少，代码易读，看函数声明很容知道该组件需要哪些属性。</p>
+<h3 id="3-3-避免直接修改porps或者state"><a href="#3-3-避免直接修改porps或者state" class="headerlink" title="3.3 避免直接修改porps或者state"></a>3.3 避免直接修改porps或者state</h3><p>关于这条，很多人在一开始学习React的时候就被灌输了这个概念：<strong>不能在组件内部修改porps ，修改state要用setState</strong>。但是在一些复杂的情况下，大家往往会在不经意间犯了这两个错误。看下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 假设data是这样的结构:</span><br><span class="line">// data = [</span><br><span class="line">//     &#123;</span><br><span class="line">//         name: &#x27;Lily&#x27;,</span><br><span class="line">//         age: 19</span><br><span class="line">//     &#125;,</span><br><span class="line">//     &#123;</span><br><span class="line">//         name: &#x27;Tom&#x27;,</span><br><span class="line">//         age: 20</span><br><span class="line">//     &#125;</span><br><span class="line">// ];</span><br><span class="line">const data = this.props.data;</span><br><span class="line">data.push(&#123;name: &#x27;Neil&#x27;, age: 22&#125;);</span><br></pre></td></tr></table></figure>
+<p>包括我的同事在内，他们经常会写类似这样的代码，然后困惑的跑来问我，为什么组件没有按照预期更新，因为这样的写法，已经更新了props。这涉及到JS中一个很重的知识点：<strong>JS中将对象（Function和Array也是对象）赋值给某一个变量，本质上是把对象的引用赋值给这个变量，作为函数的实参传递时也是一样的道理</strong>（如果还不明白什么是对象的引用，网上有很多教程解释的很清楚，我比较懒，就不解释这么基础的概念了）。比如下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;a: 1&#125;;</span><br><span class="line">function test(obj) &#123;</span><br><span class="line">    obj.a = 2;</span><br><span class="line">&#125;</span><br><span class="line">test(obj);</span><br><span class="line">console.log(obj.a); // 打印出2</span><br></pre></td></tr></table></figure>
+<p>所以在组件内这样的代码：<code>data.push(&#123;name: &#39;Neil&#39;, age: 22&#125;)</code>实际上已经更改了实际上已经不经意间在子组件内修改了父组件的传来的props。如果将示例中的代码换成<code>const data = this.state.data; data.push(&#123;name: &#39;Neil&#39;, age: 22&#125;);</code>后也会有相同的问题。正确的写法应该是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 利用ES6的spread语法</span><br><span class="line">// Spread会返回一个新数组，并将新数组的引用赋值给变量data，</span><br><span class="line">// 修改data也就不会影响this.props.data</span><br><span class="line">const data = [...this.props.data];</span><br><span class="line"></span><br><span class="line">// 或者不利用ES6你在ES5中也可以这样：</span><br><span class="line">// concat函数也会返回一个新的数组</span><br><span class="line">var data = [].concat(this.props.data);</span><br><span class="line"></span><br><span class="line">// 如果this.props.data是一个对象（字面量对象，非数组对象或函数对象）</span><br><span class="line">// assign函数也会返回一个新的对象。</span><br><span class="line">var data = Object.assign(&#123;&#125;, this.props.data);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data.push(&#123;name: &#x27;Neil&#x27;, age: 22&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/总结/Mac本地开发环境安装自签名HTTPS证书.html">&larr;  上一篇</a></li>
+                    
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
