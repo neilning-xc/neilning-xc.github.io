@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="推送事件【译】"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>推送事件【译】 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('推送事件【译】/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>推送事件【译】</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-08-02
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/push-notification/">#push notification</a> <a href="/tags/service-worker/">#service worker</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/翻译/">翻译</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该文章翻译自web.dev的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/notifications/">Notifications</a>系列文章，本篇文章原文链接<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/push-notifications-handling-messages/">点击这里</a></p>
+<p>到此为止，我们已经学习了如何订阅用户和如何发送消息。下一步就是接收在用户设备上接收推送的消息并展示一个通知，或者做其他我们想做的事情。</p>
+<h2 id="推送事件"><a href="#推送事件" class="headerlink" title="推送事件"></a>推送事件</h2><p>收到消息时，会在service worker中触发推送事件，在JS中，为推送事件添加事件监听器和其他事件监听器十分相似：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, function(event) &#123;</span><br><span class="line">    if (event.data) &#123;</span><br><span class="line">    console.log(&#x27;This push event has data: &#x27;, event.data.text());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">    console.log(&#x27;This push event has no data.&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在这个代码例子中，对接触service worker的大多数初学者来说，最令人奇怪的是<code>self</code>变量。<code>self</code>变量在Web Worker中非常常见，指代service worker本身。<code>self</code>的作用域是全局的，有点类似于web页面的window对象，但是对于web worker和service worker来说，它指得是这个worker进程本身。上面的例子中，<code>self.addEventListener()</code>可以看作是为service worker本身添加了一个事件监听器。在事件监听器内部，我们检查了event对象是否包含数据，并打印一些信息。还有其他的方式可以获取推送事件的数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// Returns string</span><br><span class="line">event.data.text()</span><br><span class="line"></span><br><span class="line">// Parses data as JSON string and returns an Object</span><br><span class="line">event.data.json()</span><br><span class="line"></span><br><span class="line">// Returns blob of data</span><br><span class="line">event.data.blob()</span><br><span class="line"></span><br><span class="line">// Returns an arrayBuffer</span><br><span class="line">event.data.arrayBuffer()</span><br></pre></td></tr></table></figure>
+<p>根据服务端获取到的数据，大多数情况下使用<code>json()</code>和<code>text()</code>即可。上面的例子眼时刻如何添加推送事件监听器，并获取数据。但是他少了一个很重要的功能，没有展示通知，也没有调用<code>event.waitUntil()</code>。</p>
+<h3 id="Wait-Until"><a href="#Wait-Until" class="headerlink" title="Wait Until"></a>Wait Until</h3><p>理解service worker很重要的事情之一就是你没法控制service worker的运行时机。浏览器会决定什么时候唤醒service worker，什么时候终止service worker。唯一的方式是告诉浏览器，你正在做一些重要的事情，通过把一个promise对象传递给<code>event.waitUntil()</code>函数的方式，通过这种方式，可以让浏览器一直使service worker保持运行状态，直到promise正常resolve。<br>在推送事件中，有一个额外的要求是在promise正常resolve之前，你必须展示通知。下面是展示通知的一个基本的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, function(event) &#123;</span><br><span class="line">    const promiseChain = self.registration.showNotification(&#x27;Hello, World.&#x27;);</span><br><span class="line"></span><br><span class="line">    event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>调用<code>self.registration.showNotification()</code>会向用户展示通知，他返回一个promise对象，当通知展示给用户后，promise对象会被resolve。<br>为了使上面的例子尽可能的清晰，我将这个promise对象赋值给一个变量<code>promiseChain</code>，然后将它传入<code>event.waitUntil()</code>方法。我知道这很多余，但是我看到很多由于不理解这个过程而导致的问题，他们不理解需要传给<code>waitUntil()</code>方法什么样的对象，或者传入一个没有reject状态的promise对象。<br>一个更加复杂的例子是在事件监听器中发送网络请求来获取额外数据或者跟踪推送事件用于数据分析，代码可能如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, function(event) &#123;</span><br><span class="line">    const analyticsPromise = pushReceivedTracking();</span><br><span class="line">    const pushInfoPromise = fetch(&#x27;/api/get-more-data&#x27;)</span><br><span class="line">    .then(function(response) &#123;</span><br><span class="line">        return response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(function(response) &#123;</span><br><span class="line">        const title = response.data.userName + &#x27; says...&#x27;;</span><br><span class="line">        const message = response.data.message;</span><br><span class="line"></span><br><span class="line">        return self.registration.showNotification(title, &#123;</span><br><span class="line">        body: message</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    const promiseChain = Promise.all([</span><br><span class="line">    analyticsPromise,</span><br><span class="line">    pushInfoPromise</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里我们调用了一个函数<code>pushReceivedTracking()</code>返回一个promise，为了演示，我们模拟发送一个用户数据分析的网络请求。我们还发起了另外一个请求，利用请求的响应的数据来展示通知的标题和内容。<br>我们可以确保service worker保持运行，当这两个任务完成时，我们将两个promise对象合并，传给<code>Promise.all()</code>。将新的promise对象传给<code>event.waitUntil()</code>意味着我们告诉浏览器，保持service worker运行，直到这两个任务都完成，然后还需要检查通知是否正常展示。最后service worker才会运行终止。<br>当以上promise链reject时，浏览器会展示默认的通知。<br><img src="/%E7%BF%BB%E8%AF%91/%E6%8E%A8%E9%80%81%E4%BA%8B%E4%BB%B6%E3%80%90%E8%AF%91%E3%80%91/default-notify.jpg" alt="default-notify.jpg"></p>
+<p>浏览器收到推送消息时，如果没有在推送事件中展示通知，Chrome浏览器将会展示“站点正在更新”的默认通知。<br>开发者收到以上异常的主要原因通常是调用只调用了<code>self.registration.showNotification()</code>，但是没有返回任何promise对象。这会导致浏览器展示默认通知。例如上面的例子中我们删除return语句，将代码改成如下，我们可能会看到默认的通知：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, function(event) &#123;</span><br><span class="line">    const analyticsPromise = pushReceivedTracking();</span><br><span class="line">    const pushInfoPromise = fetch(&#x27;/api/get-more-data&#x27;)</span><br><span class="line">    .then(function(response) &#123;</span><br><span class="line">        return response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(function(response) &#123;</span><br><span class="line">        const title = response.data.userName + &#x27; says...&#x27;;</span><br><span class="line">        const message = response.data.message;</span><br><span class="line"></span><br><span class="line">        self.registration.showNotification(title, &#123;</span><br><span class="line">        body: message</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    const promiseChain = Promise.all([</span><br><span class="line">    analyticsPromise,</span><br><span class="line">    pushInfoPromise</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>你可以看到这是个很容易犯的错误。你需要记住，如果想要确保展示正常的通知，你需要保证传递给<code>event.waitUntil()</code>函数的promise对象正常resolve。在下一章，我们看一下如何展示不同类型的通知框。</p>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/翻译/展示通知【译】.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/翻译/Web-Push协议【译】.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="从零实现一个简易模块打包器"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>从零实现一个简易模块打包器 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('从零实现一个简易模块打包器/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>从零实现一个简易模块打包器</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2024-12-27
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Webpack/">#Webpack</a> <a href="/tags/Babel/">#Babel</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前端开发中，我们经常会使用到模块化开发，但是浏览器对模块化支持很不好，所以我们一般需要Webpack这类打包工具将我们的模块打包成浏览器可以识别的代码。我们通过实现一个简易的模块打包器，来学习模块打包器的基本原理。</p>
+<h2 id="依赖分析"><a href="#依赖分析" class="headerlink" title="依赖分析"></a>依赖分析</h2><p>打包器一般需要一个入口文件，从入口文件开始通过递归的形式分析模块的相互依赖关系，这个依赖关系被称之为依赖图。我们首先创建一个辅助函数，他能收集某个文件的依赖模块，并将该文件转换为ES5代码，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/minipack.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> parser = <span class="built_in">require</span>(<span class="string">&#x27;@babel/parser&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> traverse = <span class="built_in">require</span>(<span class="string">&#x27;@babel/traverse&#x27;</span>).<span class="property">default</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; transformFromAst &#125; = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable constant_">ID</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createAsset</span>(<span class="params">filename</span>) &#123;</span><br><span class="line">  <span class="comment">// 读取文件内容</span></span><br><span class="line">  <span class="keyword">const</span> content = fs.<span class="title function_">readFileSync</span>(filename, <span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用babel编译器，将代码解析成AST</span></span><br><span class="line">  <span class="keyword">const</span> ast = parser.<span class="title function_">parse</span>(content, &#123;</span><br><span class="line">    <span class="attr">sourceType</span>: <span class="string">&#x27;module&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用@babel/traverse遍历AST的import语句收集该文件依赖</span></span><br><span class="line">  <span class="keyword">const</span> dependencies = [];</span><br><span class="line">  <span class="title function_">traverse</span>(ast, &#123;</span><br><span class="line">    <span class="title class_">ImportDeclaration</span>: <span class="function">(<span class="params">path</span>) =&gt;</span> &#123;</span><br><span class="line">      dependencies.<span class="title function_">push</span>(path.<span class="property">node</span>.<span class="property">source</span>.<span class="property">value</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 收集完依赖之后，还需要将AST转换为浏览器兼容的ES5代码</span></span><br><span class="line">  <span class="keyword">const</span> code = <span class="title function_">transformFromAst</span>(ast, <span class="literal">null</span>, &#123;</span><br><span class="line">    <span class="attr">presets</span>: [<span class="string">&#x27;@babel/preset-env&#x27;</span>]</span><br><span class="line">  &#125;).<span class="property">code</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> id = <span class="variable constant_">ID</span>++;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    id, <span class="comment">// 模块id</span></span><br><span class="line">    filename, <span class="comment">// 文件的绝对路径</span></span><br><span class="line">    dependencies, <span class="comment">// 文件的依赖</span></span><br><span class="line">    code <span class="comment">// ES5代码</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在demo文件夹创建三个文件来测试打包效果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">&#x27;./math.js&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; print &#125; <span class="keyword">from</span> <span class="string">&#x27;./utils.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> sum = <span class="title function_">add</span>(<span class="number">123</span>, <span class="number">2344</span>);</span><br><span class="line">  <span class="title function_">print</span>(sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">main</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">add</span> = (<span class="params">a, b</span>) =&gt; a + b;</span><br><span class="line"></span><br><span class="line"><span class="comment">// utils.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">print</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在minipack.js中添加如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> asset = <span class="title function_">createAsset</span>(<span class="string">&#x27;./demo/main.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(asset);</span><br></pre></td></tr></table></figure>
+<p>执行node ./src/minipack.js可以看到测试效果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">id</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">filename</span>: <span class="string">&#x27;./demo/main.js&#x27;</span>,</span><br><span class="line">  <span class="attr">dependencies</span>: [ <span class="string">&#x27;./math.js&#x27;</span>, <span class="string">&#x27;./utils.js&#x27;</span> ],</span><br><span class="line">  <span class="attr">code</span>: <span class="string">&#x27;&quot;use strict&quot;;\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;var _math = require(&quot;./math.js&quot;);\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;var _utils = require(&quot;./utils.js&quot;);\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;function main() &#123;\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;  var sum = (0, _math.add)(123, 2344);\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;  (0, _utils.print)(sum);\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;&#125;\n&#x27;</span> +</span><br><span class="line">    <span class="string">&#x27;main();&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="依赖图"><a href="#依赖图" class="headerlink" title="依赖图"></a>依赖图</h2><p>辅助函数完成之后，紧接着需要创建一个函数，从入口文件开始，递归的分析所有的依赖，并调用createAsset函数为每个文件创建模块对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从入口文件开始</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createGraph</span>(<span class="params">entry</span>) &#123;</span><br><span class="line">  <span class="comment">// 首先分析入口文件</span></span><br><span class="line">  <span class="keyword">const</span> mainAsset = <span class="title function_">createAsset</span>(entry);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用队列，进行广度搜索优先的方式遍历依赖树</span></span><br><span class="line">  <span class="keyword">const</span> queue = [mainAsset];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> asset <span class="keyword">of</span> queue) &#123;</span><br><span class="line">    <span class="keyword">const</span> dirname = path.<span class="title function_">dirname</span>(asset.<span class="property">filename</span>);</span><br><span class="line">    <span class="comment">// 记录每个依赖相对路径和id的映射</span></span><br><span class="line">    asset.<span class="property">mapping</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    asset.<span class="property">dependencies</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">relativePath</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> absolutePath = path.<span class="title function_">join</span>(dirname, relativePath);</span><br><span class="line">      <span class="comment">// 分析依赖的依赖</span></span><br><span class="line">      <span class="keyword">const</span> child = <span class="title function_">createAsset</span>(absolutePath);</span><br><span class="line">      asset.<span class="property">mapping</span>[relativePath] = child.<span class="property">id</span>;</span><br><span class="line">      queue.<span class="title function_">push</span>(child);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> queue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时添加如下测试代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = <span class="title function_">createGraph</span>(<span class="string">&#x27;./demo/main.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(graph)</span><br></pre></td></tr></table></figure>
+<p>执行<code>node ./src/minipack.js</code>，可以看到输出的是一个数组，数组中包含了所有的模块对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;/xxx/minipack/demo/main.js&#x27;</span>,</span><br><span class="line">    <span class="attr">dependencies</span>: [ <span class="string">&#x27;./math.js&#x27;</span>, <span class="string">&#x27;./utils.js&#x27;</span> ],</span><br><span class="line">    <span class="attr">code</span>: <span class="string">&#x27;&quot;use strict&quot;;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;var _math = require(&quot;./math.js&quot;);\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;var _utils = require(&quot;./utils.js&quot;);\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;function main() &#123;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;  (0, _utils.print)((0, _math.add)(123, 2344));\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;&#125;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;main();&#x27;</span>,</span><br><span class="line">    <span class="attr">mapping</span>: &#123; <span class="string">&#x27;./math.js&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;./utils.js&#x27;</span>: <span class="number">2</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;/xxx/minipack/demo/math.js&#x27;</span>,</span><br><span class="line">    <span class="attr">dependencies</span>: [],</span><br><span class="line">    <span class="attr">code</span>: <span class="string">&#x27;&quot;use strict&quot;;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;Object.defineProperty(exports, &quot;__esModule&quot;, &#123;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;  value: true\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;&#125;);\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;exports.add = void 0;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;var add = exports.add = function add(a, b) &#123;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;  return a + b;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;&#125;;&#x27;</span>,</span><br><span class="line">    <span class="attr">mapping</span>: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;/xxx/minipack/demo/utils.js&#x27;</span>,</span><br><span class="line">    <span class="attr">dependencies</span>: [],</span><br><span class="line">    <span class="attr">code</span>: <span class="string">&#x27;&quot;use strict&quot;;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;Object.defineProperty(exports, &quot;__esModule&quot;, &#123;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;  value: true\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;&#125;);\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;exports.print = print;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;function print(value) &#123;\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;  console.log(value);\n&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;&#125;&#x27;</span>,</span><br><span class="line">    <span class="attr">mapping</span>: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="模块加载"><a href="#模块加载" class="headerlink" title="模块加载"></a>模块加载</h2><p>接下来需要创建一个函数，将依赖图转换为浏览器可执行的代码，函数的输入是上一步得到的依赖图，输出的是代码打包后的代码字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">bundle</span>(<span class="params">graph</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> modules = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="comment">// 遍历graph数组中的所有模块，所有的模块最终会组成一个对象，对象的key是模块的id，value是一个数组，</span></span><br><span class="line">  <span class="comment">// 数组的第一个元素是模块的代码，代码会被放入到一个函数作用域中，这样每个模块内定义的变量就不会影响其他模块，</span></span><br><span class="line">  <span class="comment">// 另外观察上一步每个模块的输出，可以看到代码被编译成ES5之后，里边的import语句都被转换成require语句，</span></span><br><span class="line">  <span class="comment">// 浏览器是不支持require语句的，所以函数的入参有require函数，还有module和exports对象，他们会被导出到模块外部。</span></span><br><span class="line">  <span class="comment">// 第二个元素是模块的依赖。</span></span><br><span class="line">  graph.<span class="title function_">forEach</span>(<span class="function"><span class="params">mod</span> =&gt;</span> &#123;</span><br><span class="line">    modules += <span class="string">`<span class="subst">$&#123;mod.id&#125;</span>: [</span></span><br><span class="line"><span class="string">      function (require, module, exports) &#123;</span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;mod.code&#125;</span></span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(mod.mapping)&#125;</span></span></span><br><span class="line"><span class="string">    ],`</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 最后返回一个自执行函数，函数的入参是上面组装好的对象，函数内部先定义了一个require函数，从调用require(0)来启动整个程序</span></span><br><span class="line">  <span class="keyword">const</span> result = <span class="string">`</span></span><br><span class="line"><span class="string">    (function(modules) &#123;</span></span><br><span class="line"><span class="string">      function require(id) &#123;</span></span><br><span class="line"><span class="string">        const [fn, mapping] = modules[id];</span></span><br><span class="line"><span class="string">        function localRequire(name) &#123;</span></span><br><span class="line"><span class="string">          return require(mapping[name]);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        const module = &#123; exports: &#123;&#125; &#125;;</span></span><br><span class="line"><span class="string">        fn(localRequire, module, module.exports);</span></span><br><span class="line"><span class="string">        return module.exports;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      require(0);</span></span><br><span class="line"><span class="string">    &#125;)(&#123;<span class="subst">$&#123;modules&#125;</span>&#125;)</span></span><br><span class="line"><span class="string">  `</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加测试代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = <span class="title function_">createGraph</span>(<span class="string">&#x27;./demo/main.js&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bundleCode = <span class="title function_">bundle</span>(graph);</span><br><span class="line">fs.<span class="title function_">writeFileSync</span>(<span class="string">&#x27;bundle.js&#x27;</span>, bundleCode);</span><br></pre></td></tr></table></figure>
+<p>再次执行<code>node ./src/minipack.js</code>，可以看到在项目根目录下生成了一个bundle.js文件，就是我们打包后的文件。</p>
+<p>为了理解为什么代码后的代码能在浏览器中执行，我们将关键require函数提取出来看下它的执行流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">require</span>(<span class="params">id</span>) &#123;</span><br><span class="line">  <span class="comment">// 首先获取入口文件的对象</span></span><br><span class="line">  <span class="keyword">const</span> [fn, mapping] = modules[id];</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">localRequire</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">require</span>(mapping[name]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable language_">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br><span class="line">  <span class="comment">// 调用函数，将module.exports对象传入，模块内部会将需要导出的变量都挂载在module.exports上</span></span><br><span class="line">  <span class="title function_">fn</span>(localRequire, <span class="variable language_">module</span>, <span class="variable language_">module</span>.<span class="property">exports</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外math.js模块的fn的形式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> (<span class="params"><span class="built_in">require</span>, <span class="variable language_">module</span>, <span class="built_in">exports</span></span>) &#123;</span><br><span class="line">  <span class="string">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(<span class="built_in">exports</span>, <span class="string">&quot;__esModule&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">exports</span>.<span class="property">add</span> = <span class="keyword">void</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> add = <span class="built_in">exports</span>.<span class="property">add</span> = <span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数的第一个参数require函数的实现是一个递归调用，通过mapping对象来找到依赖模块的id，然后调用require函数加载依赖模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">localRequire</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="comment">// mapping[name]就是模块id</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">require</span>(mapping[name]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数的第二个参数module是一个包含exports对象的对象，模块内部的变量都挂载在module.exports上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable language_">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>所以为了理解这个函数的执行流程，以上面的三个文件为例，其中main.js和math.js经过编译后输出的代码加上匿名函数的包裹之后代码分别如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">function</span> (<span class="params"><span class="built_in">require</span>, <span class="variable language_">module</span>, <span class="built_in">exports</span></span>) &#123;</span><br><span class="line">  <span class="string">&quot;use strict&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> _math = <span class="built_in">require</span>(<span class="string">&quot;./math.js&quot;</span>);</span><br><span class="line">  <span class="keyword">var</span> _utils = <span class="built_in">require</span>(<span class="string">&quot;./utils.js&quot;</span>);</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> sum = (<span class="number">0</span>, _math.<span class="property">add</span>)(<span class="number">123</span>, <span class="number">2344</span>);</span><br><span class="line">    (<span class="number">0</span>, _utils.<span class="property">print</span>)(sum);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">main</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">function</span> (<span class="params"><span class="built_in">require</span>, <span class="variable language_">module</span>, <span class="built_in">exports</span></span>) &#123;</span><br><span class="line">  <span class="string">&quot;use strict&quot;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(<span class="built_in">exports</span>, <span class="string">&quot;__esModule&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">exports</span>.<span class="property">add</span> = <span class="keyword">void</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> add = <span class="built_in">exports</span>.<span class="property">add</span> = <span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> require函数返回一个module.exports对象，math.js导出的add函数被挂载到module.exports对象，同时exports对象还有一个__esModule属性，这个属性是为了兼容ES6模块的导出规范，utils.js也是类似的。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>以上代码在输出时，注意到源码的函数调用经历了如下转换：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> sum = <span class="title function_">add</span>(<span class="number">123</span>, <span class="number">2344</span>);</span><br><span class="line"><span class="title function_">print</span>(sum);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打包后的代码如下</span></span><br><span class="line"><span class="keyword">var</span> sum = (<span class="number">0</span>, _math.<span class="property">add</span>)(<span class="number">123</span>, <span class="number">2344</span>);</span><br><span class="line">(<span class="number">0</span>, _utils.<span class="property">print</span>)(sum);</span><br></pre></td></tr></table></figure>
+<p>所以<code>(0, _math.add)(123, 2344)</code>这种语法是什么意思？</p>
+<p>首先<code>(0, _math.add)</code>是一个逗号表达式，它的形式如下<code>(value1, value2, ....valueX)</code>，这个表达式的返回值是最后一个值，所以<code>(0, _math.add)</code>的返回值其实就是<code>_math.add</code>，而后面的括号相当于add函数的参数。这种写法本质就是调用了add函数，前边的0只是一个占位符，无实际意义。那babel将函数调用转换成这种语法呢？</p>
+<p>我们打包后的math模块被赋值给了一个_math变量，然后通过_math.add来调用add函数，如果我们直接使用_math.add(123, 2344)的形式调用，add函数内的this变量会指向_math对象，这样的this指向是错误的，而通过逗号操作符和()的形式调用，add函数内的this会指向global对象，或者在严格模式下是undefined，这样就避免了this指向错误的问题。<br>如下代码可以验证这个问题：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123; </span><br><span class="line">  <span class="attr">fullName</span>: <span class="string">&quot;Peter&quot;</span>, </span><br><span class="line">  <span class="attr">sayName</span>:  <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;My name is&quot;</span>, <span class="variable language_">this</span>.<span class="property">fullName</span>); &#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">fullName</span> = <span class="string">&quot;Shiny&quot;</span>;</span><br><span class="line"></span><br><span class="line">foo.<span class="title function_">sayName</span>();       <span class="comment">// My name is Peter</span></span><br><span class="line"></span><br><span class="line">(foo.<span class="property">sayName</span>)();     <span class="comment">// My name is Peter</span></span><br><span class="line"></span><br><span class="line">(<span class="number">0</span>, foo.<span class="property">sayName</span>)();  <span class="comment">// My name is Shiny</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里我们已经实现了一个简易的模块打包器，我们通过递归的方式分析模块的依赖关系，然后将依赖图转换为浏览器可执行的代码。这个打包器还有很多不足之处，比如没有处理循环依赖，没有处理异步加载等等，但是通过这个简单的实现，我们可以了解模块打包器的基本原理。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/ronami/minipack/blob/master/src/minipack.js">https://github.com/ronami/minipack/blob/master/src/minipack.js</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://stackoverflow.com/questions/32275135/why-does-babel-rewrite-imported-function-call-to-0-fn">https://stackoverflow.com/questions/32275135/why-does-babel-rewrite-imported-function-call-to-0-fn</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://stackoverflow.com/questions/11541134/javascript-syntax-0-fnargs">https://stackoverflow.com/questions/11541134/javascript-syntax-0-fnargs</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/使用React实现自定义的浏览器滚动条.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/常见加密算法及其使用.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

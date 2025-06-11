@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用commitizen来规范仓库的提交记录"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>使用commitizen来规范仓库的提交记录 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('使用commitizen来规范仓库的提交记录/bg.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用commitizen来规范仓库的提交记录</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2021-12-12
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/git/">#git</a> <a href="/tags/commitizen/">#commitizen</a> <a href="/tags/changelog/">#changelog</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在一个多人开发的项目中，开发者可能会因为各种各样的原因，写出很随意的git提交记录，或根据自己的习惯写出难以理解且没有意义的提交记录，众所周知提交记录的书写也是有规范的，目前大家使用较多的规范是<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular团队推出的规范</a>。该规范的大致格式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+<p>该规范主要分为header，body，footer三个部分，三部分之间使用空行分隔。其中header分为type、scope、subject三部分，type为必填项，用几种固定的关键字来区分本次提交的目的，具体支持的type类型<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type">参考这里</a>。scope为可选项，用于说明本次提交的影响范围，可以写模块名或者文件名。subject为必填项，用简短的文字说明本地提交的描述。如果是英文的话，首字母不需要大写，末尾不能加句号。body和footer部分也是可选的。</p>
+<p>可以看到一份符合规范的提交记录的行文格式是较为繁琐的，如果只使用git commit命令来书写效率未免太过低下，得不偿失。</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/commitizen/cz-cli">commitizen</a>工具就是为了解决这样的问题，当需要提交代码时，可以通过git cz命令代替原生的git commit，它会通过命令行交互的形式帮助开发者生成一份符合规范的优质提交记录。</p>
+<h2 id="本地项目使用commitizen"><a href="#本地项目使用commitizen" class="headerlink" title="本地项目使用commitizen"></a>本地项目使用commitizen</h2><p>执行<code>npm install --save-dev commitizen</code>命令在本地项目中安装commitizen，安装完成之后需要为commitizen安装适配器，具体什么是适配器，后面会讲到。通过以下命令为当前项目初始化适配器。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx commitizen init cz-conventional-changelog --save-dev --save-exact --force</span><br></pre></td></tr></table></figure>
+<p>或者通过</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./node_modules/.bin/commitizen init cz-conventional-changelog --save-dev --save-exact --force</span><br></pre></td></tr></table></figure>
+<p>如果项目使用的是yarn，需要通过如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">commitizen init cz-conventional-changelog --yarn --dev --exact</span><br></pre></td></tr></table></figure>
+<p>该命令执行完之后除了会安装一个npm包之外，还会在在package.json中添加一些配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>之后我们就能在项目中使用commitizen工具了，运行<code>./node_modules/.bin/cz</code>，会以交互式命令行的方式辅助完成提交记录书写。为了能够更加方便的使用该命令行，我们可以在package.json添加脚本。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;cm&quot;: &quot;cz&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后如果你想提交代码，你可以运行npm run cm来替代默认的git commit，该命令通过交互的形式，生成一份符合<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>规范（Angular规范）的提交记录。</p>
+<h2 id="全局使用commitizen"><a href="#全局使用commitizen" class="headerlink" title="全局使用commitizen"></a>全局使用commitizen</h2><p>本地项目安装完之后，只能在该项目中通过npm script的方式使用cz命令，过程比较繁琐，所以更好的方式是全局安装commitizen工具，通过<code>npm install -g commitizen</code>全局安装。同样的，需要在全局安装适配器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cz-conventional-changelog</span><br></pre></td></tr></table></figure>
+<p>适配器安装完成之后，需要添加该适配器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;&#123; &quot;path&quot;: &quot;cz-conventional-changelog&quot; &#125;&#x27; &gt; ~/.czrc</span><br></pre></td></tr></table></figure>
+<p>该命令会在用户家目录生成.czrc文件，其的内容与本地项目安装时在package.json中的基本一致，目的是告诉commitizen使用该适配器。<br>全局安装之后，我们就可以在任何的git仓库运行git cz来代替git commit，git commit所支持的所有参数git cz也都支持。如git cz -a。如果项目中有设置了不同的commitizen适配器，将覆盖全局的适配器。</p>
+<h2 id="commitizen适配器"><a href="#commitizen适配器" class="headerlink" title="commitizen适配器"></a>commitizen适配器</h2><p>我们知道每个项目的构建过程可能是不同的，所遵循的commit规范也可能是不同的，或需要定制交互式命令行的问题和选项，为了支持不同的需求，commitizen可以使用不同的适配器来定制commitizen，内置的适配器列表<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/commitizen/cz-cli#adapters">点击这里</a>，如果这些适配器都不满足要求，开发者还可以开发自己的适配器。我们在本地项目体验下cz-emoji适配器，该适配器会在type中加入emoji表情，先安装该适配器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev cz-emoji</span><br></pre></td></tr></table></figure>
+<p>在package.json中修改要使用的适配器：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./node_modules/cz-emoji&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>安装完成之后，运行git cz -a可以看到提示的type种类更加丰富了，并且每种type使用emoji表情代替。</p>
+<p><img src="/%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8commitizen%E6%9D%A5%E8%A7%84%E8%8C%83%E4%BB%93%E5%BA%93%E7%9A%84%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95/emoji.gif" alt="emoji.gif"></p>
+<h2 id="重试上次提交"><a href="#重试上次提交" class="headerlink" title="重试上次提交"></a>重试上次提交</h2><p>在使用commitizen的过程中，可能会频繁遇到需要重试上次提交的场景，例如你已经使用commitizen填写了一些列的字段，完成一次提交，但是单元测试失败了，或者发现一个小的拼写错误，修改完成之后也不想再增加一次新的历史提交记，即你想撤回上次的提交。虽然你可以使用<code>git reset --soft &lt;LAST_COMMIT_ID&gt;</code>来做到这一点，但是你再次提交时，不得不重新填写一边相同的内容。<br>所以commitizen提供了更加简便的方式来完成这个过程，执行<code>git cz --retry</code>，即可直接利用上次已填写的字段重新生成一次相同的提交记录。使用该命令时，如果是本地项目内安装了commitizen，并通过npm脚本的形式运行的cz(比如npm run cm)，则需要执行<code>npm run commit -- --retry</code>，如果是通过npx，则执行<code>npx cz --retry</code>。</p>
+<h2 id="通过git-hooks使用commmitzen"><a href="#通过git-hooks使用commmitzen" class="headerlink" title="通过git hooks使用commmitzen"></a>通过git hooks使用commmitzen</h2><p>通过全局安装或者本地安装的方式，开发者已经可以使用<code>git cz</code>或者<code>cz</code>命令了，但项目一般都是多人协作开发的，为了强制所有人都能遵循commitizen的提交规范，又要强制所有的开发者都安装commitizen，对于那些不熟悉commitizen的人来说又要花时间熟悉这个工具，所以commitizen提供了另外一种方式来强制提交规范——<code>git hooks</code>。不熟悉git hooks的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90">点击这里</a>。<br>我们需要修改.git/hooks目录下的脚本文件，如果之前没有修改过该目录下的任何文件，可以通过如下命令复制一份新的脚本文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp prepare-commit-msg.sample prepare-commit-msg</span><br></pre></td></tr></table></figure>
+<p>将prepare-commit-msg中的代码更新成如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">exec &lt; /dev/tty &amp;&amp; node_modules/.bin/cz --hook || true</span><br></pre></td></tr></table></figure>
+<p>保存后回到项目根目录下，再执行<code>git commit</code>时就会出现commitizen一样的交互式提交流程，需要强调的是这种方式要求本地项目安装commitizen和comitizen适配器。</p>
+<p>以上方式是使用原生的git hooks来实现git commit改造的，但是我们都知道<a target="_blank" rel="noopener external nofollow noreferrer" href="https://typicode.github.io/husky/#/">husky</a>库也可以实现这个过程。以husky库7.x版本为例演示这个过程，husky4之前的版本与最新版的的husky库的使用方式有较大差异，不过原理是相同的。通过以下命令安装并启用husky：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx husky-init &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
+
+<p>接着需要向husky中添加新的git hooks，执行以下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx husky add .husky/prepare-commit-msg</span><br></pre></td></tr></table></figure>
+
+<p>打开.husky/prepare-commit-msg文件将文件更新成以下代码：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">. <span class="string">&quot;<span class="subst">$(dirname <span class="string">&quot;<span class="variable">$0</span>&quot;</span>)</span>/_/husky.sh&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> &lt; /dev/tty &amp;&amp; node_modules/.bin/cz --hook || <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>保存后在项目根目录运行git commit也会使用commitizen工具。以上方式两种方式本质上都是通过git的prepare-commit-msg hooks的原理来实现的。</p>
+<p>不过需要特别强调的是，在实际项目中并不推荐这以上两种方式中的任何一种，因为他会修改<code>git commit</code>的默认行为，我们应该保留默认的git命令，并在npm脚本中添加自定义的命令来实现我们的目的，并配合下文提交到的commitlint来强制提交记录的规范性。其次如果使用standard-version来自动生成changelog时，会影响自动提交的行为，后文会详细讲解。</p>
+<h2 id="使用commitlint校验提交记录"><a href="#使用commitlint校验提交记录" class="headerlink" title="使用commitlint校验提交记录"></a>使用commitlint校验提交记录</h2><p>通过以上方式，基本可以杜绝混乱的提交历史，如果还不放心，还可以使用commitlint + husky对提交历史进行校验。安装过程也十分简单，先安装commitlint工具，其中@commitlint/config-conventional包是根据Angular提交规范预定义的规则包：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @commitlint/&#123;config-conventional,cli&#125;</span><br></pre></td></tr></table></figure>
+<p>安装完成之后，在项目根目录创建<code>.commitlintrc.js</code>文件，来配置lint规则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [&#x27;@commitlint/config-conventional&#x27;]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>配置完成之后在项目根目录下运行<code>./node_modules/.bin/commitlint --edit</code>来验证最近一次提交记录是否符合要求，如果符合要求不会输出任何内容，反之则会出现报错信息。该命令正常运行之后，就可以配合husky来自动校验提交信息。安装husky的过程的过程可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://typicode.github.io/husky/#/?id=install">参考这里</a>，不做演示。<br>为husky添加新的commit-msg脚本：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -V参数在命令行输出校验信息</span></span><br><span class="line">npx husky add .husky/commit-msg <span class="string">&quot;npx --no -- commitlint -V --edit <span class="variable">$1</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加完成之后在运行git cz会先根据commitizen生成合规的提交记录，然后执行commitlint命令来校验提交信息。但是如果有人使用<code>git commit</code>书写了不规范的历史记录，commitlint会报错并阻止本次提交，这样就达到了强制规范提交记录的目的。<br>需要说明的是，这里的commitlint的规则配置非常简单，用的都是默认值，如果项目使用不同的commitizen适配器，例如上文提到的cz-emoji适配器，需要根据情况修改<code>.commitlintrc.js</code>文件中的规则。完整的规则手册<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/conventional-changelog/commitlint/blob/master/docs/reference-rules.md">参考这里</a>。</p>
+<h2 id="根据提交记录生成changelog"><a href="#根据提交记录生成changelog" class="headerlink" title="根据提交记录生成changelog"></a>根据提交记录生成changelog</h2><p>上面我们已经安装了很多关于git提交的工具，此时就可以根据这些有价值的提交记录来生成changelog了，这里我们利用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/conventional-changelog/standard-version">standard-veriosn</a>来生成changelog，该工具是根据<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">Angular提交规范</a>来生成changelog。首先安装该工具：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev standard-version</span><br></pre></td></tr></table></figure>
+<p>安装完成之后，在package.json中添加脚本：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;release&quot;</span><span class="punctuation">:</span> <span class="string">&quot;standard-version&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>之后我们就可以通过npm脚本的形式来生成changelog，如果是第一次执行该命令，则执行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm run release -- --first-release</span><br><span class="line"><span class="comment"># 或者通过npx执行</span></span><br><span class="line">npx andard-version --first-release</span><br></pre></td></tr></table></figure>
+<p>注意第一个–是传递参数给npm，–first-release是sdandard-version接收的参数。后续发布再次生成changelog时，则不需要添加–first-release参数：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run release</span><br></pre></td></tr></table></figure>
+<p>该命令帮我们做了如下几件事：</p>
+<ol>
+<li>根据<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>规范生成或更新CHANGELOG.md文件</li>
+<li>更新package.json文件中版本号。第一次运行不会更新版本号</li>
+<li>根据提交规范，为以上更新生成一次新的提交，提交的type为chore，如chore(release): 1.1.1</li>
+<li>为当前分支打上tag，tag的值是上一步获得的版本号，版本号遵循<a target="_blank" rel="noopener external nofollow noreferrer" href="https://semver.org/">语义化规范</a>，如v1.2.0</li>
+</ol>
+<p>该工具根据Conventional Commits和语义化版本规范帮我们自动生成版本号，如果想指定生成的版本号，需要额外的参数，如预发布时运行以下命令，会生成如1.0.1-0这样的版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># npm run script</span><br><span class="line">npm run release -- --prerelease</span><br></pre></td></tr></table></figure>
+<p>需要发布alpha版本时，可以传递如下参数，会生成1.0.1-alpha.0这样的版本号：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm run script</span></span><br><span class="line">npm run release -- --prerelease alpha</span><br></pre></td></tr></table></figure>
+<p>如果只想更新次版本号（minor）时（主版本号为major，补丁版本号为patch）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run release -- --release-as minor</span><br></pre></td></tr></table></figure>
+<p>或者想指定新的版本号：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run release -- --release-as 1.1.0</span><br></pre></td></tr></table></figure>
+<p>具体所支持的参数列表<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/conventional-changelog/standard-version#cli-usage">参考这里</a>。</p>
+<p>以上我们根据默认的规则生成了CHANGELOG.md文件，该工具也支持丰富的配置，具体的配置方法<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/conventional-changelog/standard-version#configuration">参考这里</a>。<br>这里我们参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6934292467160514567#heading-14">掘金上的一篇文章</a>来为不同类型的log添加emoji表情作为演示，在项目根目录创建<code>.versionrc.js</code>文件，文件内容如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="string">&quot;types&quot;</span>: [</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;feat&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;✨ Features | 新功能&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;fix&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;🐛 Bug Fixes | Bug 修复&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;init&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;🎉 Init | 初始化&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;docs&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;✏️ Documentation | 文档&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;style&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;💄 Styles | 风格&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;refactor&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;♻️ Code Refactoring | 代码重构&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;perf&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;⚡ Performance Improvements | 性能优化&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;test&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;✅ Tests | 测试&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;revert&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;⏪ Revert | 回退&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;build&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;📦‍ Build System | 打包构建&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;chore&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;🚀 Chore | 构建/工程依赖/工具&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;type&quot;</span>: <span class="string">&quot;ci&quot;</span>, <span class="string">&quot;section&quot;</span>: <span class="string">&quot;👷 Continuous Integration | CI 配置&quot;</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>此时运行npm run release – –first-release命令生成的CHANGELOG.md会根据提交的类型生成各种有趣的表情。</p>
+<p><strong>需要说明的是，由于该工具会利用<code>git commit</code>命令帮我们自动生成一次新的符合规范的提交记录，所以我们想利用该工具自动生成changelog就不能通过上文提到的git hooks来安装commitizen。因为它会修改<code>git commit</code>命令的行为，强制使默认的提交命令变成可交互式的，进而导致standard-version命令运行失败。</strong></p>
+<p>最后需要强调的是，该工具使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>提交规范，所以如果使用的commitizen适配器不遵循该规范，则不能顺利生成changelog。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面介绍了很多工具，我们没有必要全都使用，这里推荐使用以下方案组合：</p>
+<ol>
+<li>全局安装，在所有的git仓库使用git cz命令来进行提交</li>
+<li>本地项目安装，以方便配合其他工具</li>
+<li>使用cz-conventional-changelog适配器</li>
+<li>通过npm脚本添加自定义的commitizen命令，如<code>npm run cm</code></li>
+<li>使用commitlint校验提交记录，防止不规范的记录</li>
+<li>使用standard-version自动化生成changelog</li>
+<li>为standard-version添加自定义的脚本，如standard-version</li>
+</ol>
+<p>日常的提交先使用<code>git add .</code>，再使用<code>git cz</code>或<code>npm run cm</code>代替<code>git commit</code>，如果使用git commit命令提交必须书写符合规范的提交记录。发布时可以运行<code>npm run release</code>来生成新的changelog。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6934292467160514567">https://juejin.cn/post/6934292467160514567</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/commitizen/cz-cli">https://github.com/commitizen/cz-cli</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/总结/nginx之location指令.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/Hooks使用总结和源码解析-二.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

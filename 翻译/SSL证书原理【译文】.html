@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="SSL证书原理【译文】"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>SSL证书原理【译文】 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('SSL证书原理【译文】/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>SSL证书原理【译文】</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2024-06-23
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/https/">#https</a> <a href="/tags/ssl/">#ssl</a> <a href="/tags/certificate/">#certificate</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/翻译/">翻译</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该文章翻译自【Dissecting an SSL certificate】，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://jvns.ca/blog/2017/01/31/whats-tls/">点击这里</a>查看原文。以下是原文内容。</p>
+<p>Hello，在我个人的网络杂志上有一个HTTPS的页面，当我打算只用200个字来解释这个事情的时候，我发现有更多的事情值得探讨。所以在这篇文章中我们将会剖析一下SSL证书，来试图真正的理解他的原理。<br>我不是一个网络安全人员，所以我不会为你的网站提供网络安全建议。但是我认为了解SSL证书相关的问题还是很有趣的，我可以讨论一下这个。</p>
+<h2 id="TLS：新版的SSL"><a href="#TLS：新版的SSL" class="headerlink" title="TLS：新版的SSL"></a>TLS：新版的SSL</h2><p>曾经在很久的一段时间内，我对TSL感到很困惑。基本上新版的SSL称之为TSL（SSL 3.0之后的版本称为TLS 1.0）。为了减少困惑，在本文中我打算一直称它为SSL。</p>
+<h2 id="什么是证书"><a href="#什么是证书" class="headerlink" title="什么是证书"></a>什么是证书</h2><p>假设我正在访问<a target="_blank" rel="noopener external nofollow noreferrer" href="https://mail.google.com查看我的邮箱.`mail.google.com`是一个运行在https服务器的443端口上的应用.我想确保我访问的是真正的mail.google.com,而不是由其他人恶意仿造的网站./">https://mail.google.com查看我的邮箱。`mail.google.com`是一个运行在HTTPS服务器的443端口上的应用。我想确保我访问的是真正的mail.google.com，而不是由其他人恶意仿造的网站。</a><br>在很长一段时间里证书这个词曾让我感到很困惑，直到我的通知Ray告诉我，我可以通过命令行来链接一个服务器并下载他的证书。<br>如果你只是想看一下SSL证书，可以在浏览器里点击绿色的锁，你可以看到所有关于证书的信息。但是通过命令行的方式也很有趣。<br>所以让我们来看一下mail.google.com的证书，并解析一下它。<br>首先，运行<code>openssl s_client -connect mail.google.com:443</code><br>该命令会打印很多东西，但是我们仅关注关于证书的内容，输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">$ openssl s_client -connect mail.google.com:443</span><br><span class="line">...</span><br><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIElDCCA3ygAwIBAgIIMmzfdZnO9pMwDQYJKoZIhvcNAQELBQAwSTELMAkGA1UE</span><br><span class="line">BhMCVVMxEzARBgNVBAoTCkdvb2dsZSBJbmMxJTAjBgNVBAMTHEdvb2dsZSBJbnRl</span><br><span class="line">cm5ldCBBdXRob3JpdHkgRzIwHhcNMTcwMTE4MTg1MjExWhcNMTcwNDEyMTg1MDAw</span><br><span class="line">WjBpMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwN</span><br><span class="line">TW91bnRhaW4gVmlldzETMBEGA1UECgwKR29vZ2xlIEluYzEYMBYGA1UEAwwPbWFp</span><br><span class="line">bC5nb29nbGUuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiYcr</span><br><span class="line">C9Rn7g9xjsg7khqfRPxUnvpgGyCHqJMXxZGtdf+G02d07cPlMEeaGG12vHyVfRZD</span><br><span class="line">tc/F1ZfwenH6gf0uMobtgw7n2NQa7T7qxuqSUDhZsO1sI1LL/Yqy8QHoooOZQWMz</span><br><span class="line">ytuRA18zti4vQV1dCijADh0+NWI1GDUAKidbaH/fBRrStqBev5Bhq3ZaGj3fDjAO</span><br><span class="line">7CG0Wk3n4Ov2yg44XOdgkLMzjdnbV8l6cZDC7lCK1VsEU1mEd0O0Dw4OcnHLuBPw</span><br><span class="line">IkioZayhPOXDXUS+bhpmtEiCkt8kbHG6jNMC4m8t62Jaf/Si3XNcHhDa4wPCTvid</span><br><span class="line">X//PuuNlRZVg3NjK/wIDAQABo4IBXjCCAVowHQYDVR0lBBYwFAYIKwYBBQUHAwEG</span><br><span class="line">CCsGAQUFBwMCMCwGA1UdEQQlMCOCD21haWwuZ29vZ2xlLmNvbYIQaW5ib3guZ29v</span><br><span class="line">Z2xlLmNvbTBoBggrBgEFBQcBAQRcMFowKwYIKwYBBQUHMAKGH2h0dHA6Ly9wa2ku</span><br><span class="line">Z29vZ2xlLmNvbS9HSUFHMi5jcnQwKwYIKwYBBQUHMAGGH2h0dHA6Ly9jbGllbnRz</span><br><span class="line">MS5nb29nbGUuY29tL29jc3AwHQYDVR0OBBYEFI69aYCEtb2swbJJR3cMOTdcfvZ4</span><br><span class="line">MAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUSt0GFhu89mi1dvWBtrtiGrpagS8w</span><br><span class="line">IQYDVR0gBBowGDAMBgorBgEEAdZ5AgUBMAgGBmeBDAECAjAwBgNVHR8EKTAnMCWg</span><br><span class="line">I6Ahhh9odHRwOi8vcGtpLmdvb2dsZS5jb20vR0lBRzIuY3JsMA0GCSqGSIb3DQEB</span><br><span class="line">CwUAA4IBAQAhiqQIwkGp1NmlLq89gjoAfpwaapHuRixxl2S54fyu/4WOHJJafqVA</span><br><span class="line">Tya9J7GTUCyQ6nszCdVizVP26h9TKOs9LJw5jWV9SOnPU2UZKvrNnOUi2FUkCcuD</span><br><span class="line">lsADdKSXNzye3jB88TENrWC/y3ysPdAgPO/sXzyRvNw8SVKl2+RqMDpSRpBptF9e</span><br><span class="line">Lp+WLAM3xKS5SPwCNdCiA332o7qiKRKQm/6bbIWnm7hp/ZnLxbyKaIVytRdiwRNp</span><br><span class="line">O/TTpRv2C708GA3PH6i1pYE86xm3w7lGhN9OiCZpKOJD6ZUH3W20idgPKYPBCO/N</span><br><span class="line">Op2AF3I4iUGeQjXFVLgS6mjUvdLndL9G</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure>
+<p>目前输出的内容还不是一段有意义的内容，它的格式被称为<strong>X509</strong>。openssl命令可以解析他。<br>接下来我把它保存到一个文本文件中，并将它命名为<code>cert.pem</code>。如果你打算跟着一步一步尝试，你可以从<a target="_blank" rel="noopener external nofollow noreferrer" href="https://gist.githubusercontent.com/jvns/2c249b8059c0b183c02bb3a71e12e418/raw/b4afd1877471b72f8900b2396c30bc670a5701c9/mail_google_cert.pem">这里</a>将它保存到自己的电脑中。<br>下一步，我们来解析这个证书文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$ openssl x509 -in cert.pem -text</span><br><span class="line"></span><br><span class="line">Certificate:</span><br><span class="line">    Data:</span><br><span class="line">        Version: 3 (0x2)</span><br><span class="line">        Serial Number: 3633524695565792915 (0x326cdf7599cef693)</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">        Issuer: C=US, O=Google Inc, CN=Google Internet Authority G2</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Jan 18 18:52:11 2017 GMT</span><br><span class="line">            Not After : Apr 12 18:50:00 2017 GMT</span><br><span class="line">        Subject: C=US, ST=California, L=Mountain View, O=Google Inc, CN=mail.google.com</span><br><span class="line">        Subject Public Key Info:</span><br><span class="line">            Public Key Algorithm: rsaEncryption</span><br><span class="line">                Public-Key: (2048 bit)</span><br><span class="line">                Modulus:</span><br><span class="line">                    00:89:87:2b:0b:d4:67:ee:0f:71:8e:c8:3b:92:1a:</span><br><span class="line">                    9f:44:fc:54:9e:fa:60:1b:20:87:a8:93:17:c5:91:</span><br><span class="line">                    .... blah blah blah ............</span><br><span class="line">                    c2:4e:f8:9d:5f:ff:cf:ba:e3:65:45:95:60:dc:d8:</span><br><span class="line">                    ca:ff</span><br><span class="line">                Exponent: 65537 (0x10001)</span><br><span class="line">        X509v3 extensions:</span><br><span class="line">            X509v3 Subject Alternative Name: </span><br><span class="line">                DNS:mail.google.com, DNS:inbox.google.com</span><br><span class="line"></span><br><span class="line">            X509v3 Subject Key Identifier: </span><br><span class="line">                8E:BD:69:80:84:B5:BD:AC:C1:B2:49:47:77:0C:39:37:5C:7E:F6:78</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">         21:8a:a4:08:c2:41:a9:d4:d9:a5:2e:af:3d:82:3a:00:7e:9c:</span><br><span class="line">         1a:6a:91:ee:46:2c:71:97:64:b9:e1:fc:ae:ff:85:8e:1c:92:</span><br><span class="line">         ......... blah blah blah more goes here ...........</span><br></pre></td></tr></table></figure>
+<p>文件中包含了很多内容，下面是各个部分的解释。</p>
+<ul>
+<li><code>CN=mail.google.com</code>表示“common name”，与直觉相反的是，你可以忽略这个字段，并关注“subject alternative name”字段。</li>
+<li>expiry date指的是过期时间</li>
+<li><code>X509v3 Subject Alternative Name</code>字段的内容是该证书的域名列表，这表示该证书在这这两个域名下都可以正常工作。</li>
+<li><code>Public Key Info</code>包含了我们后续和mail.google.com通信的公钥，我们不会花时间解释公钥的密码学含义，基本上它是一个加密密钥，保证通信的安全。</li>
+<li><code>signature</code>签名算法，它是一个很重要的东西，基本上任何人都可以为mail.google.com这个域名制作一个证书，但是我现在签发一个证书，你肯定不会信任他。</li>
+</ul>
+<p>接下来我们来讨论一下证书签名。</p>
+<h2 id="证书签名"><a href="#证书签名" class="headerlink" title="证书签名"></a>证书签名</h2><p>每个互联网证书都会由两部分组成</p>
+<ol>
+<li>证书本身（包括要验证的域名、公钥和其他信息）</li>
+<li>由其他机构签署的签名，就好比经过银行认证的信用卡</li>
+</ol>
+<p>在我计算机的<code>/etc/ssl/certs</code>目录下有很多证书，这些证书都是我本机信任的证书，他们可以用来签署其他证书。比如，我的笔记本上有个证书：<code>/etc/ssl/certs/Staat_der_Nederlanden_EV_Root_CA.pem</code>。这是一个来自荷兰的根证书，假如用它为<code>mail.google.com</code>域名签署得到一个证书，我的电脑就会信任这个域名下的证书。</p>
+<p>但如果是由其他人任意签署的证书，我的电脑则不会信任并拒绝这个证书。</p>
+<p><code>mail.google</code>的证书由下面的证书签署</p>
+<ol>
+<li>s:/C=US/ST=California/L=Mountain View/O=Google Inc/CN=mail.google.com</li>
+<li>这个证书由<code>Google Internet Authority G2</code>证书签署认证</li>
+<li>第二步的证书由<code>GeoTrust Global CA</code>签署认证</li>
+<li>第三步的证书由<code>Equifax Secure Certificate Authority</code>签署认证</li>
+</ol>
+<p>我的电脑上有<code>/etc/ssl/certs/GeoTrust_Global_CA.pem</code>文件，所以电脑会信任<code>mail.google.com</code>的证书。</p>
+<h2 id="证书是如何签发的"><a href="#证书是如何签发的" class="headerlink" title="证书是如何签发的"></a>证书是如何签发的</h2><p>签发的证书的过程大致如下：</p>
+<ol>
+<li>生成证书的前半部分（包括域名、过期时间、公钥等），这部分是公开的。</li>
+<li>同时，为证书生成一个私钥，私钥必须保证安全，不能展示给任何人。每次建立SSL连接的时候会用到这个私钥。</li>
+<li>证书权威机构为你签署证书，证书权威机构应该受信任的机构，所有当它们为某个域名签署证书的时候，必须确认提交者真正拥有这个域名。</li>
+<li>用签署的证书配置你的网站，用它来证明用户访问网站的真实性。</li>
+</ol>
+<p>从上面的过程可以看到“证书权威机构应该是值得信任的”是整个体系的关键，所以当有的证书签发机构不负责任的为没有拥有某个域名的人签发证书时，人们会感到愤怒。</p>
+<h2 id="证书透明度"><a href="#证书透明度" class="headerlink" title="证书透明度"></a>证书透明度</h2><p>我们讨论的最后主题是<a target="_blank" rel="noopener external nofollow noreferrer" href="https://certificate.transparency.dev/">证书透明度（Certificate Transparency）</a>，这是一个有趣的主题，并且有一个官方网站来解释，我会尽量解释这个主题。<br>上面我们说过证书权威机构应该是值得信任的，我们的计算机信任了很多权威证书，他们中任意一个都可能会为<code>mail.google.com</code>签署流氓证书，这是不安全的。<br>这并不是一个假设，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://certificate.transparency.dev/">证书透明度网站</a>就有不止一个案例，某些权威的证书签发机构犯的错误。<br>整个过程大概是这样的，对于<code>mail.google.com</code>，Google知道所有的经过验证的证书（可能有一个或者多个），证书透明度会确保如果存在一个没有被记录的<code>mail.google.com</code>的证书，他们能够发现这是一个非法证书。<br>大致步骤如下：</p>
+<ol>
+<li>CA机构每次签署一个证书，他们需要将这个证书放入一个全球公开的<strong>证书日志</strong>中</li>
+<li>不仅如此，谷歌机器人也会将它在网络上发现的所有证书放入<strong>证书日志</strong>中</li>
+<li>如果一个证书不在证书日志中，浏览器将不会接受这个证书</li>
+<li>任何人可以在任何时候查询一个证书是否在证书日志中</li>
+</ol>
+<p>所以如果荷兰CA机构签发了恶意的mail.google.com证书，他们还需要将这个证书放到证书日志中，但是谷歌能够发现这个恶意的行为。证书不会被加到日志中，浏览会拒绝该证书。</p>
+<h2 id="SSL配置并不容易"><a href="#SSL配置并不容易" class="headerlink" title="SSL配置并不容易"></a>SSL配置并不容易</h2><p>好了，我们已经下载了一个SSL证书并深入讨论了一些证书的相关知识，希望你学到了一些东西。<br>为web服务器设置SSL证书和SSL配置是令人困惑的，据我了解SSL有很多配置项。<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.ssllabs.com/ssltest/analyze.html?d=mail.google.com&s=216.58.194.165&hideResults=on">SSL Labs上有对mail.google.com的检测结果</a>，检测结果有包含像<code>OLD_TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256</code>这样的配置项，我很高兴有项SSL Labs这样的工具来帮助我们凡人理解这些配置。<br>如果你不确定如何配置SSL，可以参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://syslink.pl/cipherlist/">这里的例子</a>进行配置，不过我不确定这些配置的好坏。</p>
+<h2 id="let’s-encrypt"><a href="#let’s-encrypt" class="headerlink" title="let’s encrypt"></a>let’s encrypt</h2><p>let’s encrypt是个很酷的网站。你甚至不需要理解证书的相关原理，它就可以为你的网站生成安全的证书，重要的是，它还是免费的。</p>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/翻译/Sinon-js使用最佳实践【译文】.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/翻译/用JS实现一个极简编译器【译文】.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

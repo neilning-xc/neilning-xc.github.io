@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用web push库发送消息【译】"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>使用web push库发送消息【译】 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('使用web-push库发送消息【译】/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用web push库发送消息【译】</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-07-25
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/web-push/">#web push</a> <a href="/tags/push-notification/">#push notification</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/翻译/">翻译</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该文章翻译自web.dev的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/notifications/">Notifications</a>系列文章，本篇文章原文链接<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/sending-messages-with-web-push-libraries/">点击这里</a></p>
+<p>Web推送的一个痛点是触发消息推送，因为这需要手动完成很多繁琐的工作。在应用中触发消息推送需要按照<a target="_blank" rel="noopener external nofollow noreferrer" href="https://datatracker.ietf.org/doc/html/rfc8030">web push protocal</a>协议向推送服务发送网络请求。为了跨浏览器使用推送功能，你需要使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid">VAPID</a>（application server keys）设置一个请求头字段值来证明你的应用可以向某个用户发送消息。为了能够使用消息推送发送数据，这些数据必须被加密，并且为了使浏览器能够正确地解密这些数据，还需要设置一个特定请求头。<br>触发消息推送另一个主要的问题是如果你遇到任何问题，你很难定位问题的原因，随着时间的推移和更广泛的浏览器支持，这个问题会得到改善，但是这还远不够简单。所以我强烈推荐使用第三方库来处理加密、格式化和触发消息推送。<br>如果你想学习这个库做了什么，我们会在下一个章节讨论。不过现在我们先来看一下如何管理订阅对象，并使用现有的web推送库来发起推送请求。<br>这里我们使用web-push的Node库。其他语言有不同的库实现，不过他们不会有太多不同。我们使用Node，因为是JavaScript，所以大多数读者都可以理解。</p>
+<blockquote>
+<p>如果你想看其他语言的实现，可以点击<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/web-push-libs/">这里（ web-push-libs organization on Github）</a></p>
+</blockquote>
+<p>我们会根据以下步骤讨论：</p>
+<ol>
+<li>向后端发送subscription对象并保存进数据库</li>
+<li>获取已保存的subscription对象来触发消息推送</li>
+</ol>
+<h2 id="保存用户订阅"><a href="#保存用户订阅" class="headerlink" title="保存用户订阅"></a>保存用户订阅</h2><p>在数据库中保存和查询<code>PushSubscription</code>对象的实现各不相同，这取决于你的服务端语言和数据库选择，但是我们来看一个例子是如何完成这个过程的，这会很有用。<br>在demo页面通过一个简单的POST请求将<code>PushSubscription</code>对象发送到后端：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function sendSubscriptionToBackEnd(subscription) &#123;</span><br><span class="line">  return fetch(&#x27;/api/save-subscription/&#x27;, &#123;</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(subscription),</span><br><span class="line">  &#125;)</span><br><span class="line">    .then(function (response) &#123;</span><br><span class="line">      if (!response.ok) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad status code from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(function (responseData) &#123;</span><br><span class="line">      if (!(responseData.data &amp;&amp; responseData.data.success)) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad response from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在后端创建一个Express服务来实现<code>/api/save-subscription/</code>接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.post(&#x27;/api/save-subscription/&#x27;, function (req, res) &#123;</span><br></pre></td></tr></table></figure>
+<p>在这个路由中，我们验证subscription字段，来确定请求是正常的，不是一个错误请求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const isValidSaveRequest = (req, res) =&gt; &#123;</span><br><span class="line">  // Check the request body has at least an endpoint.</span><br><span class="line">  if (!req.body || !req.body.endpoint) &#123;</span><br><span class="line">    // Not a valid subscription.</span><br><span class="line">    res.status(400);</span><br><span class="line">    res.setHeader(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;);</span><br><span class="line">    res.send(</span><br><span class="line">      JSON.stringify(&#123;</span><br><span class="line">        error: &#123;</span><br><span class="line">          id: &#x27;no-endpoint&#x27;,</span><br><span class="line">          message: &#x27;Subscription must have an endpoint.&#x27;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;),</span><br><span class="line">    );</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  return true;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在这个例子中我们仅仅检查了endpoint字段，如果你需要验证其他数据，请确保也检查auth和p256dh字段。</p>
+</blockquote>
+<p>如果验证subscription通过，我们需要将它存入数据库并返回恰当的JSON响应：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">return saveSubscriptionToDatabase(req.body)</span><br><span class="line">  .then(function (subscriptionId) &#123;</span><br><span class="line">    res.setHeader(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;);</span><br><span class="line">    res.send(JSON.stringify(&#123;data: &#123;success: true&#125;&#125;));</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(function (err) &#123;</span><br><span class="line">    res.status(500);</span><br><span class="line">    res.setHeader(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;);</span><br><span class="line">    res.send(</span><br><span class="line">      JSON.stringify(&#123;</span><br><span class="line">        error: &#123;</span><br><span class="line">          id: &#x27;unable-to-save-subscription&#x27;,</span><br><span class="line">          message:</span><br><span class="line">            &#x27;The subscription was received but we were unable to save it to our database.&#x27;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;),</span><br><span class="line">    );</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>这个例子中使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/louischatriot/nedb">nedb</a>保存订阅对象，。它是一个简单的基于文件的数据库，不过你可以选择其他的，我们在这里选择它是因为没有任何依赖，并且不需要额外的安装和设置。生产环境中，你最好使用其他更加稳定可靠的数据库（我倾向于使用MySQL）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function saveSubscriptionToDatabase(subscription) &#123;</span><br><span class="line">  return new Promise(function (resolve, reject) &#123;</span><br><span class="line">    db.insert(subscription, function (err, newDoc) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        reject(err);</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      resolve(newDoc._id);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><p>当需要发送消息时，我们需要一些事件来触发向用户发送消息的过程。一个比较常见的方式是创建一个管理页面来允许配置和触发消息推送。但是你要创建一个本地运行的程序或者其他方式来允许你获取到<code>PushSubscription</code>列表并运行代码来触发消息推送。<br>我们的demo页面有一个类似admin的页面来让你触发推送。不过他只是一个demo页面。<br>我们将详细讲解每一步并使demo能够正常运行，这将是个保姆级的教程，包括Node初学者在内的每个人，都可以跟着每一步来操作。当我们之前讨论用户订阅的时候，我们提到需要向<code>subscribe()</code>传入<code>applicationServerKey</code>选项。在后端我们还需要一个私钥。<br>在这个例子中，这些值需要添加早Node代码中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const vapidKeys = &#123;</span><br><span class="line">  publicKey:</span><br><span class="line">    &#x27;BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U&#x27;,</span><br><span class="line">  privateKey: &#x27;UUxI4O8-FbRouAevSmBQ6o18hgE4nSG3qwvJTfKc-ls&#x27;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下一步我们在Node服务中安装<code>web-push</code>模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install web-push --save</span><br></pre></td></tr></table></figure>
+<p>在Node代码中，我们导入<code>web-push</code>模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const webpush = require(&#x27;web-push&#x27;);</span><br></pre></td></tr></table></figure>
+<p>现在我们可以开始使用web-push模块，首先需要告诉该模块应用服务器密钥对（即VAPID密钥，这是相关规范中的名称）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const vapidKeys = &#123;</span><br><span class="line">  publicKey:</span><br><span class="line">    &#x27;BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U&#x27;,</span><br><span class="line">  privateKey: &#x27;UUxI4O8-FbRouAevSmBQ6o18hgE4nSG3qwvJTfKc-ls&#x27;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">webpush.setVapidDetails(</span><br><span class="line">  &#x27;mailto:web-push-book@gauntface.com&#x27;,</span><br><span class="line">  vapidKeys.publicKey,</span><br><span class="line">  vapidKeys.privateKey,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>请注意我们同时包含了mailto:字符串，这个字符串可以是一个URL或者一个邮箱地址。该信息最终会被发送到web推送服务，它是触发推送服务网络请求的一部分。这么做是为了允许推送服务在必要的时候能够联系到消息的发送方。<br>通过以上代码的设置，我们已经可以开始使用<code>web-push</code>模块，下一步是触发消息推送。该例子中，我们使用一个模拟的admin面板来触发消息推送。<br><img src="/%E7%BF%BB%E8%AF%91/%E4%BD%BF%E7%94%A8web-push%E5%BA%93%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E3%80%90%E8%AF%91%E3%80%91/admin.jpg" alt="admin.jpg"></p>
+<p>点击“Trigger Push Message”按钮将会向<code>/api/trigger-push-msg/</code>发送POST请求，他触发后端的消息推送，所以我们需要在Express中创建如下路由入口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.post(&#x27;/api/trigger-push-msg/&#x27;, function (req, res) &#123;</span><br></pre></td></tr></table></figure>
+<p>收到请求后，我们从数据库中拿到所有的订阅对象，并向每一个订阅对象发送消息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">return getSubscriptionsFromDatabase().then(function (subscriptions) &#123;</span><br><span class="line">  let promiseChain = Promise.resolve();</span><br><span class="line"></span><br><span class="line">  for (let i = 0; i &lt; subscriptions.length; i++) &#123;</span><br><span class="line">    const subscription = subscriptions[i];</span><br><span class="line">    promiseChain = promiseChain.then(() =&gt; &#123;</span><br><span class="line">      return triggerPushMsg(subscription, dataToSend);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return promiseChain;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在<code>triggerPushMsg()</code>函数中使用web-push库向每个订阅对象发送消息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const triggerPushMsg = function (subscription, dataToSend) &#123;</span><br><span class="line">  return webpush.sendNotification(subscription, dataToSend).catch((err) =&gt; &#123;</span><br><span class="line">    if (err.statusCode === 404 || err.statusCode === 410) &#123;</span><br><span class="line">      console.log(&#x27;Subscription has expired or is no longer valid: &#x27;, err);</span><br><span class="line">      return deleteSubscriptionFromDatabase(subscription._id);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      throw err;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>调用<code>webpush.sendNotification()</code>函数会返回一个Promise对象，如果消息发送成功，promise会被resolve，我们不需要特殊处理。如果promise是reject状态，你需要检查一下错误来确认订阅的PushSubscription对象是否已经过期。<br>确认错误类型的最好方式是检查响应状态码是否是401或404，它是标准的HTTP状态码，“Not Found”和“Gone”。收到以上任意状态码即说明订阅已经过期或者不再有效。这种场景下，我们需要从数据库中移除订阅对象。其他的错误情况，我们只抛出异常，他会使<code>triggerPushMsg()</code>函数返回一个reject状态的额Promise对象。在下一章讨论推送协议的细节时，我们会学习其他状态码的含义。</p>
+<blockquote>
+<p>如果你在这一步遇到错误，可以利用Firefox，看一下Firefox的错误日志，相比Chrome，Mozilla的推送服务会返回更详细的错误信息。</p>
+</blockquote>
+<p>循环subscription对象列表之后，我们返回JSON类型的响应。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.then(() =&gt; &#123;</span><br><span class="line">res.setHeader(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;);</span><br><span class="line">    res.send(JSON.stringify(&#123; data: &#123; success: true &#125; &#125;));</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function(err) &#123;</span><br><span class="line">res.status(500);</span><br><span class="line">res.setHeader(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;);</span><br><span class="line">res.send(JSON.stringify(&#123;</span><br><span class="line">    error: &#123;</span><br><span class="line">    id: &#x27;unable-to-send-messages&#x27;,</span><br><span class="line">    message: `We were unable to send messages to all subscriptions : ` +</span><br><span class="line">        `&#x27;$&#123;err.message&#125;&#x27;`</span><br><span class="line">    &#125;</span><br><span class="line">&#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上就是我们实现推送的主要步骤：</p>
+<ol>
+<li>创建一个API，将前端页面的subscription对象发送给后端，并存入数据库。</li>
+<li>创建一个API，触发消息推送（在这个例子中，API调用来自一个模拟的admin页面）</li>
+<li>在后端获取所有的订阅对象，使用web-push库对向每个订阅对象发送消息。</li>
+</ol>
+<p>不论你使用那种服务端语言（Node, PHP, Python, …），以上这些步骤否是相同的。<br>在下一章，我们来讨论下web-push库到底帮我们做了些什么。</p>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/翻译/Web-Push协议【译】.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/翻译/获取权限的最佳用户体验【译】.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
