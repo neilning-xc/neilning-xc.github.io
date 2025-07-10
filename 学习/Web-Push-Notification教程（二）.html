@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Web Push Notification教程（二）"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Web Push Notification教程（二） - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Web-Push-Notification教程（二）/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Web Push Notification教程（二）</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-08-22
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/web-push/">#web push</a> <a href="/tags/push-notification/">#push notification</a> <a href="/tags/service-worker/">#service worker</a> <a href="/tags/web-subscription/">#web subscription</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="完善订阅推送流程"><a href="#完善订阅推送流程" class="headerlink" title="完善订阅推送流程"></a>完善订阅推送流程</h2><p>前面已经基本完成了Web推送的基础流程，还有一些细节需要处理。</p>
+<h3 id="获取订阅状态"><a href="#获取订阅状态" class="headerlink" title="获取订阅状态"></a>获取订阅状态</h3><p>首先用户订阅之后，再次在同一个浏览器打开页面时，需要默认将订阅状态设为勾选状态。通过<code>serviceWorkerRegistration.pushManager.getSubscription()</code>获取到当前设备的订阅对象之后，还需要向服务端查询该订阅对象是否还有效，修改frontend/index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">async function checkSubscription(serviceWorkerRegistration) &#123;</span><br><span class="line">  const subscription = await serviceWorkerRegistration.pushManager.getSubscription();</span><br><span class="line">  if (subscription === null) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  const &#123; data &#125; = await getSubscription(subscription);</span><br><span class="line">  if (data.success &amp;&amp; data.id) &#123;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br><span class="line">  return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getSubscription(subscription) &#123;</span><br><span class="line">  return fetch(&#x27;http://localhost:4000/api/get-subscription/&#x27;, &#123;</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(subscription),</span><br><span class="line">  &#125;)</span><br><span class="line">    .then(function (response) &#123;</span><br><span class="line">      if (!response.ok) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad status code from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line">      return response.json();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在backend/index.js中添加路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.post(&#x27;/api/get-subscription/&#x27;, async (req, res) =&gt; &#123;</span><br><span class="line">  const subscription = req.body;</span><br><span class="line">  const doc = await findSubscription(subscription.endpoint);</span><br><span class="line">  if (doc) &#123;</span><br><span class="line">    res.status(201);</span><br><span class="line">    res.json(&#123;data: &#123;success: true, id: doc._id&#125;&#125;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    res.status(201);</span><br><span class="line">    res.json(&#123;data: &#123;success: true&#125;&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="取消订阅"><a href="#取消订阅" class="headerlink" title="取消订阅"></a>取消订阅</h3><p>我们还需要添加取消订阅的功能，当取消勾选后，需要调用<code>subscription.unsubscribe()</code>取消订阅，并删除订阅对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// frontend/index.js</span><br><span class="line">subscribeCheckbox.addEventListener(&#x27;input&#x27;, async (event) =&gt; &#123;</span><br><span class="line">    const checked = event.target.checked;</span><br><span class="line">    if (!checked) &#123;</span><br><span class="line">      // 取消订阅</span><br><span class="line">      const subscription = await serviceWorkerRegistration.pushManager.getSubscription();</span><br><span class="line">      if (subscription) &#123;</span><br><span class="line">        await removeSubscription(subscription);</span><br><span class="line">        subscription.unsubscribe();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // 订阅</span><br><span class="line">      await askPermission();</span><br><span class="line">      const sub = await subscribeUserToPush(serviceWorkerRegistration);</span><br><span class="line">      sendSubscriptionToBackEnd(sub)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// backend/index.js</span><br><span class="line">app.post(&#x27;/api/remove-subscription/&#x27;, async (req, res) =&gt; &#123;</span><br><span class="line">  const subscription = req.body;</span><br><span class="line">  await removeSubscription(subscription);</span><br><span class="line">  res.status(200);</span><br><span class="line">  res.json(&#123;data: &#123; success: true &#125;&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">function removeSubscription(endpoint) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    db.remove(&#123; endpoint &#125;, &#123;&#125;, function (err, numRemoved) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        reject(err);</span><br><span class="line">      &#125;</span><br><span class="line">      resolve(numRemoved);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="订阅成功上报"><a href="#订阅成功上报" class="headerlink" title="订阅成功上报"></a>订阅成功上报</h3><p>接下来完善前面遗留的订阅上报的流程，修改frontend/service-worker.js:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">async function reportNotify(notification) &#123;</span><br><span class="line">  const subscription = await self.registration.pushManager.getSubscription();</span><br><span class="line">  return fetch(&#x27;http://localhost:4000/api/report-push&#x27;, &#123;</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(&#123; notification, subscription &#125;),</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;push&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const notification = event.data.json();</span><br><span class="line">  const notifyPromise = self.registration.showNotification(</span><br><span class="line">    notification.title, </span><br><span class="line">    notification</span><br><span class="line">  );</span><br><span class="line">  // 上报推送成功事件</span><br><span class="line">  const reportPromise = reportNotify(notification);</span><br><span class="line">  const promiseChain = Promise.all([reportPromise, notifyPromise]);</span><br><span class="line">  // 以上两个promise都成功时，service worker才会执行结束</span><br><span class="line">  event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在backend/index.js中添加<code>/api/report-push</code>路由：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.post(&#x27;/api/report-push&#x27;, async (req, res) =&gt; &#123;</span><br><span class="line">  const notify = req.body;</span><br><span class="line">  console.log(notify);</span><br><span class="line">  res.json(&#123; data: &#123; success: true &#125; &#125;);</span><br><span class="line">  return;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="通知框选项"><a href="#通知框选项" class="headerlink" title="通知框选项"></a>通知框选项</h2><p>前面的service worker代码中，调用<code>registration.showNotification()</code>时，我们只是传入了通知的title和body。还有其他选项可以定制通知框的外观和行为。该方法所支持的所有选项可以在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification">这里查看</a>。</p>
+<h3 id="icon和badge"><a href="#icon和badge" class="headerlink" title="icon和badge"></a>icon和badge</h3><p>通知框可以自定义icon和badge(只有Android的Chrome支持badge选项)，修改frontend/service-worker.js.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const notification = event.data.json();</span><br><span class="line">  const &#123; title, body &#125; = notification;</span><br><span class="line">  const option = &#123;</span><br><span class="line">    body,</span><br><span class="line">    icon: &#x27;/images/dog.jpg&#x27;,</span><br><span class="line">    badge: &#x27;/images//badge.png&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">  const notifyPromise = self.registration.showNotification(</span><br><span class="line">    title, </span><br><span class="line">    option</span><br><span class="line">  );</span><br><span class="line">  // 上报推送成功事件</span><br><span class="line">  const reportPromise = reportNotify(notification);</span><br><span class="line">  const promiseChain = Promise.all([reportPromise, notifyPromise]);</span><br><span class="line">  // 以上两个promise都成功时，service worker才会执行结束</span><br><span class="line">  event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>显示效果如下：<br><img src="/%E5%AD%A6%E4%B9%A0/Web-Push-Notification%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/icon.png" alt="icon.png"></p>
+<h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p>通知还支持actions选项（该选项处于试验阶段，大多数平台还不支持）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const actions = [</span><br><span class="line">    &#123;</span><br><span class="line">      action: &#x27;coffee-action&#x27;,</span><br><span class="line">      type: &#x27;button&#x27;,</span><br><span class="line">      title: &#x27;Coffee&#x27;,</span><br><span class="line">      icon: &#x27;/images/coffee-action.png&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      action: &#x27;book-action&#x27;,</span><br><span class="line">      type: &#x27;button&#x27;,</span><br><span class="line">      title: &#x27;Book&#x27;,</span><br><span class="line">      icon: &#x27;/images/book-action.png&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line">  const option = &#123;</span><br><span class="line">    body,</span><br><span class="line">    icon: &#x27;/images/dog.jpg&#x27;,</span><br><span class="line">    badge: &#x27;/images/badge.png&#x27;,</span><br><span class="line">    actions</span><br><span class="line">  &#125;;</span><br><span class="line">  const notifyPromise = self.registration.showNotification(</span><br><span class="line">    title, </span><br><span class="line">    option</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<p>浏览器所支持的最大actions数量可以可以通过<code>window.Notification?.maxActions</code>查看。<br>action还支持快捷回复选项，通过将action的type属性设置为<code>text</code>来实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const actions = [</span><br><span class="line">    &#123;</span><br><span class="line">      action: &#x27;book-action&#x27;,</span><br><span class="line">      type: &#x27;text&#x27;,</span><br><span class="line">      title: &#x27;Book&#x27;,</span><br><span class="line">      icon: &#x27;/images/book-action.png&#x27;,</span><br><span class="line">      placeholder: &#x27;Type text here&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line">  const option = &#123;</span><br><span class="line">    body,</span><br><span class="line">    icon: &#x27;/images/dog.jpg&#x27;,</span><br><span class="line">    badge: &#x27;/images//badge.png&#x27;,</span><br><span class="line">    actions</span><br><span class="line">  &#125;;</span><br><span class="line">  const notifyPromise = self.registration.showNotification(</span><br><span class="line">    title, </span><br><span class="line">    option</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<p>以上代码placeholder会修改文本输入框的问题提示。</p>
+<h2 id="点击通知框"><a href="#点击通知框" class="headerlink" title="点击通知框"></a>点击通知框</h2><p>在上面的例子中，点击通知框什么也没有发生，比较常见的做法是点击通知框时打开某个页面并关闭通知。通知框的点击事件可以添加<code>&#39;notificationclick&#39;</code>事件监听器。用户点击通知框时，可以点击上文的action按钮或者点击整个通知框，先看如何处理action的点击事件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function handleActionClick(event) &#123;</span><br><span class="line">  switch (event.action) &#123;</span><br><span class="line">    case &#x27;coffee-action&#x27;:</span><br><span class="line">      console.log(&quot;User ❤️️&#x27;s coffee.&quot;);</span><br><span class="line">      break;</span><br><span class="line">    case &#x27;book-action&#x27;:</span><br><span class="line">      console.log(&quot;User ❤️️&#x27;s book.&quot;);</span><br><span class="line">      break;</span><br><span class="line">    default:</span><br><span class="line">      console.log(`Unknown action clicked: &#x27;$&#123;event.action&#125;&#x27;`);</span><br><span class="line">      break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;notificationclick&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const clickedNotification = event.notification;</span><br><span class="line">  const &#123; data &#125; = clickedNotification;</span><br><span class="line">  handleActionClick(event);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到通过event.action可以获取到点击的action按钮，他的值就是我们定义actions选项时的action字段的值。<br>如果用户点击了整个通知框，我们还可以帮用户打开某个页面，如果页面已经打开，则将当前焦点聚焦到目标页面上，通过以下代码即可实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const notification = event.data.json();</span><br><span class="line">  const &#123; title, body &#125; = notification;</span><br><span class="line">  const actions = [</span><br><span class="line">    &#123;</span><br><span class="line">      action: &#x27;coffee-action&#x27;,</span><br><span class="line">      type: &#x27;button&#x27;,</span><br><span class="line">      title: &#x27;Coffee&#x27;,</span><br><span class="line">      icon: &#x27;/images/coffee-action.png&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      action: &#x27;book-action&#x27;,</span><br><span class="line">      type: &#x27;text&#x27;,</span><br><span class="line">      title: &#x27;Book&#x27;,</span><br><span class="line">      icon: &#x27;/images/book-action.png&#x27;,</span><br><span class="line">      placeholder: &#x27;Type text here&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line">  const option = &#123;</span><br><span class="line">    body,</span><br><span class="line">    icon: &#x27;/images/dog.jpg&#x27;,</span><br><span class="line">    badge: &#x27;/images/badge.png&#x27;,</span><br><span class="line">    actions,</span><br><span class="line">    vibrate: [</span><br><span class="line">      500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170,</span><br><span class="line">      40, 500,</span><br><span class="line">    ],</span><br><span class="line">    sound: &#x27;/sound/msg-sound.wav&#x27;,</span><br><span class="line">    timestamp: new Date().getTime(),</span><br><span class="line">    data: &#123;</span><br><span class="line">      msgUrl: &#x27;/detail.html&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  console.log(&quot;🚀 ~ file: service-worker.js:66 ~ self.addEventListener ~ option:&quot;, option);</span><br><span class="line">  const notifyPromise = self.registration.showNotification(</span><br><span class="line">    title, </span><br><span class="line">    option</span><br><span class="line">  );</span><br><span class="line">  // 上报推送成功事件</span><br><span class="line">  const reportPromise = reportNotify(notification);</span><br><span class="line">  const promiseChain = Promise.all([reportPromise, notifyPromise]);</span><br><span class="line">  // 以上两个promise都成功时，service worker才会执行结束</span><br><span class="line">  event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;notificationclick&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const clickedNotification = event.notification;</span><br><span class="line">  const &#123; data &#125; = clickedNotification;</span><br><span class="line">  const msgUrl = data.msgUrl;</span><br><span class="line">  handleActionClick(event);</span><br><span class="line"></span><br><span class="line">  const urlToOpen = new URL(msgUrl, self.location.origin).href;</span><br><span class="line"></span><br><span class="line">  const promiseChain = clients</span><br><span class="line">    .matchAll(&#123;</span><br><span class="line">      type: &#x27;window&#x27;,</span><br><span class="line">      includeUncontrolled: true,</span><br><span class="line">    &#125;)</span><br><span class="line">    .then((windowClients) =&gt; &#123;</span><br><span class="line">      let matchingClient = null;</span><br><span class="line">      for (let i = 0; i &lt; windowClients.length; i++) &#123;</span><br><span class="line">        const windowClient = windowClients[i];</span><br><span class="line">        if (windowClient.url === urlToOpen) &#123;</span><br><span class="line">          matchingClient = windowClient;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      if (matchingClient) &#123;</span><br><span class="line">        return matchingClient.focus();</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return clients.openWindow(urlToOpen);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;).then(() =&gt; &#123;</span><br><span class="line">      return clickedNotification.close();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  const reportPromise = reportClick();</span><br><span class="line">  event.waitUntil(Promise.all([reportPromise, promiseChain]));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上代码，我们先通过在option上的data属性来添加自定义的数据，在click事件回调中通过clickedNotification.data获取到需要打开的页面的相对URL，通过<code>new URL(msgUrl, self.location.origin).href;</code>将其转换为绝对URL，然后调用<code>clients.matchAll()</code>获取到当前打开的页面。<br>需要注意的是传给matchAll方法的两个属性<code>type: &#39;window&#39;</code>表示匹配的是w indow类型的客户端，<code>includeUncontrolled: true</code>表示查找所有同域的页面，即使该页面没有被当前的service worker接管，该API的详细信息<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Clients/matchAll">参考这里</a>，然后通过matchingClient.focus()来聚焦已经打开的页面或者调用clients.openWindow(urlToOpen)打开新的页面。</p>
+<blockquote>
+<p>以上代码同时展示了option的其他选项：<code>vibrate</code>、 <code>sound</code>、<code>timestamp</code>。这些选项大多数还处于试验阶段，其中vibrate用于指定通知框的抖动行为，它的值是一个数字数组，数组的0，2，4…等偶数索引指的是抖动的毫秒数。sound指得是消息提示音</p>
+</blockquote>
+<h2 id="关闭通知框事件"><a href="#关闭通知框事件" class="headerlink" title="关闭通知框事件"></a>关闭通知框事件</h2><p>如果我们想在用户点击关闭按钮关闭通知框时，上报用户的点击行为，我们可以监听<code>notificationclose</code>事件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;notificationclose&#x27;, function (event) &#123;</span><br><span class="line">  const dismissedNotification = event.notification;</span><br><span class="line">  console.log(&quot;🚀 ~ file: service-worker.js:90 ~ dismissedNotification:&quot;, dismissedNotification);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="合并通知"><a href="#合并通知" class="headerlink" title="合并通知"></a>合并通知</h2><p>如果短时间内有多条通知，例如聊天类应用，可以合并多条通知，以避免显示多条通知打扰用户。通过<code>registration.getNotifications()</code>获取所有未关闭（调用<code>clickedNotification.close()</code>关闭）的通知。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">function mergeNotification(notification) &#123;</span><br><span class="line">  // 当前推送数据</span><br><span class="line">  const &#123; userName, body &#125; = notification;</span><br><span class="line">  const promiseChain = self.registration.getNotifications().then((notifications) =&gt; &#123;</span><br><span class="line">    console.log(&quot;🚀 ~ file: service-worker.js:76 ~ promiseChain ~ notifications:&quot;, notifications);</span><br><span class="line">    let currentNotification;</span><br><span class="line">    for (let i = 0; i &lt; notifications.length; i++) &#123;</span><br><span class="line">      if (notifications[i].data &amp;&amp; notifications[i].data.userName === userName) &#123;</span><br><span class="line">        currentNotification = notifications[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // currentNotification指得是老的未关闭的通知</span><br><span class="line">    return currentNotification;</span><br><span class="line">  &#125;).then((currentNotification) =&gt; &#123;</span><br><span class="line">    let notificationTitle;</span><br><span class="line">    const options = &#123;</span><br><span class="line">      icon: &#x27;/images/dog.jpg&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">    if (currentNotification) &#123;</span><br><span class="line">      const messageCount = currentNotification.data.newMessageCount + 1;</span><br><span class="line">      options.body = `You have $&#123;messageCount&#125; new messages from $&#123;userName&#125;.`;</span><br><span class="line">      options.data = &#123;</span><br><span class="line">        userName: userName,</span><br><span class="line">        newMessageCount: messageCount</span><br><span class="line">      &#125;;</span><br><span class="line">      notificationTitle = `New Messages from $&#123;userName&#125;`;</span><br><span class="line">  </span><br><span class="line">      // Remember to close the old notification.</span><br><span class="line">      currentNotification.close();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      options.body = `&quot;$&#123;body&#125;&quot;`;</span><br><span class="line">      options.data = &#123;</span><br><span class="line">        userName: userName,</span><br><span class="line">        newMessageCount: 1</span><br><span class="line">      &#125;;</span><br><span class="line">      notificationTitle = `New Message from $&#123;userName&#125;`;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    return self.registration.showNotification(</span><br><span class="line">      notificationTitle,</span><br><span class="line">      options</span><br><span class="line">    );</span><br><span class="line">  &#125;);</span><br><span class="line">  return promiseChain;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码模拟多个用户发送消息，将相同用户名发送的消息进行合并，代码先查找相同用户发送的未关闭的通知，如果找到修改通知的title和body，并调用<code>currentNotification.close()</code>，如果未找到，则直接显示当前推送消息。</p>
+<h2 id="处理特殊场景"><a href="#处理特殊场景" class="headerlink" title="处理特殊场景"></a>处理特殊场景</h2><p>某些时候，当用户正在浏览网站时，可以不显示通知框，或者将该推送消息发送至页面并更新页面，例如聊天类应用。当用户正在聊天时，新消息抵达时直接更新聊天界面即可，无需显示推送消息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function isClientFocused() &#123;</span><br><span class="line">  return clients</span><br><span class="line">    .matchAll(&#123;</span><br><span class="line">      type: &#x27;window&#x27;,</span><br><span class="line">      includeUncontrolled: true,</span><br><span class="line">    &#125;)</span><br><span class="line">    .then((windowClients) =&gt; &#123;</span><br><span class="line">      let clientIsFocused = false;</span><br><span class="line"></span><br><span class="line">      for (let i = 0; i &lt; windowClients.length; i++) &#123;</span><br><span class="line">        const windowClient = windowClients[i];</span><br><span class="line">        if (windowClient.focused) &#123;</span><br><span class="line">          clientIsFocused = true;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return clientIsFocused;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码通过<code>windowClient.focused</code>判断当前是否有同域窗口正在打开。<br>然后在<code>push</code>回调函数中调用该函数来决定是否显示通知。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const promiseChain = isClientFocused().then((clientIsFocused) =&gt; &#123;</span><br><span class="line">  if (clientIsFocused) &#123;</span><br><span class="line">    console.log(&quot;Don&#x27;t need to show a notification.&quot;);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // Client isn&#x27;t focused, we need to show a notification.</span><br><span class="line">  return self.registration.showNotification(&#x27;Had to show a notification.&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">event.waitUntil(promiseChain);</span><br></pre></td></tr></table></figure>
+<p>或者通过在service worker中调用<code>windowClient.postMessage</code>将消息通过postMessage发送给主线程。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const promiseChain = isClientFocused().then((clientIsFocused) =&gt; &#123;</span><br><span class="line">  if (clientIsFocused) &#123;</span><br><span class="line">    windowClients.forEach((windowClient) =&gt; &#123;</span><br><span class="line">      windowClient.postMessage(&#123;</span><br><span class="line">        message: &#x27;Received a push message.&#x27;,</span><br><span class="line">        time: new Date().toString(),</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return self.registration.showNotification(&#x27;No focused windows&#x27;, &#123;</span><br><span class="line">      body: &#x27;Had to show a notification instead of messaging each page.&#x27;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">event.waitUntil(promiseChain);</span><br></pre></td></tr></table></figure>
+<p>在index.js中可以接受service worker线程向主线程发送的消息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">navigator.serviceWorker.addEventListener(&#x27;message&#x27;, function (event) &#123;</span><br><span class="line">  console.log(&#x27;Received a message from service worker: &#x27;, event.data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上demo的完整代码<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/push-notification-demo">点击这里</a>。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/notifications/">https://web.dev/notifications/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/Kubernetes入门教程（一）.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/Web-Push-Notification教程（一）.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="推送通知是如何工作的【译】"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>推送通知是如何工作的【译】 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('推送通知是如何工作的【译】/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>推送通知是如何工作的【译】</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-07-18
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/service-worker/">#service worker</a> <a href="/tags/notification/">#notification</a> <a href="/tags/subscription/">#subscription</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/翻译/">翻译</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该文章翻译自web.dev的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/notifications/">Notifications</a>系列文章，本篇文章原文链接<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/push-notifications-how-push-works/#who-and-what-is-the-push-service">点击这里</a></p>
+<p>在我们讨论推送的API之前，让我们从头到尾完整的回顾一下推送的流程。然后我们再来讨论每一步的细节，你会明白为什么这如此重要。<br>实现推送需要以下三个关键步骤：</p>
+<ol>
+<li>添加客户端逻辑来将用户订阅到推送服务</li>
+<li>在你的网站服务端调用API触发消息推送给客户端</li>
+<li>当推送的消息到达时，会触发service worker的push事件，并在回调函数中展示消息通知</li>
+</ol>
+<p>我们来讨论下以上每个步骤的完整细节</p>
+<h2 id="1-客户端"><a href="#1-客户端" class="headerlink" title="1. 客户端"></a>1. 客户端</h2><p>第一步是用户订阅消息推送，该步骤需要完成两件事，第一件是获得用户授权，第二件是获得浏览器返回的<code>PushSubscription</code>对象，该对象包含了要发送消息给用户的所有信息，某种程度上，你可以将它视作用户设备的ID。以上步骤使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Push_API">Push API</a>来完成。</p>
+<p>但是在用户订阅之前，你需要提前生成一对“应用服务器密钥”（application server keys），这个后面也会讲到。</p>
+<p>应用服务器密钥就是我们之前提到的<code>VAPID</code>密钥，在服务器上它是唯一的。它告诉推送服务哪个网站的用户订阅了消息推送，并确保将消息推送给该网站的用户。<br>用户订阅之后，你会得到<code>PushSubscription</code>对象，你需要将该对象发送给你的服务端，在服务端，你需要将该对象存储在数据库中，因为后续向用户发送消息时需要用到该对象。<br><img src="/%E7%BF%BB%E8%AF%91/%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E3%80%90%E8%AF%91%E3%80%91/subscription.jpg" alt="subscription.jpg"></p>
+<h2 id="2-推送消息"><a href="#2-推送消息" class="headerlink" title="2. 推送消息"></a>2. 推送消息</h2><p>当你打算向用户推送消息时，你需要向推送服务发送API请求，这个API请求包括你要发送的数据、接收消息的客户端信息以及其他有关消息推送的必备字段。该步骤通常在你的服务端完成。<br>你可能会有一些疑问：</p>
+<ul>
+<li>什么是推送服务？</li>
+<li>API的形式是什么，JSON,XML?</li>
+<li>API还可以做什么？</li>
+</ul>
+<h3 id="什么是推送服务"><a href="#什么是推送服务" class="headerlink" title="什么是推送服务"></a>什么是推送服务</h3><p>推送服务可以接收网络请求，然后验证请求，并将消息推送给正确的浏览器。如果浏览器是离线的，消息会被放入队列中，直到浏览器再次上线。<br>不同的浏览器使用不同的推送服务，开发者无法控制。但是所有的推送服务都必须遵守相同的API调用规则。这意味着你不需要关心谁是推送服务，你只需要确保你的API调用是合法的。<br>想要知道推送服务的的URL，你可以查看<code>PushSubscription</code>对象的<code>endpoint</code>字段值。下面是一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;endpoint&quot;: &quot;https://random-push-service.com/some-kind-of-unique-id-1234/v2/&quot;,</span><br><span class="line">  &quot;keys&quot;: &#123;</span><br><span class="line">    &quot;p256dh&quot;: &quot;BNcRdreALRFXTkOOUHK1EtK2wtaz5Ry4YfYCA_0QTpQtUbVlUls0VJXg7A8u-Ts1XbjhazAkj7I99e8QcYP7DkM=&quot;,</span><br><span class="line">    &quot;auth&quot;: &quot;tBHItJI5svbpez7KI4CCXg==&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中<strong>endpoint</strong>是[<a target="_blank" rel="noopener external nofollow noreferrer" href="https://random-push-service.com/some-kind-of-unique-id-1234/v2/]%EF%BC%8C%E6%8E%A8%E9%80%81%E6%9C%8D%E5%8A%A1%E6%98%AFrandom-push-service.com%EF%BC%8C%E2%80%9Csome-kind-of-unique-id-1234%E2%80%9D%E8%A1%A8%E6%98%8E%E6%AF%8F%E4%B8%AA%E7%94%A8%E6%88%B7%E9%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E5%94%AF%E4%B8%80%E7%9A%84endpoint%EF%BC%8C%E9%9A%8F%E7%9D%80%E5%AF%B9%E6%8E%A8%E9%80%81%E6%9B%B4%E5%8A%A0%E6%B7%B1%E5%85%A5%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%8C%E4%BD%A0%E4%BC%9A%E6%B3%A8%E6%84%8F%E5%88%B0endpoint%E7%9A%84%E8%A7%84%E5%BE%8B%E3%80%82">https://random-push-service.com/some-kind-of-unique-id-1234/v2/]，推送服务是random-push-service.com，“some-kind-of-unique-id-1234”表明每个用户都有一个唯一的endpoint，随着对推送更加深入的理解，你会注意到endpoint的规律。</a></p>
+<p>对象的中keys字段将在后面解释。</p>
+<h3 id="API的形式是什么，JSON-XML"><a href="#API的形式是什么，JSON-XML" class="headerlink" title="API的形式是什么，JSON,XML?"></a>API的形式是什么，JSON,XML?</h3><p>前面提到，所有推送服务的API调用方式都是相同的，这个API就是<a target="_blank" rel="noopener external nofollow noreferrer" href="https://datatracker.ietf.org/doc/html/rfc8030">Web Push Protocol</a>，它是一份IETF标准，定义了你应该如何向推送服务发送请求。例如API调用要求设定特殊的请求头，数据必须以字节流的形式发送。后面我们会看到工具库可以帮我们完成API调用，以及我们自己应该如何实现它。</p>
+<h3 id="API可以做什么"><a href="#API可以做什么" class="headerlink" title="API可以做什么"></a>API可以做什么</h3><p>API可以允许你向用户发送消息，或者提供一些特殊的指令。<br>消息推送的数据必须是经过加密的，这是为了阻止推送服务查看你发送给用户的信息。任意的浏览器厂商都可以决定自己的推送服务，即便这个推送服务没有那么安全。<br>当你触发一个消息推送，推送服务将会收到API调用，并将消息放入队列，用户的设备处于在线状态时，推送服务会将该消息分发给客户端。API还有一些特殊的指令来指定消息队列的形式。如：</p>
+<ul>
+<li>消息的生命周期，他可以指定队列中的消息在多久之后会被删除并不再分发该消息。</li>
+<li>消息的紧急程度，发送更高优先级的消息。</li>
+<li>消息的主题，他可以将有相同主题的未发送的消息替换为新的消息<br><img src="/%E7%BF%BB%E8%AF%91/%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E3%80%90%E8%AF%91%E3%80%91/request.jpg" alt="request.jpg"></li>
+</ul>
+<h2 id="3-用户设备的推送事件"><a href="#3-用户设备的推送事件" class="headerlink" title="3. 用户设备的推送事件"></a>3. 用户设备的推送事件</h2><p>一旦我们发送消息推送的请求给推送服务，推送服务将会收到你的消息，直到以下事件发生：</p>
+<ol>
+<li>用户设别恢复在线，消息被正确分发给客户端。</li>
+<li>消息过期，推送服务将会移除该消息，并不再分发该消息。</li>
+</ol>
+<p>当推送服务将消息分发后，浏览器会解密收到的消息，并在service worker中触发<code>push</code>事件。</p>
+<p>我们知道service worker是一段特殊的JS代码，即使在页面关闭时，该代码也会被执行，甚至浏览器关闭时，也可以执行。并且service worker有自己的推送API，它只能在service worker中执行，在网页中是不可用的。<br>在service worker的push回调函数中，你可以执行任何后台任务，比如发送数据分析请求，离线页面缓存，显示通知等等。<br>以上就是消息推送的完整流程。</p>
+<p><img src="/%E7%BF%BB%E8%AF%91/%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E3%80%90%E8%AF%91%E3%80%91/event.jpg" alt="event.jpg"></p>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/翻译/用户订阅【译】.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/翻译/推送通知概览【译】.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="本地开发环境生成自签名证书，启用HTTPS"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>本地开发环境生成自签名证书，启用HTTPS - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Mac本地开发环境安装自签名HTTPS证书/undefined')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>本地开发环境生成自签名证书，启用HTTPS</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-12-10
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Mac/">#Mac</a> <a href="/tags/HTTPS/">#HTTPS</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/总结/">总结</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>今天一大早上班Chrome浏览器提示已经自动升级（Version 63）需要重启浏览器，重启之后发现本地的开发环境打开不，原因是新版的浏览器强制将http转换成https了，而我本地的开发环境没有启用https。解决方案有两种：</p>
+<ol>
+<li>将本地开发环境的域名（例如test.local）加入浏览的一个白名单，告诉浏览器该域名不需要强制启用https.</li>
+<li>在本地生成一个自签名证书，并启用https.</li>
+</ol>
+<p>第一种方式比较简单，在浏览器地址栏中输入chrome://net-internals/#hsts。在Delete domain 栏的输入框中输入要http访问的域名，然后点击delete地按钮，即可完成配置。然后你可以在Query domain栏中搜索刚才输入的域名，点击逗query地按钮后如果提示逗Not found即为成功。但是，我同事们用此方法都成功了，就我没有成功，无奈。。。遂研究第二种解决方案。</p>
+<p>对于第二种解决方案，网上找了几个中文教程，但是新版本的浏览器已经不再适用。最后还是在强大的Google的帮助下找到此篇英文博客.<a target="_blank" rel="noopener external nofollow noreferrer" href="https://deliciousbrains.com/https-locally-without-browser-privacy-errors/">https://deliciousbrains.com/https-locally-without-browser-privacy-errors/</a> 有兴趣的可以阅读原文，本文也并没有逐字翻译原文。教程也只适用于Mac系统，Windows系统还没有研究。</p>
+<p>本教程假设本地域名为<code>test.local</code></p>
+<h2 id="1-生成自签名证书"><a href="#1-生成自签名证书" class="headerlink" title="1. 生成自签名证书"></a>1. 生成自签名证书</h2><ul>
+<li>创建生成证书所需的配置文件</li>
+</ul>
+<p>创建生成证书所需的配置文件，文件内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[ req ]</span><br><span class="line"></span><br><span class="line">default_bits        = 2048</span><br><span class="line">default_keyfile     = server-key.pem</span><br><span class="line">distinguished_name  = subject</span><br><span class="line">req_extensions      = req_ext</span><br><span class="line">x509_extensions     = x509_ext</span><br><span class="line">string_mask         = utf8only</span><br><span class="line"></span><br><span class="line">[ subject ]</span><br><span class="line"></span><br><span class="line">countryName                 = Country Name (2 letter code)</span><br><span class="line">countryName_default         = US</span><br><span class="line"></span><br><span class="line">stateOrProvinceName         = State or Province Name (full name)</span><br><span class="line">stateOrProvinceName_default = NY</span><br><span class="line"></span><br><span class="line">localityName                = Locality Name (eg, city)</span><br><span class="line">localityName_default        = New York</span><br><span class="line"></span><br><span class="line">organizationName            = Organization Name (eg, company)</span><br><span class="line">organizationName_default    = Example, LLC</span><br><span class="line"></span><br><span class="line">commonName                  = Common Name (e.g. server FQDN or YOUR name)</span><br><span class="line">commonName_default          = Example Company</span><br><span class="line"></span><br><span class="line">emailAddress                = Email Address</span><br><span class="line">emailAddress_default        = test@example.com</span><br><span class="line"></span><br><span class="line">[ x509_ext ]</span><br><span class="line"></span><br><span class="line">subjectKeyIdentifier   = hash</span><br><span class="line">authorityKeyIdentifier = keyid,issuer</span><br><span class="line"></span><br><span class="line">basicConstraints       = CA:FALSE</span><br><span class="line">keyUsage               = digitalSignature, keyEncipherment</span><br><span class="line">subjectAltName         = @alternate_names</span><br><span class="line">nsComment              = &quot;OpenSSL Generated Certificate&quot;</span><br><span class="line"></span><br><span class="line">[ req_ext ]</span><br><span class="line"></span><br><span class="line">subjectKeyIdentifier = hash</span><br><span class="line"></span><br><span class="line">basicConstraints     = CA:FALSE</span><br><span class="line">keyUsage             = digitalSignature, keyEncipherment</span><br><span class="line">subjectAltName       = @alternate_names</span><br><span class="line">nsComment            = &quot;OpenSSL Generated Certificate&quot;</span><br><span class="line"></span><br><span class="line">[ alternate_names ]</span><br><span class="line"></span><br><span class="line">DNS.1       = test.local</span><br></pre></td></tr></table></figure>
+<p>注意将文件的最后一行的改成自己的域名<code>DNS.1=test.local</code>。将文件保存并命名为<code>test.local.conf</code>。</p>
+<ul>
+<li>生成证书，在命令行中运行：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -config test.local.conf -new -sha256 -newkey rsa:2048 -nodes -keyout test.local.key -x509 -days 365 -out test.local.crt</span><br></pre></td></tr></table></figure>
+生成证书时，会有一系列问题需要填写，其他的问题都可以敲回车直接跳过，只将common name填写成你的域名，例如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Common Name (e.g. server FQDN or YOUR name) []:test.local</span><br></pre></td></tr></table></figure>
+命令运行成功会在当前目录下生成两个文件：<code>test.local.crt</code>, <code>test.local.key</code></li>
+</ul>
+<h2 id="2-Nginx配置"><a href="#2-Nginx配置" class="headerlink" title="2. Nginx配置"></a>2. Nginx配置</h2><p>关键的Nginx配置如下，其他部分省略：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen 443 ssl http2;</span><br><span class="line">    server_name test.local;</span><br><span class="line">    </span><br><span class="line">    ssl on</span><br><span class="line">    ssl_certificate     /etc/nginx/ssl/test.local.crt;</span><br><span class="line">    ssl_certificate_key /etc/nginx/ssl/test.local.key;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-本机配置"><a href="#3-本机配置" class="headerlink" title="3. 本机配置"></a>3. 本机配置</h2><p>重启nginx后，打开Chrome浏览器输入<a target="_blank" rel="noopener external nofollow noreferrer" href="https://test.local,此时浏览器应该会提示your/">https://test.local，此时浏览器应该会提示Your</a> connection is not private。打开浏览器调试工具，选择security选项卡，显示如下：</p>
+<p><img src="/%E6%80%BB%E7%BB%93/Mac%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E8%87%AA%E7%AD%BE%E5%90%8DHTTPS%E8%AF%81%E4%B9%A6/image1.png" alt="image"></p>
+<p>将红框中的证书图标拖到桌面，会在桌面生成一个以cer为后缀的文件，双击文件，打开Keychain Access（需要输入密码）<br><img src="/%E6%80%BB%E7%BB%93/Mac%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E8%87%AA%E7%AD%BE%E5%90%8DHTTPS%E8%AF%81%E4%B9%A6/image2.png" alt="image"></p>
+<p>之后会打开一个列表：<br><img src="/%E6%80%BB%E7%BB%93/Mac%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E8%87%AA%E7%AD%BE%E5%90%8DHTTPS%E8%AF%81%E4%B9%A6/image3.png" alt="image"></p>
+<p>找到test.local的证书并双击，打开如下对话框：<br><img src="/%E6%80%BB%E7%BB%93/Mac%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E8%87%AA%E7%AD%BE%E5%90%8DHTTPS%E8%AF%81%E4%B9%A6/image4.png" alt="image"></p>
+<p>点击红框中的下拉菜单，将其设置为Always trust，然后关闭对话框（会再次要求输入密码确认）。完成之后，刷新浏览器页面即可正常打开，并且显示已经正常启用https。</p>
+<p>参考文章：</p>
+<ol>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://deliciousbrains.com/https-locally-without-browser-privacy-errors/">https://deliciousbrains.com/https-locally-without-browser-privacy-errors/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhidao.baidu.com/question/1435378862579313259.html">https://zhidao.baidu.com/question/1435378862579313259.html</a></li>
+</ol>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/总结/Laravel测试数据库的另一种替代方案-SQLite.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/总结/很少有教程会教你的React最佳实践.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

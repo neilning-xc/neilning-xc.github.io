@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="从零实现一个大模型（一）"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>从零实现一个大模型（一） - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('从零实现一个大模型（一）/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>从零实现一个大模型（一）</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2025-07-10
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/LLM/">#LLM</a> <a href="/tags/Python/">#Python</a> <a href="/tags/BPE/">#BPE</a> <a href="/tags/GPT/">#GPT</a> <a href="/tags/Transformer/">#Transformer</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>本文从零实现一个大模型，用于帮助理解大模型的基本原理，本文是一个读书笔记，内容来自于<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/rasbt/LLMs-from-scratch">Build a Large Language Model (From Scratch)</a></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>本系列包含以以下主题，当前在主题一</p>
+<h3 id="1-文本处理"><a href="#1-文本处理" class="headerlink" title="1. 文本处理"></a>1. 文本处理</h3><h3 id="2-注意力机制"><a href="#2-注意力机制" class="headerlink" title="2. 注意力机制"></a>2. 注意力机制</h3><h3 id="3-开发一个Transform架构的大模型"><a href="#3-开发一个Transform架构的大模型" class="headerlink" title="3. 开发一个Transform架构的大模型"></a>3. 开发一个Transform架构的大模型</h3><h3 id="4-使用无标记数据预训练模型"><a href="#4-使用无标记数据预训练模型" class="headerlink" title="4. 使用无标记数据预训练模型"></a>4. 使用无标记数据预训练模型</h3><h3 id="5-分类微调"><a href="#5-分类微调" class="headerlink" title="5. 分类微调"></a>5. 分类微调</h3><h3 id="6-指令微调"><a href="#6-指令微调" class="headerlink" title="6. 指令微调"></a>6. 指令微调</h3><h2 id="处理文本"><a href="#处理文本" class="headerlink" title="处理文本"></a>处理文本</h2><p>LLM模型首先要处理文本，处理文本的目标是将文本转换成高维度的嵌入向量，具有相关性的文本的距离是相近的。高维度坐标无法掩饰，这里使用二维的坐标做演示，具有相似属性的文本在二维的平面坐标系里考的更近。</p>
+<p><img src="/%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89/03.webp" alt="03.webp"></p>
+<p>但是二维的向量所能包含的信息太少了，LLM通常使用上千维度的向量，这也是LLM消耗硬件资源的原因之一。</p>
+<h3 id="分词器-Tokenizer"><a href="#分词器-Tokenizer" class="headerlink" title="分词器 Tokenizer"></a>分词器 Tokenizer</h3><p>在处理文本之前需要将，需要使用分词器将文本分割成更小的单元，比如英文句子中的单词和标点符号</p>
+<p><img src="/%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89/04.webp" alt="04.webp"></p>
+<p>以下代码将一篇txt格式的短篇小说划分成单词和标点符号，我们称之为token。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleTokenizerV1</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, vocab</span>):</span><br><span class="line">        self.str_to_int = vocab</span><br><span class="line">        self.int_to_str = &#123;i:s <span class="keyword">for</span> s,i <span class="keyword">in</span> vocab.items()&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encode</span>(<span class="params">self, text</span>):</span><br><span class="line">        preprocessed = re.split(<span class="string">r&#x27;([,.:;?_!&quot;()\&#x27;]|--|\s)&#x27;</span>, text)</span><br><span class="line">                                </span><br><span class="line">        preprocessed = [</span><br><span class="line">            item.strip() <span class="keyword">for</span> item <span class="keyword">in</span> preprocessed <span class="keyword">if</span> item.strip()</span><br><span class="line">        ]</span><br><span class="line">        ids = [self.str_to_int[s] <span class="keyword">for</span> s <span class="keyword">in</span> preprocessed]</span><br><span class="line">        <span class="keyword">return</span> ids</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decode</span>(<span class="params">self, ids</span>):</span><br><span class="line">        text = <span class="string">&quot; &quot;</span>.join([self.int_to_str[i] <span class="keyword">for</span> i <span class="keyword">in</span> ids])</span><br><span class="line">        <span class="comment"># 使用空格分割</span></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;\s+([,.?!&quot;()\&#x27;])&#x27;</span>, <span class="string">r&#x27;\1&#x27;</span>, text)</span><br><span class="line">        <span class="keyword">return</span> text</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;the-verdict.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    raw_text = f.read() </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Total number of character:&quot;</span>, <span class="built_in">len</span>(raw_text))</span><br><span class="line"><span class="built_in">print</span>(raw_text[:<span class="number">99</span>])</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<pre><code>Total number of character: 20479
+I HAD always thought Jack Gisburn rather a cheap genius--though a good fellow enough--so it was no 
+</code></pre>
+<p>将token去重后组成一个词库vocab，词库中的每个元素都有一个唯一个ID，称之为token ID</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">preprocessed = re.split(<span class="string">r&#x27;([,.:;?_!&quot;()\&#x27;]|--|\s)&#x27;</span>, raw_text)</span><br><span class="line">preprocessed = [item.strip() <span class="keyword">for</span> item <span class="keyword">in</span> preprocessed <span class="keyword">if</span> item.strip()]</span><br><span class="line"><span class="comment"># print(preprocessed[:30])</span></span><br><span class="line">all_words = <span class="built_in">sorted</span>(<span class="built_in">set</span>(preprocessed))</span><br><span class="line">vocab_size = <span class="built_in">len</span>(all_words)</span><br><span class="line"><span class="built_in">print</span>(vocab_size)</span><br><span class="line">vocab = &#123;token:integer <span class="keyword">for</span> integer,token <span class="keyword">in</span> <span class="built_in">enumerate</span>(all_words)&#125;  </span><br></pre></td></tr></table></figure>
+
+<pre><code>1130
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, item <span class="keyword">in</span> <span class="built_in">enumerate</span>(vocab.items()):</span><br><span class="line">    <span class="built_in">print</span>(item)</span><br><span class="line">    <span class="keyword">if</span> i &gt;= <span class="number">50</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>(&#39;!&#39;, 0)
+(&#39;&quot;&#39;, 1)
+(&quot;&#39;&quot;, 2)
+(&#39;(&#39;, 3)
+(&#39;)&#39;, 4)
+(&#39;,&#39;, 5)
+(&#39;--&#39;, 6)
+(&#39;.&#39;, 7)
+(&#39;:&#39;, 8)
+(&#39;;&#39;, 9)
+(&#39;?&#39;, 10)
+(&#39;A&#39;, 11)
+(&#39;Ah&#39;, 12)
+(&#39;Among&#39;, 13)
+(&#39;And&#39;, 14)
+(&#39;Are&#39;, 15)
+(&#39;Arrt&#39;, 16)
+(&#39;As&#39;, 17)
+(&#39;At&#39;, 18)
+(&#39;Be&#39;, 19)
+(&#39;Begin&#39;, 20)
+(&#39;Burlington&#39;, 21)
+(&#39;But&#39;, 22)
+(&#39;By&#39;, 23)
+(&#39;Carlo&#39;, 24)
+(&#39;Chicago&#39;, 25)
+(&#39;Claude&#39;, 26)
+(&#39;Come&#39;, 27)
+(&#39;Croft&#39;, 28)
+(&#39;Destroyed&#39;, 29)
+(&#39;Devonshire&#39;, 30)
+(&#39;Don&#39;, 31)
+(&#39;Dubarry&#39;, 32)
+(&#39;Emperors&#39;, 33)
+(&#39;Florence&#39;, 34)
+(&#39;For&#39;, 35)
+(&#39;Gallery&#39;, 36)
+(&#39;Gideon&#39;, 37)
+(&#39;Gisburn&#39;, 38)
+(&#39;Gisburns&#39;, 39)
+(&#39;Grafton&#39;, 40)
+(&#39;Greek&#39;, 41)
+(&#39;Grindle&#39;, 42)
+(&#39;Grindles&#39;, 43)
+(&#39;HAD&#39;, 44)
+(&#39;Had&#39;, 45)
+(&#39;Hang&#39;, 46)
+(&#39;Has&#39;, 47)
+(&#39;He&#39;, 48)
+(&#39;Her&#39;, 49)
+(&#39;Hermia&#39;, 50)
+</code></pre>
+<p>使用上面的词库，将下面的文本转换为token ID：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tokenizer = SimpleTokenizerV1(vocab)</span><br><span class="line"></span><br><span class="line">text = <span class="string">&quot;&quot;&quot;&quot;It&#x27;s the last he painted, you know,&quot; </span></span><br><span class="line"><span class="string">           Mrs. Gisburn said with pardonable pride.&quot;&quot;&quot;</span></span><br><span class="line">ids = tokenizer.encode(text)</span><br><span class="line"><span class="built_in">print</span>(ids)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 56, 2, 850, 988, 602, 533, 746, 5, 1126, 596, 5, 1, 67, 7, 38, 851, 1108, 754, 793, 7]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenizer.decode(ids) <span class="comment"># 将token ID转化为文本</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&#39;&quot; It\&#39; s the last he painted, you know,&quot; Mrs. Gisburn said with pardonable pride.&#39;
+</code></pre>
+<p>使用上面的方法无法处理词库里没有的单词，所以我们使用占位符来处理不认识的单词，修改上面的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleTokenizerV2</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, vocab</span>):</span><br><span class="line">        self.str_to_int = vocab</span><br><span class="line">        self.int_to_str = &#123; i:s <span class="keyword">for</span> s,i <span class="keyword">in</span> vocab.items()&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encode</span>(<span class="params">self, text</span>):</span><br><span class="line">        preprocessed = re.split(<span class="string">r&#x27;([,.?_!&quot;()\&#x27;]|--|\s)&#x27;</span>, text)</span><br><span class="line">        preprocessed = [item.strip() <span class="keyword">for</span> item <span class="keyword">in</span> preprocessed <span class="keyword">if</span> item.strip()]</span><br><span class="line">        preprocessed = [item <span class="keyword">if</span> item <span class="keyword">in</span> self.str_to_int <span class="keyword">else</span> <span class="string">&quot;&lt;|unk|&gt;&quot;</span> <span class="keyword">for</span> item <span class="keyword">in</span> preprocessed]</span><br><span class="line"></span><br><span class="line">        ids = [self.str_to_int[s] <span class="keyword">for</span> s <span class="keyword">in</span> preprocessed]</span><br><span class="line">        <span class="keyword">return</span> ids</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decode</span>(<span class="params">self, ids</span>):</span><br><span class="line">        text = <span class="string">&quot; &quot;</span>.join([self.int_to_str[i] <span class="keyword">for</span> i <span class="keyword">in</span> ids])</span><br><span class="line"></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;\s+([,.?!&quot;()\&#x27;])&#x27;</span>, <span class="string">r&#x27;\1&#x27;</span>, text)                    <span class="comment">#B</span></span><br><span class="line">        <span class="keyword">return</span> text</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">all_tokens = <span class="built_in">sorted</span>(<span class="built_in">list</span>(<span class="built_in">set</span>(preprocessed)))</span><br><span class="line">all_tokens.extend([<span class="string">&quot;&lt;|endoftext|&gt;&quot;</span>, <span class="string">&quot;&lt;|unk|&gt;&quot;</span>])</span><br><span class="line">vocab = &#123;token:integer <span class="keyword">for</span> integer,token <span class="keyword">in</span> <span class="built_in">enumerate</span>(all_tokens)&#125;</span><br><span class="line"><span class="built_in">len</span>(vocab.items())</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1132
+</code></pre>
+<p>可以看到词库拓展了两个新的token，分别为<code>&lt;|endoftext|&gt;</code>和<code>&lt;|unk|&gt;</code>，词库中不存在的token会被转化为<code>&lt;|unk|&gt;</code>，token ID是1131</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, item <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">list</span>(vocab.items())[-<span class="number">5</span>:]):</span><br><span class="line">    <span class="built_in">print</span>(item)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(&#39;younger&#39;, 1127)
+(&#39;your&#39;, 1128)
+(&#39;yourself&#39;, 1129)
+(&#39;&lt;|endoftext|&gt;&#39;, 1130)
+(&#39;&lt;|unk|&gt;&#39;, 1131)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tokenizer = SimpleTokenizerV2(vocab)</span><br><span class="line"></span><br><span class="line">text1 = <span class="string">&quot;Hello, do you like tea?&quot;</span></span><br><span class="line">text2 = <span class="string">&quot;In the sunlit terraces of the palace.&quot;</span></span><br><span class="line"></span><br><span class="line">text = <span class="string">&quot; &lt;|endoftext|&gt; &quot;</span>.join((text1, text2))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Hello, do you like tea? &lt;|endoftext|&gt; In the sunlit terraces of the palace.
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenizer.encode(text)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[1131, 5, 355, 1126, 628, 975, 10, 1130, 55, 988, 956, 984, 722, 988, 1131, 7]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenizer.decode(tokenizer.encode(text))</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&#39;&lt;|unk|&gt;, do you like tea? &lt;|endoftext|&gt; In the sunlit terraces of the &lt;|unk|&gt;.&#39;
+</code></pre>
+<h2 id="BPE字节对编码"><a href="#BPE字节对编码" class="headerlink" title="BPE字节对编码"></a>BPE字节对编码</h2><p>上面的例子为了演示，直接采用了比较简单的策略进行分词，实际过程中并不会采用这种方式，GPT2使用了字节对编码作为分词器（BytePair encoding，简称BPE），该分词器会将文本分割成更小的单元，如unfamiliarword别分割成[“unfam”, “iliar”, “word”] </p>
+<p>分词器的原理可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/openai/gpt-2/blob/master/src/encoder.py">参考这里</a>，本文使用了OpenAI使用Rust实现的开源库<code>tiktoken</code>，它有好的的性能。</p>
+<p>使用<code>tiktoken</code>处理同样的文本的结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tiktoken</span><br><span class="line">tokenizer = tiktoken.get_encoding(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">text = (</span><br><span class="line">    <span class="string">&quot;Hello, do you like tea? &lt;|endoftext|&gt; In the sunlit terraces&quot;</span></span><br><span class="line">     <span class="string">&quot;of someunknownPlace.&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">integers = tokenizer.encode(text, allowed_special=&#123;<span class="string">&quot;&lt;|endoftext|&gt;&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(integers)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[15496, 11, 466, 345, 588, 8887, 30, 220, 50256, 554, 262, 4252, 18250, 8812, 2114, 1659, 617, 34680, 27271, 13]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">strings = tokenizer.decode(integers)</span><br><span class="line"><span class="built_in">print</span>(strings)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Hello, do you like tea? &lt;|endoftext|&gt; In the sunlit terracesof someunknownPlace.
+</code></pre>
+<h3 id="使用滑动窗口处理数据样本"><a href="#使用滑动窗口处理数据样本" class="headerlink" title="使用滑动窗口处理数据样本"></a>使用滑动窗口处理数据样本</h3><p>LLM每次生成一个词，所以在训练时我们需要预处理文本，处理方式如下图，红色的是目标值，蓝色的试输入值。这种方法称为滑动窗口。</p>
+<p><img src="/%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89/12.webp" alt="12.webp"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;the-verdict.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    raw_text = f.read()</span><br><span class="line"></span><br><span class="line">enc_text = tokenizer.encode(raw_text)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(enc_text))</span><br></pre></td></tr></table></figure>
+
+<pre><code>5145
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">enc_sample = enc_text[<span class="number">50</span>:]</span><br><span class="line">context_size = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">x = enc_sample[:context_size] <span class="comment"># 输入值</span></span><br><span class="line">y = enc_sample[<span class="number">1</span>:context_size+<span class="number">1</span>] <span class="comment"># 使用滑动窗口的策略</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;x: <span class="subst">&#123;x&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;y:      <span class="subst">&#123;y&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>x: [290, 4920, 2241, 287]
+y:      [4920, 2241, 287, 257]
+</code></pre>
+<p>上面的代码如下图所示，蓝色的是输入，红色的目标</p>
+<p><img src="/%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89/13.webp" alt="13.webp"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, context_size+<span class="number">1</span>):</span><br><span class="line">    context = enc_sample[:i]</span><br><span class="line">    desired = enc_sample[i]</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(context, <span class="string">&quot;----&gt;&quot;</span>, desired)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[290] ----&gt; 4920
+[290, 4920] ----&gt; 2241
+[290, 4920, 2241] ----&gt; 287
+[290, 4920, 2241, 287] ----&gt; 257
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, context_size+<span class="number">1</span>):</span><br><span class="line">    context = enc_sample[:i]</span><br><span class="line">    desired = enc_sample[i]</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(tokenizer.decode(context), <span class="string">&quot;----&gt;&quot;</span>, tokenizer.decode([desired]))</span><br></pre></td></tr></table></figure>
+
+<pre><code> and ----&gt;  established
+ and established ----&gt;  himself
+ and established himself ----&gt;  in
+ and established himself in ----&gt;  a
+</code></pre>
+<p>接下来构建一个类来处理训练数据集，先使用分词器处理输入的文本数据，将他们转换为token id，然后使用滑动窗口的策略将数据输入数据input_ids和目标数据target_ids。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GPTDatasetV1</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, txt, tokenizer, max_length, stride</span>):</span><br><span class="line">        self.input_ids = []</span><br><span class="line">        self.target_ids = []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 分词器处理文本</span></span><br><span class="line">        token_ids = tokenizer.encode(txt, allowed_special=&#123;<span class="string">&quot;&lt;|endoftext|&gt;&quot;</span>&#125;)</span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">len</span>(token_ids) &gt; max_length, <span class="string">&quot;Number of tokenized inputs must at least be equal to max_length+1&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 使用滑动窗口将数据样本分成两部分：输入值和目标值</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(token_ids) - max_length, stride):</span><br><span class="line">            input_chunk = token_ids[i:i + max_length]</span><br><span class="line">            target_chunk = token_ids[i + <span class="number">1</span>: i + max_length + <span class="number">1</span>]</span><br><span class="line">            self.input_ids.append(torch.tensor(input_chunk))</span><br><span class="line">            self.target_ids.append(torch.tensor(target_chunk))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.input_ids)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, idx</span>):</span><br><span class="line">        <span class="keyword">return</span> self.input_ids[idx], self.target_ids[idx]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_dataloader_v1</span>(<span class="params">txt, batch_size=<span class="number">4</span>, max_length=<span class="number">256</span>, </span></span><br><span class="line"><span class="params">                         stride=<span class="number">128</span>, shuffle=<span class="literal">True</span>, drop_last=<span class="literal">True</span>,</span></span><br><span class="line"><span class="params">                         num_workers=<span class="number">0</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化分词器</span></span><br><span class="line">    tokenizer = tiktoken.get_encoding(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create dataset</span></span><br><span class="line">    dataset = GPTDatasetV1(txt, tokenizer, max_length, stride)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create dataloader</span></span><br><span class="line">    dataloader = DataLoader(</span><br><span class="line">        dataset,</span><br><span class="line">        batch_size=batch_size,</span><br><span class="line">        shuffle=shuffle,</span><br><span class="line">        drop_last=drop_last,</span><br><span class="line">        num_workers=num_workers</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dataloader</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;the-verdict.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    raw_text = f.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 滑动窗口的步长为1时</span></span><br><span class="line">dataloader = create_dataloader_v1(raw_text, batch_size=<span class="number">8</span>, max_length=<span class="number">4</span>, stride=<span class="number">1</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">data_iter = <span class="built_in">iter</span>(dataloader)</span><br><span class="line">inputs, targets = <span class="built_in">next</span>(data_iter)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Inputs:\n&quot;</span>, inputs)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nTargets:\n&quot;</span>, targets)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Inputs:
+ tensor([[   40,   367,  2885,  1464],
+        [  367,  2885,  1464,  1807],
+        [ 2885,  1464,  1807,  3619],
+        [ 1464,  1807,  3619,   402],
+        [ 1807,  3619,   402,   271],
+        [ 3619,   402,   271, 10899],
+        [  402,   271, 10899,  2138],
+        [  271, 10899,  2138,   257]])
+
+Targets:
+ tensor([[  367,  2885,  1464,  1807],
+        [ 2885,  1464,  1807,  3619],
+        [ 1464,  1807,  3619,   402],
+        [ 1807,  3619,   402,   271],
+        [ 3619,   402,   271, 10899],
+        [  402,   271, 10899,  2138],
+        [  271, 10899,  2138,   257],
+        [10899,  2138,   257,  7026]])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 滑动窗口的步长为4时</span></span><br><span class="line">dataloader = create_dataloader_v1(raw_text, batch_size=<span class="number">8</span>, max_length=<span class="number">4</span>, stride=<span class="number">4</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">data_iter = <span class="built_in">iter</span>(dataloader)</span><br><span class="line">inputs, targets = <span class="built_in">next</span>(data_iter)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Inputs:\n&quot;</span>, inputs)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nTargets:\n&quot;</span>, targets)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Inputs:
+ tensor([[   40,   367,  2885,  1464],
+        [ 1807,  3619,   402,   271],
+        [10899,  2138,   257,  7026],
+        [15632,   438,  2016,   257],
+        [  922,  5891,  1576,   438],
+        [  568,   340,   373,   645],
+        [ 1049,  5975,   284,   502],
+        [  284,  3285,   326,    11]])
+
+Targets:
+ tensor([[  367,  2885,  1464,  1807],
+        [ 3619,   402,   271, 10899],
+        [ 2138,   257,  7026, 15632],
+        [  438,  2016,   257,   922],
+        [ 5891,  1576,   438,   568],
+        [  340,   373,   645,  1049],
+        [ 5975,   284,   502,   284],
+        [ 3285,   326,    11,   287]])
+</code></pre>
+<p>上面步长stride为1和4的示意图如下：</p>
+<p><img src="/%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89/14.webp" alt="14.webp"></p>
+<h2 id="创建嵌入向量"><a href="#创建嵌入向量" class="headerlink" title="创建嵌入向量"></a>创建嵌入向量</h2><p>将数据分成输入值和目标值之后，接下来的步骤就是要token ID转化为向量以便LLM做后续处理，这个步骤称之为嵌入层</p>
+<p><img src="/%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89/15.webp" alt="15.webp"></p>
+<p>将token ID转化为向量可以使用torch.tensor方法，下面是一个示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">input_ids = torch.tensor([<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>])</span><br><span class="line">vocab_size = <span class="number">6</span> <span class="comment"># 定义词库的大小</span></span><br><span class="line">output_dim = <span class="number">3</span> <span class="comment"># 定义每个token ID输出的维度</span></span><br><span class="line"></span><br><span class="line">torch.manual_seed(<span class="number">123</span>)</span><br><span class="line">embedding_layer = torch.nn.Embedding(vocab_size, output_dim) <span class="comment">#嵌入层</span></span><br><span class="line"><span class="built_in">print</span>(embedding_layer.weight) <span class="comment"># 打印嵌入层</span></span><br><span class="line"><span class="built_in">print</span>(embedding_layer(input_ids)) <span class="comment"># 使用嵌入层处理输入数据</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Parameter containing:
+tensor([[ 0.3374, -0.1778, -0.1690],
+        [ 0.9178,  1.5810,  1.3010],
+        [ 1.2753, -0.2010, -0.1606],
+        [-0.4015,  0.9666, -1.1481],
+        [-1.1589,  0.3255, -0.6315],
+        [-2.8400, -0.7849, -1.4096]], requires_grad=True)
+tensor([[ 1.2753, -0.2010, -0.1606],
+        [-0.4015,  0.9666, -1.1481],
+        [-2.8400, -0.7849, -1.4096],
+        [ 0.9178,  1.5810,  1.3010]], grad_fn=&lt;EmbeddingBackward0&gt;)
+</code></pre>
+<p>可以看到嵌入层是二维向量，长度为6，每个元素都是一个三维的向量，使用嵌入层处理输入值后，是一个长度为4的二维向量，每个token ID都被转换为一个三维向量。</p>
+<p>上面将token ID转化成嵌入向量时，没有包含子词的位置信息，同一个单词在句子的不同位置所代表的含义可能是不同的，所以我们还需要把token ID的位置信息也加入到向量中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建嵌入层</span></span><br><span class="line">vocab_size = <span class="number">50257</span> <span class="comment"># BPE编码的词库长度微50257</span></span><br><span class="line">output_dim = <span class="number">256</span> <span class="comment"># 将向量转化为256维</span></span><br><span class="line">token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim) <span class="comment"># 创建token嵌入层</span></span><br><span class="line"></span><br><span class="line">max_length = <span class="number">4</span></span><br><span class="line">dataloader = create_dataloader_v1(</span><br><span class="line">    raw_text, batch_size=<span class="number">8</span>, max_length=max_length,</span><br><span class="line">    stride=max_length, shuffle=<span class="literal">False</span></span><br><span class="line">)</span><br><span class="line">data_iter = <span class="built_in">iter</span>(dataloader)</span><br><span class="line">inputs, targets = <span class="built_in">next</span>(data_iter)</span><br><span class="line">token_embeddings = token_embedding_layer(inputs)</span><br><span class="line"><span class="built_in">print</span>(token_embeddings.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>torch.Size([8, 4, 256])
+</code></pre>
+<p>以上结果表明inputs有8个批次的数据，每个批次有4个token，每个token被转换成一个256纬度的向量</p>
+<p>接下来获取位置向量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 处理位置向量</span></span><br><span class="line">context_length = max_length</span><br><span class="line">pos_embedding_layer = torch.nn.Embedding(context_length, output_dim) <span class="comment"># 创建位置嵌入层</span></span><br><span class="line">pos_embeddings = pos_embedding_layer(torch.arange(max_length)) <span class="comment"># 生成和位置相关的嵌入向量</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(pos_embeddings.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>torch.Size([4, 256])
+</code></pre>
+<p>为了简单起见，这里简单的将toke ID的向量和位置向量相加得到最终的输入向量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">input_embeddings = token_embeddings + pos_embeddings</span><br><span class="line"><span class="built_in">print</span>(input_embeddings.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>torch.Size([8, 4, 256])
+</code></pre>
+<p>这样我们就得到了嵌入向量，完整的代码如下，后面我们要使用这个类处理所有的输入数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tiktoken</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GPTDatasetV1</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, txt, tokenizer, max_length, stride</span>):</span><br><span class="line">        self.input_ids = []</span><br><span class="line">        self.target_ids = []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Tokenize the entire text</span></span><br><span class="line">        token_ids = tokenizer.encode(txt, allowed_special=&#123;<span class="string">&quot;&lt;|endoftext|&gt;&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Use a sliding window to chunk the book into overlapping sequences of max_length</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(token_ids) - max_length, stride):</span><br><span class="line">            input_chunk = token_ids[i:i + max_length]</span><br><span class="line">            target_chunk = token_ids[i + <span class="number">1</span>: i + max_length + <span class="number">1</span>]</span><br><span class="line">            self.input_ids.append(torch.tensor(input_chunk))</span><br><span class="line">            self.target_ids.append(torch.tensor(target_chunk))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.input_ids)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, idx</span>):</span><br><span class="line">        <span class="keyword">return</span> self.input_ids[idx], self.target_ids[idx]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_dataloader_v1</span>(<span class="params">txt, batch_size, max_length, stride,</span></span><br><span class="line"><span class="params">                         shuffle=<span class="literal">True</span>, drop_last=<span class="literal">True</span>, num_workers=<span class="number">0</span></span>):</span><br><span class="line">    <span class="comment"># Initialize the tokenizer</span></span><br><span class="line">    tokenizer = tiktoken.get_encoding(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create dataset</span></span><br><span class="line">    dataset = GPTDatasetV1(txt, tokenizer, max_length, stride)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create dataloader</span></span><br><span class="line">    dataloader = DataLoader(</span><br><span class="line">        dataset, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dataloader</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;the-verdict.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    raw_text = f.read()</span><br><span class="line"></span><br><span class="line">vocab_size = <span class="number">50257</span></span><br><span class="line">output_dim = <span class="number">256</span></span><br><span class="line">context_length = <span class="number">1024</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim)</span><br><span class="line">pos_embedding_layer = torch.nn.Embedding(context_length, output_dim)</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">8</span></span><br><span class="line">max_length = <span class="number">4</span></span><br><span class="line">dataloader = create_dataloader_v1(</span><br><span class="line">    raw_text,</span><br><span class="line">    batch_size=batch_size,</span><br><span class="line">    max_length=max_length,</span><br><span class="line">    stride=max_length</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> batch <span class="keyword">in</span> dataloader:</span><br><span class="line">    x, y = batch</span><br><span class="line"></span><br><span class="line">    token_embeddings = token_embedding_layer(x)</span><br><span class="line">    pos_embeddings = pos_embedding_layer(torch.arange(max_length))</span><br><span class="line"></span><br><span class="line">    input_embeddings = token_embeddings + pos_embeddings</span><br><span class="line"></span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(input_embeddings.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>torch.Size([8, 4, 256])
+</code></pre>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/rasbt/LLMs-from-scratch">Build a Large Language Model (From Scratch)</a></li>
+</ol>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next"><a href="/翻译/从零实现一个简单的test-runner.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

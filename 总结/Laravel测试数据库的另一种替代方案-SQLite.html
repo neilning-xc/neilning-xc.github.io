@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Laravel测试数据库的另一种替代方案-SQLite"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Laravel测试数据库的另一种替代方案-SQLite - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Laravel测试数据库的另一种替代方案-SQLite/undefined')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Laravel测试数据库的另一种替代方案-SQLite</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-07-13
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Laravel/">#Laravel</a> <a href="/tags/PHP/">#PHP</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/总结/">总结</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="Laravel测试数据库"><a href="#Laravel测试数据库" class="headerlink" title="Laravel测试数据库"></a>Laravel测试数据库</h3><p>在测试方面，<code>Laravel</code>内置使用<code>PHPUnit</code>提供了非常方便的解决方案。而对于数据库增删改查的测试，要解决的一个很重要的问题就是如何在测试完成之后，恢复数据库的原貌，例如要测试一个用户注册的方法，需要插入一条用户记录到数据库，但是测试完成之后，我们并不想让这条测试用例保存在数据库里。为了解决这个问题，<code>Laravel</code>提供了非常方便的方案：</p>
+<ul>
+<li>使用迁移：<code>DatabaseMigrations</code></li>
+<li>使用事务：<code>DatabaseTransactions</code></li>
+</ul>
+<p>参考资料：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://laravel.com/docs/5.3/database-testing#resetting-the-database-after-each-test">https://laravel.com/docs/5.3/database-testing#resetting-the-database-after-each-test</a></p>
+</blockquote>
+<h3 id="另外一种解决方案-SQLite的内存数据库-memory"><a href="#另外一种解决方案-SQLite的内存数据库-memory" class="headerlink" title="另外一种解决方案:SQLite的内存数据库:memory:"></a>另外一种解决方案:<code>SQLite</code>的内存数据库<code>:memory:</code></h3><p><code>Laravel</code>提供的两种解决方案，仍然对数据库进行了读写操作，某些时候你可能并不想这样（例如多人共享一个线上开发数据库），此时，还可以用一种更为优雅的方式：<code>SQLite</code>，逻辑其实也非常简单：就是在跑测试用例的时候，将数据库的连接替换为<code>SQLite</code>。</p>
+<h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><p>例如我们有以下测试类（该事例并不具有代表性，仅用于说明问题，并假设本机已经安装<code>SQLite</code>）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class HomePageTest extends TestCase &#123;</span><br><span class="line">    </span><br><span class="line">    public function testHomePage() </span><br><span class="line">    &#123;</span><br><span class="line">        // 创建一个测试用户，并保存</span><br><span class="line">        $user = factory(App\User::class)-&gt;create();</span><br><span class="line">        $this-&gt;actingAs($user)-&gt;visit(&#x27;/home&#x27;)-&gt;see(&#x27;Dashboard&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>首先在<code>Laravel</code>的数据库配置文件，即<code>config/database.php</code>的<code>connections</code>数组中添加一个新的数据库连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x27;sqlite&#x27; =&gt; [</span><br><span class="line">    &#x27;driver&#x27; =&gt; &#x27;sqlite&#x27;,</span><br><span class="line">    &#x27;database&#x27; =&gt; &#x27;:memory:&#x27;,</span><br><span class="line">    &#x27;prefix&#x27; =&gt; &#x27;&#x27;,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>这里一个非常重要的参数就是<code>&#39;database&#39; =&gt; &#39;:memory:&#39;</code>，<code>:memory:</code>数据库是<code>SQLite</code>中内置的一个内存数据库，每次运行测试用例的时候都会在内存中创建一个新的数据库，并在测试完成关闭数据库连接后，自动清除掉，具有良好的隔离性，又因为是在内存中的，所以速度也很快，这些特性对于测试非常方便，这也是我们选用<code>SQLite</code>数据库作为测试库的一个非常重要的原因。有关详细解释，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.sqlite.org/inmemorydb.html">点击这里</a>。</p>
+</li>
+<li><p>然后需要修改<code>PHPUnit</code>的配置文件，在<code>phpunit.xml</code>中，将数据库连接改为刚刚定义的<code>SQLite</code>连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;php&gt;</span><br><span class="line">    &lt;env name=&quot;APP_ENV&quot; value=&quot;testing&quot;/&gt;</span><br><span class="line">    &lt;env name=&quot;CACHE_DRIVER&quot; value=&quot;array&quot;/&gt;</span><br><span class="line">    &lt;env name=&quot;SESSION_DRIVER&quot; value=&quot;array&quot;/&gt;</span><br><span class="line">    &lt;env name=&quot;QUEUE_DRIVER&quot; value=&quot;sync&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 将数据库连接改为刚刚定义的SQLite连接 --&gt;</span><br><span class="line">    &lt;env name=&quot;DB_CONNECTION&quot; value=&quot;sqlite&quot; /&gt;</span><br><span class="line">&lt;/php&gt;</span><br></pre></td></tr></table></figure>
+<p>这会覆盖<code>.env</code>中定义的数据库连接<code>DB_CONNECTION=mysql</code>，并告诉框架在运行测试的时候，用<code>sqlite</code>连接代替<code>mysql</code>连接。</p>
+</li>
+<li><p>最后需要在运行测试用例之前执行数据库迁移，在测试类的基类，即<code>TestCase.php</code>中添加<code>setUp</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public function setUp()</span><br><span class="line">&#123;</span><br><span class="line">    parent::setUp();</span><br><span class="line">    // 执行数据库迁移 </span><br><span class="line">    $this-&gt;artisan(&#x27;migrate&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在每次执行测试用例之前，都会向<code>SQLite</code>的<code>:memory:</code>数据库中执行所有的迁移，生成业务逻辑所需的数据表。</p>
+</li>
+</ol>
+<h3 id="方案优缺点"><a href="#方案优缺点" class="headerlink" title="方案优缺点"></a>方案优缺点</h3><ul>
+<li><p>该方案关键点在于使用<code>SQLite</code>内置的一个内存数据库<code>:memory:</code>，因此速度比较快，有很好的隔离性，也不会对我们的开发数据库有任何的影响。</p>
+</li>
+<li><p>当然该方案也有缺点，假如项目的数据库庞大，有大量的数据表或者迁移文件，会消耗大量内存，当运行测试的时候可能会由于内存不足，导致测试中断。此时需要为PHP分配合适的内存，在<code>php.ini</code>中修改配置<code>memory_limit = 128M</code></p>
+</li>
+</ul>
+<blockquote>
+<p>参考资料</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://laravel.com/docs/5.3/database-testing#resetting-the-database-after-each-test">https://laravel.com/docs/5.3/database-testing#resetting-the-database-after-each-test</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://blog.mauriziobonani.com/laravel-sql-memory-database-for-unit-tests/">http://blog.mauriziobonani.com/laravel-sql-memory-database-for-unit-tests/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.sqlite.org/inmemorydb.html">https://www.sqlite.org/inmemorydb.html</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://laracasts.com/discuss/channels/testing/how-to-specify-a-testing-database-in-laravel-5">https://laracasts.com/discuss/channels/testing/how-to-specify-a-testing-database-in-laravel-5</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/PWA理论篇之Service-Worker.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/总结/Mac本地开发环境安装自签名HTTPS证书.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

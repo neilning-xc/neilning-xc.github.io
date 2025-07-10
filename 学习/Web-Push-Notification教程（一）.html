@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Web Push Notification教程（一）"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Web Push Notification教程（一） - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Web-Push-Notification教程（一）/bg.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Web Push Notification教程（一）</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-08-21
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/web-push/">#web push</a> <a href="/tags/push-notification/">#push notification</a> <a href="/tags/service-worker/">#service worker</a> <a href="/tags/web-subscription/">#web subscription</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Web端可以通过Web Push和Notification实现像移动端APP那样的消息推送功能，用户授权之后，即使用户关闭了网页甚至浏览器也可以收到推送通知。<br><img src="/%E5%AD%A6%E4%B9%A0/Web-Push-Notification%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/notification-demo.png" alt="notification-demo.png"><br>要实现以上功能，需要依赖Web Push和Notification。Web Push工作在Service Worker中，用来接收推送服务的推送的消息，利用Service Worker，即使网站或者浏览器处于关闭状态，Service Worker收到消息时，它仍然可以展示通知。Notification则会利用系统功能展示一个消息通知框，显示消息的内容。</p>
+<h2 id="推送模型"><a href="#推送模型" class="headerlink" title="推送模型"></a>推送模型</h2><p>消息推送的过程涉及三个角色：客户端浏览器、应用的服务端、推送服务。前两个角色容易理解，是由开发者控制的客户端和服务端。推送服务指的是向浏览器分发消息的后端服务，该服务由浏览器内部指定，开发者无法控制，并且各个浏览器的推送服务是不相同的，不过为了保证调用方式的统一，这些服务都必须遵守相同的规范<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tools.ietf.org/html/draft-ietf-webpush-protocol"><strong>web push protocol request</strong></a>，后面会详细讲解推送服务。</p>
+<p>用户访问网站时，向用户获取通知的权限，如果用户授权，浏览器会生成一个订阅对象<code>PushSubscription</code>，该对象的由如下字段组成，其中endpoint字段就是推送服务。用户订阅时，客户端需要将该对象序列化并发送至应用的服务端，服务端需要将该对象存入数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;endpoint&quot;: &quot;https://fcm.googleapis.com/fcm/send/c1KrmpTuRm…&quot;,</span><br><span class="line">  &quot;expirationTime&quot;: null,</span><br><span class="line">  &quot;keys&quot;: &#123;</span><br><span class="line">    &quot;p256dh&quot;: &quot;BGyyVt9FFV…&quot;,</span><br><span class="line">    &quot;auth&quot;: &quot;R9sidzkcdf…&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当应用需要向客户端推送消息时，应用的服务端需要按照协议的规范（web push protocol request）向推送服务发起一个HTTP POST请求，将之前保存的<code>PushSubscription</code>发送给推送服务，推送服务收到请求并验证通过之后，会将消息分发给已经订阅了的客户端。推送过程的时序图如下：<br><img src="/%E5%AD%A6%E4%B9%A0/Web-Push-Notification%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/sequence.png" alt="sequence.png"></p>
+<ol>
+<li>应用向用户获取通知权限，用户授权之后，即代表用户订阅了网站，此时浏览器会向推送服务请求。推送服务会“记住”订阅的客户端。</li>
+<li>推送服务和客户端之间建立订阅关联，同时浏览器会生成一个订阅对象。</li>
+<li>客户端需要将上一步获得的订阅对象序列化，然后通过网络请求发送给应用服务器，服务器必须将该对象保存下来，后续发送消息是需要用到。</li>
+<li>当应用服务器需要向客户端发送消息时，需要向推送服务发送POST请求。</li>
+<li>推送服务收到请求验证通过后，会将消息分发给客户端。</li>
+</ol>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>推送通知的第一步是用户订阅，这一步需要在客户端完成，主要完成两方面的事情：</p>
+<ol>
+<li>获取用户权限。</li>
+<li>获取<code>PushSubscription</code>对象，</li>
+<li>将<code>PushSubscription</code>对象发送给服务器。</li>
+</ol>
+<p>首选创建一个Demo项目，目录结构如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./push-notification-demo</span><br><span class="line">├── backend</span><br><span class="line">└── frontend</span><br></pre></td></tr></table></figure>
+<p>进入frontend目录执行<code>npm init</code>初始化项目，完成后执行<code>npm i http-server -S</code>来安装<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.npmjs.com/package/http-server">http-server</a>，该包用于启动一个简单的http服务。然后创建<code>index.html</code>、<code>index.js</code>、<code>service-worker.js</code>，初始内容分别如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    button &#123;</span><br><span class="line">      display: block;</span><br><span class="line">      margin-bottom: 10px;</span><br><span class="line">      min-width: 48px;</span><br><span class="line">      min-height: 48px;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;Push notifications client&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">  &lt;fieldset&gt;</span><br><span class="line">    &lt;legend&gt;Profile:&lt;/legend&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;input type=&quot;checkbox&quot; id=&quot;subscribeCheckbox&quot;&gt;</span><br><span class="line">      &lt;label for=&quot;subscribeCheckbox&quot;&gt;Subscribe to push&lt;/label&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/fieldset&gt;</span><br><span class="line">  &lt;script src=&quot;index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function registerServiceWorker() &#123;</span><br><span class="line">  return navigator.serviceWorker</span><br><span class="line">    .register(&#x27;/service-worker.js&#x27;)</span><br><span class="line">    .then(function (registration) &#123;</span><br><span class="line">      console.log(&#x27;Service worker successfully registered.&#x27;);</span><br><span class="line">      return registration;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(function (err) &#123;</span><br><span class="line">      console.error(&#x27;Unable to register service worker.&#x27;, err);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">(async function main() &#123;</span><br><span class="line">  if (!(&#x27;serviceWorker&#x27; in navigator)) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  if (!(&#x27;PushManager&#x27; in window)) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const serviceWorkerRegistration = await registerServiceWorker();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>service-worker.js的内容暂时只有一行<code>console.log(&#39;service worker&#39;)</code>。<br>在package.json中配置客户端项目的启动命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;http-server ./ -p 3000&quot;,</span><br><span class="line">  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>进入frontend目录执行<code>npm run start</code>启动项目后，在浏览器中访问<a target="_blank" rel="noopener external nofollow noreferrer" href="http://127.0.0.1:3000/index.html">http://127.0.0.1:3000/index.html</a>可以看到如下：<br><img src="/%E5%AD%A6%E4%B9%A0/Web-Push-Notification%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/index-demo.png" alt="index-demo.png"></p>
+<p>然后为单选框绑定事件处理，当用户勾选时向用户获取权限，修改index.js文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function handleUI(serviceWorkerRegistration) &#123;</span><br><span class="line">  const subscribeCheckbox = document.getElementById(&#x27;subscribeCheckbox&#x27;);</span><br><span class="line">  // 用户已经订阅，需要将单选框设置为勾选状态</span><br><span class="line">  checkSubscription(serviceWorkerRegistration).then((isChecked) =&gt; &#123;</span><br><span class="line">    subscribeCheckbox.checked = isChecked;</span><br><span class="line">  &#125;);</span><br><span class="line">  subscribeCheckbox.addEventListener(&#x27;input&#x27;, async (event) =&gt; &#123;</span><br><span class="line">    const checked = event.target.checked;</span><br><span class="line">    if (checked) &#123;</span><br><span class="line">      // 订阅</span><br><span class="line">      // 获取权限</span><br><span class="line">      await askPermission();</span><br><span class="line">      const sub = await subscribeUserToPush(serviceWorkerRegistration);</span><br><span class="line">      sendSubscriptionToBackEnd(sub)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取权限的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function askPermission() &#123;</span><br><span class="line">  return new Promise(function (resolve, reject) &#123;</span><br><span class="line">    const permissionResult = Notification.requestPermission(function (result) &#123;</span><br><span class="line">      resolve(result);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    if (permissionResult) &#123;</span><br><span class="line">      permissionResult.then(resolve, reject);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).then(function (permissionResult) &#123;</span><br><span class="line">    if (permissionResult !== &#x27;granted&#x27;) &#123;</span><br><span class="line">      throw new Error(&quot;We weren&#x27;t granted permission.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过调用<code>Notification.requestPermission()</code>来向用户获取权限，我们将其包装成Promise，当用户点击允许时，permissionResult的值将会是<code>granted</code>。</p>
+<p>接下来是获取浏览器返回的<code>PushSubscription</code>对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function subscribeUserToPush(serviceWorkerRegistration) &#123;</span><br><span class="line">  return serviceWorkerRegistration.pushManager.getSubscription().then((subscription) =&gt; &#123;</span><br><span class="line">    if (subscription !== null) &#123;</span><br><span class="line">      return subscription;</span><br><span class="line">    &#125;</span><br><span class="line">    const subscribeOptions = &#123;</span><br><span class="line">      userVisibleOnly: true,</span><br><span class="line">      applicationServerKey: urlBase64ToUint8Array(PUBLIC_KEY),</span><br><span class="line">    &#125;;</span><br><span class="line">    return serviceWorkerRegistration.pushManager.subscribe(subscribeOptions);</span><br><span class="line">  &#125;).then(function (pushSubscription) &#123;</span><br><span class="line">    console.log(</span><br><span class="line">      &#x27;Received PushSubscription: &#x27;,</span><br><span class="line">      JSON.stringify(pushSubscription),</span><br><span class="line">    );</span><br><span class="line">    return pushSubscription;</span><br><span class="line">  &#125;);;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上的核心代码是调用<code>serviceWorkerRegistration.pushManager.getSubscription()</code>，主要先检查浏览器是否已经存在订阅，调用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/push-notifications-subscribing-a-user/">PushManager API</a>中的<code>getSubscription()</code>方法，如果不存在，则调用<code>pushManager.subscribe(subscribeOptions)</code>实现用户订阅。subscribe()方法接收一个对象，该对象有两个选项。</p>
+<h3 id="userVisibleOnly选项"><a href="#userVisibleOnly选项" class="headerlink" title="userVisibleOnly选项"></a>userVisibleOnly选项</h3><p>该选项用于告知浏览器，当推送消息到达时，浏览器是否需要展示通知提示框，即是否允许静默推送。出于安全性的考虑，目前大多数浏览器只支持该选项传入<code>true</code>，在Chrome浏览器中如果传入false时，会有报错信息。后面会讲解接收到消息时，如何使用Notification的API展示通知提示框。</p>
+<h3 id="applicationServerKey选项"><a href="#applicationServerKey选项" class="headerlink" title="applicationServerKey选项"></a>applicationServerKey选项</h3><p>在解释该选项之前，我们需要了解一个概念：应用服务器密钥（application server keys），该密钥是一个包含了公钥和私钥的密钥对。该密钥对于应用来说是唯一的，即一个应用只能有一个密钥对。传给applicationServerKey是密钥对的公钥，当调用<code>subscribe()</code>方法时，浏览器会把公钥发送给推送服务。推送服务使用该公钥生成一个唯一的endpoint。endpoinet字段随浏览器生成<code>PushSubscription</code>对象返回给开发者。</p>
+<p>上文提到，当应用需要向客户端推送消息时，应用的服务端必须向推送服务发送一个POST请求，这个请求的请求头必须包含Authorization字段，该字段要求使用私钥对你发送的数据进行签名，同时还需要将浏览器返回的<code>PushSubscription</code>发送给推送服务，推送服务在收到推送请求时，推送经过一系列的验证，能够知道哪个应用在发送消息。该机制确保只有你的应用能够合法的向已经订阅了的用户发送消息。</p>
+<p>你可以访问 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://web-push-codelab.glitch.me/">web-push-codelab.glitch.me</a>创建应用服务器密钥，或者通过<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/web-push-libs/web-push#command-line">web-push的命令行</a>工具来生成。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g web-push</span><br><span class="line">web-push generate-vapid-keys</span><br></pre></td></tr></table></figure>
+<p>该密钥对只需要生成一次，私钥需要妥善的保管在服务端，并确保其安全。公钥可以随意的分发给客户端。<br><img src="/%E5%AD%A6%E4%B9%A0/Web-Push-Notification%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/app-server-keys.png" alt="app-server-keys.png"><br>在index.js中添加以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const PUBLIC_KEY = &#x27;BAqQo3iCcju4fDHWqvVCT0XtIR5hn0izDhvPCdHcfTWqTSlR2cvwAF3HBrlmv6w3Mm-eUrGCEocp9HIf9UcgeJQ&#x27;</span><br></pre></td></tr></table></figure>
+<p>当用户已经订阅，我们还需要将单选框设置为勾选状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">async function checkSubscription(serviceWorkerRegistration) &#123;</span><br><span class="line">  const subscription = await serviceWorkerRegistration.pushManager.getSubscription();</span><br><span class="line">  if (subscription === null) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同时需要urlBase64ToUint8Array工具方法对公钥进行转换</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function urlBase64ToUint8Array(base64String) &#123;</span><br><span class="line">  const padding = &#x27;=&#x27;.repeat((4 - base64String.length % 4) % 4);</span><br><span class="line">  const base64 = (base64String + padding)</span><br><span class="line">    .replace(/\-/g, &#x27;+&#x27;)</span><br><span class="line">    .replace(/_/g, &#x27;/&#x27;);</span><br><span class="line">  const rawData = window.atob(base64);</span><br><span class="line">  const outputArray = new Uint8Array(rawData.length);</span><br><span class="line">  for (let i = 0; i &lt; rawData.length; ++i) &#123;</span><br><span class="line">    outputArray[i] = rawData.charCodeAt(i);</span><br><span class="line">  &#125;</span><br><span class="line">  return outputArray; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>下一步我们需要将调用<code>subscribeUserToPush(serviceWorkerRegistration)</code>方法返回的<code>PushSubscription</code>对象发送给服务端并存储起来。<br>我们使用express框架初始化一个服务端应用，同时安装其他一些列依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd backend</span><br><span class="line">npm init</span><br><span class="line">npm i express body-parser cors dotenv nedb -S</span><br></pre></td></tr></table></figure>
+<p>由于需要使用数据库存储<code>PushSubscription</code>，所以这里使用本地数据库<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/louischatriot/nedb">nedb</a>作为演示。我们将私钥存入.env文件，所以我们需要dotenv来读取私钥的值。在backend目录下创建index.js:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">const cors = require(&#x27;cors&#x27;);</span><br><span class="line">const bodyParser = require(&#x27;body-parser&#x27;);</span><br><span class="line">const Datastore = require(&#x27;nedb&#x27;);</span><br><span class="line">const dotenv = require(&#x27;dotenv&#x27;);</span><br><span class="line"></span><br><span class="line">dotenv.config();</span><br><span class="line">const db = new Datastore(&#123;filename: &#x27;subscription.db&#x27;&#125;);</span><br><span class="line">db.loadDatabase();</span><br><span class="line"></span><br><span class="line">const app = express();</span><br><span class="line">app.use(cors());</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">const port = 4000;</span><br><span class="line"></span><br><span class="line">function saveSubscriptionToDatabase(subscription) &#123;</span><br><span class="line">  return new Promise(function (resolve, reject) &#123;</span><br><span class="line">    db.insert(subscription, function (err, newDoc) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        reject(err);</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      resolve(newDoc._id);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, async (req, res) =&gt; res.send(&#x27;hello world&#x27;));</span><br><span class="line">app.post(&#x27;/api/save-subscription/&#x27;, async (req, res) =&gt; &#123;</span><br><span class="line">  if (!req.body || !req.body.endpoint) &#123;</span><br><span class="line">    res.status(400);</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      error: &#123;</span><br><span class="line">        code: &#x27;400&#x27;,</span><br><span class="line">        message: &#x27;Subscription must have an endpoint.&#x27;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return saveSubscriptionToDatabase(req.body)</span><br><span class="line">  .then(function (subscriptionId) &#123;</span><br><span class="line">    res.json(&#123;data: &#123;success: true, subscriptionId&#125;&#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(function (err) &#123;</span><br><span class="line">    res.status(500);</span><br><span class="line">    res.json(</span><br><span class="line">      &#123;</span><br><span class="line">        error: &#123;</span><br><span class="line">          code: &#x27;500&#x27;,</span><br><span class="line">          message:</span><br><span class="line">            &#x27;save subscription error&#x27;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(port, () =&gt; console.log(`Example app listening on port $&#123;port&#125;!`));</span><br></pre></td></tr></table></figure>
+<p>为了调试方便，我们在backend/package.json中创建一下启动脚本，执行<code>npm i nodeman -D</code>安装<code>nodeman</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;start&quot;: &quot;nodemon --watch index.js&quot;</span><br></pre></td></tr></table></figure>
+<p>创建.env文件并将之前生成公钥和私钥存储在该文件中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PRIVATE_KEY=ook5LyMLUqay2orPF5soJdK8aB6tk6LY2RS2NHf97Tk</span><br><span class="line">PUBLIC_KEY=BAqQo3iCcju4fDHWqvVCT0XtIR5hn0izDhvPCdHcfTWqTSlR2cvwAF3HBrlmv6w3Mm-eUrGCEocp9HIf9UcgeJQ</span><br></pre></td></tr></table></figure>
+<p>此时项目的目录结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">./push-notification-demo</span><br><span class="line">├── backend</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   ├── node_modules</span><br><span class="line">│   ├── package-lock.json</span><br><span class="line">│   └── package.json</span><br><span class="line">└── frontend</span><br><span class="line">    ├── index.html</span><br><span class="line">    ├── index.js</span><br><span class="line">    ├── node_modules</span><br><span class="line">    ├── package-lock.json</span><br><span class="line">    ├── package.json</span><br><span class="line">    └── service-worker.js</span><br></pre></td></tr></table></figure>
+<p>在backend目录下执行<code>npm run start</code>，并访问<a target="_blank" rel="noopener external nofollow noreferrer" href="http://localhost:4000/">http://localhost:4000/</a>，可以看到打印的hello world。index.js中我们创建接口<code>/api/save-subscription/</code>，并将接收到的<code>PushSubscription</code>存入数据库中。在frontend/index.js中调用该接口上传<code>PushSubscription</code>对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">function sendSubscriptionToBackEnd(subscription) &#123;</span><br><span class="line">  return fetch(&#x27;http://localhost:4000/api/save-subscription/&#x27;, &#123;</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(subscription),</span><br><span class="line">  &#125;)</span><br><span class="line">    .then(function (response) &#123;</span><br><span class="line">      if (!response.ok) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad status code from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(function (responseData) &#123;</span><br><span class="line">      if (!(responseData.data &amp;&amp; responseData.data.success)) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad response from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function handleUI(serviceWorkerRegistration) &#123;</span><br><span class="line">  const subscribeCheckbox = document.getElementById(&#x27;subscribeCheckbox&#x27;);</span><br><span class="line">  // 用户已经订阅，需要将单选框设置为勾选状态</span><br><span class="line">  checkSubscription(serviceWorkerRegistration).then((isChecked) =&gt; &#123;</span><br><span class="line">    subscribeCheckbox.checked = isChecked;</span><br><span class="line">  &#125;);</span><br><span class="line">  subscribeCheckbox.addEventListener(&#x27;input&#x27;, async (event) =&gt; &#123;</span><br><span class="line">    const checked = event.target.checked;</span><br><span class="line">    if (checked) &#123;</span><br><span class="line">      // 订阅</span><br><span class="line">      await askPermission();</span><br><span class="line">      const sub = await subscribeUserToPush(serviceWorkerRegistration);</span><br><span class="line">      // 将订阅对象存入数据库</span><br><span class="line">      sendSubscriptionToBackEnd(sub);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="推送消息"><a href="#推送消息" class="headerlink" title="推送消息"></a>推送消息</h2><p>以上工作完成后，接下来需要实现消息推送，我们frontend/index.html中创建一个模拟的Push管理面板，修改frontend/index.html</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Push admin&lt;/h1&gt;</span><br><span class="line">  &lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;</span><br><span class="line">      &lt;label for=&quot;title&quot;&gt;title&lt;/label&gt;</span><br><span class="line">    &lt;/dt&gt;</span><br><span class="line">    &lt;dt&gt;</span><br><span class="line">      &lt;textarea id=&quot;msgTitle&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;example title&lt;/textarea&gt;</span><br><span class="line">    &lt;/dt&gt;</span><br><span class="line">  &lt;/dl&gt;</span><br><span class="line">  &lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;</span><br><span class="line">      &lt;label for=&quot;msgBody&quot;&gt;body&lt;/label&gt;</span><br><span class="line">    &lt;/dt&gt;</span><br><span class="line">    &lt;dt&gt;</span><br><span class="line">      &lt;textarea id=&quot;msgBody&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;example body&lt;/textarea&gt;</span><br><span class="line">    &lt;/dt&gt;</span><br><span class="line">  &lt;/dl&gt;</span><br><span class="line">  &lt;button id=&quot;notifyAll&quot;&gt;</span><br><span class="line">    Notify all</span><br><span class="line">  &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/%E5%AD%A6%E4%B9%A0/Web-Push-Notification%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/push-admin.png" alt="push-admin.png"><br>然后为两个按钮绑定点击事件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">function sendNotificationToAll(message) &#123;</span><br><span class="line">  return fetch(&#x27;http://localhost:4000/api/notify-all/&#x27;, &#123;</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(message),</span><br><span class="line">  &#125;)</span><br><span class="line">    .then(function (response) &#123;</span><br><span class="line">      if (!response.ok) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad status code from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(function (responseData) &#123;</span><br><span class="line">      if (!(responseData.data &amp;&amp; responseData.data.success)) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad response from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sendNotificationToMe(subscription, message) &#123;</span><br><span class="line">  return fetch(&#x27;http://localhost:4000/api/notify-me/&#x27;, &#123;</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(&#123; subscription, message &#125;),</span><br><span class="line">  &#125;)</span><br><span class="line">    .then(function (response) &#123;</span><br><span class="line">      if (!response.ok) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad status code from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(function (responseData) &#123;</span><br><span class="line">      if (!(responseData.data &amp;&amp; responseData.data.success)) &#123;</span><br><span class="line">        throw new Error(&#x27;Bad response from server.&#x27;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const notifyAll = document.getElementById(&#x27;notifyAll&#x27;);</span><br><span class="line">const notifyMe = document.getElementById(&#x27;notifyMe&#x27;);</span><br><span class="line">notifyAll.addEventListener(&#x27;click&#x27;, (event) =&gt; &#123;</span><br><span class="line">    const title = document.getElementById(&#x27;msgTitle&#x27;).value;</span><br><span class="line">    const body = document.getElementById(&#x27;msgBody&#x27;).value;</span><br><span class="line">    if (title &amp;&amp; body) &#123;</span><br><span class="line">      // 向所有订阅用户发通知</span><br><span class="line">      sendNotificationToAll(&#123; title: title, body: body &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">notifyMe.addEventListener(&#x27;click&#x27;, async () =&gt; &#123;</span><br><span class="line">    const subscription = await serviceWorkerRegistration.pushManager.getSubscription();</span><br><span class="line">    if (subscription) &#123;</span><br><span class="line">      const title = document.getElementById(&#x27;msgTitle&#x27;).value;</span><br><span class="line">      const body = document.getElementById(&#x27;msgBody&#x27;).value;</span><br><span class="line">      if (title &amp;&amp; body) &#123;</span><br><span class="line">        // 向单个订阅用户发通知</span><br><span class="line">        sendNotificationToMe(subscription, &#123; title: title, body: body &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>接下来在backend/index.js添加<code>/api/notify-me/</code>和<code>/api/notify-all/</code>两个路由：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">function findAllSubscription() &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    db.find(&#123;&#125;, function(err, docs) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        reject(err)</span><br><span class="line">      &#125;</span><br><span class="line">      resolve(docs);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">app.post(&#x27;/api/notify-all/&#x27;, async (req, res) =&gt; &#123;</span><br><span class="line">  const &#123; title, body &#125; = req.body;</span><br><span class="line">  const dataToSend = &#123;</span><br><span class="line">    title: title,</span><br><span class="line">    body: body,</span><br><span class="line">    icon: &#x27;https://hk.trip.com/trip.ico&#x27;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  try &#123;</span><br><span class="line">    const subscriptions = await findAllSubscription();</span><br><span class="line">    for (let i = 0; i &lt; subscriptions.length; i++) &#123;</span><br><span class="line">      const subscription = subscriptions[i];</span><br><span class="line">      await triggerPushMsg(subscription, dataToSend);</span><br><span class="line">    &#125;</span><br><span class="line">    res.json(&#123; data: &#123; success: true &#125; &#125;);</span><br><span class="line">  &#125; catch (err) &#123;</span><br><span class="line">    res.status(500);</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      error: &#123;</span><br><span class="line">        message: `Send all subscriptions failed: ` +</span><br><span class="line">          `&#x27;$&#123;err.message&#125;&#x27;`</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">function findSubscription(endpoint) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    db.find(&#123; endpoint &#125;, function(err, docs) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        reject(err)</span><br><span class="line">      &#125;</span><br><span class="line">      if (docs.length &gt;= 1) &#123;</span><br><span class="line">        resolve(docs[0]);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        resolve(null);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.post(&#x27;/api/notify-me/&#x27;, async (req, res) =&gt; &#123;</span><br><span class="line">  const &#123; message, subscription &#125; = req.body;</span><br><span class="line">  const doc = await findSubscription(subscription.endpoint);</span><br><span class="line">  if (doc) &#123;</span><br><span class="line">    const &#123; title, body &#125; = message;</span><br><span class="line">    const dataToSend = &#123;</span><br><span class="line">      title: title,</span><br><span class="line">      body: body,</span><br><span class="line">      icon: &#x27;https://hk.trip.com/trip.ico&#x27;</span><br><span class="line">    &#125;; </span><br><span class="line">     </span><br><span class="line">    await triggerPushMsg(subscription, dataToSend);</span><br><span class="line">    res.json(&#123; data: &#123; success: true &#125; &#125;);</span><br><span class="line">    return;</span><br><span class="line">  &#125; </span><br><span class="line">  res.status(500);</span><br><span class="line">  res.json(&#123; data: &#123; success: false &#125; &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以上代码最终调用<code>triggerPushMsg</code>方法最终实现消息推送，前面讲过推送消息时需要向推送服务（endpoint字段所指向的地址）发送POST请求。推送服务是由浏览内置的，开发者无法控制推送服务。为了规范推送流程，所有的推送服务都必须遵守相同的规范，该规范称为<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tools.ietf.org/html/draft-ietf-webpush-protocol">Web Push Protocol</a>。规范统一规定了POST请求的格式，所以开发者并不需要关心推送服务的地址是什么，只需要按照规范的要求发送请求即可。<br>不过由于该POST请求需要一些特定的头字段和特定body格式，所以按照规范的要求手动拼装每个字段并不容易。不过官方已经已经提供了各个语言的实现，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/web-push-libs/">这里可以看到对应语言的工具库</a>。NodeJS中，我们可以使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/web-push-libs/web-push">web-push</a>。</p>
+<p>首先在backend中安装该npm包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install web-push --save</span><br></pre></td></tr></table></figure>
+<p>前面提到，发送消息时，需要提供应用服务器密钥（application server keys， 又称之为VAPID密钥）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const vapidKeys = &#123;</span><br><span class="line">  publicKey: process.env.PUBLIC_KEY,</span><br><span class="line">  privateKey: process.env.PRIVATE_KEY,</span><br><span class="line">&#125;;</span><br><span class="line">// 使用应用服务器密钥初始化webpush</span><br><span class="line">webpush.setVapidDetails(</span><br><span class="line">  &#x27;mailto:demo@test.com&#x27;,</span><br><span class="line">  vapidKeys.publicKey,</span><br><span class="line">  vapidKeys.privateKey,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">function deleteSubscription(id) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    db.remove(&#123; _id: id &#125;, &#123;&#125;, function (err, numRemoved) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        reject(err);</span><br><span class="line">      &#125;</span><br><span class="line">      resolve(id);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function triggerPushMsg (subscription, dataToSend) &#123;</span><br><span class="line">  // 国内调试需要添加本地代理proxy参数</span><br><span class="line">  return webpush.sendNotification(subscription, JSON.stringify(dataToSend), &#123; proxy: &#x27;http://127.0.0.1:7890&#x27; &#125;).catch((err) =&gt; &#123;</span><br><span class="line">    if (err.statusCode === 404 || err.statusCode === 410) &#123;</span><br><span class="line">      return deleteSubscription(subscription._id);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      throw err;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>以上代码分别调用<code>webpush.setVapidDetails()</code>和<code>webpush.sendNotification()</code>完成消息推送。本质上web-push库按照<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tools.ietf.org/html/draft-thomson-webpush-vapid">协议的规范</a>向推送服务发送了一个POST请求，如果请求失败，需要判断失败状态码确认失败的原因，以上例子判断状态码如果是404或者410，即说明该订阅对象已经过期，需要将订阅对象从数据库中删除。</p>
+<h2 id="展示通知"><a href="#展示通知" class="headerlink" title="展示通知"></a>展示通知</h2><p>推送功能已经完成的差不多了，接下来我们回到浏览器端，当浏览器收到推送服务的分发的消息时，还需要展示通知提框。修改frontend/service-worker.js中的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const notification = event.data.json();</span><br><span class="line">  const promiseChain = self.registration.showNotification(</span><br><span class="line">    notification.title, </span><br><span class="line">    notification</span><br><span class="line">  );</span><br><span class="line">  event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%AD%A6%E4%B9%A0/Web-Push-Notification%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/notification.png" alt="notification.png"></p>
+<p>在service worker中我们只需要监听push事件，然后调用<code>self.registration.showNotification()</code>展示通知。该函数返回promise对象。然后我们调用<code>event.waitUntil(promiseChain)</code>，该函数的作用是告知浏览器在promise对象resolve之前不要结束service worker的运行。当浏览器处于关闭状态时，如果有新的推送消息到达客户端，浏览器的service worker进程将被唤醒，push事件回调函数执行结束之后，该进程会再次进入休眠状态。但如果你想在回调函数执行一些异步操作，你需要告知浏览器在异步操作结束之前保持service worker进程运行状态。这就是<code>event.waitUntil()</code>函数的含义。<br>假设我们需要在push回调函数内向服务端上报推送成功的事件，以便进行数据统计：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&#x27;push&#x27;, (event) =&gt; &#123;</span><br><span class="line">  const notification = event.data.json();</span><br><span class="line">  const notifyPromise = self.registration.showNotification(</span><br><span class="line">    notification.title, </span><br><span class="line">    notification</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  // 上报推送成功事件</span><br><span class="line">  const reportPromise = fetch(&#x27;http://localhost:4000/api/report-push&#x27;, &#123;</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: notification,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  const promiseChain = Promise.all([reportPromise, notifyPromise]);</span><br><span class="line">  // 以上两个promise都成功时，service worker才会执行结束</span><br><span class="line">  event.waitUntil(promiseChain);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>通过上面的代码，service worker将一直保持运行状态，直到数据上报的异步请求成功，所以当push回调函数内有耗时的异步代码时，为了保持耗时的异步任务执行，我们需要调用<code>event.waitUntil(promiseChain)</code>。</p>
+<p>下一章节我们看一下如何设置通知框的其他行为。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/notifications/">https://web.dev/notifications/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/Web-Push-Notification教程（二）.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/翻译/展示通知【译】.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

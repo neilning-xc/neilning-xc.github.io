@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Server Compoonent Component"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Server Compoonent Component - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Server-Compoonent-Component/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Server Compoonent Component</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2024-10-13
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/React/">#React</a> <a href="/tags/RSC/">#RSC</a> <a href="/tags/React-Server-Component/">#React Server Component</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/学习/">学习</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>React Server Component，简称RSC，是React提出的一个全新的组件范式，最早于2020年提出，其英文介绍视频可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components">点击这里</a>观看。经过多年的开发目前仍然处于试验阶段，不过即将发布的React19很有可能会正式推出。这里我们讨论下React Server Component的使用场景、用法和基本原理。</p>
+<h2 id="客户端渲染"><a href="#客户端渲染" class="headerlink" title="客户端渲染"></a>客户端渲染</h2><p>为了更好的了解RSC的使用场景和用法，我们先来回顾下几种常见的React技术，首先是客户端渲染。<br>客户端渲染是在用户首次请求时，返回一个空的HTML骨架，浏览器收到初始HTML骨架后再去加载JS bundle，然后渲染整个页面组件树。<br>一个典型的客户端渲染的组件基本形式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Note(props) &#123;</span><br><span class="line">  const [note, setNote] = useState(null);</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    fetchNote(props.id).then(noteData =&gt; &#123;</span><br><span class="line">      setNote(noteData);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, [props.id]);</span><br><span class="line">  </span><br><span class="line">  if (note == null) &#123;</span><br><span class="line">    return &quot;Loading&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;&#123;note.title&#125;&lt;/h2&gt;</span><br><span class="line">        &lt;span&gt;&#123;note.date&#125;&lt;/span&gt;</span><br><span class="line">        &lt;p&gt;&#123;note.content&#125;&lt;/p&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种传统组件两个特点：</p>
+<ol>
+<li>组件函数会多次执行，首次执行（渲染）时由于没有数据，所以会显示Loading….。</li>
+<li>组件在首次渲染后，<code>uesEffect</code>函数作为生命周期函数执行来获取数据，组件将获取到的数据再次渲染出来，即re-render。</li>
+</ol>
+<p>这种传统的组件写法符合React的哲学，但是有很明显的缺点：</p>
+<ol>
+<li>页面首屏渲染是空白，随着页面组件数量的增多，客户端JS bundle的体积会越来越大，下载和执行的时间会变长，白屏时间也会越发严重。</li>
+<li>页面性能评分降低，如LCP、CLS和INP。</li>
+<li>客户端和服务端的网络请求次数增加，客户端需要发起额外请求来获取数据。</li>
+</ol>
+<p>针对以上问题，除了使用CDN等手段加快JS文件的下载速度，最根本的解决方案是减小JS bundle的体积，可通过Webpack等打包工具对JS进行拆分，每个页面只加载自己和业务相关的JS代码。</p>
+<p>但是以上方案并没有从根本上解决问题，并且首屏展示的空内容对搜索引擎的爬虫也不够友好。对于那些对性能有较高要求的页面来说这些优化手段仍然是不够的。所以React提出了服务端渲染（Server Side Redener）的方案。</p>
+<h2 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h2><p>服务端渲染典型特点是首次请求不再只返回一个空的HTML。而是在服务端就将HTML生成并返回给客户端，用户在首屏就可以看到页面内容，然后页面再去加载完整的页面JS文件，对整个页面进行水合使页面变得可交互。服务端渲染主要有以下特点：</p>
+<ol>
+<li>在服务端生成完整HTML时，每个组件函数只会在每次请求时执行一次，<code>useEffect</code>等生命周期函数不会执行，组件不会re-render。</li>
+<li>在客户端水合的过程中，React需要渲染整个组件树，使得页面可交互。</li>
+<li>客户端水合时首次渲染的组件树必须和服务端返回的HTML组件树完全一致，如果不一致React18之前的版本会删除服务端不一致的元素，React18则会直接报错。</li>
+</ol>
+<p>由于在服务端，整个组件函数只会执行一次，所以为了返回有意义的内容，我们不能再将数据获取逻辑放到<code>useEffect</code>中，需要将组件获取数据的逻辑提升，然后通过props传入组件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// server.js</span><br><span class="line">const fetchNote = require(&#x27;api&#x27;);</span><br><span class="line">const note = await fetchNote(id).then(noteData =&gt; &#123;</span><br><span class="line">  return noteData;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Node.js</span><br><span class="line">function Note(props) &#123;</span><br><span class="line">  const note = props;</span><br><span class="line">  </span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;&#123;note.title&#125;&lt;/h2&gt;</span><br><span class="line">      &lt;span&gt;&#123;note.date&#125;&lt;/span&gt;</span><br><span class="line">      &lt;p&gt;&#123;note.content&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如以上代码将组件数据获取的逻辑放在服务端（在MVC模式的后端框架中，这部分逻辑通常放在控制器中）执行，然后再将数据通过props的形式传递给组件完成渲染。这种写法也有明显的缺点：</p>
+<ol>
+<li>组件的数据获取逻辑与组件的渲染逻辑相分离，如果你开发的是供他人使用的组件库，这种方式增加组件调用的复杂性，这违背了软件开发“高内聚”的基本原则。</li>
+<li>由于SSR返回的HTML结构需要和客户端水合首次渲染的DOM一致，所以服务端获取到的数据如何传递给客户端也是一个难题。</li>
+</ol>
+<p>以上问题没有统一的解决方案，比如针对问题一Nextjs（使用Pages路由）的方案是将数据的获取逻辑放在<code>getServerSideProps</code>函数中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// Note.js</span><br><span class="line">import fetchNote from &#x27;api&#x27;;</span><br><span class="line"></span><br><span class="line">export async function getServerSideProps() &#123;</span><br><span class="line">  const note = await fetchNote(props.id);  </span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123; note &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default function Note(props) &#123;</span><br><span class="line">  const &#123; note &#125; = props;  </span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;&#123;note.title&#125;&lt;/h2&gt;</span><br><span class="line">      &lt;span&gt;&#123;note.date&#125;&lt;/span&gt;</span><br><span class="line">      &lt;p&gt;&#123;note.content&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依赖框架提供的能力，这些逻辑被放在同一个源代码文件中。框架会将这些数据以props的形式传递给组件，一定程度上解决了问题一，但是该方案只能用在页面的顶层组件中。</p>
+<p>问题二的解决方法通常是在服务端返回的HTML中包含一段JS代码，JS代码将页面所需要的数据传递给一个全局变量（如window对象），这样页面在进行水合首次渲染时，就能拿到所需的数据。即所谓的注水。</p>
+<p>可以看到SSR虽然解决了首屏渲染的问题，但是组件的数据获取和传递逻辑变得比较复杂。如果你开发的是个组件库，这种问题会变的更加突出。所以React提出了新的解决方案——React Server Component，服务端组件。</p>
+<h2 id="服务端组件"><a href="#服务端组件" class="headerlink" title="服务端组件"></a>服务端组件</h2><h3 id="什么是服务端组件"><a href="#什么是服务端组件" class="headerlink" title="什么是服务端组件"></a>什么是服务端组件</h3><p>服务端组件是React提出的一个全新概念，这种<strong>组件只能在服务端运行</strong>，例如将上面的例子改写为服务端组件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// Note.js</span><br><span class="line">&#x27;use server&#x27;;</span><br><span class="line"></span><br><span class="line">import db from &#x27;db&#x27;;</span><br><span class="line"></span><br><span class="line">async function Note(props) &#123;</span><br><span class="line">  const note = await db.posts.get(id);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;&#123;note.title&#125;&lt;/h2&gt;</span><br><span class="line">      &lt;span&gt;&#123;note.date&#125;&lt;/span&gt;</span><br><span class="line">      &lt;p&gt;&#123;note.content&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Note;</span><br></pre></td></tr></table></figure>
+<p>上面的例子中，获取数据的逻辑直接放在组件的底层作用域，数据返回后直接使用JSX进行数据渲染，简单直观。有点类似于早期PHP、JSP等服务端的开发方式。例子中调用了数据库，这里也可以是调用微服务、访问文件系统等Nodejs中其他API。<br>根据React的定义，服务端组件有以下几个显著的特点：</p>
+<ol>
+<li>组件顶部<code>&#39;use server&#39;</code>指令声明了组件是服务端组件（服务端组件环境中可省略）。</li>
+<li>组件是可以是一个异步的组件。可以直接调用异步的数据获取逻辑。</li>
+<li>组件只能在服务端运行，并且该组件不会被打包到客户端的JS bundle文件中。所以组件可以直接访问数据库、文件系统等只能在服务端才能调用的API。</li>
+</ol>
+<p>可以看到服务端组件是一个全新的范式，和之前的传统组件在理念上有很大的区别。之所以被称为服务端组件，主要是因为这种组件只能在服务端运行。所以为了和之前的组件加以区别，我们编写的传统组件被称为客户端组件。需要注意的是，客户端组件这个名称具有一定的误导性，他只是传统组件的一个新的名称而已，为了和服务端组件对应。它并不是只能运行在客户端，客户端组件也可以在SSR时，在服务端运行，他的运行过程遵循上面提到的服务端渲染时的流程。</p>
+<h3 id="服务端组件能力和限制"><a href="#服务端组件能力和限制" class="headerlink" title="服务端组件能力和限制"></a>服务端组件能力和限制</h3><p>服务端组件的函数在每次请求时只会执行一次，所以这种组件不能有自己的状态，由于代码不会被打包客户端的JS bundle中，也不能调用客户端相关的API。具体来说有以下限制：</p>
+<ul>
+<li>由于每次请求只会执行一次，所以不能使用<code>useState()</code>和<code>useReducer()</code></li>
+<li>没有生命周期，所以不能使用<code>useEffect()</code>和<code>useLayoutEffect()</code></li>
+<li>不能使用浏览器中的API，如操作DOM</li>
+<li>不能调用包含了state和effect的自定义hook</li>
+<li>不能直接调用使用context</li>
+</ul>
+<p>服务端组件有以下能力：</p>
+<ul>
+<li>可以使用异步的服务端API，例如访问数据库，调用微服务或者文件系统</li>
+<li>可以渲染其他服务端组件、传统的客户端组件和原生元素</li>
+</ul>
+<h3 id="服务端组件-VS-服务端渲染"><a href="#服务端组件-VS-服务端渲染" class="headerlink" title="服务端组件 VS. 服务端渲染"></a>服务端组件 VS. 服务端渲染</h3><p>让我们弄清楚另一个容易混淆的概念：服务端组件不是服务端渲染的替代方案。你不应该把服务端组件看成是服务端渲染的2.0版本。</p>
+<p>相反，应该把他们看成是可以完美契合的两块拼图，这两种方式相互补充。我们仍然需要依赖服务端渲染生成初始HTML，服务端组件是建立在服务端渲染之上的，这种技术能让我们将一些特定的组件代码从客户端的JS文件中剔除，确保这些代码只会服务端运行。</p>
+<p>事实上，你也可以使用服务端组件，而不依赖服务端渲染。 尽管在实际项目中，同时使用这两种技术会得到更好的效果。React团队构建了一个服务端组件的Demo，而没有使用服务端渲染。可以点击👉<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/reactjs/server-components-demo">这里查看</a>。</p>
+<h3 id="服务端组件-VS-客户端组件"><a href="#服务端组件-VS-客户端组件" class="headerlink" title="服务端组件 VS. 客户端组件"></a>服务端组件 VS. 客户端组件</h3><p>服务端组件是个全新概念模式，指的是那些只能在服务运行的组件，而客户端组件指的是我们已经很熟悉的标准的React组件，它既可以在SSR时在服务端运行，也可以在客户端运行，执行水合等流程。</p>
+<h3 id="指定客户端组件"><a href="#指定客户端组件" class="headerlink" title="指定客户端组件"></a>指定客户端组件</h3><p>在新的服务端组件范式中，所有的组件默认都是服务端组件，大多数时候我们可以省略<code>&#39;use server&#39;</code>指令。所以为了告诉打包工具哪些是客户端组件，我们必须显式的指定客户端组件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use client&#x27;;</span><br><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">function Counter() &#123;</span><br><span class="line">  const [count, setCount] = React.useState(0);</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span><br><span class="line">      Current value: &#123;count&#125;</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">export default Counter;</span><br></pre></td></tr></table></figure>
+<p><code>&#39;use client&#39;</code>指示该文件中的组件是一个客户端组件，客户端组件的代码会被打包进客户端JS bundle中。这样该组件就能在客户端重新渲染。<br>通过指令的方式将组件指定为客户端组件的方式并不是首创，例如我们可以通过<code>&#39;use strict&#39;</code>将JS转变为严格模式。<br>我们不需要通过<code>&#39;use server&#39;</code>将一个组件指定为服务端组件，在服务端组件的范式中，组件默认就是服务端组件。（在React19中<code>&#39;use Server&#39;</code>有另外的用途）<br>有一些组件需要运行在客户端，因为这些组件使用了状态或者有副作用，你可以使用<code>&#39;use client&#39;</code>指令将这类组件指定为客户端组件。否则，你可以将它指定为服务端组件。</p>
+<h3 id="什么样的组件应该是服务端组件"><a href="#什么样的组件应该是服务端组件" class="headerlink" title="什么样的组件应该是服务端组件"></a>什么样的组件应该是服务端组件</h3><p>一个通用的准则：如果一个组件可以是服务端组件，那么它就应该是服务端组件。服务端组件更加简单，也更容易理解。并且服务端组件还有性能优势：因为服务端组件不会在客户端运行，代码也不会被打包进客户端的JS代码中。</p>
+<h3 id="客户端组件边界"><a href="#客户端组件边界" class="headerlink" title="客户端组件边界"></a>客户端组件边界</h3><p>经过上面的介绍可以看到，服务端组件的执行过程和客户端组件的SSR过程是很相似的，即只能执行一次。那如果组件的props发上变化该怎么办？例如有以下服务端组件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function HitCounter(&#123; hits &#125;) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      Number of hits: &#123;hits&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始渲染时，hits的值是0。该组件会生成如下的HTML标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  Number of hits: 0</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>但是如果hits的值发生了变化该怎么办？假设这是个状态值，将它的值变为1之后，HitCounter组件会重新渲染，但是服务端组件是不会重新渲染的。要理解这个问题，我们需要将组件放到整个页面的组件树中来看。<br>假设我们有以下组件树：<br><img src="/%E5%AD%A6%E4%B9%A0/Server-Compoonent-Component/rsc8.png" alt="rsc8.png"></p>
+<p>如果所有的组件都是服务端组件，那没什么疑问，所有的属性都不会更新，所有的组件也都不会重新渲染。假设Article组件拥有hits状态值。为了使用状态值，我们需要将它转换为客户端组件。<br><img src="/%E5%AD%A6%E4%B9%A0/Server-Compoonent-Component/rsc9.png" alt="rsc9.png"></p>
+<p>当Article组件重新渲染时，该组件的所有子组件也都会重新渲染，包括HitCounter和Discussion。如果这些组件是服务端组件，他们不会重新渲染的，所以为了避免这种不可能发生的状况，React团队制定了一条规则，<strong>客户端组件只能导入客户端组件</strong>。<code>&#39;use client&#39;</code>指令意味着HitCounter和Discussion组件实例将会被转换为客户端组件。</p>
+<p>即服务端组件范式会创建一个类似于<strong>客户端边界</strong>的概念。最终的组件树像是下面这样的：<br><img src="/%E5%AD%A6%E4%B9%A0/Server-Compoonent-Component/rsc10.png" alt="rsc10.png"></p>
+<p>当我们在Article组件中加入<code>&#39;use client&#39;</code>指令，就会创建一个客户端边界，在这个边界之内的所有组件都会被隐式的转换为客户端组件，尽管HitCounter组件没有<code>&#39;use client&#39;</code>指令，在这种特殊的情形之下，这些组件仍然会水合或者重新渲染。</p>
+<p>这意味着我们没必要向所有需要运行在客户端的组件添加<code>&#39;use client&#39;</code>指令。实际使用中，我们只需要在创建新的客户端边界时加上该指令。</p>
+<p>到这里你可能会有一些疑问，觉得这有很大的限制。如果我必须在应用的顶层组件中使用状态是不是意味着所有的组件都会被转换为客户端组件？<br>要理解这个问题我们需要明白这里的限制是：<strong>客户端组件不能导入服务端组件</strong>，他只是模块化中依赖树维度的限制，而不是组件渲染树维度的限制。</p>
+<p>我们通过如下的例子来加以说明，假设我们有个顶层的Layout组件有一个状态是用来控制页面的深色和浅色模式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// Layout.js</span><br><span class="line">&#x27;use client&#x27;;</span><br><span class="line"></span><br><span class="line">import React, &#123; useState &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">const Layout = (&#123; children &#125;) =&gt; &#123;</span><br><span class="line">  const [isDark, setIsDark] = useState(false);</span><br><span class="line"></span><br><span class="line">  const handleThemeClick = () =&gt; &#123;</span><br><span class="line">    const nextTheme = !isDark;</span><br><span class="line">    setIsDark(nextTheme);</span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&#123;isDark ? &#x27;container dark&#x27; : &#x27;container white&#x27;&#125;&gt;</span><br><span class="line">      &lt;header className=&#x27;header&#x27;&gt;</span><br><span class="line">        &#123;isDark ? (&lt;div onClick=&#123;() =&gt; setIsDark(false)&#125;&gt;🌞&lt;/div&gt;) : (&lt;div onClick=&#123;() =&gt; setIsDark(true)&#125;&gt;🌙&lt;/div&gt;)&#125;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">      &lt;main className=&#x27;main&#x27;&gt;&#123;children&#125;&lt;/main&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>为了在组件中使用状态，我们不得不将组件转化为客户端组件。但是该组件必须是页面的顶层组件，我们可以采用children props的方式来解决这个问题。如在Home组件中使用如下写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// Home.js</span><br><span class="line">import React, &#123; Suspense &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">import Layout from &#x27;./Layout&#x27;;</span><br><span class="line">import &#123; Time &#125; from &#x27;./Time&#x27;;</span><br><span class="line"></span><br><span class="line">async function Home() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Layout&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Time /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/Layout&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里Time组件仍然可以是一个服务端组件，他的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// Time.js</span><br><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">export async function Time() &#123;</span><br><span class="line">  const beforeTime = new Date();</span><br><span class="line"></span><br><span class="line">  await new Promise((res) =&gt; &#123;</span><br><span class="line">    setTimeout(res, 3000);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  const afterTime = new Date();</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Home&lt;/h1&gt;</span><br><span class="line">      &lt;div&gt;Before: &#123;beforeTime.toString()&#125;&lt;/div&gt;</span><br><span class="line">      &lt;div&gt;After: &#123;afterTime.toString()&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Layout是一个客户端组件，Time是个服务端组件，但是Time组件可以作为Layout这个客户端组件的嵌套组件。这样就能解决顶层组件必须是客户端组件的场景。我们可以在Time.js中导入其他服务端组件或客户端组件，但是只能在Layout.js中导入客户端组件。</p>
+<p>所以更准确的说客户端组件边界是工作在文件或模块级别的，在客户端组件文件中被导入的模块或者文件都会被转换为客户端组件。当打包器打包代码时，他会遵循这个原则。</p>
+<h2 id="如何使用服务端组件"><a href="#如何使用服务端组件" class="headerlink" title="如何使用服务端组件"></a>如何使用服务端组件</h2><p>从上面的介绍可以看出，服务端组件目前还需要整合很多其他的技术，如打包工具，服务端框架和路由框架。所以截止到目前为止React还没有提供完整的、开箱即用的解决方案。<br>下面我们从零开始搭建一个服务端组件框架，来看一下如何使用服务端组件。完整的例子可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/react-server-component">参考这里</a>。<br>首先使用<code>npm init</code>初始化一个Nodejs项目。然后创建src/index.js，该文件是一个客户端入口文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// CSR入口文件</span><br><span class="line"></span><br><span class="line">import &#123; createRoot &#125; from &#x27;react-dom/client&#x27;;</span><br><span class="line"></span><br><span class="line">import &#123; Router &#125; from &#x27;./framework/router&#x27;;</span><br><span class="line"></span><br><span class="line">const root = createRoot(document.getElementById(&#x27;root&#x27;));</span><br><span class="line">root.render(&lt;Root /&gt;);</span><br><span class="line"></span><br><span class="line">function Root() &#123;</span><br><span class="line">  return &lt;h1&gt;Hello World&lt;/h1&gt;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>接着我们创建scripts/build.js文件，该文件是webpack打包的脚本文件，主要对上面的index.js文件进行打包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line">const rimraf = require(&#x27;rimraf&#x27;);</span><br><span class="line">const wepack = require(&#x27;webpack&#x27;);</span><br><span class="line"></span><br><span class="line">const HTMLWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;);</span><br><span class="line">const ReactServerWebpackPlugin = require(&#x27;react-server-dom-webpack/plugin&#x27;);</span><br><span class="line"></span><br><span class="line">const isProduction = process.env.NODE_ENV === &#x27;production&#x27;;</span><br><span class="line">rimraf.sync(path.resolve(__dirname, &#x27;../build&#x27;));</span><br><span class="line"></span><br><span class="line">wepack(</span><br><span class="line">  &#123;</span><br><span class="line">    mode: isProduction ? &#x27;production&#x27; : &#x27;development&#x27;,</span><br><span class="line">    devtool: isProduction ? &#x27;source-map&#x27; : &#x27;cheap-module-source-map&#x27;,</span><br><span class="line">    entry: path.resolve(__dirname, &#x27;../src/index.js&#x27;),</span><br><span class="line">    output: &#123;</span><br><span class="line">      path: path.resolve(__dirname, &#x27;../build&#x27;),</span><br><span class="line">      filename: &#x27;main.js&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">      rules: [</span><br><span class="line">        &#123;</span><br><span class="line">          test: /\.js$/,</span><br><span class="line">          use: &#x27;babel-loader&#x27;,</span><br><span class="line">          exclude: /node_modules/,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          test: /\.css$/,</span><br><span class="line">          use: [&#x27;style-loader&#x27;, &#x27;css-loader&#x27;],</span><br><span class="line">          exclude: /node_modules/,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">      new HTMLWebpackPlugin(&#123;</span><br><span class="line">        inject: true,</span><br><span class="line">        template: path.resolve(__dirname, &#x27;../public/index.html&#x27;),</span><br><span class="line">      &#125;),</span><br><span class="line">      // 生成react-client-manifest.json文件</span><br><span class="line">      new ReactServerWebpackPlugin(&#123; isServer: false &#125;),</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  (err, stats) =&gt; &#123;</span><br><span class="line">    if (err) &#123;</span><br><span class="line">      console.error(err.stack || err);</span><br><span class="line">      if (err.details) &#123;</span><br><span class="line">        console.error(err.details);</span><br><span class="line">      &#125;</span><br><span class="line">      process.exit(1);</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const info = stats.toJson();</span><br><span class="line">    if (stats.hasErrors()) &#123;</span><br><span class="line">      console.log(&#x27;Finished running webpack with errors.&#x27;);</span><br><span class="line">      info.errors.forEach((e) =&gt; console.error(e));</span><br><span class="line">      process.exit(1);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&#x27;Finished running webpack.&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    console.log(&#x27;Build complete&#x27;);</span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>这是一个标准的客户端渲染的打包配置，唯一需要注意的是使用了React官方提供的Server Component Webpack插件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const ReactServerWebpackPlugin = require(&#x27;react-server-dom-webpack/plugin&#x27;);</span><br></pre></td></tr></table></figure>
+<p>该插件会在build目录生成生成react-client-manifest.json文件。另外上面的webpack打包需要用到index.html文件，所以我们创建public/index.html:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;description&quot; content=&quot;React with Server Components&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot; /&gt;</span><br><span class="line">    &lt;title&gt;React Server Components Demo&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>babel的配置直接写在package.json中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;babel&quot;: &#123;</span><br><span class="line">    &quot;presets&quot;: [</span><br><span class="line">      [</span><br><span class="line">        &quot;@babel/preset-react&quot;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;runtime&quot;: &quot;automatic&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>接着我使用expressjs创建一个Node的HTTP服务，新建server/server.js文件，初始内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">  res.sendFile(path.join(__dirname, &#x27;../build/index.html&#x27;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(express.static(&#x27;build&#x27;));</span><br><span class="line">app.listen(process.env.PORT || 3000, () =&gt; &#123;</span><br><span class="line">  console.log(&#x27;Server is listening on port 3000&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在package.json中添加build脚本，使用webpack进行构建。创建server脚本运行server/server.js服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;concurrently \&quot;npm run server\&quot; \&quot;npm run build\&quot;&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;nodemon -- scripts/build.js&quot;,</span><br><span class="line">  &quot;server&quot;: &quot;nodemon -- --conditions=react-server server/server.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>为了让两者能同时运行，我们还创建了创建start脚本。这样一个基本的React CSR应用就搭建起来了。接下来我们需要把服务端组件的功能搭建起来，先创建router.js，内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">// src/framework/router.js</span><br><span class="line">import &#123;</span><br><span class="line">  createContext,</span><br><span class="line">  useContext,</span><br><span class="line">  use,</span><br><span class="line">  startTransition,</span><br><span class="line">  useState,</span><br><span class="line">&#125; from &#x27;react&#x27;;</span><br><span class="line">import &#123; createFromFetch &#125; from &#x27;react-server-dom-webpack/client&#x27;;</span><br><span class="line"></span><br><span class="line">const RouterContext = createContext();</span><br><span class="line">const initialCache = new Map();</span><br><span class="line"></span><br><span class="line">export function Router() &#123;</span><br><span class="line">  const [cache, setCache] = useState(initialCache);</span><br><span class="line">  const [path, setPath] = useState(&#x27;home&#x27;);</span><br><span class="line"></span><br><span class="line">  let content = cache.get(path);</span><br><span class="line">  if (!content) &#123;</span><br><span class="line">    content = createFromFetch(fetch(`/react/$&#123;path&#125;`));</span><br><span class="line">    cache.set(path, content);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 切换路由</span><br><span class="line">  function navigate(nextPath) &#123;</span><br><span class="line">    startTransition(() =&gt; &#123;</span><br><span class="line">      setPath(nextPath);</span><br><span class="line">      setCache(new Map());</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;RouterContext.Provider value=&#123;&#123; path, navigate &#125;&#125;&gt;</span><br><span class="line">      &#123;use(content)&#125;</span><br><span class="line">    &lt;/RouterContext.Provider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const useRouter = () =&gt; useContext(RouterContext);</span><br></pre></td></tr></table></figure>
+<p>该文件负责切换应用的路由。代码中的<code>createFromFetch</code>和<code>fetch</code>函数，可以在切换到新的页面后向node端发起请求获取整个页面的组件树，然后使用<code>use(content)</code>渲染获取到的内容，这里需要注意的是<code>fetch</code>返回的是一个Promise对象，他的内容是HTTP返回的流式数据。<code>use</code>函数读取流式数据并将视图渲染出来，<code>use</code>函数的具体使用方法可以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://react.dev/reference/react/use">参考文档</a>。<br>Router组件使用Context将应用的的path和navigate作为全局的状态和函数，子组件可以调用path变量，或调用navigate函数切换应用的路由。<br>下一步我们需要修改之前的index.js文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// CSR入口文件</span><br><span class="line"></span><br><span class="line">import &#123; createRoot &#125; from &#x27;react-dom/client&#x27;;</span><br><span class="line"></span><br><span class="line">import &#123; Router &#125; from &#x27;./framework/router&#x27;;</span><br><span class="line"></span><br><span class="line">const root = createRoot(document.getElementById(&#x27;root&#x27;));</span><br><span class="line">root.render(&lt;Root /&gt;);</span><br><span class="line"></span><br><span class="line">function Root() &#123;</span><br><span class="line">  return &lt;Router /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里只需要将Root函数改为渲染刚刚的Router组件。这样客户端相关的代码我们就已经搭建完毕了。用户首次请求应用时，会先进行客户端渲染，渲染出空壳应用，然后使用fetch函数向服务端发起请求获取整个应用并渲染。所以我们需要回到server.js中创建API来响应/react/home请求，修改server.js文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">const register = require(&#x27;react-server-dom-webpack/node-register&#x27;);</span><br><span class="line">register();</span><br><span class="line"></span><br><span class="line">const babelRegister = require(&#x27;@babel/register&#x27;);</span><br><span class="line">babelRegister(&#123;</span><br><span class="line">  ignore: [/[\\\/](build|server|node_modules)[\\\/]/],</span><br><span class="line">  presets: [[&#x27;@babel/preset-react&#x27;, &#123; runtime: &#x27;automatic&#x27; &#125;]],</span><br><span class="line">  plugins: [&#x27;@babel/transform-modules-commonjs&#x27;],</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line">const &#123; readFileSync &#125; = require(&#x27;fs&#x27;);</span><br><span class="line"></span><br><span class="line">const &#123; renderToPipeableStream &#125; = require(&#x27;react-server-dom-webpack/server&#x27;);</span><br><span class="line">const React = require(&#x27;react&#x27;);</span><br><span class="line">const Home = require(&#x27;../src/Home&#x27;).default;</span><br><span class="line">const About = require(&#x27;../src/About&#x27;).default;</span><br><span class="line"></span><br><span class="line">const routes = &#123;</span><br><span class="line">  home: Home,</span><br><span class="line">  about: About,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">  res.sendFile(path.join(__dirname, &#x27;../build/index.html&#x27;));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/react/:path&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">  const route = req.params.path;</span><br><span class="line">  const manifest = readFileSync(</span><br><span class="line">    path.join(__dirname, &#x27;../build/react-client-manifest.json&#x27;),</span><br><span class="line">    &#x27;utf-8&#x27;,</span><br><span class="line">  );</span><br><span class="line">  const moduleMap = JSON.parse(manifest);</span><br><span class="line">  const Component = routes[route];</span><br><span class="line">  const &#123; pipe &#125; = renderToPipeableStream(</span><br><span class="line">    React.createElement(Component),</span><br><span class="line">    moduleMap,</span><br><span class="line">  );</span><br><span class="line">  pipe(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(express.static(&#x27;build&#x27;));</span><br><span class="line">app.listen(process.env.PORT || 3000, () =&gt; &#123;</span><br><span class="line">  console.log(&#x27;Server is listening on port 3000&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这次server.js有很大改动，我们来逐一介绍几段关键的代码。<br>首先是顶部有关编译的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const register = require(&#x27;react-server-dom-webpack/node-register&#x27;);</span><br><span class="line">register();</span><br></pre></td></tr></table></figure>
+<p>这段代码用来处理代码中的’use client’和’use server’指令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const babelRegister = require(&#x27;@babel/register&#x27;);</span><br><span class="line">babelRegister(&#123;</span><br><span class="line">  ignore: [/[\\\/](build|server|node_modules)[\\\/]/],</span><br><span class="line">  presets: [[&#x27;@babel/preset-react&#x27;, &#123; runtime: &#x27;automatic&#x27; &#125;]],</span><br><span class="line">  plugins: [&#x27;@babel/transform-modules-commonjs&#x27;],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这段代码用来实时编译后面require的React模块，我们知道bable的作用是将ES6的语法转换为向下兼容的ES5语法，通过@babel/preset-react我们可以让bable编译React的JSX语法。但是我们平时最常用的是提前编译，应用运行时使用已经编译好的代码。除了提前编译之外，bable本身还支持实时编译，即一边运行一边编译。由于下面会在Nodejs环境导入React组件，所以这里需要bable实时对组件进行编译。<br>紧接着导入Home和About等React组件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const React = require(&#x27;react&#x27;);</span><br><span class="line">const Home = require(&#x27;../src/Home&#x27;).default;</span><br><span class="line">const About = require(&#x27;../src/About&#x27;).default;</span><br></pre></td></tr></table></figure>
+<p>Home.js的内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Suspense &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">import Layout from &#x27;./Layout&#x27;;</span><br><span class="line">import &#123; Count &#125; from &#x27;./Count&#x27;;</span><br><span class="line">import &#123; Time &#125; from &#x27;./Time&#x27;;</span><br><span class="line">import &#123; Loading &#125; from &#x27;./Loading&#x27;;</span><br><span class="line"></span><br><span class="line">async function Home() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Layout&gt;</span><br><span class="line">      &lt;div className=&quot;dashboard&quot;&gt;</span><br><span class="line">        &lt;Suspense fallback=&#123;&lt;Loading /&gt;&#125;&gt;</span><br><span class="line">          &lt;div className=&quot;dashboard-item&quot;&gt;</span><br><span class="line">            &lt;Time /&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/Suspense&gt;</span><br><span class="line"></span><br><span class="line">        &lt;div className=&quot;dashboard-item&quot;&gt;</span><br><span class="line">          &lt;Count /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/Layout&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Home;</span><br></pre></td></tr></table></figure>
+<p>可以看到这是一个服务端组件，想要在Node环境运行这样的代码就需要上面提到的babelRegister。<br>然后是server.js的API，用来响应客户端发起的/react/home请求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">app.get(&#x27;/react/:path&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">  const route = req.params.path;</span><br><span class="line">  console.log(&#x27;🚀 ~ app.get ~ route:&#x27;, route);</span><br><span class="line">  const manifest = readFileSync(</span><br><span class="line">    path.join(__dirname, &#x27;../build/react-client-manifest.json&#x27;),</span><br><span class="line">    &#x27;utf-8&#x27;,</span><br><span class="line">  );</span><br><span class="line">  const moduleMap = JSON.parse(manifest);</span><br><span class="line">  const Component = routes[route];</span><br><span class="line">  const &#123; pipe &#125; = renderToPipeableStream(</span><br><span class="line">    React.createElement(Component),</span><br><span class="line">    moduleMap,</span><br><span class="line">  );</span><br><span class="line">  pipe(res);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里调用<code>renderToPipeableStream</code>将路由对应的组件渲染成流式数据，再通过pipe函数将流式数据写入response对象中。<code>renderToPipeableStream</code>同时也用到了上面的客户端编译时产生的react-client-manifest.json文件。<br>最后再来看一下Home.js中引入的Layout.js文件的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use client&#x27;;</span><br><span class="line"></span><br><span class="line">import React, &#123; startTransition, useState &#125; from &#x27;react&#x27;;</span><br><span class="line">import &#123; useRouter &#125; from &#x27;./framework/router&#x27;;</span><br><span class="line"></span><br><span class="line">import &#x27;./style/Layout.css&#x27;;</span><br><span class="line">import &#x27;./style/Home.css&#x27;;</span><br><span class="line"></span><br><span class="line">const Layout = (&#123; children &#125;) =&gt; &#123;</span><br><span class="line">  const &#123; navigate, path &#125; = useRouter();</span><br><span class="line">  const [isDark, setIsDark] = useState(false);</span><br><span class="line"></span><br><span class="line">  const handleClick = (nextPath) =&gt; &#123;</span><br><span class="line">    startTransition(() =&gt; &#123;</span><br><span class="line">      navigate(nextPath);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&#123;isDark ? &#x27;container dark&#x27; : &#x27;container white&#x27;&#125;&gt;</span><br><span class="line">      &lt;header className=&quot;header&quot;&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li className=&#123;path === &#x27;home&#x27; ? &#x27;active&#x27; : undefined&#125;&gt;</span><br><span class="line">            &lt;span</span><br><span class="line">              onClick=&#123;() =&gt; &#123;</span><br><span class="line">                handleClick(&#x27;home&#x27;);</span><br><span class="line">              &#125;&#125;</span><br><span class="line">            &gt;</span><br><span class="line">              Home</span><br><span class="line">            &lt;/span&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">          &lt;li className=&#123;path === &#x27;about&#x27; ? &#x27;active&#x27; : undefined&#125;&gt;</span><br><span class="line">            &lt;span</span><br><span class="line">              onClick=&#123;() =&gt; &#123;</span><br><span class="line">                handleClick(&#x27;about&#x27;);</span><br><span class="line">              &#125;&#125;</span><br><span class="line">            &gt;</span><br><span class="line">              About</span><br><span class="line">            &lt;/span&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &#123;isDark ? (</span><br><span class="line">          &lt;div onClick=&#123;() =&gt; setIsDark(false)&#125;&gt;🌞&lt;/div&gt;</span><br><span class="line">        ) : (</span><br><span class="line">          &lt;div onClick=&#123;() =&gt; setIsDark(true)&#125;&gt;🌙&lt;/div&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">      &lt;main className=&quot;main&quot;&gt;&#123;children&#125;&lt;/main&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Layout;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>该组件是一个标准的客户端组件，在Home组件中可以导入它。Time.js是个服务端组件，但是可以通过children props的形式嵌套到Layout这个客户端组件中，通过这种方式来解决服务端组件的限制。</p>
+<p>以上就是一个服务端组件的基本框架，可以看到一个完整的服务端组件框架需要整合路由、打包工具等多项技术。目前开箱可用的成熟方案是使用Nextjs的v13.5以上的App Router。</p>
+<h2 id="RSC-Payload"><a href="#RSC-Payload" class="headerlink" title="RSC Payload"></a>RSC Payload</h2><p>运行上面的框架示例如下：<br><img src="/%E5%AD%A6%E4%B9%A0/Server-Compoonent-Component/rsc12.png" alt="rsc12.png"></p>
+<p>查看/react/home请求的响应体如下：<br><img src="/%E5%AD%A6%E4%B9%A0/Server-Compoonent-Component/rsc13.png" alt="rsc13.png"><br>这种数据格式称为React Server Component Payload，简称RSC Payload。是React自定义的协议，用来表示组件树。它包含服务端组件的虚拟dom，以及客户端组件对应的静态资源列表。React之所以使用自定义的协议，而不直接使用HTML字符串或者虚拟DOM，是因为这样可以使React更好的将请求获取到组件树和当前已经存在的组件树进行合并。以保持当前页面上已有的状态回不由于重新渲染而发生变化，如组件的State状态、鼠标聚焦、页面滚动、CSS动画等。这个过程称之为Reconcile或者Merge。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>通过以上介绍可以看出React Server Component只能解决一部分的使用场景，有人评价它重新发明了PHP，使得Web开发的方式又回到了模板引擎的时代。需要强调的是，这项技术并不是SSR或CSR的替代方案，而是和这两种技术互相补充的，以便Web应用有更好的开发和用户体验。由于目前尚未正式对外发布，所以目前使用RSC的最快是的方式是Nextjs。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.joshwcomeau.com/react/server-components/">https://www.joshwcomeau.com/react/server-components/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md">https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components">https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/React服务端渲染原理.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/翻译/Sinon-js使用最佳实践【译文】.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

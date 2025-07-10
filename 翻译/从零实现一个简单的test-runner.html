@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="从零实现一个简单的test runner【译】"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>从零实现一个简单的test runner【译】 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('从零实现一个简单的test-runner/bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>从零实现一个简单的test runner【译】</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2025-06-11
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/test-runner/">#test runner</a> <a href="/tags/测试框架/">#测试框架</a> <a href="/tags/JavaScript/">#JavaScript</a> <a href="/tags/Jest/">#Jest</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/翻译/">翻译</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文翻译自<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cpojer.net/posts/building-a-javascript-testing-framework">Building a JavaScript Testing Framework</a>，原文作者是<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cpojer.net/">cpojer</a>，本文将介绍如何从零开始实现一个简单的测试运行器（test runner），并支持运行单元测试用例。</p>
+<p>在日常工作中，我们经常需要编写测试用例来验证代码的正确性。他可以帮助我们发现代码中的错误和潜在问题，从而提高代码质量。为了运行这些测试用例，我们通常会使用诸如Jest、Mocha等测试框架或测试运行器（test runner）。他们都提供了丰富的功能来运行和管理测试用例，为了更好地理解test runner的工作原理。 我们从零开始实现一个简单的测试运行器，能够支持运行单元测试用例。</p>
+<h2 id="生成测试用例"><a href="#生成测试用例" class="headerlink" title="生成测试用例"></a>生成测试用例</h2><p>首先使用yarn init –yes命令生成一个nodejs项目，然后编写一个简单的测试用例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> test-demo</span><br><span class="line"><span class="built_in">cd</span> test-demo</span><br><span class="line">yarn init --<span class="built_in">yes</span></span><br><span class="line"><span class="built_in">mkdir</span> tests</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;expect(1).toBe(2);&quot;</span> &gt; tests/01.test.js</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;expect(2).toBe(2);&quot;</span> &gt; tests/02.test.js</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;expect(3).toBe(4);&quot;</span> &gt; tests/03.test.js</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;expect(4).toBe(4);&quot;</span> &gt; tests/04.test.js</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;expect(5).toBe(6);&quot;</span> &gt; tests/05.test.js</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;expect(6).toBe(6);&quot;</span> &gt; tests/06.test.js</span><br><span class="line"><span class="built_in">touch</span> index.mjs</span><br></pre></td></tr></table></figure>
+<p>上面的代码生成了一些测试用例文件，我们的目标是通过执行<code>node index.mjs</code>文件来运行这些测试用例，并输出测试结果。在使用Jest时，我们通过约定的方式正确的放置或命名测试用例文件，Jest会自动查找并运行这些文件。所以实现index.mjs文件第一步就是正确的查找测试用例文件，这里使用<code>glob</code>来查找所有的测试用例文件。</p>
+<p>首先安装glob：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add glob</span><br></pre></td></tr></table></figure>
+<p>然后在index.mjs中编写代码来查找测试用例文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> glob <span class="keyword">from</span> <span class="string">&#x27;glob&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> testFiles = glob.<span class="title function_">sync</span>(<span class="string">&#x27;**/*.test.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Test files:&#x27;</span>, testFiles);</span><br></pre></td></tr></table></figure>
+<p>现在执行<code>node index.mjs</code>，应该可以看到输出的测试用例文件列表。Jest框架使用内部的一个包<code>jest-haste-map</code>来查找测试用例文件，这个包会缓存文件的查找结果，以提高性能，并返回文件列表的绝对路径。所以我们可以利用这个包改造上面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">JestHasteMap</span> <span class="keyword">from</span> <span class="string">&#x27;jest-haste-map&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; cpus &#125; <span class="keyword">from</span> <span class="string">&#x27;os&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; dirname, join, relative &#125; <span class="keyword">from</span> <span class="string">&#x27;path&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; fileURLToPath &#125; <span class="keyword">from</span> <span class="string">&#x27;url&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title function_">dirname</span>(<span class="title function_">fileURLToPath</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">url</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hasteMapOptions = &#123;</span><br><span class="line">  <span class="attr">extensions</span>: [<span class="string">&#x27;js&#x27;</span>],</span><br><span class="line">  <span class="attr">maxWorkers</span>: <span class="title function_">cpus</span>().<span class="property">length</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;test-runner-demo&#x27;</span>,</span><br><span class="line">  <span class="attr">platforms</span>: [],</span><br><span class="line">  <span class="attr">rootDir</span>: root,</span><br><span class="line">  <span class="attr">roots</span>: [root],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hasteMap = <span class="keyword">new</span> <span class="title class_">JestHasteMap</span>.<span class="title function_">default</span>(hasteMapOptions);</span><br><span class="line"><span class="keyword">await</span> hasteMap.<span class="title function_">setupCachePath</span>(hasteMapOptions);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> testFiles = hasteFS.<span class="title function_">matchFilesWithGlob</span>([</span><br><span class="line">  process.<span class="property">argv</span>[<span class="number">2</span>] ? <span class="string">`**/<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>*`</span> : <span class="string">&#x27;**/*.test.js&#x27;</span>,</span><br><span class="line">]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Test files:&#x27;</span>, testFiles);</span><br></pre></td></tr></table></figure>
+
+<p>现在执行<code>node index.mjs</code>，应该可以看到输出的测试用例文件列表，并且文件路径是绝对路径。另外为了支持命令行参数来指定测试用例文件的前缀，我们在代码中添加了一个判断，如果有传入参数，则只查找以该参数开头的测试用例文件。</p>
+<h2 id="运行测试用例"><a href="#运行测试用例" class="headerlink" title="运行测试用例"></a>运行测试用例</h2><p>有了测试文件的路径之后，我们就可以运行这些测试用例了。为了利用多核CPU的优势，我们可以使用<code>worker_threads</code>模块来创建多个工作线程来并行运行测试用例。每个工作线程会加载测试用例文件，并执行其中的代码。这里我们使用<code>jest-worker</code>来创建工作线程。首先安装<code>jest-worker</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add jest-worker</span><br></pre></td></tr></table></figure>
+<p>然后创建一个<code>worker.js</code>文件来处理测试用例的执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">runTest</span> = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">testFile</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> code = <span class="keyword">await</span> fs.<span class="property">promises</span>.<span class="title function_">readFile</span>(testFile, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> testFile + <span class="string">&#x27;:\n&#x27;</span> + code;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在work.js中，我们定义了一个<code>runTest</code>函数来读取测试用例文件的内容，并返回文件名和内容。接下来在<code>index.mjs</code>中使用<code>jest-worker</code>来创建worker线程并运行测试用例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">JestWorker</span> <span class="keyword">from</span> <span class="string">&#x27;jest-worker&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> worker = <span class="keyword">new</span> <span class="title class_">Worker</span>(<span class="title function_">join</span>(root, <span class="string">&#x27;worker.js&#x27;</span>), &#123;</span><br><span class="line">  <span class="attr">enableWorkerThreads</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span><br><span class="line">  <span class="title class_">Array</span>.<span class="title function_">from</span>(testFiles).<span class="title function_">map</span>(<span class="keyword">async</span> (testFile) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> testResult = <span class="keyword">await</span> worker.<span class="title function_">runTest</span>(testFile);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(testResult);</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">worker.<span class="title function_">end</span>();</span><br></pre></td></tr></table></figure>
+<p>现在执行<code>node index.mjs</code>，应该可以看到输出的测试用例文件名和内容。这里我们只是简单地读取了测试用例文件的内容，并没有执行其中的测试代码。那要如何执行测试代码呢？我们先使用eval函数来执行获取到的代码字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">runTest</span> = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">testFile</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> code = <span class="keyword">await</span> fs.<span class="property">promises</span>.<span class="title function_">readFile</span>(testFile, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="built_in">eval</span>(code);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用断言库"><a href="#使用断言库" class="headerlink" title="使用断言库"></a>使用断言库</h2><p>有的时候测试用例会有一些异常，为了捕获并报告这些异常，我们使用try…catch语句来包裹测试代码，并在catch中输出错误信息。首先定义一个testResult对象以便将测试结果从worker进程返回到主进程：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.<span class="property">runTest</span> = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">testFile</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> code = <span class="keyword">await</span> fs.<span class="property">promises</span>.<span class="title function_">readFile</span>(testFile, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> testResult = &#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">errorMessage</span>: <span class="literal">null</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="built_in">eval</span>(code);</span><br><span class="line">    testResult.<span class="property">success</span> = <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    testResult.<span class="property">errorMessage</span> = error.<span class="property">message</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> testResult;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>此时我们运行<code>node index.mjs</code>,会出现expect不存在的错误，因为测试用例中使用了expect函数来进行断言，但是我们并没有定义expect函数。为了实现这个功能，我们可以先自己实现一个简单的断言库</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">expect</span> = (<span class="params">received</span>) =&gt; (&#123;</span><br><span class="line">  <span class="attr">toBe</span>: <span class="function">(<span class="params">expected</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (received !== expected) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`Expected <span class="subst">$&#123;expected&#125;</span> but received <span class="subst">$&#123;received&#125;</span>.`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">eval</span>(code);</span><br></pre></td></tr></table></figure>
+
+<p>接着我们回到index.mjs中，修改将测试结果打印出来：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> chalk <span class="keyword">from</span> <span class="string">&#x27;chalk&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; relative &#125; <span class="keyword">from</span> <span class="string">&#x27;path&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span><br><span class="line">  <span class="title class_">Array</span>.<span class="title function_">from</span>(testFiles).<span class="title function_">map</span>(<span class="keyword">async</span> (testFile) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; success, errorMessage &#125; = <span class="keyword">await</span> worker.<span class="title function_">runTest</span>(testFile);</span><br><span class="line">    <span class="keyword">const</span> status = success</span><br><span class="line">      ? chalk.<span class="property">green</span>.<span class="property">inverse</span>.<span class="title function_">bold</span>(<span class="string">&#x27; PASS &#x27;</span>)</span><br><span class="line">      : chalk.<span class="property">red</span>.<span class="property">inverse</span>.<span class="title function_">bold</span>(<span class="string">&#x27; FAIL &#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(status + <span class="string">&#x27; &#x27;</span> + chalk.<span class="title function_">dim</span>(<span class="title function_">relative</span>(root, testFile)));</span><br><span class="line">    <span class="keyword">if</span> (!success) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;  &#x27;</span> + errorMessage);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>现在执行<code>node index.mjs</code>，应该可以看到测试结果的输出。成功的测试用例会显示绿色的PASS，失败的测试用例会显示红色的FAIL，并且会输出错误信息。</p>
+<p>不过我们断言库的实现非常简单，只有一个<code>toBe</code>方法来进行相等断言。还有很多其他方法没有实现，比如<code>toEqual</code>、<code>toBeTruthy</code>等。为了更好地模拟Jest的断言库，我们可以使用<code>expect</code>包来提供更丰富的断言功能。<br>首先安装<code>expect</code>包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add expect</span><br></pre></td></tr></table></figure>
+<p>然后修改<code>worker.js</code>中的代码来使用<code>expect</code>包：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> expect = <span class="built_in">require</span>(<span class="string">&#x27;expect&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">runTest</span> = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">testFile</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> code = <span class="keyword">await</span> fs.<span class="property">promises</span>.<span class="title function_">readFile</span>(testFile, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> testResult = &#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">errorMessage</span>: <span class="literal">null</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="built_in">eval</span>(code);</span><br><span class="line">    testResult.<span class="property">success</span> = <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    testResult.<span class="property">errorMessage</span> = error.<span class="property">message</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> testResult;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>引入这个库之后，我们的测试用例就可以使用更丰富的断言方法了，创建一个测试文件<code>tests/mock.test.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mock = <span class="built_in">require</span>(<span class="string">&#x27;jest-mock&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = mock.<span class="title function_">fn</span>();</span><br><span class="line"><span class="title function_">expect</span>(fn).<span class="property">not</span>.<span class="title function_">toHaveBeenCalled</span>();</span><br><span class="line"><span class="title function_">fn</span>();</span><br><span class="line"><span class="title function_">expect</span>(fn).<span class="title function_">toHaveBeenCalled</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这里用到了<code>jest-mock</code>包，所以我们还要执行<code>yarn add jest-mock</code>来安装这个包。现在执行<code>node index.mjs mcok.test.js</code>就可以执行这个文件了。</p>
+<p>最后我们的test runner还有一个问题，测试用例出错之后，程序没有异常退出。为了解决这个问题，我们继续改造index.mjs文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hasFailed = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span><br><span class="line">  <span class="title class_">Array</span>.<span class="title function_">from</span>(testFiles).<span class="title function_">map</span>(<span class="keyword">async</span> (testFile) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; success, errorMessage &#125; = <span class="keyword">await</span> worker.<span class="title function_">runTest</span>(testFile);</span><br><span class="line">    <span class="keyword">const</span> status = success</span><br><span class="line">      ? chalk.<span class="property">green</span>.<span class="property">inverse</span>.<span class="title function_">bold</span>(<span class="string">&#x27; PASS &#x27;</span>)</span><br><span class="line">      : chalk.<span class="property">red</span>.<span class="property">inverse</span>.<span class="title function_">bold</span>(<span class="string">&#x27; FAIL &#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(status + <span class="string">&#x27; &#x27;</span> + chalk.<span class="title function_">dim</span>(<span class="title function_">relative</span>(root, testFile)));</span><br><span class="line">    <span class="keyword">if</span> (!success) &#123;</span><br><span class="line">      hasFailed = <span class="literal">true</span>; <span class="comment">// Something went wrong!</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;  &#x27;</span> + errorMessage);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br><span class="line">worker.<span class="title function_">end</span>();</span><br><span class="line"><span class="keyword">if</span> (hasFailed) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">    <span class="string">&#x27;\n&#x27;</span> + chalk.<span class="property">red</span>.<span class="title function_">bold</span>(<span class="string">&#x27;Test run failed, please fix all the failing tests.&#x27;</span>),</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// Set an exit code to indicate failure.</span></span><br><span class="line">  process.<span class="property">exitCode</span> = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码，我们定义了一个hasFailed变量来记录是否有测试用例失败，如果有测试用例失败，则在最后输出一条错误信息，并设置<code>process.exitCode</code>为1，表示程序异常退出。</p>
+<h2 id="实现describe和it函数"><a href="#实现describe和it函数" class="headerlink" title="实现describe和it函数"></a>实现describe和it函数</h2><p>在使用Jest时，为了能更好的组织测试用例，我们通常会使用<code>describe</code>和<code>it</code>函数来定义测试套件和测试用例。为了实现这个功能，我们需要在worker.js中添加对这两个函数的支持。首先创建一个测试文件<code>tests/circus.test.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;circus test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&#x27;works&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(<span class="number">1</span>).<span class="title function_">toBe</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;second circus test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">it</span>(<span class="string">`doesn&#x27;t work`</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(<span class="number">1</span>).<span class="title function_">toBe</span>(<span class="number">2</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>接着，我门需要在worker.js中定义describe和it函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> describeFns = [];</span><br><span class="line">  <span class="keyword">let</span> currentDescribeFn;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">describe</span> = (<span class="params">name, fn</span>) =&gt; describeFns.<span class="title function_">push</span>([name, fn]);</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">it</span> = (<span class="params">name, fn</span>) =&gt; currentDescribeFn.<span class="title function_">push</span>([name, fn]);</span><br><span class="line">  <span class="built_in">eval</span>(code);</span><br><span class="line"></span><br><span class="line">  testResult.<span class="property">success</span> = <span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="comment">// …</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码在执行完eval(code)之后，只是执行了测试文件中的describe函数，还没有真正执行测试用例。为了执行测试用例，我们需要在worker.js遍历describeFns数组，并执行describe函数中的第二个参数（fn）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> testName; <span class="comment">// Use this variable to keep track of the current test.</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> describeFns = [];</span><br><span class="line">  <span class="keyword">let</span> currentDescribeFn;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">describe</span> = (<span class="params">name, fn</span>) =&gt; describeFns.<span class="title function_">push</span>([name, fn]);</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">it</span> = (<span class="params">name, fn</span>) =&gt; currentDescribeFn.<span class="title function_">push</span>([name, fn]);</span><br><span class="line">  <span class="built_in">eval</span>(code);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> [name, fn] <span class="keyword">of</span> describeFns) &#123;</span><br><span class="line">    currentDescribeFn = [];</span><br><span class="line">    testName = name;</span><br><span class="line">    <span class="title function_">fn</span>(); <span class="comment">// 函数内部会执行上文的it函数</span></span><br><span class="line"></span><br><span class="line">    currentDescribeFn.<span class="title function_">forEach</span>(<span class="function">(<span class="params">[name, fn]</span>) =&gt;</span> &#123;</span><br><span class="line">      testName += <span class="string">&#x27; &#x27;</span> + name;</span><br><span class="line">      <span class="title function_">fn</span>(); <span class="comment">// 执行it函数的第二个参数</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  testResult.<span class="property">success</span> = <span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  testResult.<span class="property">errorMessage</span> = testName + <span class="string">&#x27;: &#x27;</span> + error.<span class="property">message</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到此为止，我们再次实现了一个简单版的describe和it函数。真正的测试框架还允许describe和it函数嵌套使用，并且可以在describe中定义beforeEach、afterEach等钩子函数，支持异步函数等。为了实现这些功能，我们还是老规矩，使用第三方已经实现好的库来完成。这里我们使用<code>jest-circus</code>包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add jest-circus</span><br></pre></td></tr></table></figure>
+<p>在代码中使用<code>jest-circus</code>来替换我们自己实现的describe和it函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> expect = <span class="built_in">require</span>(<span class="string">&#x27;expect&#x27;</span>);</span><br><span class="line"><span class="comment">// Provide `describe` and `it` to tests.</span></span><br><span class="line"><span class="keyword">const</span> &#123; describe, it, run, resetState &#125; = <span class="built_in">require</span>(<span class="string">&#x27;jest-circus&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">runTest</span> = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">testFile</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> code = <span class="keyword">await</span> fs.<span class="property">promises</span>.<span class="title function_">readFile</span>(testFile, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> testResult = &#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">errorMessage</span>: <span class="literal">null</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">resetState</span>();</span><br><span class="line">    <span class="built_in">eval</span>(code);</span><br><span class="line">    <span class="comment">// Run jest-circus.</span></span><br><span class="line">    <span class="keyword">const</span> &#123; testResults &#125; = <span class="keyword">await</span> <span class="title function_">run</span>();</span><br><span class="line">    testResult.<span class="property">testResults</span> = testResults;</span><br><span class="line">    testResult.<span class="property">success</span> = testResults.<span class="title function_">every</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> !result.<span class="property">errors</span>.<span class="property">length</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    testResult.<span class="property">errorMessage</span> = error.<span class="property">message</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> testResult;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，在使用<code>jest-circus</code>时，我们需要在每次运行测试之前调用<code>resetState()</code>函数来重置状态。这样可以确保每个测试文件之间的状态是独立的。<br>接着在index.mjs中输出测试结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span><br><span class="line">  <span class="title class_">Array</span>.<span class="title function_">from</span>(testFiles).<span class="title function_">map</span>(<span class="keyword">async</span> (testFile) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; success, testResults, errorMessage &#125; =</span><br><span class="line">      <span class="keyword">await</span> worker.<span class="title function_">runTest</span>(testFile);</span><br><span class="line">    <span class="keyword">const</span> status = success</span><br><span class="line">      ? chalk.<span class="property">green</span>.<span class="property">inverse</span>.<span class="title function_">bold</span>(<span class="string">&#x27; PASS &#x27;</span>)</span><br><span class="line">      : chalk.<span class="property">red</span>.<span class="property">inverse</span>.<span class="title function_">bold</span>(<span class="string">&#x27; FAIL &#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(status + <span class="string">&#x27; &#x27;</span> + chalk.<span class="title function_">dim</span>(<span class="title function_">relative</span>(root, testFile)));</span><br><span class="line">    <span class="keyword">if</span> (!success) &#123;</span><br><span class="line">      hasFailed = <span class="literal">true</span>;</span><br><span class="line">      <span class="comment">// Make use of the rich `testResults` and error messages.</span></span><br><span class="line">      <span class="keyword">if</span> (testResults) &#123;</span><br><span class="line">        testResults</span><br><span class="line">          .<span class="title function_">filter</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> result.<span class="property">errors</span>.<span class="property">length</span>)</span><br><span class="line">          .<span class="title function_">forEach</span>(<span class="function">(<span class="params">result</span>) =&gt;</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">              <span class="comment">// Skip the first part of the path which is an internal token.</span></span><br><span class="line">              result.<span class="property">testPath</span>.<span class="title function_">slice</span>(<span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>) + <span class="string">&#x27;\n&#x27;</span> + result.<span class="property">errors</span>[<span class="number">0</span>],</span><br><span class="line">            ),</span><br><span class="line">          );</span><br><span class="line">        <span class="comment">// If the test crashed before `jest-circus` ran, report it here.</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (errorMessage) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;  &#x27;</span> + errorMessage);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>以上代码会正确打印每个测试文件的测试结果，并且如果有测试文件中的用例失败，会输出详细的错误信息。</p>
+<h2 id="沙盒环境"><a href="#沙盒环境" class="headerlink" title="沙盒环境"></a>沙盒环境</h2><p>通过100行左右的代码，我们已经实现了一个简单的测试运行器，能够支持运行单元测试用例，并输出测试结果。但是我们还在使用eval函数来执行测试用例，这样会有一些安全隐患，比如某个测试用例修改了全局变量，在另外的文件中全局变量的值就会被改变。为了避免这种情况，我们需要为每个测试文件创建沙盒环境，在Node中可以使用<code>vm</code>模块来创建沙盒环境。我们可以在worker.js中使用<code>vm.runInNewContext</code>来执行测试用例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// replace `eval(code);` with this:</span></span><br><span class="line"><span class="keyword">const</span> context = &#123; describe, it, expect, mock &#125;;</span><br><span class="line">vm.<span class="title function_">createContext</span>(context);</span><br><span class="line">vm.<span class="title function_">runInContext</span>(code, context);</span><br></pre></td></tr></table></figure>
+<p>这样我们就通过<code>vm</code>模块创建了一沙盒环境，我们修改<code>tests/circus.test.js</code>中的测试用例来验证沙盒环境的效果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;second circus test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">it</span>(<span class="string">`doesn&#x27;t work`</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(resolve, <span class="number">2000</span>));</span><br><span class="line">    <span class="title function_">expect</span>(<span class="number">1</span>).<span class="title function_">toBe</span>(<span class="number">2</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当我们执行<code>node index.mjs circus.test.js</code>时，会出现setTimeout is not defined的错误。这是因为在沙盒环境中没有全局的setTimeout函数。为了让沙盒环境支持setTimeout等全局函数，我们可以将setTimeout等全局函数添加到沙盒环境中，但是把所有的JS全局对象都添加到沙盒环境中并不是一个好的做法。为了更好的模拟Jest的沙盒环境，我们可以使用<code>jest-environment-node</code>包来创建一个Node环境的沙盒。首先安装<code>jest-environment-node</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add jest-environment-node</span><br></pre></td></tr></table></figure>
+<p>然后在worker.js中使用<code>jest-environment-node</code>来创建沙盒环境：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Replace this code:</span></span><br><span class="line"><span class="keyword">const</span> context = &#123; describe, it, expect, mock &#125;;</span><br><span class="line">vm.<span class="title function_">createContext</span>(context);</span><br><span class="line"></span><br><span class="line"><span class="comment">// With this:</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">NodeEnvironment</span> = <span class="built_in">require</span>(<span class="string">&#x27;jest-environment-node&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> environment = <span class="keyword">new</span> <span class="title class_">NodeEnvironment</span>(&#123;</span><br><span class="line">  <span class="attr">projectConfig</span>: &#123;</span><br><span class="line">    <span class="attr">testEnvironmentOptions</span>: &#123; describe, it, expect, mock &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">vm.<span class="title function_">runInContext</span>(code, environment.<span class="title function_">getVmContext</span>());</span><br></pre></td></tr></table></figure>
+
+<p>最后，我们还需要解决一个问题，就是require函数，之前使用eval函数来执行测试用例代码时，测试用例可以使用require函数来引入其他模块。但是在沙盒环境中，require函数是不可用的。为了让测试用例能够使用require函数，我们可以在沙盒环境中添加一个require函数。首先我们先创建一个测试用例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tests/banana.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="string">&#x27;good&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>修改circus.test.js来使用require函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> banana = <span class="built_in">require</span>(<span class="string">&#x27;./banana.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">it</span>(<span class="string">&#x27;tastes good&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(banana).<span class="title function_">toBe</span>(<span class="string">&#x27;good&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>此时运行<code>node index.mjs circus.test.js</code>会报错，提示require is not defined。然后我们可以在worker.js中先实现一个require函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">customRequire</span> = (<span class="params">fileName</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> code = fs.<span class="title function_">readFileSync</span>(<span class="title function_">join</span>(<span class="title function_">dirname</span>(testFile), fileName), <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="comment">// Define a function in the `vm` context and return it.</span></span><br><span class="line">  <span class="keyword">const</span> moduleFactory = vm.<span class="title function_">runInContext</span>(</span><br><span class="line">    <span class="string">`(function(module) &#123;<span class="subst">$&#123;code&#125;</span>&#125;)`</span>,</span><br><span class="line">    environment.<span class="title function_">getVmContext</span>(),</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> <span class="variable language_">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br><span class="line">  <span class="comment">// Run the sandboxed function with our module object.</span></span><br><span class="line">  <span class="title function_">moduleFactory</span>(<span class="variable language_">module</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>但是以上代码只能require一次，如果我们修改circus.test.js文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> apple = <span class="built_in">require</span>(<span class="string">&#x27;./apple.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">it</span>(<span class="string">&#x27;tastes delicious&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(apple).<span class="title function_">toBe</span>(<span class="string">&#x27;delicious&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tests/apple.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="string">&#x27;delicious&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>此时运行<code>node index.mjs circus.test.js</code>会报错，提示<code>Identifier &#39;module&#39; has already been declared</code>。为了解决这个问题，我们进一步改造worker.js中的customRequire函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">customRequire</span> = (<span class="params">fileName</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> code = fs.<span class="title function_">readFileSync</span>(<span class="title function_">join</span>(<span class="title function_">dirname</span>(testFile), fileName), <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="comment">// Define a function in the `vm` context and return it.</span></span><br><span class="line">  <span class="keyword">const</span> moduleFactory = vm.<span class="title function_">runInContext</span>(</span><br><span class="line">    <span class="string">`(function(module, require) &#123;<span class="subst">$&#123;code&#125;</span>&#125;)`</span>,</span><br><span class="line">    environment.<span class="title function_">getVmContext</span>(),</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> <span class="variable language_">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br><span class="line">  <span class="comment">// Run the sandboxed function with our module object.</span></span><br><span class="line">  <span class="title function_">moduleFactory</span>(<span class="variable language_">module</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>现在我们就可以在多次调用require函数了。完整的代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> expect = <span class="built_in">require</span>(<span class="string">&#x27;expect&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> mock = <span class="built_in">require</span>(<span class="string">&#x27;jest-mock&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; describe, it, run, resetState &#125; = <span class="built_in">require</span>(<span class="string">&#x27;jest-circus&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">NodeEnvironment</span> = <span class="built_in">require</span>(<span class="string">&#x27;jest-environment-node&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; dirname, basename, join &#125; = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">runTest</span> = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">testFile</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> testResult = &#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">errorMessage</span>: <span class="literal">null</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">resetState</span>();</span><br><span class="line">    <span class="keyword">let</span> environment;</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">customRequire</span> = (<span class="params">fileName</span>) =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> code = fs.<span class="title function_">readFileSync</span>(<span class="title function_">join</span>(<span class="title function_">dirname</span>(testFile), fileName), <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">      <span class="keyword">const</span> moduleFactory = vm.<span class="title function_">runInContext</span>(</span><br><span class="line">        <span class="comment">// Inject require as a variable here.</span></span><br><span class="line">        <span class="string">`(function(module, require) &#123;<span class="subst">$&#123;code&#125;</span>&#125;)`</span>,</span><br><span class="line">        environment.<span class="title function_">getVmContext</span>(),</span><br><span class="line">      );</span><br><span class="line">      <span class="keyword">const</span> <span class="variable language_">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br><span class="line">      <span class="comment">// And pass customRequire into our moduleFactory.</span></span><br><span class="line">      <span class="title function_">moduleFactory</span>(<span class="variable language_">module</span>, customRequire);</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    environment = <span class="keyword">new</span> <span class="title class_">NodeEnvironment</span>(&#123;</span><br><span class="line">      <span class="attr">projectConfig</span>: &#123;</span><br><span class="line">        <span class="attr">testEnvironmentOptions</span>: &#123;</span><br><span class="line">          describe,</span><br><span class="line">          it,</span><br><span class="line">          expect,</span><br><span class="line">          mock,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// Use `customRequire` to run the test file.</span></span><br><span class="line">    <span class="title function_">customRequire</span>(<span class="title function_">basename</span>(testFile));</span><br><span class="line">    <span class="keyword">const</span> &#123; testResults &#125; = <span class="keyword">await</span> <span class="title function_">run</span>();</span><br><span class="line">    testResult.<span class="property">testResults</span> = testResults;</span><br><span class="line">    testResult.<span class="property">success</span> = testResults.<span class="title function_">every</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> !result.<span class="property">errors</span>.<span class="property">length</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    testResult.<span class="property">errorMessage</span> = error.<span class="property">message</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> testResult;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>以上代码中moduleFactory变量的值就是runInContext函数的第一个参数，它是一个函数，这个函数接受两个参数：module和require。module是一个对象，它有一个exports属性，我们可以通过这个属性来导出模块的内容。require是一个函数，我们递归调用了customRequire函数来实现模块的加载。不过以上加载器不能加载Node.js的内置模块和第三方模块。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>通过以上的步骤，我们从零实现了一个简单的测试运行器，能够支持运行单元测试用例，并输出测试结果。我们使用了<code>jest-haste-map</code>来查找测试用例文件，使用<code>jest-worker</code>来并行运行测试用例，使用<code>jest-circus</code>来组织测试用例，并使用<code>jest-environment-node</code>来创建沙盒环境。虽然这个测试运行器还很简单，但它已经具备了基本的功能，可以作为学习和理解测试框架的基础。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://cpojer.net/posts/building-a-javascript-testing-framework#user-content-fn-9">Building a JavaScript Testing Framework</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://jestjs.io/">Jest</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/从零实现一个大模型（一）.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/使用React实现自定义的浏览器滚动条.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

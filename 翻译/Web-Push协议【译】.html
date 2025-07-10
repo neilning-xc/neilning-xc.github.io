@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Web Push协议【译】"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Web Push协议【译】 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('Web-Push协议【译】/bg.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Web Push协议【译】</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                            Posted by Neil Ning on
+                        
+                        
+                            2023-07-31
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/web-push/">#web push</a> <a href="/tags/push-notification/">#push notification</a> <a href="/tags/JWT/">#JWT</a> <a href="/tags/ECDH/">#ECDH</a> <a href="/tags/HKDF/">#HKDF</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/翻译/">翻译</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该文章翻译自web.dev的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/notifications/">Notifications</a>系列文章，本篇文章原文链接<a target="_blank" rel="noopener external nofollow noreferrer" href="https://web.dev/push-notifications-web-push-protocol/">点击这里</a></p>
+<p>我们已经看到web push库是如何实现消息推送的，但是这些具体帮我们做了什么？<br>这些库帮我们发送网络请求，并确保请求的格式是符合规范要求的。<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tools.ietf.org/html/draft-ietf-webpush-protocol">Web Push Protocol</a>定义了这个网络请求的规范。<br><img src="/%E7%BF%BB%E8%AF%91/Web-Push%E5%8D%8F%E8%AE%AE%E3%80%90%E8%AF%91%E3%80%91/request.jpg" alt="request.jpg"></p>
+<p>本章我们来介绍一下服务器如何使用应用服务器密钥来标识自己，如何加密要发送的数据。<br>这是web push中比较难的一部分，并且我不是加密方面的专家。让我们来探讨其中的每个步骤，理解这些库在背后做了些什么是很有必要的。</p>
+<h2 id="应用服务器密钥（Application-server-keys）"><a href="#应用服务器密钥（Application-server-keys）" class="headerlink" title="应用服务器密钥（Application server keys）"></a>应用服务器密钥（Application server keys）</h2><p>当我们订阅用户时，我们传入了一个<code>applicationServerKey</code>参数，这个key会被发送给推送服务，他能让推送服务识别出订阅的用户时哪个应用的，以及应用触发的推送应该发送给订阅的用户。<br>当我们触发消息推送时，我们要设置一些列请求头，这使得推送服务能够对发送的应用进行验证。（<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tools.ietf.org/html/draft-thomson-webpush-vapid">VAPID规范</a>定义了这个过程）<br>在整个过程中到底发生了什么？以下是应用服务器认证的步骤：</p>
+<ol>
+<li>应用服务器使用私钥对要发送的JSON数据进行签名。</li>
+<li>签名后的数据放在POST请求的请求头中被发送给推送服务。</li>
+<li>推送服务使用已经存储的公钥对收到的签名数据进行验证。该公钥是用户在浏览器端订阅时调用<code>pushManager.subscribe()</code>时传给推送服务的，且该公钥和第一步签名的私钥时相对应的。</li>
+<li>如果验证通过，推送服务把消息发送给用户。</li>
+</ol>
+<p>整个过程时示意图如下（注意左下角图例中的公钥和私钥）：<br><img src="/%E7%BF%BB%E8%AF%91/Web-Push%E5%8D%8F%E8%AE%AE%E3%80%90%E8%AF%91%E3%80%91/serverapp-key.jpg" alt="serverapp-key.jpg"></p>
+<p>请求头中的签名数据就是JSON Web Token.</p>
+<h3 id="JSON-web-token"><a href="#JSON-web-token" class="headerlink" title="JSON web token"></a>JSON web token</h3><p>JSON web token简称JWT，我们将数据发送给第三方时，通过JWT对方能够识别出数据的发送者。<br>当第三方收到数据，他需要使用发送者的公钥来验证JWT的签名部分。如果签名验证通过，即能够说明签名的数据必定来自对应的公钥，也就能够验证数据的发送者。<br>访问<a target="_blank" rel="noopener external nofollow noreferrer" href="https://jwt.io/%E5%8F%AF%E4%BB%A5%E5%B0%9D%E8%AF%95%E8%BF%99%E4%B8%AA%E7%AD%BE%E5%90%8D%E5%92%8C%E9%AA%8C%E8%AF%81%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%8C%E8%AF%A5%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%B7%A5%E5%85%B7%E5%8F%AF%E4%BB%A5%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%90%8D%E3%80%82%E4%B8%BA%E4%BA%86%E8%AE%B2%E8%A7%A3%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7%EF%BC%8C%E6%88%91%E4%BB%AC%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%8B%E5%A6%82%E4%BD%95%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BAJWT%E3%80%82">https://jwt.io/可以尝试这个签名和验证的过程，该平台的工具可以对数据进行自动签名。为了讲解的完整性，我们来看一下如何手动创建JWT。</a></p>
+<h3 id="Web推送和JWT签名"><a href="#Web推送和JWT签名" class="headerlink" title="Web推送和JWT签名"></a>Web推送和JWT签名</h3><p>JWT是一个字符串，主要有三部分组成，并由“.”连接起来。</p>
+<p>第一和第二部分的字符串（JWT info和JWT data）是由JSON字符串经过base64编码而来，这意味着这两部分是明文可读的。<br>第一部分的字符串是关于JWT本身的信息，指明了创建签名的算法。we b推送使用的JWT必须包含一下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;,</span><br><span class="line">  &quot;alg&quot;: &quot;ES256&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二部分是JWT的数据，这部分包含JWT的发送者，接收者和过期时间。对于Web推送，这部分数据必须包含一下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;aud&quot;: &quot;https://some-push-service.org&quot;,</span><br><span class="line">  &quot;exp&quot;: &quot;1469618703&quot;,</span><br><span class="line">  &quot;sub&quot;: &quot;mailto:example@web-push-book.org&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>aud</code>字段是JWT的接收者，即JWT要发送给谁。对于Web推送来说接收者是推送服务，所以我们将其设置为推送服务的域名。<br><code>exp</code>字段是JWT的过期时间，该字段可以阻止中间人截获JWT并重新使用。字段值是一个秒数的时间戳，且不能超过24小时。在Node.js中过期时间可以由一下代码生成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.floor(Date.now() / 1000) + 12 * 60 * 60;</span><br></pre></td></tr></table></figure>
+<p>这里设置了12个小时而不是24小时，可以避免应用服务器和推送服务之间的时钟差异。<br>最后一个<code>sub</code>字段可以是一个URL或者mailto为开头的邮箱地址。该字段允许在必要的时候，推送想要联系到发送者就可以从JWT中找到发送的联系方式。这也是为什么web-push库需要一个邮箱地址。和第一部分一样，第二部分数据也必须是一个URL安全的base64字符串。<br>第三部分字符串是一个签名，将前两部分字符串用“.”连接之后组成的字符串称为“unsigned token”，然后对其进行签名。<br>签名的过程需要使用ES256（ES256签名算法的解释<a target="_blank" rel="noopener external nofollow noreferrer" href="https://thiscute.world/posts/jwt-algorithm-key-generation/">点击这里</a>）对为签名的token进行加密。根据<a target="_blank" rel="noopener external nofollow noreferrer" href="https://datatracker.ietf.org/doc/html/rfc7519">JWT规范</a>。ES256是“使用了P-256曲线加密算法和SHA-256哈希算法的ECDSA签名算法”的简称。使用crypto库创建签名的过程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// Utility function for UTF-8 encoding a string to an ArrayBuffer.</span><br><span class="line">const utf8Encoder = new TextEncoder(&#x27;utf-8&#x27;);</span><br><span class="line"></span><br><span class="line">// The unsigned token is the concatenation of the URL-safe base64 encoded</span><br><span class="line">// header and body.</span><br><span class="line">const unsignedToken = .....;</span><br><span class="line"></span><br><span class="line">// Sign the |unsignedToken| using ES256 (SHA-256 over ECDSA).</span><br><span class="line">const key = &#123;</span><br><span class="line">  kty: &#x27;EC&#x27;,</span><br><span class="line">  crv: &#x27;P-256&#x27;,</span><br><span class="line">  x: window.uint8ArrayToBase64Url(</span><br><span class="line">    applicationServerKeys.publicKey.subarray(1, 33)),</span><br><span class="line">  y: window.uint8ArrayToBase64Url(</span><br><span class="line">    applicationServerKeys.publicKey.subarray(33, 65)),</span><br><span class="line">  d: window.uint8ArrayToBase64Url(applicationServerKeys.privateKey),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Sign the |unsignedToken| with the server&#x27;s private key to generate</span><br><span class="line">// the signature.</span><br><span class="line">return crypto.subtle.importKey(&#x27;jwk&#x27;, key, &#123;</span><br><span class="line">  name: &#x27;ECDSA&#x27;, namedCurve: &#x27;P-256&#x27;,</span><br><span class="line">&#125;, true, [&#x27;sign&#x27;])</span><br><span class="line">.then((key) =&gt; &#123;</span><br><span class="line">  return crypto.subtle.sign(&#123;</span><br><span class="line">    name: &#x27;ECDSA&#x27;,</span><br><span class="line">    hash: &#123;</span><br><span class="line">      name: &#x27;SHA-256&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;, key, utf8Encoder.encode(unsignedToken));</span><br><span class="line">&#125;)</span><br><span class="line">.then((signature) =&gt; &#123;</span><br><span class="line">  console.log(&#x27;Signature: &#x27;, signature);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>推送服务可以使用应用服务器密钥的公钥来解密这个签名，解密得出的字符串必须和未签名的字符串（即JWT的前两部分）相同。JWT必须放在请求头的<code>Authorization</code>字段中，并以WebPush为开头：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: &#x27;WebPush [JWT Info].[JWT Data].[Signature]&#x27;;</span><br></pre></td></tr></table></figure>
+<p>Web推送协议也规定了应用服务器密钥的公钥必须放在请求头的<code>Crypto-Key</code>字段中，公钥必须经过URL安全的base64编码，并以<code>p256ecdsa=</code>为开头。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Crypto-Key: p256ecdsa=[URL Safe Base64 Public Application Server Key]</span><br></pre></td></tr></table></figure>
+<h3 id="加密推送数据"><a href="#加密推送数据" class="headerlink" title="加密推送数据"></a>加密推送数据</h3><p>接下来我们来看一下如何使用消息推送发送数据，以便Web应用收到消息推送是，可以访问获取到的数据。<br>使用消息推送时，一个常见的问题是为什么发送给推送服务的数据必须是加密的。在原生APP中，推送的消息是明文的。Web推送的一个优势是所有的推送服务都遵守相同的规范使用相同的API，开发者不需要关注推送服务是谁，我们只要按照正确的格式向推送服务发送请求就能完成消息推送。不过这种模式也有一个缺点是开发者能会把消息发送给不安全的推送服务。通过对发送的数据进行加密，推送服务就无法获取到推送的数据，只有浏览器能够正常解密这些数据，从而保护用户数据。<br>推送数据加密的规范称为<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tools.ietf.org/html/draft-ietf-webpush-encryption">Message Encryption spec</a>。<br>在讨论具体的消息加密步骤之前，我们先来回顾一下加密过程中所用到的一些技术。</p>
+<h3 id="ECDH-和-HKDF"><a href="#ECDH-和-HKDF" class="headerlink" title="ECDH 和 HKDF"></a>ECDH 和 HKDF</h3><p>加密的整个过程中使用了ECDH和HKDF两种技术，他们为信息加密提供了很好的支持。</p>
+<h4 id="ECDH-密钥交换（Elliptic-Curve-Diffie-Hellman-key-exchange）"><a href="#ECDH-密钥交换（Elliptic-Curve-Diffie-Hellman-key-exchange）" class="headerlink" title="ECDH: 密钥交换（Elliptic Curve Diffie-Hellman key exchange）"></a>ECDH: 密钥交换（Elliptic Curve Diffie-Hellman key exchange）</h4><p>想象一个场景，Alice和Bob想要共享一些信息，这两个人都有自己的公钥和私钥，并且都将自己的公钥公布给对方。ECDH的特点是Alice可以用自己的私钥和Bob的公钥创建一个密钥X，Bob也用自己的私钥和Alice的公钥独立的生成一个相同的密钥X。这样Alice和Bob只需要向对方传递自己的公钥，就能各自生成相同的密钥X，从而达到密钥X共享的目的。Alice和Bob可以使用X来加密或解密他们之间传输的数据。<br>ECHD依赖曲线的数学特性达到生成共享密钥的目的。ECHD更深入的介绍，我推荐可以看这个<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.youtube.com/watch?v=F3zzNa42-tQ">视频的介绍</a>。<br>代码实现方面，大多数的语言和平台都有库可以方便的生成这些密钥。在Node中我们使用以下方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const keyCurve = crypto.createECDH(&#x27;prime256v1&#x27;);</span><br><span class="line">keyCurve.generateKeys();</span><br><span class="line"></span><br><span class="line">const publicKey = keyCurve.getPublicKey();</span><br><span class="line">const privateKey = keyCurve.getPrivateKey();</span><br></pre></td></tr></table></figure>
+<h4 id="HKDF-基于HMAC的密钥生成函数（HMAC-based-key-derivation-function）"><a href="#HKDF-基于HMAC的密钥生成函数（HMAC-based-key-derivation-function）" class="headerlink" title="HKDF 基于HMAC的密钥生成函数（HMAC based key derivation function）"></a>HKDF 基于HMAC的密钥生成函数（HMAC based key derivation function）</h4><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://tools.ietf.org/html/rfc5869">HKDF规范</a>中对该加密技术有比较简明描述。HKDF是基于HMAC密钥派生函数，它可以将一个弱密码转化为密码学的强密码，例如它可以用来将上一步的密钥交换算法生成的共享密码转化为适合加密、完整性校验或认证的强密钥。本质上讲，HKDF能将不是特别安全的密钥变得更加安全。<br>Web推送协议规范要求加密必须使用SHA-256作为哈希算法，所以HKDF生成的结果密钥长度不能超过256位（32字节）。在Node中的实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// Simplified HKDF, returning keys up to 32 bytes long</span><br><span class="line">function hkdf(salt, ikm, info, length) &#123;</span><br><span class="line">  // Extract</span><br><span class="line">  const keyHmac = crypto.createHmac(&#x27;sha256&#x27;, salt);</span><br><span class="line">  keyHmac.update(ikm);</span><br><span class="line">  const key = keyHmac.digest();</span><br><span class="line"></span><br><span class="line">  // Expand</span><br><span class="line">  const infoHmac = crypto.createHmac(&#x27;sha256&#x27;, key);</span><br><span class="line">  infoHmac.update(info);</span><br><span class="line"></span><br><span class="line">  // A one byte long buffer containing only 0x01</span><br><span class="line">  const ONE_BUFFER = new Buffer(1).fill(1);</span><br><span class="line">  infoHmac.update(ONE_BUFFER);</span><br><span class="line"></span><br><span class="line">  return infoHmac.digest().slice(0, length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单的概括一下ECDH和HKDF：<br>ECDH通过共享通信双方的公钥来生成一个共享的密钥。HKDF将不够安全的密钥变得更加安全。<br>以上的这些会在加密推送数据的时候用到，接下来我们来看一下我们所需要的输入以及数据是如何加密。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>当我们发送包含数据的消息推送给用户时，我们需要提供三个输入项：</p>
+<ol>
+<li>数据本身</li>
+<li><code>PushSubscription</code>订阅对象的<code>auth</code>密钥</li>
+<li><code>PushSubscription</code>订阅对象的<code>p256dh</code>密钥</li>
+</ol>
+<p>我们已经知道auth和p256dh的值可以从PushSubscription中获取，我们可以通过一下方式获取：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">subscription.toJSON().keys.auth;</span><br><span class="line">subscription.toJSON().keys.p256dh;</span><br><span class="line"></span><br><span class="line">subscription.getKey(&#x27;auth&#x27;);</span><br><span class="line">subscription.getKey(&#x27;p256dh&#x27;);</span><br></pre></td></tr></table></figure>
+<p>auth的值应该被保存在安全的地方，不能分享给其他应用。p256dh时一个公钥，可以将它视为客户端浏览器的公钥，订阅对象的公钥是由浏览器生成的，浏览器的私钥时私有的，我们无法知道。浏览器会用它解密接收到的数据。</p>
+<h5 id="Salt"><a href="#Salt" class="headerlink" title="Salt"></a>Salt</h5><p>Salt值时一个16字节的随机数据，在NodeJS中使用以下方式生成Salt值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const salt = crypto.randomBytes(16);</span><br></pre></td></tr></table></figure>
+<h5 id="公钥-私钥"><a href="#公钥-私钥" class="headerlink" title="公钥/私钥"></a>公钥/私钥</h5><p>公钥和私钥需要使用P-256椭圆曲线算法生成，在NodeJS中的代码实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const localKeysCurve = crypto.createECDH(&#x27;prime256v1&#x27;);</span><br><span class="line">localKeysCurve.generateKeys();</span><br><span class="line"></span><br><span class="line">const localPublicKey = localKeysCurve.getPublicKey();</span><br><span class="line">const localPrivateKey = localKeysCurve.getPrivateKey();</span><br></pre></td></tr></table></figure>
+<p>我们可以称这个密钥是“本地密钥”，他们是用来加密要发送的数据的，和之前提到的应用服务器公钥、私钥密钥对无关。<br>当发送推送数据时，我们有auth密钥、订阅公钥（p256dh）、新生成的salt值和本地密钥对，加密所需要的准备工作就已经完成。</p>
+<h4 id="共享密钥"><a href="#共享密钥" class="headerlink" title="共享密钥"></a>共享密钥</h4><p>加密的第一步是使用订阅对象的公钥，和我们新生成的私钥（就像上文提到的Alice和Bob的例子）生成共享密钥。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const sharedSecret = localKeysCurve.computeSecret(</span><br><span class="line">  subscription.keys.p256dh,</span><br><span class="line">  &#x27;base64&#x27;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>下一步需要使用这个共享的密钥生成一个伪随机密钥。（PRK）</p>
+<h4 id="伪随机密钥（Pseudo-random-key）"><a href="#伪随机密钥（Pseudo-random-key）" class="headerlink" title="伪随机密钥（Pseudo random key）"></a>伪随机密钥（Pseudo random key）</h4><p>伪随机密钥（PRK）是auth密钥和上一步生成的共享密钥的组合。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const authEncBuff = new Buffer(&#x27;Content-Encoding: auth\0&#x27;, &#x27;utf8&#x27;);</span><br><span class="line">const prk = hkdf(subscription.keys.auth, sharedSecret, authEncBuff, 32);</span><br></pre></td></tr></table></figure>
+<p>你可能会有疑惑<code>Content-Encoding: auth\0</code>字符串的作用是什么。简单的讲，该字符串没有明确的目的，浏览器在解密收到的消息时，会尝试查找Content-Encoding字符串。\0会在Buffer的末尾增加一个字节的数据，并用0值填充。解密数据时，浏览器期望的数据是content encoding后面有0填充的一个字节，然后是要发送加密数据。<br>我们的伪随机密钥是使用auth、共享密钥、和一小段编码字符串通过HKDF生成的。</p>
+<h4 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h4><p>上下文是一个字节集合，浏览器可以使用它来解密收到的数据。它本质上是个字节数组，包含了订阅的公钥“本地密钥”的公钥。（加密时候使用本地密钥的私钥和订阅的公钥，为了能让浏览器解密该数据，需要提供本地密钥的公钥和订阅的公钥。因为根据订阅的公钥，浏览器可以找到订阅私钥）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const keyLabel = new Buffer(&#x27;P-256\0&#x27;, &#x27;utf8&#x27;);</span><br><span class="line"></span><br><span class="line">// Convert subscription public key into a buffer.</span><br><span class="line">const subscriptionPubKey = new Buffer(subscription.keys.p256dh, &#x27;base64&#x27;);</span><br><span class="line"></span><br><span class="line">const subscriptionPubKeyLength = new Uint8Array(2);</span><br><span class="line">subscriptionPubKeyLength[0] = 0;</span><br><span class="line">subscriptionPubKeyLength[1] = subscriptionPubKey.length;</span><br><span class="line"></span><br><span class="line">const localPublicKeyLength = new Uint8Array(2);</span><br><span class="line">subscriptionPubKeyLength[0] = 0;</span><br><span class="line">subscriptionPubKeyLength[1] = localPublicKey.length;</span><br><span class="line"></span><br><span class="line">const contextBuffer = Buffer.concat([</span><br><span class="line">  keyLabel,</span><br><span class="line">  subscriptionPubKeyLength.buffer,</span><br><span class="line">  subscriptionPubKey,</span><br><span class="line">  localPublicKeyLength.buffer,</span><br><span class="line">  localPublicKey,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<p>上下文buffer包含一个<code>P-256\0</code>标签，然后是订阅公钥的字节长度值和公钥本身，再后面的本地公钥和字节长度和本地公钥本身。<br>上下文的值用来创建一次性密钥（nonce）和内容加密密钥。（content encryption key，CEK）</p>
+<h4 id="内容加密密钥和一次性密钥"><a href="#内容加密密钥和一次性密钥" class="headerlink" title="内容加密密钥和一次性密钥"></a>内容加密密钥和一次性密钥</h4><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Cryptographic_nonce">一次性密钥（nonce）</a>可以阻止重放攻击，因为它只能使用一次。内容加密密钥（CEK）是我们用来加密发送数据的最终密钥。首先我们需要为nonce和CEK创建字节数据，他们是由内容编码字符串和上一步的上下文组成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const nonceEncBuffer = new Buffer(&#x27;Content-Encoding: nonce\0&#x27;, &#x27;utf8&#x27;);</span><br><span class="line">const nonceInfo = Buffer.concat([nonceEncBuffer, contextBuffer]);</span><br><span class="line"></span><br><span class="line">const cekEncBuffer = new Buffer(&#x27;Content-Encoding: aesgcm\0&#x27;);</span><br><span class="line">const cekInfo = Buffer.concat([cekEncBuffer, contextBuffer]);</span><br></pre></td></tr></table></figure>
+<p>这两个值的生成需要使用salt值、伪随机密钥（PRK）、nonceInfo和cekInfo生成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// The nonce should be 12 bytes long</span><br><span class="line">const nonce = hkdf(salt, prk, nonceInfo, 12);</span><br><span class="line"></span><br><span class="line">// The CEK should be 16 bytes long</span><br><span class="line">const contentEncryptionKey = hkdf(salt, prk, cekInfo, 16);</span><br></pre></td></tr></table></figure>
+<p>然后我们就得到了一次性密钥和内容加密密钥。</p>
+<h4 id="执行加密"><a href="#执行加密" class="headerlink" title="执行加密"></a>执行加密</h4><p>现在有了内容加密密钥，我们可以加密数据了。我们使用内容加密密钥和一次性密钥作为初始化向量创建一个AES128（一种对称加密算法）密码，在Node中代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const cipher = crypto.createCipheriv(</span><br><span class="line">  &#x27;id-aes128-GCM&#x27;,</span><br><span class="line">  contentEncryptionKey,</span><br><span class="line">  nonce,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>加密数据之前我们还需要定义padding值，放在要发送的数据之前。原因是这个padding值可以阻止中间人通过数据的长度来猜出消息数据的类型。<br>你必须添加两个字节指定padding值的长度。例如你不想添加padding值，前两个字节的值必须是0，这两个字节之后的数据就是要发送的数据。如果你想添加5字节的padding值，那么前两个字节的值就是5，然后数据消费者在读取数据时，会向后再偏移五个字节。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const padding = new Buffer(2 + paddingLength);</span><br><span class="line">// The buffer must be only zeros, except the length</span><br><span class="line">padding.fill(0);</span><br><span class="line">padding.writeUInt16BE(paddingLength, 0);</span><br></pre></td></tr></table></figure>
+<p>接下来使用加密函数对padding值和有效载荷进行加密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const result = cipher.update(Buffer.concat(padding, payload));</span><br><span class="line">cipher.final();</span><br><span class="line"></span><br><span class="line">// Append the auth tag to the result -</span><br><span class="line">// https://nodejs.org/api/crypto.html#crypto_cipher_getauthtag</span><br><span class="line">const encryptedPayload = Buffer.concat([result, cipher.getAuthTag()]);</span><br></pre></td></tr></table></figure>
+<p>终于我们有了经过加密的数据了。剩下的工作就是如何把加密的数据发送给推送服务。</p>
+<h4 id="加密数据和请求头"><a href="#加密数据和请求头" class="headerlink" title="加密数据和请求头"></a>加密数据和请求头</h4><p>为了能向推送服务发送加密的数据，我们需要再POST请求中定义一些不同的请求头字段。</p>
+<h5 id="Encryption字段"><a href="#Encryption字段" class="headerlink" title="Encryption字段"></a>Encryption字段</h5><p>请求头的Encryption字段必须包含salt加密数据时候用到的slat值。<br>salt值的长度时16字节，必须经过base64 URL编码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Encryption: salt=[URL Safe Base64 Encoded Salt]</span><br></pre></td></tr></table></figure>
+<h5 id="Crypto-Key字段"><a href="#Crypto-Key字段" class="headerlink" title="Crypto-Key字段"></a>Crypto-Key字段</h5><p>在之前的应用服务器密钥章节，我们已经看到<code>Crypto-Key</code>字段包含了应用服务器密钥的公钥，不仅如此，该字段还用来传递前面提到的本地密钥对的公钥。这个公钥用来加密要发送的数据。该字段完整形式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Crypto-Key: dh=[URL Safe Base64 Encoded Local Public Key String]; p256ecdsa=[URL Safe Base64 Encoded Public Application Server Key]</span><br></pre></td></tr></table></figure>
+<h5 id="Content-type-length-amp-encoding字段"><a href="#Content-type-length-amp-encoding字段" class="headerlink" title="Content type, length &amp; encoding字段"></a>Content type, length &amp; encoding字段</h5><p><code>Content-Length</code>字段指经过加密后数据的字节数，<code>Content-Type</code>和<code>Content-Encoding</code>字段的值是固定的，三个字段形式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Length: [Number of Bytes in Encrypted Payload]</span><br><span class="line">Content-Type: &#x27;application/octet-stream&#x27;</span><br><span class="line">Content-Encoding: &#x27;aesgcm&#x27;</span><br></pre></td></tr></table></figure>
+<p>设置了请求头字段，我们需要把经过加密的数据作为请求的请求体发送。注意<code>Content-Type</code>的值是<code>application/octet-stream</code>。这是因为加密数据必须通过字节流的形式发送。在NodeJS中的实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const pushRequest = https.request(httpsOptions, function(pushResponse) &#123;</span><br><span class="line">pushRequest.write(encryptedPayload);</span><br><span class="line">pushRequest.end();</span><br></pre></td></tr></table></figure>
+<h5 id="其他字段"><a href="#其他字段" class="headerlink" title="其他字段"></a>其他字段</h5><p>我们已经讲解了用于传递JWT、应用服务器密钥的请求头，他们可以帮助推送服务识别发送请求的应用。还有其他与数据加密相关的请求头。还有一些额外的头字段，推送服务用他们来修改消息发送的行为，有些字段是必须的，有些则是可选的。</p>
+<h5 id="TTL头字段（必须的）"><a href="#TTL头字段（必须的）" class="headerlink" title="TTL头字段（必须的）"></a>TTL头字段（必须的）</h5><p>TTL字段（time to live）的值是个秒数的整数值，该字段指定推送服务在分发消息前，消息在推送服务中的生存期。当TTL过期时，该消息将会被推送服务移除，并不再发送该消息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TTL: [Time to live in seconds]</span><br></pre></td></tr></table></figure>
+<p>如果将TTL的值设为0，推送服务会立刻分发该消息，但是如果消息没有发送到用户的设备，该消息会从推送服务的队列中立刻被删除。技术上讲，推送服务可以减少推送消息的TTL值。不过你可以通过检查推送服务响应头肿的TTL字段知道该字段有没有被修改。</p>
+<h5 id="Topic头字段（可选）"><a href="#Topic头字段（可选）" class="headerlink" title="Topic头字段（可选）"></a>Topic头字段（可选）</h5><p>Topic字段的值是个字符串，可以用新的消息替换还未发送的消息，但是两个消息需要用相同的Topic值。该功能在某些场景下是很有用的，例如你有多个消息需要发送，但是某些设备还是离线状态，但是当用户的设备恢复在线之后，你只想让用户看到最近的一条消息。</p>
+<h5 id="Urgency字段（可选）"><a href="#Urgency字段（可选）" class="headerlink" title="Urgency字段（可选）"></a>Urgency字段（可选）</h5><p>Urgency字段告诉推送服务消息对于用户的重要性。该字段可以使推送服务帮助用户节省设备电量，尤其是当用户设备处于低电量的时候，设备只有在收到重要的消息时才会被唤醒。该字段的默认值时normal，其他可选值如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Urgency: [very-low | low | normal | high]</span><br></pre></td></tr></table></figure>
+<p>如果你还有关于Web Push协议其他的问题，想了解这个过程的其他细节，可以参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/web-push-libs">官方库（web-push-libs）</a>是如何触发消息推送的。只要有了经过加密的数据和上面所需的请求头，你可以使用<code>PushSubscription</code>对象向<code>endpoint</code>发送post请求。那么我们如何处理POST请求的响应呢？</p>
+<h4 id="处理推送服务的响应"><a href="#处理推送服务的响应" class="headerlink" title="处理推送服务的响应"></a>处理推送服务的响应</h4><p>向推送服务发送请求后，你需要检查响应的状态码，他可以告诉你请求是否成功。</p>
+<table>
+<thead>
+<tr>
+<th>状态吗</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>201</td>
+<td>创建成功，推送服务收到请求并会发送该消息</td>
+</tr>
+<tr>
+<td>429</td>
+<td>请求过于频繁，该状态码说明你的应用服务器向推送服务发送请求过于频繁，收到该状态码后，通常需要检查<code>Retry-After</code>字段，它指定了需要在多久后才能再次向推送服务发送请求</td>
+</tr>
+<tr>
+<td>400</td>
+<td>请求验证失败，该状态码说明请求头字段验证失败，或者个事不正确</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found，该状态码说明订阅对象已经过期，不再可用。此时你需要删除订阅对象，并在客户端重新订阅</td>
+</tr>
+<tr>
+<td>410</td>
+<td>该状态码说明订阅对象不再有效，此时需要删除订阅对象。当用户调用<code>unsubscribe()</code>方法时，会收到该状态码</td>
+</tr>
+<tr>
+<td>413</td>
+<td>发送的数据体积过大，推送服务支持的数据为4KB</td>
+</tr>
+</tbody></table>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/翻译/推送事件【译】.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/翻译/使用web-push库发送消息【译】.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

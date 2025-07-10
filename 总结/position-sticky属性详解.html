@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Tell the world with code"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Neil Ning"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="position: sticky属性详解"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Tell the world with code"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Neil的博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://neilning-xc.github.io/img/banner.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>position: sticky属性详解 - Neil的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//lib.baomitu.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPEMLKFYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZPEMLKFYYW');
+    </script>
+
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Neil的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/neilning-xc/neilning-xc.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header post-header" style="background-image: url('position-sticky属性详解/banner.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>position: sticky属性详解</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-10-26
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/CSS/">#CSS</a> <a href="/tags/position/">#position</a> <a href="/tags/sticky/">#sticky</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/总结/">总结</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近开发移动端网页，要实现一个类似于商品搜索并添加购物车的需求，要求顶部搜索框必须吸顶，不能随商品列表向上滚动而消失，底部的购物车结算框必须固定在屏幕底部，不能随商品列表的向下滚动消失，为了能以最简单的方式实现该需求，首先想到了CSS的<code>position: sticky</code>属性，但是在实际调试中发现对该属性的理解不够深入，导致调试一直达不到想要的效果。网上找了一些资料阅读之后也发现即使是一些比较著名的博客在描述该属性时也有不准确的地方。所以自己做了实验，进行整理并记录下来。</p>
+<h2 id="Position属性"><a href="#Position属性" class="headerlink" title="Position属性"></a>Position属性</h2><p>在讲解sticky属性之前，先来回顾下position的其他属性的值和含义，position属性用来设置元素的定位位置，既然是设置元素定位位置，那就必须要有参照物，即元素是相对于谁来定位。不同的值有不同的定位参照物，具体来说，position属性可以有以下的值：</p>
+<ul>
+<li><strong>static</strong>: 代表不设置任何定位，此时浏览器会按照正常流渲染这个元素，元素不会产生堆叠，该值也是不设置position属性时的默认值，由于没有设置定位，也就不存在定位参照物，此时top/left/bottom/right这个四个属性无效。</li>
+<li><strong>relative</strong>: 相对定位，他的参照物是该元素处于正常流时的位置（它设置了static时应该出现的位置）。top/left/bottom/right这个四个属性可以设置相对于参照物的位置。</li>
+<li><strong>absolute</strong>: 绝对定位，该值的参照物是最近的设置了非static定位的祖先元素，即它会逐级向上查找，直到找到一个设置了非static定位的祖先元素，并以此为参照物，如果没有找到以根元素为参照。此时top/left/bottom/right这个四个属性可以设置相对于这个参照物的偏移量。该属性使元素脱离正常流。</li>
+<li><strong>fixed</strong>: 该值的参照物是浏览器可视区域，即相对于浏览器窗口进行定位，它使元素脱离正常流。</li>
+<li><strong>sticky</strong>: 该值比较特殊，它时而表现出relative的特性，时而又会类似于fixed定位时的特性。</li>
+</ul>
+<h2 id="Sticky"><a href="#Sticky" class="headerlink" title="Sticky"></a>Sticky</h2><p>sticky的工作原理比较不容易理解，当我们想实现类似滚动到顶部吸顶的效果时，首先会想到它。但是它并不总是能够实现吸顶效果，因为它可以看作是relative和fixed属性结合体，有时会表现出类似fixed的特性，有时又会表现出relative的特性。那sticky属性值的参照物是什么呢？</p>
+<p>sticky的参照物是最近的设置了overflow != hidden的祖先元素，即它会向上逐级查找，直到找到一个overflow属性不是invisible的元素（通常这个元素通常设置为<code>overflow: auto</code>或<code>overflow：scroll</code>），而并不是某些文章所说的是浏览器窗口。</p>
+<p>那它什么时候表现出fixed特性，什么时候会表现出relative的特性呢？</p>
+<p>表现出relative效果：</p>
+<ol>
+<li>元素设置了<code>position: sticky</code>，但是没有设置<code>top/bottom/left/right</code>的值。</li>
+<li>元素设置了<code>position: sticky</code>，也设置了<code>top/bottom/left/right</code>等偏移量属性，但是没有满足偏移量属性的条件。例如设置了<code>top: 40px</code>，但是在垂直滚动时，该元素的顶部距离参照物元素的可视区域的顶部还大于40px时。可视区域指的是元素设置的固定高度的边界。</li>
+</ol>
+<p>表现出类似fixed的效果，需要同时满足以下条件：</p>
+<ol>
+<li>元素设置<code>position: sticky</code>。</li>
+<li>设置了<code>top/bottom/left/right</code>等偏移量属性之一。水平滚动时需要设置<code>left/right</code>，垂直滚动时需要设置<code>top/bottom</code>。</li>
+<li>元素距离参照物的偏移量满足条件。</li>
+</ol>
+<p>比如设置了<code>position: sticky;top: 40px;</code>的元素A滚动到距离参照物的可视区域的上边缘40px时，它会固定在该位置。直到其他的sticky元素将其覆盖或推开。</p>
+<p>接下来用一个<a target="_blank" rel="noopener external nofollow noreferrer" href="https://codesandbox.io/s/postion-sticky-v2kd4">例子</a>演示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;App&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;ancestor&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;extra&quot;</span>&gt;</span>额外内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">className</span>=<span class="string">&quot;sticky-child&quot;</span>&gt;</span>1. Sticky Header Child<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;content&quot;</span>&gt;</span>content 1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">className</span>=<span class="string">&quot;sticky-child&quot;</span>&gt;</span>2. Sticky Header Child<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;content&quot;</span>&gt;</span>content 2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.App</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ancestor</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">145</span>, <span class="number">145</span>, <span class="number">145</span>, <span class="number">0.89</span>);</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">3px</span> solid <span class="built_in">rgb</span>(<span class="number">0</span>, <span class="number">4</span>, <span class="number">255</span>);</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">3px</span> solid <span class="built_in">rgb</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">3px</span> solid red;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">3px</span> solid red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.extra</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">124</span>, <span class="number">123</span>, <span class="number">218</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sticky-child</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: sticky;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">11</span>, <span class="number">124</span>, <span class="number">20</span>);</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">800px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: bisque;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/%E6%80%BB%E7%BB%93/position-sticky%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/position-sticky.gif" alt="position-sticky.gif"></p>
+<p>设置容器.ancestor元素居中，<code>overflow: auto;</code>，可视区域的高度为500px，如图中红色边框所示。两个header元素的定位设为sticky。<br>开始时，由于.extra元素的存在，header元素的距离大于40px时，它随着元素的滚动而滚动，表现出relative的特性。当header滚动到距离顶部的蓝色上边框为40px时，开始表现出类似fixed的特性，之所以说类似是因为他的参照物是边框所示的可视区域。<br>元素继续滚动，当第二个header元素距离底部为40px时，他也开始固定在顶部显示，并且产生了堆叠的效果，第二个header覆盖在第一个header元素之上。<br>除了能够产生堆叠的效果，还能产生推开的效果，即第二个header距蓝色边框40px时，它会推开第一个header元素，此时需要修改HTML元素的结构，将header元素和.content元素用一个额外的容器元素包裹起来。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;App&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;ancestor&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;extra&quot;</span>&gt;</span>额外内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">className</span>=<span class="string">&quot;sticky-child&quot;</span>&gt;</span>1. Sticky Header Child<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;content&quot;</span>&gt;</span>content 1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">className</span>=<span class="string">&quot;sticky-child&quot;</span>&gt;</span>2. Sticky Header Child<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;content&quot;</span>&gt;</span>content 2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/%E6%80%BB%E7%BB%93/position-sticky%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/position-sticky-push.gif" alt="position-sticky-push.gif"></p>
+<p>如果将第二个header元素偏移量改为bottom: 40px时会发生什么呢？</p>
+<p>开始时，该header元素会停留在距离底部黑色边框为40px的位置，随着滚动条向下滚动，当该header元素距离底部的黑色边框大于40px时，他开始表现出relative的特性。如图所示：<br><img src="/%E6%80%BB%E7%BB%93/position-sticky%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/position-sticky-bottom.gif" alt="position-sticky-bottom.gif"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>sticky定位的参照物是<strong>最近的</strong>设置了overflow不为hidden的<strong>祖先元素</strong>的<strong>可视区域</strong>。</li>
+<li>设置了sticky定位的元素要想产生粘性的效果，也必须设置left/right，top/bottom，具体设置哪一个，视参照物元素的滚动方向而定。</li>
+<li>粘性效果是相对于参照物元素可视区域的边框而言。</li>
+</ol>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.zhangxinxu.com/wordpress/2020/03/position-sticky-rules/">https://www.zhangxinxu.com/wordpress/2020/03/position-sticky-rules/</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.ruanyifeng.com/blog/2019/11/css-position.html">https://www.ruanyifeng.com/blog/2019/11/css-position.html</a></li>
+</ul>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous"><a href="/学习/Hooks使用总结和源码解析-一.html">&larr;  上一篇</a></li>
+                    
+                    
+                        <li class="next"><a href="/学习/TCP协议基础知识（二）.html">下一篇 &rarr;</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/neilning-xc" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:ningcoder@foxmail.com" rel="external nofollow noreferrer" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2025 Neil Ning<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/" rel="external nofollow noreferrer">Clean Blog</a> from <a href="http://startbootstrap.com/" rel="external nofollow noreferrer" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a> by <a href="http://www.codeblocq.com/" rel="external nofollow noreferrer" target="_blank">Jonathan Klughertz</a></p>
+                <!-- <p class="copyright text-muted"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.miitbeian.gov.cn/">豫ICP备19003046号</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//lib.baomitu.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//lib.baomitu.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//lib.baomitu.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
