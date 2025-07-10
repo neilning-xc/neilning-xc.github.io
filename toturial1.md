@@ -1,0 +1,666 @@
+# 从零实现一个大模型（一）
+
+本文从零实现一个大模型，用于帮助理解大模型的基本原理，本文是一个读书笔记，内容来自于[Build a Large Language Model (From Scratch)](https://github.com/rasbt/LLMs-from-scratch)
+
+## 目录
+
+本系列包含以以下主题，当前在主题一
+
+### 1. 文本处理
+### 2. 注意力机制
+### 3. 开发一个Transform架构的大模型
+### 4. 使用无标记数据预训练模型
+### 5. 分类微调
+
+## 处理文本
+
+LLM模型首先要处理文本，处理文本的目标是将文本转换成高维度的嵌入向量，具有相关性的文本的距离是相近的。高维度坐标无法掩饰，这里使用二维的坐标做演示，具有相似属性的文本在二维的平面坐标系里考的更近。
+
+<img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/03.webp" width="500px">
+
+但是二维的向量所能包含的信息太少了，LLM通常使用上千维度的向量，这也是LLM消耗硬件资源的原因之一。
+
+### 分词器 Tokenizer
+
+在处理文本之前需要将，需要使用分词器将文本分割成更小的单元，比如英文句子中的单词和标点符号
+
+<img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/04.webp" width="500px">
+
+以下代码将一篇txt格式的短篇小说划分成单词和标点符号，我们称之为token。
+
+
+```python
+import re
+
+class SimpleTokenizerV1:
+    def __init__(self, vocab):
+        self.str_to_int = vocab
+        self.int_to_str = {i:s for s,i in vocab.items()}
+    
+    def encode(self, text):
+        preprocessed = re.split(r'([,.:;?_!"()\']|--|\s)', text)
+                                
+        preprocessed = [
+            item.strip() for item in preprocessed if item.strip()
+        ]
+        ids = [self.str_to_int[s] for s in preprocessed]
+        return ids
+        
+    def decode(self, ids):
+        text = " ".join([self.int_to_str[i] for i in ids])
+        # 使用空格分割
+        text = re.sub(r'\s+([,.?!"()\'])', r'\1', text)
+        return text
+
+with open("the-verdict.txt", "r", encoding="utf-8") as f:
+    raw_text = f.read() 
+print("Total number of character:", len(raw_text))
+print(raw_text[:99])
+      
+```
+
+    Total number of character: 20479
+    I HAD always thought Jack Gisburn rather a cheap genius--though a good fellow enough--so it was no 
+
+
+将token去重后组成一个词库vocab，词库中的每个元素都有一个唯一个ID，称之为token ID
+
+
+```python
+preprocessed = re.split(r'([,.:;?_!"()\']|--|\s)', raw_text)
+preprocessed = [item.strip() for item in preprocessed if item.strip()]
+# print(preprocessed[:30])
+all_words = sorted(set(preprocessed))
+vocab_size = len(all_words)
+print(vocab_size)
+vocab = {token:integer for integer,token in enumerate(all_words)}  
+```
+
+    1130
+
+
+
+```python
+for i, item in enumerate(vocab.items()):
+    print(item)
+    if i >= 50:
+        break
+```
+
+    ('!', 0)
+    ('"', 1)
+    ("'", 2)
+    ('(', 3)
+    (')', 4)
+    (',', 5)
+    ('--', 6)
+    ('.', 7)
+    (':', 8)
+    (';', 9)
+    ('?', 10)
+    ('A', 11)
+    ('Ah', 12)
+    ('Among', 13)
+    ('And', 14)
+    ('Are', 15)
+    ('Arrt', 16)
+    ('As', 17)
+    ('At', 18)
+    ('Be', 19)
+    ('Begin', 20)
+    ('Burlington', 21)
+    ('But', 22)
+    ('By', 23)
+    ('Carlo', 24)
+    ('Chicago', 25)
+    ('Claude', 26)
+    ('Come', 27)
+    ('Croft', 28)
+    ('Destroyed', 29)
+    ('Devonshire', 30)
+    ('Don', 31)
+    ('Dubarry', 32)
+    ('Emperors', 33)
+    ('Florence', 34)
+    ('For', 35)
+    ('Gallery', 36)
+    ('Gideon', 37)
+    ('Gisburn', 38)
+    ('Gisburns', 39)
+    ('Grafton', 40)
+    ('Greek', 41)
+    ('Grindle', 42)
+    ('Grindles', 43)
+    ('HAD', 44)
+    ('Had', 45)
+    ('Hang', 46)
+    ('Has', 47)
+    ('He', 48)
+    ('Her', 49)
+    ('Hermia', 50)
+
+
+使用上面的词库，将下面的文本转换为token ID：
+
+
+```python
+tokenizer = SimpleTokenizerV1(vocab)
+
+text = """"It's the last he painted, you know," 
+           Mrs. Gisburn said with pardonable pride."""
+ids = tokenizer.encode(text)
+print(ids)
+```
+
+    [1, 56, 2, 850, 988, 602, 533, 746, 5, 1126, 596, 5, 1, 67, 7, 38, 851, 1108, 754, 793, 7]
+
+
+
+```python
+tokenizer.decode(ids) # 将token ID转化为文本
+```
+
+
+
+
+    '" It\' s the last he painted, you know," Mrs. Gisburn said with pardonable pride.'
+
+
+
+使用上面的方法无法处理词库里没有的单词，所以我们使用占位符来处理不认识的单词，修改上面的代码如下：
+
+
+```python
+class SimpleTokenizerV2:
+    def __init__(self, vocab):
+        self.str_to_int = vocab
+        self.int_to_str = { i:s for s,i in vocab.items()}
+
+    def encode(self, text):
+        preprocessed = re.split(r'([,.?_!"()\']|--|\s)', text)
+        preprocessed = [item.strip() for item in preprocessed if item.strip()]
+        preprocessed = [item if item in self.str_to_int else "<|unk|>" for item in preprocessed]
+
+        ids = [self.str_to_int[s] for s in preprocessed]
+        return ids
+
+    def decode(self, ids):
+        text = " ".join([self.int_to_str[i] for i in ids])
+
+        text = re.sub(r'\s+([,.?!"()\'])', r'\1', text)                    #B
+        return text
+```
+
+
+```python
+all_tokens = sorted(list(set(preprocessed)))
+all_tokens.extend(["<|endoftext|>", "<|unk|>"])
+vocab = {token:integer for integer,token in enumerate(all_tokens)}
+len(vocab.items())
+```
+
+
+
+
+    1132
+
+
+
+可以看到词库拓展了两个新的token，分别为`<|endoftext|>`和`<|unk|>`，词库中不存在的token会被转化为`<|unk|>`，token ID是1131
+
+
+```python
+for i, item in enumerate(list(vocab.items())[-5:]):
+    print(item)
+```
+
+    ('younger', 1127)
+    ('your', 1128)
+    ('yourself', 1129)
+    ('<|endoftext|>', 1130)
+    ('<|unk|>', 1131)
+
+
+
+```python
+tokenizer = SimpleTokenizerV2(vocab)
+
+text1 = "Hello, do you like tea?"
+text2 = "In the sunlit terraces of the palace."
+
+text = " <|endoftext|> ".join((text1, text2))
+
+print(text)
+```
+
+    Hello, do you like tea? <|endoftext|> In the sunlit terraces of the palace.
+
+
+
+```python
+tokenizer.encode(text)
+```
+
+
+
+
+    [1131, 5, 355, 1126, 628, 975, 10, 1130, 55, 988, 956, 984, 722, 988, 1131, 7]
+
+
+
+
+```python
+tokenizer.decode(tokenizer.encode(text))
+```
+
+
+
+
+    '<|unk|>, do you like tea? <|endoftext|> In the sunlit terraces of the <|unk|>.'
+
+
+
+## BPE字节对编码
+
+上面的例子为了演示，直接采用了比较简单的策略进行分词，实际过程中并不会采用这种方式，GPT2使用了字节对编码作为分词器（BytePair encoding，简称BPE），该分词器会将文本分割成更小的单元，如unfamiliarword别分割成["unfam", "iliar", "word"] 
+
+分词器的原理可以[参考这里](https://github.com/openai/gpt-2/blob/master/src/encoder.py)，本文使用了OpenAI使用Rust实现的开源库`tiktoken`，它有好的的性能。
+
+使用`tiktoken`处理同样的文本的结果如下：
+
+
+```python
+import tiktoken
+tokenizer = tiktoken.get_encoding("gpt2")
+text = (
+    "Hello, do you like tea? <|endoftext|> In the sunlit terraces"
+     "of someunknownPlace."
+)
+
+integers = tokenizer.encode(text, allowed_special={"<|endoftext|>"})
+print(integers)
+```
+
+    [15496, 11, 466, 345, 588, 8887, 30, 220, 50256, 554, 262, 4252, 18250, 8812, 2114, 1659, 617, 34680, 27271, 13]
+
+
+
+```python
+strings = tokenizer.decode(integers)
+print(strings)
+```
+
+    Hello, do you like tea? <|endoftext|> In the sunlit terracesof someunknownPlace.
+
+
+### 使用滑动窗口处理数据样本
+
+LLM每次生成一个词，所以在训练时我们需要预处理文本，处理方式如下图，红色的是目标值，蓝色的试输入值。这种方法称为滑动窗口。
+
+<img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/12.webp" width="400px">
+
+
+```python
+with open("the-verdict.txt", "r", encoding="utf-8") as f:
+    raw_text = f.read()
+
+enc_text = tokenizer.encode(raw_text)
+print(len(enc_text))
+```
+
+    5145
+
+
+
+```python
+enc_sample = enc_text[50:]
+context_size = 4
+
+x = enc_sample[:context_size] # 输入值
+y = enc_sample[1:context_size+1] # 使用滑动窗口的策略
+
+print(f"x: {x}")
+print(f"y:      {y}")
+```
+
+    x: [290, 4920, 2241, 287]
+    y:      [4920, 2241, 287, 257]
+
+
+上面的代码如下图所示，蓝色的是输入，红色的目标
+
+<img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/13.webp" width="400px">
+
+
+```python
+for i in range(1, context_size+1):
+    context = enc_sample[:i]
+    desired = enc_sample[i]
+
+    print(context, "---->", desired)
+```
+
+    [290] ----> 4920
+    [290, 4920] ----> 2241
+    [290, 4920, 2241] ----> 287
+    [290, 4920, 2241, 287] ----> 257
+
+
+
+```python
+for i in range(1, context_size+1):
+    context = enc_sample[:i]
+    desired = enc_sample[i]
+
+    print(tokenizer.decode(context), "---->", tokenizer.decode([desired]))
+```
+
+     and ---->  established
+     and established ---->  himself
+     and established himself ---->  in
+     and established himself in ---->  a
+
+
+接下来构建一个类来处理训练数据集，先使用分词器处理输入的文本数据，将他们转换为token id，然后使用滑动窗口的策略将数据输入数据input_ids和目标数据target_ids。
+
+
+```python
+import torch
+from torch.utils.data import Dataset, DataLoader
+
+class GPTDatasetV1(Dataset):
+    def __init__(self, txt, tokenizer, max_length, stride):
+        self.input_ids = []
+        self.target_ids = []
+
+        # 分词器处理文本
+        token_ids = tokenizer.encode(txt, allowed_special={"<|endoftext|>"})
+        assert len(token_ids) > max_length, "Number of tokenized inputs must at least be equal to max_length+1"
+
+        # 使用滑动窗口将数据样本分成两部分：输入值和目标值
+        for i in range(0, len(token_ids) - max_length, stride):
+            input_chunk = token_ids[i:i + max_length]
+            target_chunk = token_ids[i + 1: i + max_length + 1]
+            self.input_ids.append(torch.tensor(input_chunk))
+            self.target_ids.append(torch.tensor(target_chunk))
+
+    def __len__(self):
+        return len(self.input_ids)
+
+    def __getitem__(self, idx):
+        return self.input_ids[idx], self.target_ids[idx]
+
+def create_dataloader_v1(txt, batch_size=4, max_length=256, 
+                         stride=128, shuffle=True, drop_last=True,
+                         num_workers=0):
+
+    # 初始化分词器
+    tokenizer = tiktoken.get_encoding("gpt2")
+
+    # Create dataset
+    dataset = GPTDatasetV1(txt, tokenizer, max_length, stride)
+
+    # Create dataloader
+    dataloader = DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        drop_last=drop_last,
+        num_workers=num_workers
+    )
+
+    return dataloader
+```
+
+
+```python
+with open("the-verdict.txt", "r", encoding="utf-8") as f:
+    raw_text = f.read()
+
+# 滑动窗口的步长为1时
+dataloader = create_dataloader_v1(raw_text, batch_size=8, max_length=4, stride=1, shuffle=False)
+
+data_iter = iter(dataloader)
+inputs, targets = next(data_iter)
+print("Inputs:\n", inputs)
+print("\nTargets:\n", targets)
+```
+
+    Inputs:
+     tensor([[   40,   367,  2885,  1464],
+            [  367,  2885,  1464,  1807],
+            [ 2885,  1464,  1807,  3619],
+            [ 1464,  1807,  3619,   402],
+            [ 1807,  3619,   402,   271],
+            [ 3619,   402,   271, 10899],
+            [  402,   271, 10899,  2138],
+            [  271, 10899,  2138,   257]])
+    
+    Targets:
+     tensor([[  367,  2885,  1464,  1807],
+            [ 2885,  1464,  1807,  3619],
+            [ 1464,  1807,  3619,   402],
+            [ 1807,  3619,   402,   271],
+            [ 3619,   402,   271, 10899],
+            [  402,   271, 10899,  2138],
+            [  271, 10899,  2138,   257],
+            [10899,  2138,   257,  7026]])
+
+
+
+```python
+# 滑动窗口的步长为4时
+dataloader = create_dataloader_v1(raw_text, batch_size=8, max_length=4, stride=4, shuffle=False)
+
+data_iter = iter(dataloader)
+inputs, targets = next(data_iter)
+print("Inputs:\n", inputs)
+print("\nTargets:\n", targets)
+```
+
+    Inputs:
+     tensor([[   40,   367,  2885,  1464],
+            [ 1807,  3619,   402,   271],
+            [10899,  2138,   257,  7026],
+            [15632,   438,  2016,   257],
+            [  922,  5891,  1576,   438],
+            [  568,   340,   373,   645],
+            [ 1049,  5975,   284,   502],
+            [  284,  3285,   326,    11]])
+    
+    Targets:
+     tensor([[  367,  2885,  1464,  1807],
+            [ 3619,   402,   271, 10899],
+            [ 2138,   257,  7026, 15632],
+            [  438,  2016,   257,   922],
+            [ 5891,  1576,   438,   568],
+            [  340,   373,   645,  1049],
+            [ 5975,   284,   502,   284],
+            [ 3285,   326,    11,   287]])
+
+
+上面步长stride为1和4的示意图如下：
+
+<img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/14.webp" width="400px">
+
+## 创建嵌入向量
+
+将数据分成输入值和目标值之后，接下来的步骤就是要token ID转化为向量以便LLM做后续处理，这个步骤称之为嵌入层
+
+<img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/15.webp" width="400px">
+
+将token ID转化为向量可以使用torch.tensor方法，下面是一个示例：
+
+
+```python
+import torch
+input_ids = torch.tensor([2, 3, 5, 1])
+vocab_size = 6 # 定义词库的大小
+output_dim = 3 # 定义每个token ID输出的维度
+
+torch.manual_seed(123)
+embedding_layer = torch.nn.Embedding(vocab_size, output_dim) #嵌入层
+print(embedding_layer.weight) # 打印嵌入层
+print(embedding_layer(input_ids)) # 使用嵌入层处理输入数据
+```
+
+    Parameter containing:
+    tensor([[ 0.3374, -0.1778, -0.1690],
+            [ 0.9178,  1.5810,  1.3010],
+            [ 1.2753, -0.2010, -0.1606],
+            [-0.4015,  0.9666, -1.1481],
+            [-1.1589,  0.3255, -0.6315],
+            [-2.8400, -0.7849, -1.4096]], requires_grad=True)
+    tensor([[ 1.2753, -0.2010, -0.1606],
+            [-0.4015,  0.9666, -1.1481],
+            [-2.8400, -0.7849, -1.4096],
+            [ 0.9178,  1.5810,  1.3010]], grad_fn=<EmbeddingBackward0>)
+
+
+可以看到嵌入层是二维向量，长度为6，每个元素都是一个三维的向量，使用嵌入层处理输入值后，是一个长度为4的二维向量，每个token ID都被转换为一个三维向量。
+
+上面将token ID转化成嵌入向量时，没有包含子词的位置信息，同一个单词在句子的不同位置所代表的含义可能是不同的，所以我们还需要把token ID的位置信息也加入到向量中。
+
+
+```python
+# 创建嵌入层
+vocab_size = 50257 # BPE编码的词库长度微50257
+output_dim = 256 # 将向量转化为256维
+token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim) # 创建token嵌入层
+
+max_length = 4
+dataloader = create_dataloader_v1(
+    raw_text, batch_size=8, max_length=max_length,
+    stride=max_length, shuffle=False
+)
+data_iter = iter(dataloader)
+inputs, targets = next(data_iter)
+token_embeddings = token_embedding_layer(inputs)
+print(token_embeddings.shape)
+```
+
+    torch.Size([8, 4, 256])
+
+
+以上结果表明inputs有8个批次的数据，每个批次有4个token，每个token被转换成一个256纬度的向量
+
+接下来获取位置向量
+
+
+```python
+# 处理位置向量
+context_length = max_length
+pos_embedding_layer = torch.nn.Embedding(context_length, output_dim) # 创建位置嵌入层
+pos_embeddings = pos_embedding_layer(torch.arange(max_length)) # 生成和位置相关的嵌入向量
+
+print(pos_embeddings.shape)
+```
+
+    torch.Size([4, 256])
+
+
+为了简单起见，这里简单的将toke ID的向量和位置向量相加得到最终的输入向量
+
+
+```python
+input_embeddings = token_embeddings + pos_embeddings
+print(input_embeddings.shape)
+```
+
+    torch.Size([8, 4, 256])
+
+
+这样我们就得到了嵌入向量，完整的代码如下，后面我们要使用这个类处理所有的输入数据。
+
+
+```python
+import tiktoken
+import torch
+from torch.utils.data import Dataset, DataLoader
+
+class GPTDatasetV1(Dataset):
+    def __init__(self, txt, tokenizer, max_length, stride):
+        self.input_ids = []
+        self.target_ids = []
+
+        # Tokenize the entire text
+        token_ids = tokenizer.encode(txt, allowed_special={"<|endoftext|>"})
+
+        # Use a sliding window to chunk the book into overlapping sequences of max_length
+        for i in range(0, len(token_ids) - max_length, stride):
+            input_chunk = token_ids[i:i + max_length]
+            target_chunk = token_ids[i + 1: i + max_length + 1]
+            self.input_ids.append(torch.tensor(input_chunk))
+            self.target_ids.append(torch.tensor(target_chunk))
+
+    def __len__(self):
+        return len(self.input_ids)
+
+    def __getitem__(self, idx):
+        return self.input_ids[idx], self.target_ids[idx]
+
+
+def create_dataloader_v1(txt, batch_size, max_length, stride,
+                         shuffle=True, drop_last=True, num_workers=0):
+    # Initialize the tokenizer
+    tokenizer = tiktoken.get_encoding("gpt2")
+
+    # Create dataset
+    dataset = GPTDatasetV1(txt, tokenizer, max_length, stride)
+
+    # Create dataloader
+    dataloader = DataLoader(
+        dataset, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)
+
+    return dataloader
+
+with open("the-verdict.txt", "r", encoding="utf-8") as f:
+    raw_text = f.read()
+
+vocab_size = 50257
+output_dim = 256
+context_length = 1024
+
+
+token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim)
+pos_embedding_layer = torch.nn.Embedding(context_length, output_dim)
+
+batch_size = 8
+max_length = 4
+dataloader = create_dataloader_v1(
+    raw_text,
+    batch_size=batch_size,
+    max_length=max_length,
+    stride=max_length
+)
+```
+
+
+```python
+for batch in dataloader:
+    x, y = batch
+
+    token_embeddings = token_embedding_layer(x)
+    pos_embeddings = pos_embedding_layer(torch.arange(max_length))
+
+    input_embeddings = token_embeddings + pos_embeddings
+
+    break
+```
+
+
+```python
+print(input_embeddings.shape)
+```
+
+    torch.Size([8, 4, 256])
+
+
+### 参考资料
+
+1. [Build a Large Language Model (From Scratch)](https://github.com/rasbt/LLMs-from-scratch)
+
+
+```python
+
+```
