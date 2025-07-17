@@ -4,17 +4,59 @@ on:
     branches:
       - master # master 分支有 push 行为时就触发这个 action
 
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@master
+
+#       - name: Build and Deploy
+#         uses: theme-keep/hexo-deploy-github-pages-action@master # 使用专门部署 Hexo 到 GitHub pages 的 action
+#         env:
+#           PERSONAL_TOKEN: ${{ secrets.HEXO_DEPLOY }} # secret 名
+#           PUBLISH_REPOSITORY: neilning-xc/neilning-xc.github.io # 公共仓库，格式：GitHub 用户名/仓库名
+#           BRANCH: gh-pages # 分支，填 gh-pages 就行
+#           PUBLISH_DIR: ./public # 部署 public 目录下的文件
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Build and Deploy
-        uses: theme-keep/hexo-deploy-github-pages-action@master # 使用专门部署 Hexo 到 GitHub pages 的 action
-        env:
-          PERSONAL_TOKEN: ${{ secrets.HEXO_DEPLOY }} # secret 名
-          PUBLISH_REPOSITORY: neilning-xc/neilning-xc.github.io # 公共仓库，格式：GitHub 用户名/仓库名
-          BRANCH: gh-pages # 分支，填 gh-pages 就行
-          PUBLISH_DIR: ./public # 部署 public 目录下的文件
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.HEXO_DEPLOY }}
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
+          # Ref: https://github.com/actions/setup-node#supported-version-syntax
+          node-version: "20"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
